@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d4fc5ea486c42909011d175a9de3134" Name="Diagram1">
+        <EntityTypeShape EntityType="DataBaseMagasinModel.CHEF" Width="1.5" PointX="5.75" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.CHEQUECLIENT" Width="1.5" PointX="10" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.CHEQUEFOURNISSEUR" Width="1.5" PointX="0.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.CLIENT" Width="1.5" PointX="7.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.COMMANDECLIENT" Width="1.5" PointX="10" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.COMMANDEFOUR" Width="1.5" PointX="3.125" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.COMMANDER" Width="1.5" PointX="5.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.EMPLOYE" Width="1.5" PointX="8" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.FOURNISSEUR" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.PAIEMENTESPECECLT" Width="1.5" PointX="10" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.PAIEMENTESPECEFOUR" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.PRODUIT" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.REGLERCHQ" Width="1.5" PointX="12.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.REGLERESPECE" Width="1.5" PointX="12.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_EMPLOYE_TRAVAILLE_CHEF" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_REGLERCH_REGLERCHQ_CHEQUECL" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_COMMANDE_PASSER_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_REGLERCH_REGLERCHQ_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_REGLERES_REGLERESP_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_REGLERCH_REGLERCHQ_COMMANDE" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_REGLERES_REGLERESP_COMMANDE" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_COMMANDE_COMMANDER_COMMANDE" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_COMMANDE_RECEVOIR_FOURNISS" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_COMMANDE_COMMANDER_PRODUIT" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_PRODUIT_PRODUIRE_FOURNISS" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.FK_REGLERES_REGLERESP_PAIEMENT" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.REGLE_CHQ_FOUR" ManuallyRouted="false" />
+        <AssociationConnector Association="DataBaseMagasinModel.REGLER_ESP_FOUR" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

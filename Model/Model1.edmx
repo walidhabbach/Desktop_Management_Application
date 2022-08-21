@@ -1,0 +1,1035 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DataBaseMagasinModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHEF">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGIN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CODE" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHEQUECLIENT">
+          <Key>
+            <PropertyRef Name="IDCHQ_CLT" />
+          </Key>
+          <Property Name="IDCHQ_CLT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATEDONNER" Type="date" Nullable="false" />
+          <Property Name="DATEENCAISSEMENT" Type="date" Nullable="false" />
+          <Property Name="MONTANT" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CHEQUEFOURNISSEUR">
+          <Key>
+            <PropertyRef Name="IDCHQ_FOUR" />
+          </Key>
+          <Property Name="IDCHQ_FOUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATEDONNER" Type="date" Nullable="false" />
+          <Property Name="DATEPAYER" Type="date" Nullable="false" />
+          <Property Name="MONTANT" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CLIENT">
+          <Key>
+            <PropertyRef Name="IDCLIENT" />
+          </Key>
+          <Property Name="IDCLIENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TELEPHONE" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMANDECLIENT">
+          <Key>
+            <PropertyRef Name="ID_CMD_CLT" />
+          </Key>
+          <Property Name="ID_CMD_CLT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCLIENT" Type="int" Nullable="false" />
+          <Property Name="DESIGNATION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="date" Nullable="false" />
+          <Property Name="DATE_LIMITE" Type="date" Nullable="false" />
+          <Property Name="STATUT" Type="bit" Nullable="false" />
+          <Property Name="MONTANTTOTAL" Type="money" Nullable="false" />
+          <Property Name="MTAVANCE" Type="money" Nullable="false" />
+          <Property Name="MTRESTE" Type="money" />
+          <Property Name="PCHEQUE" Type="bit" Nullable="false" />
+          <Property Name="PESPECE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMANDEFOUR">
+          <Key>
+            <PropertyRef Name="ID_CMD_FOUR" />
+          </Key>
+          <Property Name="ID_CMD_FOUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDFOUR" Type="int" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="STATUT" Type="bit" Nullable="false" />
+          <Property Name="DATECMD" Type="date" Nullable="false" />
+          <Property Name="PESPECE" Type="bit" Nullable="false" />
+          <Property Name="PCHEQUE" Type="bit" Nullable="false" />
+          <Property Name="MONTANTTOTAL" Type="money" Nullable="false" />
+          <Property Name="MTRESTE" Type="money" />
+          <Property Name="MTAVANCE" Type="money" />
+        </EntityType>
+        <EntityType Name="COMMANDER">
+          <Key>
+            <PropertyRef Name="IDPRODUIT" />
+            <PropertyRef Name="ID_CMD_FOUR" />
+          </Key>
+          <Property Name="IDPRODUIT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ID_CMD_FOUR" Type="int" Nullable="false" />
+          <Property Name="QUANTITE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYE">
+          <Key>
+            <PropertyRef Name="IDEMP" />
+          </Key>
+          <Property Name="IDEMP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUSER" Type="int" Nullable="false" />
+          <Property Name="NOM" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TELEPHONE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="AGE" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="ADRESSE" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="IDFOUR" />
+          </Key>
+          <Property Name="IDFOUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ENTREPRISE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="TELEPHONE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="CATEGORIE" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ADRESSE" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAIEMENTESPECECLT">
+          <Key>
+            <PropertyRef Name="IDESPECE_CLT" />
+          </Key>
+          <Property Name="IDESPECE_CLT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_PAIEMENT" Type="date" Nullable="false" />
+          <Property Name="MONTANT" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAIEMENTESPECEFOUR">
+          <Key>
+            <PropertyRef Name="IDESP_FOUR" />
+          </Key>
+          <Property Name="IDESP_FOUR" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATE_PAIEMENT" Type="date" Nullable="false" />
+          <Property Name="MONTANT" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="IDPRODUIT" />
+          </Key>
+          <Property Name="IDPRODUIT" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="IDFOUR" Type="int" Nullable="false" />
+          <Property Name="DESIGNATION" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PRIXACHAT" Type="money" Nullable="false" />
+          <Property Name="PRIXVENTE" Type="money" />
+          <Property Name="DPRIXVENTE" Type="money" />
+        </EntityType>
+        <EntityType Name="REGLE_CHQ_FOUR">
+          <Key>
+            <PropertyRef Name="IDCHQ_FOUR" />
+            <PropertyRef Name="ID_CMD_FOUR" />
+          </Key>
+          <Property Name="IDCHQ_FOUR" Type="int" Nullable="false" />
+          <Property Name="ID_CMD_FOUR" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGLER_ESP_FOUR">
+          <Key>
+            <PropertyRef Name="ID_CMD_FOUR" />
+            <PropertyRef Name="IDESP_FOUR" />
+          </Key>
+          <Property Name="ID_CMD_FOUR" Type="int" Nullable="false" />
+          <Property Name="IDESP_FOUR" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGLERCHQ">
+          <Key>
+            <PropertyRef Name="IDCHQ_CLT" />
+            <PropertyRef Name="ID_CMD_CLT" />
+            <PropertyRef Name="IDCLIENT" />
+          </Key>
+          <Property Name="IDCHQ_CLT" Type="int" Nullable="false" />
+          <Property Name="ID_CMD_CLT" Type="int" Nullable="false" />
+          <Property Name="IDCLIENT" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REGLERESPECE">
+          <Key>
+            <PropertyRef Name="IDESPECE_CLT" />
+            <PropertyRef Name="ID_CMD_CLT" />
+            <PropertyRef Name="IDCLIENT" />
+          </Key>
+          <Property Name="IDESPECE_CLT" Type="int" Nullable="false" />
+          <Property Name="ID_CMD_CLT" Type="int" Nullable="false" />
+          <Property Name="IDCLIENT" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_COMMANDE_COMMANDER_COMMANDE">
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="1" />
+          <End Role="COMMANDER" Type="Self.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDEFOUR">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_COMMANDER_PRODUIT">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="1" />
+          <End Role="COMMANDER" Type="Self.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="IDPRODUIT" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="IDPRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_PASSER_CLIENT">
+          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+          <End Role="COMMANDECLIENT" Type="Self.COMMANDECLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Principal>
+            <Dependent Role="COMMANDECLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_RECEVOIR_FOURNISS">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="1" />
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="IDFOUR" />
+            </Principal>
+            <Dependent Role="COMMANDEFOUR">
+              <PropertyRef Name="IDFOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYE_TRAVAILLE_CHEF">
+          <End Role="CHEF" Type="Self.CHEF" Multiplicity="1" />
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHEF">
+              <PropertyRef Name="IDUSER" />
+            </Principal>
+            <Dependent Role="EMPLOYE">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_PRODUIRE_FOURNISS">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="1" />
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="IDFOUR" />
+            </Principal>
+            <Dependent Role="PRODUIT">
+              <PropertyRef Name="IDFOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLE_CH_REGLE_CHQ_CHEQUEFO">
+          <End Role="CHEQUEFOURNISSEUR" Type="Self.CHEQUEFOURNISSEUR" Multiplicity="1" />
+          <End Role="REGLE_CHQ_FOUR" Type="Self.REGLE_CHQ_FOUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHEQUEFOURNISSEUR">
+              <PropertyRef Name="IDCHQ_FOUR" />
+            </Principal>
+            <Dependent Role="REGLE_CHQ_FOUR">
+              <PropertyRef Name="IDCHQ_FOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLE_CH_REGLE_CHQ_COMMANDE">
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="1" />
+          <End Role="REGLE_CHQ_FOUR" Type="Self.REGLE_CHQ_FOUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDEFOUR">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Principal>
+            <Dependent Role="REGLE_CHQ_FOUR">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLER_E_REGLER_ES_COMMANDE">
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="1" />
+          <End Role="REGLER_ESP_FOUR" Type="Self.REGLER_ESP_FOUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDEFOUR">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Principal>
+            <Dependent Role="REGLER_ESP_FOUR">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLER_E_REGLER_ES_PAIEMENT">
+          <End Role="PAIEMENTESPECEFOUR" Type="Self.PAIEMENTESPECEFOUR" Multiplicity="1" />
+          <End Role="REGLER_ESP_FOUR" Type="Self.REGLER_ESP_FOUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENTESPECEFOUR">
+              <PropertyRef Name="IDESP_FOUR" />
+            </Principal>
+            <Dependent Role="REGLER_ESP_FOUR">
+              <PropertyRef Name="IDESP_FOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERCH_REGLERCHQ_CHEQUECL">
+          <End Role="CHEQUECLIENT" Type="Self.CHEQUECLIENT" Multiplicity="1" />
+          <End Role="REGLERCHQ" Type="Self.REGLERCHQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHEQUECLIENT">
+              <PropertyRef Name="IDCHQ_CLT" />
+            </Principal>
+            <Dependent Role="REGLERCHQ">
+              <PropertyRef Name="IDCHQ_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERCH_REGLERCHQ_CLIENT">
+          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+          <End Role="REGLERCHQ" Type="Self.REGLERCHQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Principal>
+            <Dependent Role="REGLERCHQ">
+              <PropertyRef Name="IDCLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERCH_REGLERCHQ_COMMANDE">
+          <End Role="COMMANDECLIENT" Type="Self.COMMANDECLIENT" Multiplicity="1" />
+          <End Role="REGLERCHQ" Type="Self.REGLERCHQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDECLIENT">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Principal>
+            <Dependent Role="REGLERCHQ">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERES_REGLERESP_CLIENT">
+          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+          <End Role="REGLERESPECE" Type="Self.REGLERESPECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Principal>
+            <Dependent Role="REGLERESPECE">
+              <PropertyRef Name="IDCLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERES_REGLERESP_COMMANDE">
+          <End Role="COMMANDECLIENT" Type="Self.COMMANDECLIENT" Multiplicity="1" />
+          <End Role="REGLERESPECE" Type="Self.REGLERESPECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDECLIENT">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Principal>
+            <Dependent Role="REGLERESPECE">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERES_REGLERESP_PAIEMENT">
+          <End Role="PAIEMENTESPECECLT" Type="Self.PAIEMENTESPECECLT" Multiplicity="1" />
+          <End Role="REGLERESPECE" Type="Self.REGLERESPECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENTESPECECLT">
+              <PropertyRef Name="IDESPECE_CLT" />
+            </Principal>
+            <Dependent Role="REGLERESPECE">
+              <PropertyRef Name="IDESPECE_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DataBaseMagasinModelStoreContainer">
+          <EntitySet Name="CHEF" EntityType="Self.CHEF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHEQUECLIENT" EntityType="Self.CHEQUECLIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CHEQUEFOURNISSEUR" EntityType="Self.CHEQUEFOURNISSEUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CLIENT" EntityType="Self.CLIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMANDECLIENT" EntityType="Self.COMMANDECLIENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMANDEFOUR" EntityType="Self.COMMANDEFOUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMMANDER" EntityType="Self.COMMANDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYE" EntityType="Self.EMPLOYE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FOURNISSEUR" EntityType="Self.FOURNISSEUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAIEMENTESPECECLT" EntityType="Self.PAIEMENTESPECECLT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAIEMENTESPECEFOUR" EntityType="Self.PAIEMENTESPECEFOUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGLE_CHQ_FOUR" EntityType="Self.REGLE_CHQ_FOUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGLER_ESP_FOUR" EntityType="Self.REGLER_ESP_FOUR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGLERCHQ" EntityType="Self.REGLERCHQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="REGLERESPECE" EntityType="Self.REGLERESPECE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COMMANDE_COMMANDER_COMMANDE" Association="Self.FK_COMMANDE_COMMANDER_COMMANDE">
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_COMMANDER_PRODUIT" Association="Self.FK_COMMANDE_COMMANDER_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_PASSER_CLIENT" Association="Self.FK_COMMANDE_PASSER_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="COMMANDECLIENT" EntitySet="COMMANDECLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_RECEVOIR_FOURNISS" Association="Self.FK_COMMANDE_RECEVOIR_FOURNISS">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYE_TRAVAILLE_CHEF" Association="Self.FK_EMPLOYE_TRAVAILLE_CHEF">
+            <End Role="CHEF" EntitySet="CHEF" />
+            <End Role="EMPLOYE" EntitySet="EMPLOYE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_PRODUIRE_FOURNISS" Association="Self.FK_PRODUIT_PRODUIRE_FOURNISS">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLE_CH_REGLE_CHQ_CHEQUEFO" Association="Self.FK_REGLE_CH_REGLE_CHQ_CHEQUEFO">
+            <End Role="CHEQUEFOURNISSEUR" EntitySet="CHEQUEFOURNISSEUR" />
+            <End Role="REGLE_CHQ_FOUR" EntitySet="REGLE_CHQ_FOUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLE_CH_REGLE_CHQ_COMMANDE" Association="Self.FK_REGLE_CH_REGLE_CHQ_COMMANDE">
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+            <End Role="REGLE_CHQ_FOUR" EntitySet="REGLE_CHQ_FOUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLER_E_REGLER_ES_COMMANDE" Association="Self.FK_REGLER_E_REGLER_ES_COMMANDE">
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+            <End Role="REGLER_ESP_FOUR" EntitySet="REGLER_ESP_FOUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLER_E_REGLER_ES_PAIEMENT" Association="Self.FK_REGLER_E_REGLER_ES_PAIEMENT">
+            <End Role="PAIEMENTESPECEFOUR" EntitySet="PAIEMENTESPECEFOUR" />
+            <End Role="REGLER_ESP_FOUR" EntitySet="REGLER_ESP_FOUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERCH_REGLERCHQ_CHEQUECL" Association="Self.FK_REGLERCH_REGLERCHQ_CHEQUECL">
+            <End Role="CHEQUECLIENT" EntitySet="CHEQUECLIENT" />
+            <End Role="REGLERCHQ" EntitySet="REGLERCHQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERCH_REGLERCHQ_CLIENT" Association="Self.FK_REGLERCH_REGLERCHQ_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="REGLERCHQ" EntitySet="REGLERCHQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERCH_REGLERCHQ_COMMANDE" Association="Self.FK_REGLERCH_REGLERCHQ_COMMANDE">
+            <End Role="COMMANDECLIENT" EntitySet="COMMANDECLIENT" />
+            <End Role="REGLERCHQ" EntitySet="REGLERCHQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERES_REGLERESP_CLIENT" Association="Self.FK_REGLERES_REGLERESP_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="REGLERESPECE" EntitySet="REGLERESPECE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERES_REGLERESP_COMMANDE" Association="Self.FK_REGLERES_REGLERESP_COMMANDE">
+            <End Role="COMMANDECLIENT" EntitySet="COMMANDECLIENT" />
+            <End Role="REGLERESPECE" EntitySet="REGLERESPECE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERES_REGLERESP_PAIEMENT" Association="Self.FK_REGLERES_REGLERESP_PAIEMENT">
+            <End Role="PAIEMENTESPECECLT" EntitySet="PAIEMENTESPECECLT" />
+            <End Role="REGLERESPECE" EntitySet="REGLERESPECE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DataBaseMagasinModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CHEF">
+          <Key>
+            <PropertyRef Name="IDUSER" />
+          </Key>
+          <Property Name="IDUSER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOGIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EMPLOYE" Relationship="Self.FK_EMPLOYE_TRAVAILLE_CHEF" FromRole="CHEF" ToRole="EMPLOYE" />
+        </EntityType>
+        <EntityType Name="CHEQUECLIENT">
+          <Key>
+            <PropertyRef Name="IDCHQ_CLT" />
+          </Key>
+          <Property Name="IDCHQ_CLT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATEDONNER" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATEENCAISSEMENT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MONTANT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="REGLERCHQ" Relationship="Self.FK_REGLERCH_REGLERCHQ_CHEQUECL" FromRole="CHEQUECLIENT" ToRole="REGLERCHQ" />
+        </EntityType>
+        <EntityType Name="CHEQUEFOURNISSEUR">
+          <Key>
+            <PropertyRef Name="IDCHQ_FOUR" />
+          </Key>
+          <Property Name="IDCHQ_FOUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATEDONNER" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATEPAYER" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MONTANT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="COMMANDEFOUR" Relationship="Self.REGLE_CHQ_FOUR" FromRole="CHEQUEFOURNISSEUR" ToRole="COMMANDEFOUR" />
+        </EntityType>
+        <EntityType Name="CLIENT">
+          <Key>
+            <PropertyRef Name="IDCLIENT" />
+          </Key>
+          <Property Name="IDCLIENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="COMMANDECLIENT" Relationship="Self.FK_COMMANDE_PASSER_CLIENT" FromRole="CLIENT" ToRole="COMMANDECLIENT" />
+          <NavigationProperty Name="REGLERCHQ" Relationship="Self.FK_REGLERCH_REGLERCHQ_CLIENT" FromRole="CLIENT" ToRole="REGLERCHQ" />
+          <NavigationProperty Name="REGLERESPECE" Relationship="Self.FK_REGLERES_REGLERESP_CLIENT" FromRole="CLIENT" ToRole="REGLERESPECE" />
+        </EntityType>
+        <EntityType Name="COMMANDECLIENT">
+          <Key>
+            <PropertyRef Name="ID_CMD_CLT" />
+          </Key>
+          <Property Name="ID_CMD_CLT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCLIENT" Type="Int32" Nullable="false" />
+          <Property Name="DESIGNATION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATE_LIMITE" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="STATUT" Type="Boolean" Nullable="false" />
+          <Property Name="MONTANTTOTAL" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MTAVANCE" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MTRESTE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PCHEQUE" Type="Boolean" Nullable="false" />
+          <Property Name="PESPECE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CLIENT" Relationship="Self.FK_COMMANDE_PASSER_CLIENT" FromRole="COMMANDECLIENT" ToRole="CLIENT" />
+          <NavigationProperty Name="REGLERCHQ" Relationship="Self.FK_REGLERCH_REGLERCHQ_COMMANDE" FromRole="COMMANDECLIENT" ToRole="REGLERCHQ" />
+          <NavigationProperty Name="REGLERESPECE" Relationship="Self.FK_REGLERES_REGLERESP_COMMANDE" FromRole="COMMANDECLIENT" ToRole="REGLERESPECE" />
+        </EntityType>
+        <EntityType Name="COMMANDEFOUR">
+          <Key>
+            <PropertyRef Name="ID_CMD_FOUR" />
+          </Key>
+          <Property Name="ID_CMD_FOUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDFOUR" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STATUT" Type="Boolean" Nullable="false" />
+          <Property Name="DATECMD" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PESPECE" Type="Boolean" Nullable="false" />
+          <Property Name="PCHEQUE" Type="Boolean" Nullable="false" />
+          <Property Name="MONTANTTOTAL" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MTRESTE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MTAVANCE" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="COMMANDER" Relationship="Self.FK_COMMANDE_COMMANDER_COMMANDE" FromRole="COMMANDEFOUR" ToRole="COMMANDER" />
+          <NavigationProperty Name="FOURNISSEUR" Relationship="Self.FK_COMMANDE_RECEVOIR_FOURNISS" FromRole="COMMANDEFOUR" ToRole="FOURNISSEUR" />
+          <NavigationProperty Name="CHEQUEFOURNISSEUR" Relationship="Self.REGLE_CHQ_FOUR" FromRole="COMMANDEFOUR" ToRole="CHEQUEFOURNISSEUR" />
+          <NavigationProperty Name="PAIEMENTESPECEFOUR" Relationship="Self.REGLER_ESP_FOUR" FromRole="COMMANDEFOUR" ToRole="PAIEMENTESPECEFOUR" />
+        </EntityType>
+        <EntityType Name="COMMANDER">
+          <Key>
+            <PropertyRef Name="IDPRODUIT" />
+            <PropertyRef Name="ID_CMD_FOUR" />
+          </Key>
+          <Property Name="IDPRODUIT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_CMD_FOUR" Type="Int32" Nullable="false" />
+          <Property Name="QUANTITE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="COMMANDEFOUR" Relationship="Self.FK_COMMANDE_COMMANDER_COMMANDE" FromRole="COMMANDER" ToRole="COMMANDEFOUR" />
+          <NavigationProperty Name="PRODUIT" Relationship="Self.FK_COMMANDE_COMMANDER_PRODUIT" FromRole="COMMANDER" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="EMPLOYE">
+          <Key>
+            <PropertyRef Name="IDEMP" />
+          </Key>
+          <Property Name="IDEMP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUSER" Type="Int32" Nullable="false" />
+          <Property Name="NOM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AGE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ADRESSE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CHEF" Relationship="Self.FK_EMPLOYE_TRAVAILLE_CHEF" FromRole="EMPLOYE" ToRole="CHEF" />
+        </EntityType>
+        <EntityType Name="FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="IDFOUR" />
+          </Key>
+          <Property Name="IDFOUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ENTREPRISE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CATEGORIE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ADRESSE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="COMMANDEFOUR" Relationship="Self.FK_COMMANDE_RECEVOIR_FOURNISS" FromRole="FOURNISSEUR" ToRole="COMMANDEFOUR" />
+          <NavigationProperty Name="PRODUIT" Relationship="Self.FK_PRODUIT_PRODUIRE_FOURNISS" FromRole="FOURNISSEUR" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="PAIEMENTESPECECLT">
+          <Key>
+            <PropertyRef Name="IDESPECE_CLT" />
+          </Key>
+          <Property Name="IDESPECE_CLT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_PAIEMENT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MONTANT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="REGLERESPECE" Relationship="Self.FK_REGLERES_REGLERESP_PAIEMENT" FromRole="PAIEMENTESPECECLT" ToRole="REGLERESPECE" />
+        </EntityType>
+        <EntityType Name="PAIEMENTESPECEFOUR">
+          <Key>
+            <PropertyRef Name="IDESP_FOUR" />
+          </Key>
+          <Property Name="IDESP_FOUR" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATE_PAIEMENT" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MONTANT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="COMMANDEFOUR" Relationship="Self.REGLER_ESP_FOUR" FromRole="PAIEMENTESPECEFOUR" ToRole="COMMANDEFOUR" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="IDPRODUIT" />
+          </Key>
+          <Property Name="IDPRODUIT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDFOUR" Type="Int32" Nullable="false" />
+          <Property Name="DESIGNATION" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRIXACHAT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PRIXVENTE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DPRIXVENTE" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="COMMANDER" Relationship="Self.FK_COMMANDE_COMMANDER_PRODUIT" FromRole="PRODUIT" ToRole="COMMANDER" />
+          <NavigationProperty Name="FOURNISSEUR" Relationship="Self.FK_PRODUIT_PRODUIRE_FOURNISS" FromRole="PRODUIT" ToRole="FOURNISSEUR" />
+        </EntityType>
+        <EntityType Name="REGLERCHQ">
+          <Key>
+            <PropertyRef Name="IDCHQ_CLT" />
+            <PropertyRef Name="ID_CMD_CLT" />
+            <PropertyRef Name="IDCLIENT" />
+          </Key>
+          <Property Name="IDCHQ_CLT" Type="Int32" Nullable="false" />
+          <Property Name="ID_CMD_CLT" Type="Int32" Nullable="false" />
+          <Property Name="IDCLIENT" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CHEQUECLIENT" Relationship="Self.FK_REGLERCH_REGLERCHQ_CHEQUECL" FromRole="REGLERCHQ" ToRole="CHEQUECLIENT" />
+          <NavigationProperty Name="CLIENT" Relationship="Self.FK_REGLERCH_REGLERCHQ_CLIENT" FromRole="REGLERCHQ" ToRole="CLIENT" />
+          <NavigationProperty Name="COMMANDECLIENT" Relationship="Self.FK_REGLERCH_REGLERCHQ_COMMANDE" FromRole="REGLERCHQ" ToRole="COMMANDECLIENT" />
+        </EntityType>
+        <EntityType Name="REGLERESPECE">
+          <Key>
+            <PropertyRef Name="IDESPECE_CLT" />
+            <PropertyRef Name="ID_CMD_CLT" />
+            <PropertyRef Name="IDCLIENT" />
+          </Key>
+          <Property Name="IDESPECE_CLT" Type="Int32" Nullable="false" />
+          <Property Name="ID_CMD_CLT" Type="Int32" Nullable="false" />
+          <Property Name="IDCLIENT" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CLIENT" Relationship="Self.FK_REGLERES_REGLERESP_CLIENT" FromRole="REGLERESPECE" ToRole="CLIENT" />
+          <NavigationProperty Name="COMMANDECLIENT" Relationship="Self.FK_REGLERES_REGLERESP_COMMANDE" FromRole="REGLERESPECE" ToRole="COMMANDECLIENT" />
+          <NavigationProperty Name="PAIEMENTESPECECLT" Relationship="Self.FK_REGLERES_REGLERESP_PAIEMENT" FromRole="REGLERESPECE" ToRole="PAIEMENTESPECECLT" />
+        </EntityType>
+        <Association Name="FK_EMPLOYE_TRAVAILLE_CHEF">
+          <End Role="CHEF" Type="Self.CHEF" Multiplicity="1" />
+          <End Role="EMPLOYE" Type="Self.EMPLOYE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHEF">
+              <PropertyRef Name="IDUSER" />
+            </Principal>
+            <Dependent Role="EMPLOYE">
+              <PropertyRef Name="IDUSER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERCH_REGLERCHQ_CHEQUECL">
+          <End Role="CHEQUECLIENT" Type="Self.CHEQUECLIENT" Multiplicity="1" />
+          <End Role="REGLERCHQ" Type="Self.REGLERCHQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CHEQUECLIENT">
+              <PropertyRef Name="IDCHQ_CLT" />
+            </Principal>
+            <Dependent Role="REGLERCHQ">
+              <PropertyRef Name="IDCHQ_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_PASSER_CLIENT">
+          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+          <End Role="COMMANDECLIENT" Type="Self.COMMANDECLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Principal>
+            <Dependent Role="COMMANDECLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERCH_REGLERCHQ_CLIENT">
+          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+          <End Role="REGLERCHQ" Type="Self.REGLERCHQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Principal>
+            <Dependent Role="REGLERCHQ">
+              <PropertyRef Name="IDCLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERES_REGLERESP_CLIENT">
+          <End Role="CLIENT" Type="Self.CLIENT" Multiplicity="1" />
+          <End Role="REGLERESPECE" Type="Self.REGLERESPECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="IDCLIENT" />
+            </Principal>
+            <Dependent Role="REGLERESPECE">
+              <PropertyRef Name="IDCLIENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERCH_REGLERCHQ_COMMANDE">
+          <End Role="COMMANDECLIENT" Type="Self.COMMANDECLIENT" Multiplicity="1" />
+          <End Role="REGLERCHQ" Type="Self.REGLERCHQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDECLIENT">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Principal>
+            <Dependent Role="REGLERCHQ">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERES_REGLERESP_COMMANDE">
+          <End Role="COMMANDECLIENT" Type="Self.COMMANDECLIENT" Multiplicity="1" />
+          <End Role="REGLERESPECE" Type="Self.REGLERESPECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDECLIENT">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Principal>
+            <Dependent Role="REGLERESPECE">
+              <PropertyRef Name="ID_CMD_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_COMMANDER_COMMANDE">
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="1" />
+          <End Role="COMMANDER" Type="Self.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDEFOUR">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="ID_CMD_FOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_RECEVOIR_FOURNISS">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="1" />
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="IDFOUR" />
+            </Principal>
+            <Dependent Role="COMMANDEFOUR">
+              <PropertyRef Name="IDFOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_COMMANDER_PRODUIT">
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="1" />
+          <End Role="COMMANDER" Type="Self.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="IDPRODUIT" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="IDPRODUIT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUIT_PRODUIRE_FOURNISS">
+          <End Role="FOURNISSEUR" Type="Self.FOURNISSEUR" Multiplicity="1" />
+          <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="IDFOUR" />
+            </Principal>
+            <Dependent Role="PRODUIT">
+              <PropertyRef Name="IDFOUR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REGLERES_REGLERESP_PAIEMENT">
+          <End Role="PAIEMENTESPECECLT" Type="Self.PAIEMENTESPECECLT" Multiplicity="1" />
+          <End Role="REGLERESPECE" Type="Self.REGLERESPECE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAIEMENTESPECECLT">
+              <PropertyRef Name="IDESPECE_CLT" />
+            </Principal>
+            <Dependent Role="REGLERESPECE">
+              <PropertyRef Name="IDESPECE_CLT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="REGLE_CHQ_FOUR">
+          <End Role="CHEQUEFOURNISSEUR" Type="Self.CHEQUEFOURNISSEUR" Multiplicity="*" />
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="*" />
+        </Association>
+        <Association Name="REGLER_ESP_FOUR">
+          <End Role="COMMANDEFOUR" Type="Self.COMMANDEFOUR" Multiplicity="*" />
+          <End Role="PAIEMENTESPECEFOUR" Type="Self.PAIEMENTESPECEFOUR" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DataBaseMagasinEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHEF" EntityType="Self.CHEF" />
+          <EntitySet Name="CHEQUECLIENT" EntityType="Self.CHEQUECLIENT" />
+          <EntitySet Name="CHEQUEFOURNISSEUR" EntityType="Self.CHEQUEFOURNISSEUR" />
+          <EntitySet Name="CLIENT" EntityType="Self.CLIENT" />
+          <EntitySet Name="COMMANDECLIENT" EntityType="Self.COMMANDECLIENT" />
+          <EntitySet Name="COMMANDEFOUR" EntityType="Self.COMMANDEFOUR" />
+          <EntitySet Name="COMMANDER" EntityType="Self.COMMANDER" />
+          <EntitySet Name="EMPLOYE" EntityType="Self.EMPLOYE" />
+          <EntitySet Name="FOURNISSEUR" EntityType="Self.FOURNISSEUR" />
+          <EntitySet Name="PAIEMENTESPECECLT" EntityType="Self.PAIEMENTESPECECLT" />
+          <EntitySet Name="PAIEMENTESPECEFOUR" EntityType="Self.PAIEMENTESPECEFOUR" />
+          <EntitySet Name="PRODUIT" EntityType="Self.PRODUIT" />
+          <EntitySet Name="REGLERCHQ" EntityType="Self.REGLERCHQ" />
+          <EntitySet Name="REGLERESPECE" EntityType="Self.REGLERESPECE" />
+          <AssociationSet Name="FK_EMPLOYE_TRAVAILLE_CHEF" Association="Self.FK_EMPLOYE_TRAVAILLE_CHEF">
+            <End Role="CHEF" EntitySet="CHEF" />
+            <End Role="EMPLOYE" EntitySet="EMPLOYE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERCH_REGLERCHQ_CHEQUECL" Association="Self.FK_REGLERCH_REGLERCHQ_CHEQUECL">
+            <End Role="CHEQUECLIENT" EntitySet="CHEQUECLIENT" />
+            <End Role="REGLERCHQ" EntitySet="REGLERCHQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_PASSER_CLIENT" Association="Self.FK_COMMANDE_PASSER_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="COMMANDECLIENT" EntitySet="COMMANDECLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERCH_REGLERCHQ_CLIENT" Association="Self.FK_REGLERCH_REGLERCHQ_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="REGLERCHQ" EntitySet="REGLERCHQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERES_REGLERESP_CLIENT" Association="Self.FK_REGLERES_REGLERESP_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="REGLERESPECE" EntitySet="REGLERESPECE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERCH_REGLERCHQ_COMMANDE" Association="Self.FK_REGLERCH_REGLERCHQ_COMMANDE">
+            <End Role="COMMANDECLIENT" EntitySet="COMMANDECLIENT" />
+            <End Role="REGLERCHQ" EntitySet="REGLERCHQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERES_REGLERESP_COMMANDE" Association="Self.FK_REGLERES_REGLERESP_COMMANDE">
+            <End Role="COMMANDECLIENT" EntitySet="COMMANDECLIENT" />
+            <End Role="REGLERESPECE" EntitySet="REGLERESPECE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_COMMANDER_COMMANDE" Association="Self.FK_COMMANDE_COMMANDER_COMMANDE">
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_RECEVOIR_FOURNISS" Association="Self.FK_COMMANDE_RECEVOIR_FOURNISS">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_COMMANDER_PRODUIT" Association="Self.FK_COMMANDE_COMMANDER_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUIT_PRODUIRE_FOURNISS" Association="Self.FK_PRODUIT_PRODUIRE_FOURNISS">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REGLERES_REGLERESP_PAIEMENT" Association="Self.FK_REGLERES_REGLERESP_PAIEMENT">
+            <End Role="PAIEMENTESPECECLT" EntitySet="PAIEMENTESPECECLT" />
+            <End Role="REGLERESPECE" EntitySet="REGLERESPECE" />
+          </AssociationSet>
+          <AssociationSet Name="REGLE_CHQ_FOUR" Association="Self.REGLE_CHQ_FOUR">
+            <End Role="CHEQUEFOURNISSEUR" EntitySet="CHEQUEFOURNISSEUR" />
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+          </AssociationSet>
+          <AssociationSet Name="REGLER_ESP_FOUR" Association="Self.REGLER_ESP_FOUR">
+            <End Role="COMMANDEFOUR" EntitySet="COMMANDEFOUR" />
+            <End Role="PAIEMENTESPECEFOUR" EntitySet="PAIEMENTESPECEFOUR" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DataBaseMagasinModelStoreContainer" CdmEntityContainer="DataBaseMagasinEntities">
+          <EntitySetMapping Name="CHEF">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.CHEF">
+              <MappingFragment StoreEntitySet="CHEF">
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHEQUECLIENT">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.CHEQUECLIENT">
+              <MappingFragment StoreEntitySet="CHEQUECLIENT">
+                <ScalarProperty Name="IDCHQ_CLT" ColumnName="IDCHQ_CLT" />
+                <ScalarProperty Name="DATEDONNER" ColumnName="DATEDONNER" />
+                <ScalarProperty Name="DATEENCAISSEMENT" ColumnName="DATEENCAISSEMENT" />
+                <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CHEQUEFOURNISSEUR">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.CHEQUEFOURNISSEUR">
+              <MappingFragment StoreEntitySet="CHEQUEFOURNISSEUR">
+                <ScalarProperty Name="IDCHQ_FOUR" ColumnName="IDCHQ_FOUR" />
+                <ScalarProperty Name="DATEDONNER" ColumnName="DATEDONNER" />
+                <ScalarProperty Name="DATEPAYER" ColumnName="DATEPAYER" />
+                <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENT">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.CLIENT">
+              <MappingFragment StoreEntitySet="CLIENT">
+                <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMANDECLIENT">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.COMMANDECLIENT">
+              <MappingFragment StoreEntitySet="COMMANDECLIENT">
+                <ScalarProperty Name="ID_CMD_CLT" ColumnName="ID_CMD_CLT" />
+                <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+                <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_LIMITE" ColumnName="DATE_LIMITE" />
+                <ScalarProperty Name="STATUT" ColumnName="STATUT" />
+                <ScalarProperty Name="MONTANTTOTAL" ColumnName="MONTANTTOTAL" />
+                <ScalarProperty Name="MTAVANCE" ColumnName="MTAVANCE" />
+                <ScalarProperty Name="MTRESTE" ColumnName="MTRESTE" />
+                <ScalarProperty Name="PCHEQUE" ColumnName="PCHEQUE" />
+                <ScalarProperty Name="PESPECE" ColumnName="PESPECE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMANDEFOUR">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.COMMANDEFOUR">
+              <MappingFragment StoreEntitySet="COMMANDEFOUR">
+                <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+                <ScalarProperty Name="IDFOUR" ColumnName="IDFOUR" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="STATUT" ColumnName="STATUT" />
+                <ScalarProperty Name="DATECMD" ColumnName="DATECMD" />
+                <ScalarProperty Name="PESPECE" ColumnName="PESPECE" />
+                <ScalarProperty Name="PCHEQUE" ColumnName="PCHEQUE" />
+                <ScalarProperty Name="MONTANTTOTAL" ColumnName="MONTANTTOTAL" />
+                <ScalarProperty Name="MTRESTE" ColumnName="MTRESTE" />
+                <ScalarProperty Name="MTAVANCE" ColumnName="MTAVANCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMMANDER">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.COMMANDER">
+              <MappingFragment StoreEntitySet="COMMANDER">
+                <ScalarProperty Name="IDPRODUIT" ColumnName="IDPRODUIT" />
+                <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+                <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYE">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.EMPLOYE">
+              <MappingFragment StoreEntitySet="EMPLOYE">
+                <ScalarProperty Name="IDEMP" ColumnName="IDEMP" />
+                <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+                <ScalarProperty Name="NOM" ColumnName="NOM" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="AGE" ColumnName="AGE" />
+                <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FOURNISSEUR">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.FOURNISSEUR">
+              <MappingFragment StoreEntitySet="FOURNISSEUR">
+                <ScalarProperty Name="IDFOUR" ColumnName="IDFOUR" />
+                <ScalarProperty Name="ENTREPRISE" ColumnName="ENTREPRISE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="CATEGORIE" ColumnName="CATEGORIE" />
+                <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAIEMENTESPECECLT">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.PAIEMENTESPECECLT">
+              <MappingFragment StoreEntitySet="PAIEMENTESPECECLT">
+                <ScalarProperty Name="IDESPECE_CLT" ColumnName="IDESPECE_CLT" />
+                <ScalarProperty Name="DATE_PAIEMENT" ColumnName="DATE_PAIEMENT" />
+                <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAIEMENTESPECEFOUR">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.PAIEMENTESPECEFOUR">
+              <MappingFragment StoreEntitySet="PAIEMENTESPECEFOUR">
+                <ScalarProperty Name="IDESP_FOUR" ColumnName="IDESP_FOUR" />
+                <ScalarProperty Name="DATE_PAIEMENT" ColumnName="DATE_PAIEMENT" />
+                <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUIT">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.PRODUIT">
+              <MappingFragment StoreEntitySet="PRODUIT">
+                <ScalarProperty Name="IDPRODUIT" ColumnName="IDPRODUIT" />
+                <ScalarProperty Name="IDFOUR" ColumnName="IDFOUR" />
+                <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+                <ScalarProperty Name="PRIXACHAT" ColumnName="PRIXACHAT" />
+                <ScalarProperty Name="PRIXVENTE" ColumnName="PRIXVENTE" />
+                <ScalarProperty Name="DPRIXVENTE" ColumnName="DPRIXVENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGLERCHQ">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.REGLERCHQ">
+              <MappingFragment StoreEntitySet="REGLERCHQ">
+                <ScalarProperty Name="IDCHQ_CLT" ColumnName="IDCHQ_CLT" />
+                <ScalarProperty Name="ID_CMD_CLT" ColumnName="ID_CMD_CLT" />
+                <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REGLERESPECE">
+            <EntityTypeMapping TypeName="DataBaseMagasinModel.REGLERESPECE">
+              <MappingFragment StoreEntitySet="REGLERESPECE">
+                <ScalarProperty Name="IDESPECE_CLT" ColumnName="IDESPECE_CLT" />
+                <ScalarProperty Name="ID_CMD_CLT" ColumnName="ID_CMD_CLT" />
+                <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="REGLE_CHQ_FOUR" TypeName="DataBaseMagasinModel.REGLE_CHQ_FOUR" StoreEntitySet="REGLE_CHQ_FOUR">
+            <EndProperty Name="CHEQUEFOURNISSEUR">
+              <ScalarProperty Name="IDCHQ_FOUR" ColumnName="IDCHQ_FOUR" />
+            </EndProperty>
+            <EndProperty Name="COMMANDEFOUR">
+              <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="REGLER_ESP_FOUR" TypeName="DataBaseMagasinModel.REGLER_ESP_FOUR" StoreEntitySet="REGLER_ESP_FOUR">
+            <EndProperty Name="COMMANDEFOUR">
+              <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+            </EndProperty>
+            <EndProperty Name="PAIEMENTESPECEFOUR">
+              <ScalarProperty Name="IDESP_FOUR" ColumnName="IDESP_FOUR" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

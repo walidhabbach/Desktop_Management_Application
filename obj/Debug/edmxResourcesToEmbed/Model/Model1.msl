@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DataBaseMagasinModelStoreContainer" CdmEntityContainer="DataBaseMagasinEntities">
+    <EntitySetMapping Name="CHEF">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.CHEF">
+        <MappingFragment StoreEntitySet="CHEF">
+          <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+          <ScalarProperty Name="LOGIN" ColumnName="LOGIN" />
+          <ScalarProperty Name="CODE" ColumnName="CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHEQUECLIENT">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.CHEQUECLIENT">
+        <MappingFragment StoreEntitySet="CHEQUECLIENT">
+          <ScalarProperty Name="IDCHQ_CLT" ColumnName="IDCHQ_CLT" />
+          <ScalarProperty Name="DATEDONNER" ColumnName="DATEDONNER" />
+          <ScalarProperty Name="DATEENCAISSEMENT" ColumnName="DATEENCAISSEMENT" />
+          <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHEQUEFOURNISSEUR">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.CHEQUEFOURNISSEUR">
+        <MappingFragment StoreEntitySet="CHEQUEFOURNISSEUR">
+          <ScalarProperty Name="IDCHQ_FOUR" ColumnName="IDCHQ_FOUR" />
+          <ScalarProperty Name="DATEDONNER" ColumnName="DATEDONNER" />
+          <ScalarProperty Name="DATEPAYER" ColumnName="DATEPAYER" />
+          <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CLIENT">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.CLIENT">
+        <MappingFragment StoreEntitySet="CLIENT">
+          <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+          <ScalarProperty Name="NOM" ColumnName="NOM" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMMANDECLIENT">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.COMMANDECLIENT">
+        <MappingFragment StoreEntitySet="COMMANDECLIENT">
+          <ScalarProperty Name="ID_CMD_CLT" ColumnName="ID_CMD_CLT" />
+          <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+          <ScalarProperty Name="DATE_LIMITE" ColumnName="DATE_LIMITE" />
+          <ScalarProperty Name="STATUT" ColumnName="STATUT" />
+          <ScalarProperty Name="MONTANTTOTAL" ColumnName="MONTANTTOTAL" />
+          <ScalarProperty Name="MTAVANCE" ColumnName="MTAVANCE" />
+          <ScalarProperty Name="MTRESTE" ColumnName="MTRESTE" />
+          <ScalarProperty Name="PCHEQUE" ColumnName="PCHEQUE" />
+          <ScalarProperty Name="PESPECE" ColumnName="PESPECE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMMANDEFOUR">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.COMMANDEFOUR">
+        <MappingFragment StoreEntitySet="COMMANDEFOUR">
+          <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+          <ScalarProperty Name="IDFOUR" ColumnName="IDFOUR" />
+          <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+          <ScalarProperty Name="STATUT" ColumnName="STATUT" />
+          <ScalarProperty Name="DATECMD" ColumnName="DATECMD" />
+          <ScalarProperty Name="PESPECE" ColumnName="PESPECE" />
+          <ScalarProperty Name="PCHEQUE" ColumnName="PCHEQUE" />
+          <ScalarProperty Name="MONTANTTOTAL" ColumnName="MONTANTTOTAL" />
+          <ScalarProperty Name="MTRESTE" ColumnName="MTRESTE" />
+          <ScalarProperty Name="MTAVANCE" ColumnName="MTAVANCE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="COMMANDER">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.COMMANDER">
+        <MappingFragment StoreEntitySet="COMMANDER">
+          <ScalarProperty Name="IDPRODUIT" ColumnName="IDPRODUIT" />
+          <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+          <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYE">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.EMPLOYE">
+        <MappingFragment StoreEntitySet="EMPLOYE">
+          <ScalarProperty Name="IDEMP" ColumnName="IDEMP" />
+          <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
+          <ScalarProperty Name="NOM" ColumnName="NOM" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+          <ScalarProperty Name="AGE" ColumnName="AGE" />
+          <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FOURNISSEUR">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.FOURNISSEUR">
+        <MappingFragment StoreEntitySet="FOURNISSEUR">
+          <ScalarProperty Name="IDFOUR" ColumnName="IDFOUR" />
+          <ScalarProperty Name="ENTREPRISE" ColumnName="ENTREPRISE" />
+          <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+          <ScalarProperty Name="CATEGORIE" ColumnName="CATEGORIE" />
+          <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAIEMENTESPECECLT">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.PAIEMENTESPECECLT">
+        <MappingFragment StoreEntitySet="PAIEMENTESPECECLT">
+          <ScalarProperty Name="IDESPECE_CLT" ColumnName="IDESPECE_CLT" />
+          <ScalarProperty Name="DATE_PAIEMENT" ColumnName="DATE_PAIEMENT" />
+          <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAIEMENTESPECEFOUR">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.PAIEMENTESPECEFOUR">
+        <MappingFragment StoreEntitySet="PAIEMENTESPECEFOUR">
+          <ScalarProperty Name="IDESP_FOUR" ColumnName="IDESP_FOUR" />
+          <ScalarProperty Name="DATE_PAIEMENT" ColumnName="DATE_PAIEMENT" />
+          <ScalarProperty Name="MONTANT" ColumnName="MONTANT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUIT">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.PRODUIT">
+        <MappingFragment StoreEntitySet="PRODUIT">
+          <ScalarProperty Name="IDPRODUIT" ColumnName="IDPRODUIT" />
+          <ScalarProperty Name="IDFOUR" ColumnName="IDFOUR" />
+          <ScalarProperty Name="DESIGNATION" ColumnName="DESIGNATION" />
+          <ScalarProperty Name="PRIXACHAT" ColumnName="PRIXACHAT" />
+          <ScalarProperty Name="PRIXVENTE" ColumnName="PRIXVENTE" />
+          <ScalarProperty Name="DPRIXVENTE" ColumnName="DPRIXVENTE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGLERCHQ">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.REGLERCHQ">
+        <MappingFragment StoreEntitySet="REGLERCHQ">
+          <ScalarProperty Name="IDCHQ_CLT" ColumnName="IDCHQ_CLT" />
+          <ScalarProperty Name="ID_CMD_CLT" ColumnName="ID_CMD_CLT" />
+          <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REGLERESPECE">
+      <EntityTypeMapping TypeName="DataBaseMagasinModel.REGLERESPECE">
+        <MappingFragment StoreEntitySet="REGLERESPECE">
+          <ScalarProperty Name="IDESPECE_CLT" ColumnName="IDESPECE_CLT" />
+          <ScalarProperty Name="ID_CMD_CLT" ColumnName="ID_CMD_CLT" />
+          <ScalarProperty Name="IDCLIENT" ColumnName="IDCLIENT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="REGLE_CHQ_FOUR" TypeName="DataBaseMagasinModel.REGLE_CHQ_FOUR" StoreEntitySet="REGLE_CHQ_FOUR">
+      <EndProperty Name="CHEQUEFOURNISSEUR">
+        <ScalarProperty Name="IDCHQ_FOUR" ColumnName="IDCHQ_FOUR" />
+      </EndProperty>
+      <EndProperty Name="COMMANDEFOUR">
+        <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="REGLER_ESP_FOUR" TypeName="DataBaseMagasinModel.REGLER_ESP_FOUR" StoreEntitySet="REGLER_ESP_FOUR">
+      <EndProperty Name="COMMANDEFOUR">
+        <ScalarProperty Name="ID_CMD_FOUR" ColumnName="ID_CMD_FOUR" />
+      </EndProperty>
+      <EndProperty Name="PAIEMENTESPECEFOUR">
+        <ScalarProperty Name="IDESP_FOUR" ColumnName="IDESP_FOUR" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
