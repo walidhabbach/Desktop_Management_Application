@@ -7,10 +7,15 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\bin\Deb
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.csproj.AssemblyReference.cache
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.csproj.SuggestedBindingRedirects.cache
-C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.Form1.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.Properties.Resources.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.csproj.GenerateResource.cache
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.csproj.CoreCompileInputs.cache
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.csproj.CopyComplete
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.exe
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.pdb
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.Operations.Add_Four.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.Menu.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.MenuFournisseur.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListFour.ListFour.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.List.List_CHQ_AllFour.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.List.List_Cmd_AllFour.resources

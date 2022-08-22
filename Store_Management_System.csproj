@@ -44,7 +44,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -58,11 +60,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Class\MainControl.cs" />
+    <Compile Include="DataBaseMagasinDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataBaseMagasinDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\CHEF.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -121,10 +129,43 @@
     <Compile Include="Model\REGLERESPECE.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Operations\ADD\Add_Four.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Operations\ADD\Add_Four.Designer.cs">
+      <DependentUpon>Add_Four.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="User Control\Fournisseur\ListALL\ListFour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\ListFour.Designer.cs">
+      <DependentUpon>ListFour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\List_CHQ_AllFour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\List_CHQ_AllFour.Designer.cs">
+      <DependentUpon>List_CHQ_AllFour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\List_Cmd_AllFour.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\List_Cmd_AllFour.Designer.cs">
+      <DependentUpon>List_Cmd_AllFour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\MenuFournisseur.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\MenuFournisseur.Designer.cs">
+      <DependentUpon>MenuFournisseur.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Operations\ADD\Add_Four.resx">
+      <DependentUpon>Add_Four.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -135,10 +176,33 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="User Control\Fournisseur\ListALL\ListFour.resx">
+      <DependentUpon>ListFour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\ListALL\List_CHQ_AllFour.resx">
+      <DependentUpon>List_CHQ_AllFour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\ListALL\List_Cmd_AllFour.resx">
+      <DependentUpon>List_Cmd_AllFour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\MenuFournisseur.resx">
+      <DependentUpon>MenuFournisseur.cs</DependentUpon>
+    </EmbeddedResource>
     <EntityDeploy Include="Model\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="DataBaseMagasinDataSet.xsc">
+      <DependentUpon>DataBaseMagasinDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataBaseMagasinDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataBaseMagasinDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataBaseMagasinDataSet.xss">
+      <DependentUpon>DataBaseMagasinDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>
@@ -156,7 +220,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="icons\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Model\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
