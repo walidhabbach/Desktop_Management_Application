@@ -28,18 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.dataBaseMagasinDataSet = new Store_Management_System.DataBaseMagasinDataSet();
-            this.dataBaseMagasinDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBaseMagasinDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBaseMagasinDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // DataGridView
@@ -52,20 +47,12 @@
             this.Column3,
             this.Column4,
             this.Column5});
-            this.DataGridView.Location = new System.Drawing.Point(34, 23);
+            this.DataGridView.Location = new System.Drawing.Point(24, 23);
             this.DataGridView.Name = "DataGridView";
-            this.DataGridView.Size = new System.Drawing.Size(890, 446);
+            this.DataGridView.Size = new System.Drawing.Size(890, 453);
             this.DataGridView.TabIndex = 0;
-            // 
-            // dataBaseMagasinDataSet
-            // 
-            this.dataBaseMagasinDataSet.DataSetName = "DataBaseMagasinDataSet";
-            this.dataBaseMagasinDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataBaseMagasinDataSetBindingSource
-            // 
-            this.dataBaseMagasinDataSetBindingSource.DataSource = this.dataBaseMagasinDataSet;
-            this.dataBaseMagasinDataSetBindingSource.Position = 0;
+            this.DataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentDoubleClick);
+            this.DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentDoubleClick);
             // 
             // Column1
             // 
@@ -101,8 +88,6 @@
             this.Size = new System.Drawing.Size(945, 508);
             this.Load += new System.EventHandler(this.ListFour_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBaseMagasinDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBaseMagasinDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -115,7 +100,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.BindingSource dataBaseMagasinDataSetBindingSource;
-        private DataBaseMagasinDataSet dataBaseMagasinDataSet;
     }
 }

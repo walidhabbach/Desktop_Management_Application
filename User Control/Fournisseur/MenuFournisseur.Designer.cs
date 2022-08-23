@@ -53,6 +53,7 @@
             this.OperationPanel.TabIndex = 5;
             this.OperationPanel.TabStop = false;
             this.OperationPanel.Text = "Operations";
+            this.OperationPanel.Enter += new System.EventHandler(this.OperationPanel_Enter);
             // 
             // button3
             // 
@@ -91,6 +92,7 @@
             this.Add.TabIndex = 2;
             this.Add.Text = "Ajouter Four";
             this.Add.UseVisualStyleBackColor = true;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // Display
             // 
