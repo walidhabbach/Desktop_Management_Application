@@ -51,6 +51,7 @@
             // 
             this.Add.AutoSize = true;
             this.Add.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.Add.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Add.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
             this.Add.FlatAppearance.BorderSize = 0;
             this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -73,7 +74,6 @@
             this.ADRESSE.Name = "ADRESSE";
             this.ADRESSE.Size = new System.Drawing.Size(172, 24);
             this.ADRESSE.TabIndex = 25;
-            this.ADRESSE.UseWaitCursor = true;
             // 
             // TELEPHONE
             // 
@@ -83,7 +83,6 @@
             this.TELEPHONE.Name = "TELEPHONE";
             this.TELEPHONE.Size = new System.Drawing.Size(172, 25);
             this.TELEPHONE.TabIndex = 23;
-            this.TELEPHONE.UseWaitCursor = true;
             // 
             // ENTREPRISE
             // 
@@ -93,7 +92,6 @@
             this.ENTREPRISE.Name = "ENTREPRISE";
             this.ENTREPRISE.Size = new System.Drawing.Size(182, 25);
             this.ENTREPRISE.TabIndex = 22;
-            this.ENTREPRISE.UseWaitCursor = true;
             // 
             // label4
             // 
@@ -104,7 +102,6 @@
             this.label4.Size = new System.Drawing.Size(68, 20);
             this.label4.TabIndex = 21;
             this.label4.Text = "Adresse";
-            this.label4.UseWaitCursor = true;
             // 
             // label3
             // 
@@ -115,7 +112,6 @@
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 20;
             this.label3.Text = "Categorie";
-            this.label3.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -150,12 +146,11 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(182, 24);
             this.comboBox1.TabIndex = 28;
-            this.comboBox1.UseWaitCursor = true;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(438, 0);
@@ -164,8 +159,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.UseWaitCursor = true;
-            this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // label5
             // 
@@ -179,7 +173,6 @@
             this.label5.TabIndex = 30;
             this.label5.Text = "         Ajouter un Nouveau Fournisseur";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label5.UseWaitCursor = true;
             // 
             // panel1
             // 
@@ -193,11 +186,11 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.ENTREPRISE);
             this.panel1.Controls.Add(this.TELEPHONE);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Location = new System.Drawing.Point(4, 32);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(472, 267);
             this.panel1.TabIndex = 31;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
@@ -207,7 +200,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(475, 37);
             this.panel2.TabIndex = 32;
-            this.panel2.UseWaitCursor = true;
             // 
             // Add_Four
             // 

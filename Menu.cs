@@ -47,13 +47,12 @@ namespace Store_Management_System
 
 
 
-        private void Menu_Four_Click(object sender, EventArgs e)
+        public void Menu_Four_Click(object sender, EventArgs e)
         {
             PanelContent.Controls.Clear();
             MenuFournisseur MFour = new MenuFournisseur();
             MainClass.ShowControl(MFour,PanelContent);
-
-           
+     
         }
         
         private void PanelContent_Paint(object sender, PaintEventArgs e)

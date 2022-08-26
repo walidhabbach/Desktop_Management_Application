@@ -53,8 +53,8 @@
             this.DataGridView.Size = new System.Drawing.Size(1129, 611);
             this.DataGridView.TabIndex = 0;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
-            this.DataGridView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentDoubleClick);
-            this.DataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentDoubleClick);
+      
+            this.DataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellMouseEnter);
             // 
             // IDFOUR
             // 
@@ -96,7 +96,8 @@
             this.Controls.Add(this.DataGridView);
             this.Name = "ListFour";
             this.Size = new System.Drawing.Size(1129, 611);
-            this.Load += new System.EventHandler(this.ListFour_Load);
+            ListFour listFour = this;
+            this.Load += new System.EventHandler(listFour.ListFour_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
 

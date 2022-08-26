@@ -20,7 +20,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             ADRESSE.Text = "";
             comboBox1.Text = "";
         }
-        private bool CheckFour(string NomFour)
+        public static bool CheckFour(string NomFour)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
@@ -42,7 +42,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         {
              using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
              {
-                  if(ENTREPRISE.Text!="" && ENTREPRISE.Text != "" & ENTREPRISE.Text != "")
+                  if(ENTREPRISE.Text!="" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
                   {
                     if (CheckFour(ENTREPRISE.Text))
                     {
@@ -65,6 +65,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                             this.Close();
                             Clear();
                             Conx.Close();
+                            
                         }
                         catch (Exception ex)
                         {
@@ -77,15 +78,11 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
              }
         }
 
-        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+  
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
-            Clear();
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
+           
         }
     }
 }

@@ -37,7 +37,7 @@ namespace Store_Management_System.User_Control
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             List_Cmd_AllFour LFour = new List_Cmd_AllFour();
             MainClass.ShowControl(LFour, PanelFourListe);
@@ -45,7 +45,7 @@ namespace Store_Management_System.User_Control
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             List_CHQ_AllFour LFour = new List_CHQ_AllFour();
             MainClass.ShowControl(LFour, PanelFourListe);

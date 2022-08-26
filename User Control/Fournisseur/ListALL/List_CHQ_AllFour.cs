@@ -18,8 +18,10 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
         private void List_CHQ_AllFour_Load(object sender, EventArgs e)
         {
-            SqlConnection Conx = new SqlConnection();
-            Conx.ConnectionString = MainClass.ConnectionDataBase();
+            SqlConnection Conx = new SqlConnection
+            {
+                ConnectionString = MainClass.ConnectionDataBase()
+            };
 
             String Query_RCHQFour = "SELECT * From REGLE_CHQ_FOUR;";
             SqlCommand Cmd_RCHQFour = new SqlCommand(Query_RCHQFour, Conx);
@@ -95,7 +97,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                 }
                 Conx.Close();
 
-                MainClass.DataGridMod(DataGridView, 60);
+                MainClass.DataGridMod(DataGridView);
                 DataGridView.Columns["ID_CHQ_FOUR"].Width = 75;
                 DataGridView.Columns["ID_CMD_FOUR"].Width = 75;
                 DataGridView.Columns["IDFOUR"].Width = 75;

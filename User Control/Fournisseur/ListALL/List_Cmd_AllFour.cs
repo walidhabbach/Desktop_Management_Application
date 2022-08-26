@@ -5,6 +5,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Drawing;
+using Store_Management_System.User_Control.Fournisseur.A_M_D;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit;
 
 namespace Store_Management_System.User_Control.Fournisseur.List
 {
@@ -34,8 +36,8 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             if (ReadCmdFour.HasRows)
             {
                 this.DataGridView.Rows.Clear();
-                
-                    MainClass.DataGridMod(DataGridView, 40);
+
+                MainClass.DataGridMod(this.DataGridView);
                     DataGridView.Columns["ID_CMD_FOUR"].Width = 75;
                     DataGridView.Columns["ENTREPRISE"].Width = 150;
                     DataGridView.Columns["ENTREPRISE"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
@@ -48,6 +50,12 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                     DataGridView.Columns["MONTANT_TOTAL"].Width = 150;
                     DataGridView.Columns["MTRESTE"].Width = 150;
                     DataGridView.Columns["MTAVANCE"].Width = 150;
+
+                //Button Delete, Edit
+                    MainClass.Button_DGV(DataGridView, "Edit", "edit");
+                    DataGridView.Columns["Edit"].Width = 50;
+                    MainClass.Button_DGV(DataGridView, "Delete", "delete");
+                    DataGridView.Columns["Delete"].Width = 50;
 
                 while (ReadCmdFour.Read())
                 {
@@ -64,6 +72,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                         }
                         this.DataGridView.Rows.Add(
                             ReadCmdFour["ID_CMD_FOUR"],
+                            ReadCmdFour["IDFOUR"],
                             ReadNomFour["ENTREPRISE"],
                             ReadCmdFour["DESCRIPTION"],
                             Statut,
@@ -88,8 +97,80 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             }
           }
 
+        private void Edit(int IDFOUR)
+        {
+            Edit_CMD_Four Form = new Edit_CMD_Four();
+            Form.Show();
+        }
+        private void Delete(int IDCMDFour)
+        {
+            //int position = this.DataGridView.CurrentRow.Index;
+            //int IDFour = int.Parse(this.DataGridView.Rows[position].Cells[0].Value);
+
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+
+                SqlCommand Cmd = new SqlCommand
+                {
+                    Connection = Conx,
+                    CommandText = "DELETE FROM COMMANDEFOUR WHERE ID_CMD_FOUR = @IDCMDFour;"
+                };
+
+                try
+                {
+                    Cmd.Parameters.AddWithValue("@IDCMDFour", IDCMDFour);
+                    Conx.Open();
+                    Cmd.ExecuteNonQuery();
+                    Conx.Close();
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }
+
+
+            }
+        }
+
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            DialogResult Dialog;
+            String ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
+            DataGridViewRow Row = DataGridView.Rows[e.RowIndex];
+            Row.Selected = true;
+            int IDCMDFour = Convert.ToInt32(Row.Cells["ID_CMD_FOUR"].Value);
+            int IDFour = Convert.ToInt32(Row.Cells["IDFOUR"].Value);
+
+            if (ColName == "Edit")
+            {
+                Edit(IDCMDFour);
+            }
+            else if (ColName == "Delete")
+            {
+
+                Dialog = MessageBox.Show("Do You Want To Delete " + this.DataGridView.Rows[this.DataGridView.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (Dialog == DialogResult.No)
+                {
+                    return;
+                }
+                Delete(IDCMDFour);
+
+            }
+
+        }
+
+        private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            String ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
+
+            if (ColName != "BtnEdit" && ColName != "BtnDelete")
+            {
+                DataGridView.Cursor = Cursors.Default;
+            }
+            else
+            {
+                DataGridView.Cursor = Cursors.Hand;
+            }
 
         }
     }

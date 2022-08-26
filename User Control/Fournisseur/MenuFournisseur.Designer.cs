@@ -57,27 +57,27 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(693, 47);
+            this.button3.Location = new System.Drawing.Point(694, 54);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(149, 28);
             this.button3.TabIndex = 5;
             this.button3.Text = "Lister Commande Four";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(507, 47);
+            this.button2.Location = new System.Drawing.Point(508, 54);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(142, 28);
             this.button2.TabIndex = 4;
             this.button2.Text = "Lister Cheque Fournisseur";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(355, 47);
+            this.button1.Location = new System.Drawing.Point(356, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 28);
             this.button1.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             // Add
             // 
-            this.Add.Location = new System.Drawing.Point(200, 47);
+            this.Add.Location = new System.Drawing.Point(201, 54);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(120, 28);
             this.Add.TabIndex = 2;
@@ -96,7 +96,7 @@
             // 
             // Display
             // 
-            this.Display.Location = new System.Drawing.Point(50, 47);
+            this.Display.Location = new System.Drawing.Point(51, 54);
             this.Display.Name = "Display";
             this.Display.Size = new System.Drawing.Size(124, 28);
             this.Display.TabIndex = 0;

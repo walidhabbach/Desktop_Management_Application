@@ -30,6 +30,7 @@
         {
             this.DataGridView = new System.Windows.Forms.DataGridView();
             this.ID_CMD_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDFOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ENTREPRISE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +49,7 @@
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_CMD_FOUR,
+            this.IDFOUR,
             this.ENTREPRISE,
             this.DESCRIPTION,
             this.STATUT,
@@ -68,6 +70,12 @@
             // 
             this.ID_CMD_FOUR.HeaderText = "ID_CMD_FOUR";
             this.ID_CMD_FOUR.Name = "ID_CMD_FOUR";
+            // 
+            // IDFOUR
+            // 
+            this.IDFOUR.HeaderText = "IDFOUR";
+            this.IDFOUR.Name = "IDFOUR";
+            this.IDFOUR.Visible = false;
             // 
             // ENTREPRISE
             // 
@@ -131,6 +139,7 @@
 
         private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD_FOUR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDFOUR;
         private System.Windows.Forms.DataGridViewTextBoxColumn ENTREPRISE;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
         private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
