@@ -40,7 +40,7 @@
             // 
             // OperationPanel
             // 
-            this.OperationPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.OperationPanel.BackColor = System.Drawing.Color.LightBlue;
             this.OperationPanel.Controls.Add(this.button3);
             this.OperationPanel.Controls.Add(this.button2);
             this.OperationPanel.Controls.Add(this.button1);
@@ -49,7 +49,7 @@
             this.OperationPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.OperationPanel.Location = new System.Drawing.Point(0, 0);
             this.OperationPanel.Name = "OperationPanel";
-            this.OperationPanel.Size = new System.Drawing.Size(945, 113);
+            this.OperationPanel.Size = new System.Drawing.Size(1129, 140);
             this.OperationPanel.TabIndex = 5;
             this.OperationPanel.TabStop = false;
             this.OperationPanel.Text = "Operations";
@@ -107,9 +107,9 @@
             // PanelFourListe
             // 
             this.PanelFourListe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelFourListe.Location = new System.Drawing.Point(0, 113);
+            this.PanelFourListe.Location = new System.Drawing.Point(0, 140);
             this.PanelFourListe.Name = "PanelFourListe";
-            this.PanelFourListe.Size = new System.Drawing.Size(945, 508);
+            this.PanelFourListe.Size = new System.Drawing.Size(1129, 580);
             this.PanelFourListe.TabIndex = 6;
             this.PanelFourListe.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelFourListe_Paint);
             // 
@@ -117,10 +117,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.Controls.Add(this.PanelFourListe);
             this.Controls.Add(this.OperationPanel);
             this.Name = "MenuFournisseur";
-            this.Size = new System.Drawing.Size(945, 621);
+            this.Size = new System.Drawing.Size(1129, 720);
             this.Load += new System.EventHandler(this.MenuFournisseur_Load);
             this.OperationPanel.ResumeLayout(false);
             this.ResumeLayout(false);

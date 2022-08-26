@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_CMD_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ENTREPRISE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATECMD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PESPECE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PCHEQUE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTANT_TOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MTRESTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MTAVANCE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,70 +47,72 @@
             this.DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10});
-            this.DataGridView.Location = new System.Drawing.Point(3, 33);
+            this.ID_CMD_FOUR,
+            this.ENTREPRISE,
+            this.DESCRIPTION,
+            this.STATUT,
+            this.DATECMD,
+            this.PESPECE,
+            this.PCHEQUE,
+            this.MONTANT_TOTAL,
+            this.MTRESTE,
+            this.MTAVANCE});
+            this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridView.Location = new System.Drawing.Point(0, 0);
             this.DataGridView.Name = "DataGridView";
-            this.DataGridView.Size = new System.Drawing.Size(942, 446);
+            this.DataGridView.Size = new System.Drawing.Size(1129, 611);
             this.DataGridView.TabIndex = 1;
+            this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
-            // Column1
+            // ID_CMD_FOUR
             // 
-            this.Column1.HeaderText = "ID_CMD_FOUR";
-            this.Column1.Name = "Column1";
+            this.ID_CMD_FOUR.HeaderText = "ID_CMD_FOUR";
+            this.ID_CMD_FOUR.Name = "ID_CMD_FOUR";
             // 
-            // Column2
+            // ENTREPRISE
             // 
-            this.Column2.HeaderText = "IDFOUR";
-            this.Column2.Name = "Column2";
+            this.ENTREPRISE.HeaderText = "ENTREPRISE";
+            this.ENTREPRISE.Name = "ENTREPRISE";
             // 
-            // Column3
+            // DESCRIPTION
             // 
-            this.Column3.HeaderText = "DESCRIPTION";
-            this.Column3.Name = "Column3";
+            this.DESCRIPTION.HeaderText = "DESCRIPTION";
+            this.DESCRIPTION.Name = "DESCRIPTION";
             // 
-            // Column4
+            // STATUT
             // 
-            this.Column4.HeaderText = "STATUT";
-            this.Column4.Name = "Column4";
+            this.STATUT.HeaderText = "STATUT";
+            this.STATUT.Name = "STATUT";
             // 
-            // Column5
+            // DATECMD
             // 
-            this.Column5.HeaderText = "DATECMD";
-            this.Column5.Name = "Column5";
+            this.DATECMD.HeaderText = "DATECMD";
+            this.DATECMD.Name = "DATECMD";
             // 
-            // Column6
+            // PESPECE
             // 
-            this.Column6.HeaderText = "PESPECE";
-            this.Column6.Name = "Column6";
+            this.PESPECE.HeaderText = "PESPECE";
+            this.PESPECE.Name = "PESPECE";
             // 
-            // Column7
+            // PCHEQUE
             // 
-            this.Column7.HeaderText = "PCHEQUE";
-            this.Column7.Name = "Column7";
+            this.PCHEQUE.HeaderText = "PCHEQUE";
+            this.PCHEQUE.Name = "PCHEQUE";
             // 
-            // Column8
+            // MONTANT_TOTAL
             // 
-            this.Column8.HeaderText = "MONTANT TOTAL";
-            this.Column8.Name = "Column8";
+            this.MONTANT_TOTAL.HeaderText = "MONTANT TOTAL";
+            this.MONTANT_TOTAL.Name = "MONTANT_TOTAL";
             // 
-            // Column9
+            // MTRESTE
             // 
-            this.Column9.HeaderText = "MTRESTE";
-            this.Column9.Name = "Column9";
+            this.MTRESTE.HeaderText = "MTRESTE";
+            this.MTRESTE.Name = "MTRESTE";
             // 
-            // Column10
+            // MTAVANCE
             // 
-            this.Column10.HeaderText = "MTAVANCE";
-            this.Column10.Name = "Column10";
+            this.MTAVANCE.HeaderText = "MTAVANCE";
+            this.MTAVANCE.Name = "MTAVANCE";
             // 
             // List_Cmd_AllFour
             // 
@@ -118,7 +120,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DataGridView);
             this.Name = "List_Cmd_AllFour";
-            this.Size = new System.Drawing.Size(945, 508);
+            this.Size = new System.Drawing.Size(1129, 611);
             this.Load += new System.EventHandler(this.List_Cmd_AllFour_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -128,15 +130,15 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD_FOUR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ENTREPRISE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATECMD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PESPECE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PCHEQUE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANT_TOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MTRESTE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MTAVANCE;
     }
 }

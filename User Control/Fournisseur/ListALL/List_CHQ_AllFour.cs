@@ -1,6 +1,7 @@
 ﻿using Store_Management_System.Class;
 using System;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.List
@@ -19,7 +20,6 @@ namespace Store_Management_System.User_Control.Fournisseur.List
         {
             SqlConnection Conx = new SqlConnection();
             Conx.ConnectionString = MainClass.ConnectionDataBase();
-
 
             String Query_RCHQFour = "SELECT * From REGLE_CHQ_FOUR;";
             SqlCommand Cmd_RCHQFour = new SqlCommand(Query_RCHQFour, Conx);
@@ -94,12 +94,35 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
                 }
                 Conx.Close();
+
+                MainClass.DataGridMod(DataGridView, 60);
+                DataGridView.Columns["ID_CHQ_FOUR"].Width = 75;
+                DataGridView.Columns["ID_CMD_FOUR"].Width = 75;
+                DataGridView.Columns["IDFOUR"].Width = 75;
+                DataGridView.Columns["Fournisseur"].Width = 150;
+                DataGridView.Columns["Fournisseur"].DefaultCellStyle.Font = new Font("Tahoma", 14, FontStyle.Bold);
+                DataGridView.Columns["DATEDONNEE"].Width = 150;
+                DataGridView.Columns["DATEPAYER"].Width = 150;
+                DataGridView.Columns["MONTANT"].Width = 150;
+                DataGridView.Columns["MONTANTTOTAL"].Width = 150;
+
+                DataGridView.EnableHeadersVisualStyles = false;
+                DataGridView.Columns["MONTANT"].HeaderCell.Style.BackColor = Color.Green; 
+                DataGridView.Columns["MONTANT"].HeaderCell.Style.Font = new Font("Tahoma", 12, FontStyle.Bold);
+
+                
+
             }
             else
             {
                 MessageBox.Show("La Table Fournisseur est vide !!!");
 
             }
+        }
+
+        private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

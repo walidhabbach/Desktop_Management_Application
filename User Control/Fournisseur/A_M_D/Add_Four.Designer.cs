@@ -73,6 +73,7 @@
             this.ADRESSE.Name = "ADRESSE";
             this.ADRESSE.Size = new System.Drawing.Size(172, 24);
             this.ADRESSE.TabIndex = 25;
+            this.ADRESSE.UseWaitCursor = true;
             // 
             // TELEPHONE
             // 
@@ -82,6 +83,7 @@
             this.TELEPHONE.Name = "TELEPHONE";
             this.TELEPHONE.Size = new System.Drawing.Size(172, 25);
             this.TELEPHONE.TabIndex = 23;
+            this.TELEPHONE.UseWaitCursor = true;
             // 
             // ENTREPRISE
             // 
@@ -91,6 +93,7 @@
             this.ENTREPRISE.Name = "ENTREPRISE";
             this.ENTREPRISE.Size = new System.Drawing.Size(182, 25);
             this.ENTREPRISE.TabIndex = 22;
+            this.ENTREPRISE.UseWaitCursor = true;
             // 
             // label4
             // 
@@ -101,6 +104,7 @@
             this.label4.Size = new System.Drawing.Size(68, 20);
             this.label4.TabIndex = 21;
             this.label4.Text = "Adresse";
+            this.label4.UseWaitCursor = true;
             // 
             // label3
             // 
@@ -111,6 +115,7 @@
             this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 20;
             this.label3.Text = "Categorie";
+            this.label3.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -121,6 +126,7 @@
             this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 19;
             this.label2.Text = "Telephone";
+            this.label2.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -131,6 +137,7 @@
             this.label1.Size = new System.Drawing.Size(82, 20);
             this.label1.TabIndex = 18;
             this.label1.Text = "Entreprise";
+            this.label1.UseWaitCursor = true;
             // 
             // comboBox1
             // 
@@ -143,11 +150,12 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(182, 24);
             this.comboBox1.TabIndex = 28;
+            this.comboBox1.UseWaitCursor = true;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(438, 0);
@@ -156,6 +164,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.UseWaitCursor = true;
             this.pictureBox1.DoubleClick += new System.EventHandler(this.pictureBox1_DoubleClick);
             // 
             // label5
@@ -170,6 +179,7 @@
             this.label5.TabIndex = 30;
             this.label5.Text = "         Ajouter un Nouveau Fournisseur";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label5.UseWaitCursor = true;
             // 
             // panel1
             // 
@@ -187,6 +197,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(472, 267);
             this.panel1.TabIndex = 31;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
@@ -196,17 +207,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(475, 37);
             this.panel2.TabIndex = 32;
+            this.panel2.UseWaitCursor = true;
             // 
             // Add_Four
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.SkyBlue;
             this.ClientSize = new System.Drawing.Size(479, 301);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Add_Four";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

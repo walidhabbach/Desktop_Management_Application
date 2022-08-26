@@ -82,5 +82,10 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.Close();
             Clear();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

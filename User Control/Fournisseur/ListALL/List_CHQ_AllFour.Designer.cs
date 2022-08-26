@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_CHQ_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_CMD_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDFOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fournisseur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATEDONNEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATEPAYER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTANT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTANTTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,58 +45,68 @@
             this.DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column4,
-            this.Column1,
-            this.Column2,
-            this.Column7,
-            this.Column3,
-            this.Column5,
-            this.Column8,
-            this.Column6});
-            this.DataGridView.Location = new System.Drawing.Point(3, 26);
+            this.ID_CHQ_FOUR,
+            this.ID_CMD_FOUR,
+            this.IDFOUR,
+            this.Fournisseur,
+            this.DATEDONNEE,
+            this.DATEPAYER,
+            this.MONTANT,
+            this.MONTANTTOTAL});
+            this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DataGridView.Location = new System.Drawing.Point(0, 0);
             this.DataGridView.Name = "DataGridView";
-            this.DataGridView.Size = new System.Drawing.Size(942, 446);
+            this.DataGridView.Size = new System.Drawing.Size(1129, 611);
             this.DataGridView.TabIndex = 2;
+            this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
-            // Column4
+            // ID_CHQ_FOUR
             // 
-            this.Column4.HeaderText = "ID_CHQ_FOUR";
-            this.Column4.Name = "Column4";
+            this.ID_CHQ_FOUR.FillWeight = 20.30457F;
+            this.ID_CHQ_FOUR.HeaderText = "ID_CHQ_FOUR";
+            this.ID_CHQ_FOUR.Name = "ID_CHQ_FOUR";
             // 
-            // Column1
+            // ID_CMD_FOUR
             // 
-            this.Column1.HeaderText = "ID_CMD_FOUR";
-            this.Column1.Name = "Column1";
+            this.ID_CMD_FOUR.FillWeight = 20.30457F;
+            this.ID_CMD_FOUR.HeaderText = "ID_CMD_FOUR";
+            this.ID_CMD_FOUR.Name = "ID_CMD_FOUR";
             // 
-            // Column2
+            // IDFOUR
             // 
-            this.Column2.HeaderText = "IDFOUR";
-            this.Column2.Name = "Column2";
+            this.IDFOUR.FillWeight = 20.30457F;
+            this.IDFOUR.HeaderText = "IDFOUR";
+            this.IDFOUR.Name = "IDFOUR";
             // 
-            // Column7
+            // Fournisseur
             // 
-            this.Column7.HeaderText = "Fournisseur";
-            this.Column7.Name = "Column7";
+            this.Fournisseur.FillWeight = 20.30457F;
+            this.Fournisseur.HeaderText = "Fournisseur";
+            this.Fournisseur.Name = "Fournisseur";
             // 
-            // Column3
+            // DATEDONNEE
             // 
-            this.Column3.HeaderText = "DATE DONNÉE";
-            this.Column3.Name = "Column3";
+            this.DATEDONNEE.FillWeight = 20.30457F;
+            this.DATEDONNEE.HeaderText = "DATE DONNÉE";
+            this.DATEDONNEE.Name = "DATEDONNEE";
             // 
-            // Column5
+            // DATEPAYER
             // 
-            this.Column5.HeaderText = "DATE A PAYER";
-            this.Column5.Name = "Column5";
+            this.DATEPAYER.FillWeight = 20.30457F;
+            this.DATEPAYER.HeaderText = "DATE A PAYER";
+            this.DATEPAYER.Name = "DATEPAYER";
             // 
-            // Column8
+            // MONTANT
             // 
-            this.Column8.HeaderText = "MONTANT CHQ";
-            this.Column8.Name = "Column8";
+            this.MONTANT.FillWeight = 20.30457F;
+            this.MONTANT.HeaderText = "MONTANT CHQ";
+            this.MONTANT.Name = "MONTANT";
             // 
-            // Column6
+            // MONTANTTOTAL
             // 
-            this.Column6.HeaderText = "MONTANT TOTAL CMD";
-            this.Column6.Name = "Column6";
+            this.MONTANTTOTAL.FillWeight = 20.30457F;
+            this.MONTANTTOTAL.HeaderText = "MONTANT TOTAL CMD";
+            this.MONTANTTOTAL.Name = "MONTANTTOTAL";
             // 
             // List_CHQ_AllFour
             // 
@@ -104,7 +114,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DataGridView);
             this.Name = "List_CHQ_AllFour";
-            this.Size = new System.Drawing.Size(945, 508);
+            this.Size = new System.Drawing.Size(1129, 611);
             this.Load += new System.EventHandler(this.List_CHQ_AllFour_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -114,13 +124,13 @@
         #endregion
 
         private System.Windows.Forms.DataGridView DataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CHQ_FOUR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD_FOUR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDFOUR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fournisseur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATEDONNEE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATEPAYER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANTTOTAL;
     }
 }

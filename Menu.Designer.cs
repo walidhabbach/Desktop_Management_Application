@@ -42,7 +42,7 @@
             // 
             // Menu_Panel
             // 
-            this.Menu_Panel.BackColor = System.Drawing.Color.Teal;
+            this.Menu_Panel.BackColor = System.Drawing.Color.SkyBlue;
             this.Menu_Panel.Controls.Add(this.button4);
             this.Menu_Panel.Controls.Add(this.button3);
             this.Menu_Panel.Controls.Add(this.button2);
@@ -51,7 +51,7 @@
             this.Menu_Panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.Menu_Panel.Location = new System.Drawing.Point(0, 0);
             this.Menu_Panel.Name = "Menu_Panel";
-            this.Menu_Panel.Size = new System.Drawing.Size(186, 621);
+            this.Menu_Panel.Size = new System.Drawing.Size(253, 720);
             this.Menu_Panel.TabIndex = 4;
             // 
             // button4
@@ -63,9 +63,9 @@
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(3, 281);
+            this.button4.Location = new System.Drawing.Point(3, 352);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(174, 62);
+            this.button4.Size = new System.Drawing.Size(244, 67);
             this.button4.TabIndex = 4;
             this.button4.Text = "Commande";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -81,9 +81,9 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(3, 359);
+            this.button3.Location = new System.Drawing.Point(3, 463);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(173, 62);
+            this.button3.Size = new System.Drawing.Size(243, 62);
             this.button3.TabIndex = 3;
             this.button3.Text = "Calendrie";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -99,9 +99,9 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(3, 202);
+            this.button2.Location = new System.Drawing.Point(3, 243);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 62);
+            this.button2.Size = new System.Drawing.Size(243, 72);
             this.button2.TabIndex = 2;
             this.button2.Text = " Client";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -117,9 +117,9 @@
             this.Menu_Four.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Four.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Four.Image")));
             this.Menu_Four.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Menu_Four.Location = new System.Drawing.Point(4, 118);
+            this.Menu_Four.Location = new System.Drawing.Point(3, 139);
             this.Menu_Four.Name = "Menu_Four";
-            this.Menu_Four.Size = new System.Drawing.Size(173, 62);
+            this.Menu_Four.Size = new System.Drawing.Size(243, 71);
             this.Menu_Four.TabIndex = 1;
             this.Menu_Four.Text = " Fournisseur";
             this.Menu_Four.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,9 +130,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 23);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 43);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(176, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(244, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -140,9 +140,9 @@
             // PanelContent
             // 
             this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContent.Location = new System.Drawing.Point(186, 0);
+            this.PanelContent.Location = new System.Drawing.Point(253, 0);
             this.PanelContent.Name = "PanelContent";
-            this.PanelContent.Size = new System.Drawing.Size(945, 621);
+            this.PanelContent.Size = new System.Drawing.Size(1161, 720);
             this.PanelContent.TabIndex = 5;
             this.PanelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelContent_Paint);
             // 
@@ -150,12 +150,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1131, 621);
+            this.ClientSize = new System.Drawing.Size(1414, 720);
             this.Controls.Add(this.PanelContent);
             this.Controls.Add(this.Menu_Panel);
             this.Name = "Menu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Menu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Menu_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
