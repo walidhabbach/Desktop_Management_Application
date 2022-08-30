@@ -1,17 +1,20 @@
 ﻿using Store_Management_System.Class;
+
 using Store_Management_System.User_Control.Fournisseur;
-using Store_Management_System.User_Control.Fournisseur.A_M_D;
-using Store_Management_System.User_Control.Fournisseur.List;
-using Store_Management_System.User_Control.Fournisseur.ListFour;
 using System;
-
+using System.Data.SqlClient;
 using System.Windows.Forms;
-
+using System.Data;
+using Store_Management_System.User_Control.Fournisseur.ListFour;
+using Store_Management_System.User_Control.Fournisseur.List;
+using Store_Management_System.User_Control.Fournisseur.A_M_D;
 
 namespace Store_Management_System.User_Control
 {
     public partial class MenuFournisseur : UserControl
     {
+        
+
         public MenuFournisseur()
         {
             InitializeComponent();
@@ -21,6 +24,9 @@ namespace Store_Management_System.User_Control
         {
             ListFour LFour = new ListFour();
             MainClass.ShowControl(LFour, PanelFourListe);
+            FillCombobox();
+            
+
         }
 
         /*public void DisplayListFour()
@@ -32,9 +38,22 @@ namespace Store_Management_System.User_Control
         }*/
         private void Display_Click(object sender, EventArgs e)
         {
-            ListFour LFour = new ListFour();
-            MainClass.ShowControl(LFour, PanelFourListe);
-
+            if(comboBox2.Text == "Tous")
+            {
+                ListFour LFour = new ListFour();
+                MainClass.ShowControl(LFour, PanelFourListe);
+                FillCombobox();
+            }
+            else
+            {
+                MainPanel_Four.Controls.Clear();
+                //MainFournisseur Four = new MainFournisseur(Convert.ToInt32(comboBox2.SelectedValue));
+                MainFournisseur Four = new MainFournisseur(2);
+                MainClass.ShowControl(Four, MainPanel_Four);
+            }
+            
+            
+            
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -56,13 +75,54 @@ namespace Store_Management_System.User_Control
             Add_Four myNewForm = new Add_Four();
             myNewForm.Show();
         }
-
-        private void PanelFourListe_Paint(object sender, PaintEventArgs e)
+        public void FillCombobox()
         {
+            comboBox2.Items.Clear();
+            comboBox2.Items.Add("Tous");
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                Conx.ConnectionString = MainClass.ConnectionDataBase();
+                String Query = "SELECT * From FOURNISSEUR;";
+                SqlCommand Cmd = new SqlCommand(Query, Conx);
+                SqlDataAdapter Da = new SqlDataAdapter(Cmd);
+                DataSet Ds = new DataSet();
 
+                Da.Fill(Ds);
+                Conx.Open();
+                Cmd.ExecuteNonQuery();
+                Conx.Close();
+
+                comboBox2.DataSource = Ds.Tables[0];
+                comboBox2.DisplayMember = "ENTREPRISE";
+                comboBox2.ValueMember = "IDFOUR";
+                
+                /*
+                try
+                {
+                    Conx.Open();
+                    SqlDataReader ReadFour = Cmd.ExecuteReader();
+                    if (ReadFour.HasRows)
+                    {
+                        while (ReadFour.Read())
+                        {
+                           comboBox2.Items.Add(ReadFour.GetString(1));
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Table Fournisseur est vide !!!");
+                    }
+
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message);
+                }*/
+
+            }
         }
 
-        private void OperationPanel_Enter(object sender, EventArgs e)
+        private void PanelFourListe_Paint(object sender, PaintEventArgs e)
         {
 
         }

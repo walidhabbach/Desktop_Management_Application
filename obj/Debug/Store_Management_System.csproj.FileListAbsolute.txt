@@ -21,3 +21,6 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Deb
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.A_M_D.Add_Four.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.A_M_D.Edit_Four.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.A_M_D.Add_CMD_Four.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Edit_CMD_Four.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.MainFournisseur.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Produit.resources

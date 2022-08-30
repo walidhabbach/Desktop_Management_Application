@@ -37,7 +37,9 @@
             this.DATEPAYER = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MONTANT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MONTANTTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // DataGridView
@@ -108,15 +110,25 @@
             this.MONTANTTOTAL.HeaderText = "MONTANT TOTAL CMD";
             this.MONTANTTOTAL.Name = "MONTANTTOTAL";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(833, 310);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(8, 8);
+            this.dataGridView1.TabIndex = 3;
+            // 
             // List_CHQ_AllFour
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.DataGridView);
             this.Name = "List_CHQ_AllFour";
             this.Size = new System.Drawing.Size(1129, 611);
             this.Load += new System.EventHandler(this.List_CHQ_AllFour_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -132,5 +144,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DATEPAYER;
         private System.Windows.Forms.DataGridViewTextBoxColumn MONTANT;
         private System.Windows.Forms.DataGridViewTextBoxColumn MONTANTTOTAL;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

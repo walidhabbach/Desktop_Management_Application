@@ -21,7 +21,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
         private void ListFour_Load(object sender, EventArgs e)
         {
-  
+            
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 Conx.ConnectionString = MainClass.ConnectionDataBase(); 
@@ -36,13 +36,14 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
                 if (ReadFour.HasRows)
                 {
-                    
-                    DataTable Data = new DataTable();
-                    DataGridView.Columns.Clear();
 
-                    Data.Load(ReadFour);
-                    DataGridView.DataSource = Data;
-                
+                    this.DataGridView.Rows.Clear();
+                    while (ReadFour.Read())
+                    {
+                        this.DataGridView.Rows.Add(ReadFour["IDFOUR"], ReadFour["ENTREPRISE"], ReadFour["TELEPHONE"], ReadFour["CATEGORIE"], ReadFour["ADRESSE"]);
+                    }
+                    Conx.Close();
+
                     MainClass.DataGridMod(this.DataGridView);
 
                     DataGridView.Columns["IDFOUR"].Width = 150;
@@ -51,10 +52,11 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                     DataGridView.Columns["CATEGORIE"].Width = 300;
                     DataGridView.Columns["ADRESSE"].Width = 300;
                     DataGridView.Columns["ENTREPRISE"].DefaultCellStyle.Font = new Font("Tahoma", 15, FontStyle.Bold);
+                    DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
 
                     //Button Delete, Edit
-                        MainClass.Button_DGV(DataGridView, "Edit", "edit");
+                    MainClass.Button_DGV(DataGridView, "Edit", "edit");
                         DataGridView.Columns["Edit"].Width = 50;
                         MainClass.Button_DGV(DataGridView, "Delete", "delete");
                         DataGridView.Columns["Delete"].Width = 50;
@@ -67,13 +69,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
                 /*if (ReadFour.HasRows)
                   {
-                      this.DataGridView.Rows.Clear();
-                      while (ReadFour.Read())
-                      {
-                          this.DataGridView.Rows.Add(ReadFour["IDFOUR"], ReadFour["ENTREPRISE"], ReadFour["TELEPHONE"], ReadFour["CATEGORIE"], ReadFour["ADRESSE"]);
-
-                      }
-                      Conx.Close();
+                      
                   }
                   else
                   {
@@ -81,10 +77,6 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
                   }*/
             }
-
-
-            
-
 
          }
         private void Edit(int IDFOUR)
@@ -151,16 +143,20 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
         private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            String ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
+            if (e.ColumnIndex != -1)
+            {
+                string ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
 
-            if(ColName != "BtnEdit" && ColName != "BtnDelete")
-            {
-                DataGridView.Cursor = Cursors.Default;
+                if (ColName != "BtnEdit" && ColName != "BtnDelete")
+                {
+                    DataGridView.Cursor = Cursors.Default;
+                }
+                else
+                {
+                    DataGridView.Cursor = Cursors.Hand;
+                }
             }
-            else
-            {
-                DataGridView.Cursor = Cursors.Hand;
-            }
+            
 
         }
     }

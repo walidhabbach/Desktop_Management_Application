@@ -1,6 +1,6 @@
 ﻿namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 {
-    partial class Edit_CMD_Four
+    partial class Produit
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,14 @@
         {
             this.SuspendLayout();
             // 
-            // Edit_CMD_Four
+            // Produit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "Edit_CMD_Four";
-            this.Text = "Edit_CMD_Four";
-            this.Load += new System.EventHandler(this.Edit_CMD_Four_Load);
+            this.Name = "Produit";
+            this.Text = "Produit";
+            this.Load += new System.EventHandler(this.Produit_Load);
             this.ResumeLayout(false);
 
         }

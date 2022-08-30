@@ -10,16 +10,14 @@ using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 {
-    public partial class Edit_CMD_Four : Form
+    public partial class Produit : Form
     {
-        public readonly int IDCMD ;
-        public Edit_CMD_Four(int IDCMDFOUR)
+        public Produit()
         {
             InitializeComponent();
-            IDCMD = IDCMDFOUR;
         }
 
-        private void Edit_CMD_Four_Load(object sender, EventArgs e)
+        private void Produit_Load(object sender, EventArgs e)
         {
 
         }

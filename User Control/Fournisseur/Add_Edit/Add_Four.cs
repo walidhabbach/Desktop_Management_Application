@@ -20,7 +20,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             ADRESSE.Text = "";
             comboBox1.Text = "";
         }
-        public static bool CheckFour(string NomFour)
+        public static bool CheckFour(int ID , string NomFour)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
@@ -30,7 +30,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 SqlDataReader RFour = Cmd.ExecuteReader();
                 while (RFour.Read())
                 {
-                    if (RFour["ENTREPRISE"].ToString().ToLower() == NomFour.ToLower())
+                    if (RFour["ENTREPRISE"].ToString().ToLower() == NomFour.ToLower() && ID != int.Parse(RFour["IDFOUR"].ToString()))
                     {
                         return true;
                     }
@@ -44,7 +44,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
              {
                   if(ENTREPRISE.Text!="" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
                   {
-                    if (CheckFour(ENTREPRISE.Text))
+                    if (CheckFour(0,ENTREPRISE.Text))
                     {
                         MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
                         Clear();
@@ -83,6 +83,11 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         {
             this.Close();
            
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

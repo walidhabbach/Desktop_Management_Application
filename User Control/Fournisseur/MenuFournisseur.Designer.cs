@@ -29,21 +29,23 @@
         private void InitializeComponent()
         {
             this.OperationPanel = new System.Windows.Forms.GroupBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.Add = new System.Windows.Forms.Button();
             this.Display = new System.Windows.Forms.Button();
             this.PanelFourListe = new System.Windows.Forms.Panel();
+            this.MainPanel_Four = new System.Windows.Forms.Panel();
             this.OperationPanel.SuspendLayout();
+            this.MainPanel_Four.SuspendLayout();
             this.SuspendLayout();
             // 
             // OperationPanel
             // 
             this.OperationPanel.BackColor = System.Drawing.Color.LightBlue;
+            this.OperationPanel.Controls.Add(this.comboBox2);
             this.OperationPanel.Controls.Add(this.button3);
             this.OperationPanel.Controls.Add(this.button2);
-            this.OperationPanel.Controls.Add(this.button1);
             this.OperationPanel.Controls.Add(this.Add);
             this.OperationPanel.Controls.Add(this.Display);
             this.OperationPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -53,11 +55,20 @@
             this.OperationPanel.TabIndex = 5;
             this.OperationPanel.TabStop = false;
             this.OperationPanel.Text = "Operations";
-            this.OperationPanel.Enter += new System.EventHandler(this.OperationPanel_Enter);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Tous"});
+            this.comboBox2.Location = new System.Drawing.Point(732, 59);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(135, 21);
+            this.comboBox2.TabIndex = 7;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(694, 54);
+            this.button3.Location = new System.Drawing.Point(537, 54);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(149, 28);
             this.button3.TabIndex = 5;
@@ -67,22 +78,13 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(508, 54);
+            this.button2.Location = new System.Drawing.Point(348, 54);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(142, 28);
             this.button2.TabIndex = 4;
             this.button2.Text = "Lister Cheque Fournisseur";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(356, 54);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 28);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Modifier four";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Add
             // 
@@ -113,28 +115,39 @@
             this.PanelFourListe.TabIndex = 6;
             this.PanelFourListe.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelFourListe_Paint);
             // 
+            // MainPanel_Four
+            // 
+            this.MainPanel_Four.Controls.Add(this.PanelFourListe);
+            this.MainPanel_Four.Controls.Add(this.OperationPanel);
+            this.MainPanel_Four.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel_Four.Location = new System.Drawing.Point(0, 0);
+            this.MainPanel_Four.Name = "MainPanel_Four";
+            this.MainPanel_Four.Size = new System.Drawing.Size(1129, 720);
+            this.MainPanel_Four.TabIndex = 0;
+            // 
             // MenuFournisseur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.Controls.Add(this.PanelFourListe);
-            this.Controls.Add(this.OperationPanel);
+            this.Controls.Add(this.MainPanel_Four);
             this.Name = "MenuFournisseur";
             this.Size = new System.Drawing.Size(1129, 720);
             this.Load += new System.EventHandler(this.MenuFournisseur_Load);
             this.OperationPanel.ResumeLayout(false);
+            this.MainPanel_Four.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.GroupBox OperationPanel;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Button Display;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel PanelFourListe;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Panel MainPanel_Four;
     }
 }

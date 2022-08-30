@@ -60,7 +60,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             {
                 if (ENTREPRISE.Text != "" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
                 {
-                    if (Add_Four.CheckFour(ENTREPRISE.Text))
+                    if (Add_Four.CheckFour(ID,ENTREPRISE.Text))
                     {
                         MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
                         Display(ID);
@@ -96,6 +96,9 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             }
         }
 
-      
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
