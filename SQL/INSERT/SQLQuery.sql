@@ -308,50 +308,6 @@ create table REGLER_ESP_FOUR (
 )
 go
 
-/*==============================================================*/
-/* Index : R_ESP_FOUR2_FK                                       */
-/*==============================================================*/
-
-
-
-
-create nonclustered index R_ESP_FOUR2_FK on REGLER_ESP_FOUR (ID_CMD_FOUR ASC)
-go
-
-/*==============================================================*/
-/* Index : R_ESP_FOUR_FK                                        */
-/*==============================================================*/
-
-
-
-
-create nonclustered index R_ESP_FOUR_FK on REGLER_ESP_FOUR (IDESP_FOUR ASC)
-go
-
-/*==============================================================*/
-/* Table : REGLE_CHQ_FOUR                                       */
-/*==============================================================*/
-create table REGLE_CHQ_FOUR (
-   IDCHQ_FOUR           int                  not null,
-   ID_CMD_FOUR          int                  not null,
-   constraint PK_REGLE_CHQ_FOUR primary key (IDCHQ_FOUR, ID_CMD_FOUR)
-)
-go
-
-/*==============================================================*/
-/* Index : R_CHQ_FOUR2_FK                                       */
-/*==============================================================*/
-
-
-
-
-create nonclustered index R_CHQ_FOUR2_FK on REGLE_CHQ_FOUR (IDCHQ_FOUR ASC)
-go
-
-/*==============================================================*/
-/* Index : R_CHQ_FOUR_FK                                        */
-/*==============================================================*/
-
 
 
 
