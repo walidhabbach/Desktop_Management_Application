@@ -156,11 +156,11 @@
     <Compile Include="User Control\Fournisseur\Add_Edit\Edit_Four.Designer.cs">
       <DependentUpon>Edit_Four.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\Produit.cs">
+    <Compile Include="User Control\Fournisseur\Add_Edit\Add_Produit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\Produit.Designer.cs">
-      <DependentUpon>Produit.cs</DependentUpon>
+    <Compile Include="User Control\Fournisseur\Add_Edit\Add_Produit.Designer.cs">
+      <DependentUpon>Add_Produit.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\MainFournisseur.cs">
       <SubType>UserControl</SubType>
@@ -217,8 +217,8 @@
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Edit_Four.resx">
       <DependentUpon>Edit_Four.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Produit.resx">
-      <DependentUpon>Produit.cs</DependentUpon>
+    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Add_Produit.resx">
+      <DependentUpon>Add_Produit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\MainFournisseur.resx">
       <DependentUpon>MainFournisseur.cs</DependentUpon>
