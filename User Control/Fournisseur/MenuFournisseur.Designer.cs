@@ -65,6 +65,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(135, 21);
             this.comboBox2.TabIndex = 7;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button3
             // 
@@ -113,7 +114,7 @@
             this.PanelFourListe.Name = "PanelFourListe";
             this.PanelFourListe.Size = new System.Drawing.Size(1129, 580);
             this.PanelFourListe.TabIndex = 6;
-            this.PanelFourListe.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelFourListe_Paint);
+            this.PanelFourListe.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelFourListe_Paint_1);
             // 
             // MainPanel_Four
             // 

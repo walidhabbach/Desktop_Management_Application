@@ -63,7 +63,7 @@
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(3, 352);
+            this.button4.Location = new System.Drawing.Point(3, 369);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(244, 67);
             this.button4.TabIndex = 4;
@@ -81,7 +81,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(3, 463);
+            this.button3.Location = new System.Drawing.Point(3, 475);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(243, 62);
             this.button3.TabIndex = 3;
@@ -99,7 +99,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(3, 243);
+            this.button2.Location = new System.Drawing.Point(3, 257);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(243, 72);
             this.button2.TabIndex = 2;
@@ -117,7 +117,7 @@
             this.Menu_Four.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Four.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Four.Image")));
             this.Menu_Four.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Menu_Four.Location = new System.Drawing.Point(3, 139);
+            this.Menu_Four.Location = new System.Drawing.Point(3, 140);
             this.Menu_Four.Name = "Menu_Four";
             this.Menu_Four.Size = new System.Drawing.Size(243, 71);
             this.Menu_Four.TabIndex = 1;

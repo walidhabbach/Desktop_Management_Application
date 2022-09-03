@@ -28,32 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFournisseur));
             this.MenuPanel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.Button3 = new System.Windows.Forms.Button();
             this.Display_Panel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.MenuPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.Display_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuPanel1
             // 
             this.MenuPanel1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.MenuPanel1.Controls.Add(this.panel4);
+            this.MenuPanel1.Controls.Add(this.panel3);
+            this.MenuPanel1.Controls.Add(this.panel1);
             this.MenuPanel1.Controls.Add(this.label1);
-            this.MenuPanel1.Controls.Add(this.button5);
-            this.MenuPanel1.Controls.Add(this.button4);
-            this.MenuPanel1.Controls.Add(this.button3);
-            this.MenuPanel1.Controls.Add(this.button1);
-            this.MenuPanel1.Controls.Add(this.button2);
             this.MenuPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuPanel1.Location = new System.Drawing.Point(0, 0);
             this.MenuPanel1.Name = "MenuPanel1";
-            this.MenuPanel1.Size = new System.Drawing.Size(1132, 140);
+            this.MenuPanel1.Size = new System.Drawing.Size(1491, 140);
             this.MenuPanel1.TabIndex = 0;
-            this.MenuPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.MenuPanel1_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Location = new System.Drawing.Point(216, 51);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(266, 31);
+            this.panel1.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.PowderBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 31);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "      Commande";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.PowderBlue;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Ajouter",
+            "Liste"});
+            this.comboBox1.Location = new System.Drawing.Point(137, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(127, 24);
+            this.comboBox1.TabIndex = 7;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -67,60 +118,117 @@
             this.label1.Text = "Richbond";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(874, 62);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(116, 23);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(742, 62);
+            this.button4.BackColor = System.Drawing.Color.PowderBlue;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 0);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(113, 23);
+            this.button4.Size = new System.Drawing.Size(141, 31);
             this.button4.TabIndex = 4;
-            this.button4.Text = "Cheque";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Text = "    Cheque";
+            this.button4.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // Button3
             // 
-            this.button3.Location = new System.Drawing.Point(596, 62);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(126, 23);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Ajouter Produit";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(279, 60);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Ajouter Commande";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(440, 62);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Afficher Liste Commande";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Button3.BackColor = System.Drawing.Color.PowderBlue;
+            this.Button3.FlatAppearance.BorderSize = 0;
+            this.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button3.Image = ((System.Drawing.Image)(resources.GetObject("Button3.Image")));
+            this.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button3.Location = new System.Drawing.Point(0, 0);
+            this.Button3.Name = "Button3";
+            this.Button3.Size = new System.Drawing.Size(129, 31);
+            this.Button3.TabIndex = 3;
+            this.Button3.Text = " Produit";
+            this.Button3.UseVisualStyleBackColor = false;
+            this.Button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // Display_Panel
             // 
+            this.Display_Panel.Controls.Add(this.panel2);
+            this.Display_Panel.Controls.Add(this.dataGridView1);
             this.Display_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Display_Panel.Location = new System.Drawing.Point(0, 140);
             this.Display_Panel.Name = "Display_Panel";
-            this.Display_Panel.Size = new System.Drawing.Size(1132, 583);
+            this.Display_Panel.Size = new System.Drawing.Size(1491, 508);
             this.Display_Panel.TabIndex = 1;
-            this.Display_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Display_Panel_Paint);
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1491, 508);
+            this.panel2.TabIndex = 2;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1491, 508);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel3.Controls.Add(this.comboBox2);
+            this.panel3.Controls.Add(this.Button3);
+            this.panel3.Location = new System.Drawing.Point(576, 51);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(260, 31);
+            this.panel3.TabIndex = 8;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.BackColor = System.Drawing.Color.PowderBlue;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Ajouter",
+            "Lister"});
+            this.comboBox2.Location = new System.Drawing.Point(130, 3);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(127, 24);
+            this.comboBox2.TabIndex = 7;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel4.Controls.Add(this.comboBox3);
+            this.panel4.Controls.Add(this.button4);
+            this.panel4.Location = new System.Drawing.Point(878, 51);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(266, 31);
+            this.panel4.TabIndex = 9;
+            // 
+            // comboBox3
+            // 
+            this.comboBox3.BackColor = System.Drawing.Color.PowderBlue;
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "Ajouter",
+            "Liste"});
+            this.comboBox3.Location = new System.Drawing.Point(141, 3);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(123, 24);
+            this.comboBox3.TabIndex = 7;
             // 
             // MainFournisseur
             // 
@@ -129,10 +237,15 @@
             this.Controls.Add(this.Display_Panel);
             this.Controls.Add(this.MenuPanel1);
             this.Name = "MainFournisseur";
-            this.Size = new System.Drawing.Size(1132, 723);
+            this.Size = new System.Drawing.Size(1491, 648);
             this.Load += new System.EventHandler(this.Fournisseur_Load);
             this.MenuPanel1.ResumeLayout(false);
             this.MenuPanel1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.Display_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -141,11 +254,17 @@
 
         private System.Windows.Forms.Panel MenuPanel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button Button3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel Display_Panel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ComboBox comboBox3;
     }
 }

@@ -40,7 +40,7 @@ namespace Store_Management_System.Class
             //DGV.DefaultCellStyle.Font = new Font("Tahoma", 15);
             //DGV.RowHeadersVisible = false;
             //DGV.EnableHeadersVisualStyles = false;
-            DGV.RowTemplate.Height = 40;
+//DGV.RowTemplate.Height = 40;
 
 
         }

@@ -1,19 +1,18 @@
 ﻿using Store_Management_System.Class;
-
 using Store_Management_System.User_Control.Fournisseur;
+using Store_Management_System.User_Control.Fournisseur.A_M_D;
+using Store_Management_System.User_Control.Fournisseur.List;
+using Store_Management_System.User_Control.Fournisseur.ListALL;
+using Store_Management_System.User_Control.Fournisseur.ListFour;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Data;
-using Store_Management_System.User_Control.Fournisseur.ListFour;
-using Store_Management_System.User_Control.Fournisseur.List;
-using Store_Management_System.User_Control.Fournisseur.A_M_D;
 
 namespace Store_Management_System.User_Control
 {
     public partial class MenuFournisseur : UserControl
     {
-        
+
 
         public MenuFournisseur()
         {
@@ -24,8 +23,9 @@ namespace Store_Management_System.User_Control
         {
             ListFour LFour = new ListFour();
             MainClass.ShowControl(LFour, PanelFourListe);
+            comboBox2.Text = "Tous";
             FillCombobox();
-            
+
 
         }
 
@@ -38,22 +38,20 @@ namespace Store_Management_System.User_Control
         }*/
         private void Display_Click(object sender, EventArgs e)
         {
-            if(comboBox2.Text == "Tous")
+            if (comboBox2.Text == "Tous")
             {
                 ListFour LFour = new ListFour();
                 MainClass.ShowControl(LFour, PanelFourListe);
-                FillCombobox();
+                
             }
-            else
+            else if (SearshFournisseur(comboBox2.Text.ToString()) != 0)
             {
                 MainPanel_Four.Controls.Clear();
                 //MainFournisseur Four = new MainFournisseur(Convert.ToInt32(comboBox2.SelectedValue));
-                MainFournisseur Four = new MainFournisseur(2);
+               
+                MainFournisseur Four = new MainFournisseur(SearshFournisseur(comboBox2.Text), comboBox2.Text);
                 MainClass.ShowControl(Four, MainPanel_Four);
             }
-            
-            
-            
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -75,27 +73,36 @@ namespace Store_Management_System.User_Control
             Add_Four myNewForm = new Add_Four();
             myNewForm.Show();
         }
-        public void FillCombobox()
+        private void FillCombobox()
         {
             comboBox2.Items.Clear();
             comboBox2.Items.Add("Tous");
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                Conx.ConnectionString = MainClass.ConnectionDataBase();
                 String Query = "SELECT * From FOURNISSEUR;";
                 SqlCommand Cmd = new SqlCommand(Query, Conx);
-                SqlDataAdapter Da = new SqlDataAdapter(Cmd);
-                DataSet Ds = new DataSet();
 
-                Da.Fill(Ds);
                 Conx.Open();
-                Cmd.ExecuteNonQuery();
-                Conx.Close();
+                SqlDataReader ReadFour = Cmd.ExecuteReader();
 
-                comboBox2.DataSource = Ds.Tables[0];
-                comboBox2.DisplayMember = "ENTREPRISE";
-                comboBox2.ValueMember = "IDFOUR";
-                
+
+                // DataGridView.DefaultCellStyle.Font = new Font("Tahoma", 15);
+
+                if (ReadFour.HasRows)
+                {
+                    while (ReadFour.Read())
+                    {
+                        comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());
+                    }
+                    Conx.Close();   
+                }
+                else
+                {
+                    MessageBox.Show("La Table Fournisseur est vide !!!");
+                }
+            }
+           
+
                 /*
                 try
                 {
@@ -119,12 +126,53 @@ namespace Store_Management_System.User_Control
                     MessageBox.Show(Ex.Message);
                 }*/
 
+            
+        }
+        private int SearshFournisseur(string Four)
+        {
+            comboBox2.Items.Clear();
+            comboBox2.Items.Add("Tous");
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                String Query = "SELECT IDFOUR  From FOURNISSEUR WHERE ENTREPRISE = @Four;";
+                SqlCommand Cmd = new SqlCommand(Query, Conx);
+                Cmd.Parameters.AddWithValue("Four", Four);
+                Conx.Open();
+                SqlDataReader ReadFour = Cmd.ExecuteReader();
+
+
+                // DataGridView.DefaultCellStyle.Font = new Font("Tahoma", 15);
+
+                if (ReadFour.HasRows)
+                {
+                    while (ReadFour.Read())
+                    {
+                        return int.Parse(ReadFour["IDFOUR"].ToString());
+                    }
+                    Conx.Close();
+                }
+                else
+                {
+                    MessageBox.Show("La Table Fournisseur est vide !!!"); 
+                }
             }
+            return 0;
+
         }
 
         private void PanelFourListe_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void PanelFourListe_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Display_Click(sender,e);
         }
     }
 }

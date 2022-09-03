@@ -117,33 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAI9JREFUSEvt
-        j0sKgDAMBbvyUno98aK68BSaiA9iSGpaBbtwYMBHfjX91LC9YBZroNQsoSaHNg94WQp0NrkbQpYCnU1C
-        TQ5tHvCyFOhscjeELAU6m4SaHL49gGKNQOcLcqBUoPOFbNFBz2R3LCQXhyPFWEnM9Of3TJpMJF7wxJE0
-        6Ug+gj8plV/Oy3nPT5SUdjMMtaQ5LJMmAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="button4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAXlJREFUSEvt
-        1b8rRWEcx/EjKZuiFIMySGKQQZLJaLEZTEqJ/8KoWJSSrCYlo0EKi0ksBoxEyY8Bg0G8P6fz7T6ce89z
-        7zn3KHU+9Srf59z7fO69x31uUKTIX6QNczlTRyyD+MqZOmKx4iss1Zn29BbvhlN9oz1zLdYeG5gKp1Iy
-        FzeiHzPQR+imCzvQHucYhSV18RAO8Qo9RjRbmnANuyYf6IGSqlilT9C1F9xGfy/D0get3WECa9E8D6Xm
-        Yrd0UQtkFZrd+9iOS2j9HZsYQQsUb7GeNB5O5UtbYV+Nbi040eGwgjfo+g06oCQW98JXegqt7WnByQC0
-        fgDtcxTNs1ASiy3VlDbDjeZ76Lp5xhgUb3GaUos2PYYep/td9dcpS6lFZftYCKdSKhbrUMhampSKxSfw
-        lTZgGuV+7nzOECvWqfOJB2jzSqXr0VoWsXd8AV3Ygh0E7ser+//7py6NTvyI/ikeYa9sG1nuaU3RyTOJ
-        4XAqUuR/Jgi+ATuF2VJdpoBcAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="Button3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAHBJREFUSEvt
-        jTESgDAIBHmePkwfqp/QSi8FKSBIlIwWZme2gYOjzh1muMMjaPoxQUWL5+wGFbyMYv55raCVilIoYpHL
-        ZQXu/WcFPJdKrHnGO5RKrHnGDTj0ApcfFKyQQ09doMkIU6B0WGO6HWCnFqITDNKsZfQ+7bAAAAAASUVO
-        RK5CYII=
-</value>
-  </data>
 </root>
