@@ -1,8 +1,8 @@
-
+using System;
+    using System.Collections.Generic;
+    
 namespace Store_Management_System.Model
 {
-    using System;
-    using System.Collections.Generic;
     
     public partial class PRODUIT
     {
