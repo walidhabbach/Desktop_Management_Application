@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="DataBaseMagasinModel.COMMANDECLIENT" Width="1.5" PointX="10" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DataBaseMagasinModel.COMMANDEFOUR" Width="1.5" PointX="3.125" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DataBaseMagasinModel.COMMANDER" Width="1.5" PointX="5.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DataBaseMagasinModel.EMPLOYE" Width="1.5" PointX="8" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataBaseMagasinModel.EMPLOYE" Width="3.125" PointX="8" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DataBaseMagasinModel.FOURNISSEUR" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DataBaseMagasinModel.PAIEMENTESPECECLT" Width="1.5" PointX="10" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DataBaseMagasinModel.PAIEMENTESPECEFOUR" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />

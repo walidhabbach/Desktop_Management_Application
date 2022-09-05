@@ -86,7 +86,7 @@
         <MappingFragment StoreEntitySet="EMPLOYE">
           <ScalarProperty Name="IDEMP" ColumnName="IDEMP" />
           <ScalarProperty Name="IDUSER" ColumnName="IDUSER" />
-          <ScalarProperty Name="NOM" ColumnName="NOM" />
+          <ScalarProperty Name="NAME" ColumnName="NOM" />
           <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
           <ScalarProperty Name="AGE" ColumnName="AGE" />
           <ScalarProperty Name="ADRESSE" ColumnName="ADRESSE" />

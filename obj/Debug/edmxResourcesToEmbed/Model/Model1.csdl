@@ -95,7 +95,7 @@
     </Key>
     <Property Name="IDEMP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IDUSER" Type="Int32" Nullable="false" />
-    <Property Name="NOM" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="TELEPHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="AGE" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="ADRESSE" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />

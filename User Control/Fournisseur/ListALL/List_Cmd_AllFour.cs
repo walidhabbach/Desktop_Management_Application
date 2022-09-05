@@ -1,12 +1,9 @@
-﻿using System;
-using System.Data;
-using Store_Management_System.Class;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Drawing;
-using Store_Management_System.User_Control.Fournisseur.A_M_D;
+﻿using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit;
+using System;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.List
 {
@@ -21,13 +18,13 @@ namespace Store_Management_System.User_Control.Fournisseur.List
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                
+
                 string Statut = "non payée";
                 String QueryCmdFour = "SELECT * From COMMANDEFOUR;";
 
                 SqlCommand CmdFour = new SqlCommand(QueryCmdFour, Conx);
-                SqlCommand CmdNomFour ;
-            
+                SqlCommand CmdNomFour;
+
 
                 Conx.Open();
                 SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
@@ -37,24 +34,24 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                     this.DataGridView.Rows.Clear();
 
                     MainClass.DataGridMod(this.DataGridView);
-                        DataGridView.Columns["ID_CMD_FOUR"].Width = 75;
-                        DataGridView.Columns["ENTREPRISE"].Width = 150;
-                        DataGridView.Columns["ENTREPRISE"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-                        DataGridView.Columns["DESCRIPTION"].Width = 150;
-                        DataGridView.Columns["STATUT"].Width = 150;
-                        DataGridView.Columns["STATUT"].DefaultCellStyle.BackColor = Color.Red;
-                        DataGridView.Columns["DATECMD"].Width = 150;
-                        DataGridView.Columns["PESPECE"].Width = 100;
-                        DataGridView.Columns["PCHEQUE"].Width = 100;
-                        DataGridView.Columns["MONTANT_TOTAL"].Width = 150;
-                        DataGridView.Columns["MTRESTE"].Width = 150;
-                        DataGridView.Columns["MTAVANCE"].Width = 150;
+                    DataGridView.Columns["ID_CMD_FOUR"].Width = 75;
+                    DataGridView.Columns["ENTREPRISE"].Width = 150;
+                    DataGridView.Columns["ENTREPRISE"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+                    DataGridView.Columns["DESCRIPTION"].Width = 150;
+                    DataGridView.Columns["STATUT"].Width = 150;
+                    DataGridView.Columns["STATUT"].DefaultCellStyle.BackColor = Color.Red;
+                    DataGridView.Columns["DATECMD"].Width = 150;
+                    DataGridView.Columns["PESPECE"].Width = 100;
+                    DataGridView.Columns["PCHEQUE"].Width = 100;
+                    DataGridView.Columns["MONTANT_TOTAL"].Width = 150;
+                    DataGridView.Columns["MTRESTE"].Width = 150;
+                    DataGridView.Columns["MTAVANCE"].Width = 150;
 
                     //Button Delete, Edit
-                        MainClass.Button_DGV(DataGridView, "Edit", "edit");
-                        DataGridView.Columns["Edit"].Width = 50;
-                        MainClass.Button_DGV(DataGridView, "Delete", "delete");
-                        DataGridView.Columns["Delete"].Width = 50;
+                    MainClass.Button_DGV(DataGridView, "Edit", "edit");
+                    DataGridView.Columns["Edit"].Width = 50;
+                    MainClass.Button_DGV(DataGridView, "Delete", "delete");
+                    DataGridView.Columns["Delete"].Width = 50;
 
                     while (ReadCmdFour.Read())
                     {
@@ -64,7 +61,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
                         while (ReadNomFour.Read())
                         {
-                            if((bool)ReadCmdFour["STATUT"])
+                            if ((bool)ReadCmdFour["STATUT"])
                             {
                                 Statut = "payée";
                                 DataGridView.Columns["STATUT"].DefaultCellStyle.BackColor = Color.Green;
@@ -134,29 +131,35 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int IDCMDFour;
+            string NomFour;
             DialogResult Dialog;
-            String ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
-            DataGridViewRow Row = DataGridView.Rows[e.RowIndex];
-            Row.Selected = true;
-            int IDCMDFour = Convert.ToInt32(Row.Cells["ID_CMD_FOUR"].Value);
-            string NomFour = Row.Cells["ENTREPRISE"].Value.ToString();
+            String ColName;
+            DataGridViewRow Row;
 
-            if (ColName == "Edit")
+            if (e.RowIndex >= 0)
             {
-                Edit(IDCMDFour);
-            }
-            else if (ColName == "Delete")
-            {
-
-                Dialog = MessageBox.Show("Do You Want To Delete " + NomFour , "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (Dialog == DialogResult.No)
+                ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
+                Row = DataGridView.Rows[e.RowIndex];
+                Row.Selected = true;
+                IDCMDFour = Convert.ToInt32(Row.Cells["ID_CMD_FOUR"].Value);
+                NomFour = Row.Cells["ENTREPRISE"].Value.ToString();
+                if (ColName == "Edit")
                 {
-                    return;
+                    Edit(IDCMDFour);
                 }
-                Delete(IDCMDFour);
+                else if (ColName == "Delete")
+                {
 
+                    Dialog = MessageBox.Show("Do You Want To Delete " + NomFour, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (Dialog == DialogResult.No)
+                    {
+                        return;
+                    }
+                    Delete(IDCMDFour);
+
+                }
             }
-
         }
 
         private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
@@ -175,7 +178,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
         }
     }
 
-       
-    }
+
+}
 
 

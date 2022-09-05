@@ -113,7 +113,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {   int IDFour;
             DialogResult Dialog;
-            String ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
+            String ColName ;
             DataGridViewRow Row;
             
            if (e.RowIndex >= 0)
@@ -121,7 +121,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                 Row = DataGridView.Rows[e.RowIndex];
                 Row.Selected = true;
                 IDFour = Convert.ToInt32(Row.Cells["IDFOUR"].Value);
-
+                ColName = this.DataGridView.Columns[e.ColumnIndex].Name;
                 if (ColName == "Edit")
                 {
                     Edit(IDFour);

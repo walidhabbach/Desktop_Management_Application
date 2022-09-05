@@ -1,4 +1,3 @@
--
 
 namespace Store_Management_System.Model
 {

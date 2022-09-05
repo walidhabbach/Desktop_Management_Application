@@ -70,7 +70,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         this.dataGridView2.Rows.Add(
                             ReadCmdFour["DESCRIPTION"],
                             Statut,
-                            string.Format("{0:0.##}", ReadCmdFour["DATECMD"]),
+                            string.Format("{0:0.##}",ReadCmdFour["DATECMD"].ToString()),
                             MPaiement,
                             ReadCmdFour["MONTANTTOTAL"]
                         );

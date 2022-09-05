@@ -49,8 +49,7 @@ namespace Store_Management_System.User_Control.Fournisseur
             {
                 panel2.Controls.Clear();
                 ListCMD MFour = new ListCMD(IDFOUR);
-                MainClass.ShowControl(MFour, panel2);
-                
+                MainClass.ShowControl(MFour, panel2);               
             }
         }
 
@@ -74,19 +73,6 @@ namespace Store_Management_System.User_Control.Fournisseur
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.Text == "Ajouter")
-            {
-                Add_CMD_Four Form = new Add_CMD_Four(IDFOUR, ENTREPRISE);
-                Form.Show();
-
-            }
-            else
-            {
-                panel2.Controls.Clear();
-                ListCMD MFour = new ListCMD(IDFOUR);
-                MainClass.ShowControl(MFour, panel2);
-
-            }
         }
     }
 }
