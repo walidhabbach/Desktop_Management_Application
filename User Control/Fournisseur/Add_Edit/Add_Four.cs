@@ -13,7 +13,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         {
             InitializeComponent();
         }
-        public void Clear()
+        private void Clear()
         {
             ENTREPRISE.Text = "";
             TELEPHONE.Text = "";

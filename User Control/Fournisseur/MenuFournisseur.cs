@@ -5,6 +5,7 @@ using Store_Management_System.User_Control.Fournisseur.List;
 using Store_Management_System.User_Control.Fournisseur.ListALL;
 using Store_Management_System.User_Control.Fournisseur.ListFour;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -25,8 +26,6 @@ namespace Store_Management_System.User_Control
             MainClass.ShowControl(LFour, PanelFourListe);
             comboBox2.Text = "Tous";
             FillCombobox();
-
-
         }
 
         /*public void DisplayListFour()
@@ -89,12 +88,13 @@ namespace Store_Management_System.User_Control
                 // DataGridView.DefaultCellStyle.Font = new Font("Tahoma", 15);
 
                 if (ReadFour.HasRows)
-                {
+                {   
                     while (ReadFour.Read())
                     {
-                        comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());
+                        comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());   
                     }
-                    Conx.Close();   
+                    Conx.Close();
+                   
                 }
                 else
                 {
@@ -160,19 +160,13 @@ namespace Store_Management_System.User_Control
 
         }
 
-        private void PanelFourListe_Paint(object sender, PaintEventArgs e)
+   
+
+      
+
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void PanelFourListe_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Display_Click(sender,e);
+            Display_Click(sender, e);
         }
     }
 }

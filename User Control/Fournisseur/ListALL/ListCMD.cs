@@ -52,9 +52,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
                     //Button Delete, Edit
                     MainClass.Button_DGV(dataGridView2, "Edit", "edit");
-                    dataGridView2.Columns["Edit"].Width = 50;
+                    dataGridView2.Columns["Edit"].Width = 70;
                     MainClass.Button_DGV(dataGridView2, "Delete", "delete");
-                    dataGridView2.Columns["Delete"].Width = 50;
+                    dataGridView2.Columns["Delete"].Width = 70;
 
                     while (ReadCmdFour.Read())
                     {

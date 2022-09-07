@@ -58,14 +58,16 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Tous"});
-            this.comboBox2.Location = new System.Drawing.Point(732, 59);
+            this.comboBox2.Location = new System.Drawing.Point(733, 54);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(135, 21);
-            this.comboBox2.TabIndex = 7;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.comboBox2.Size = new System.Drawing.Size(148, 28);
+            this.comboBox2.TabIndex = 6;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged_1);
             // 
             // button3
             // 
@@ -114,7 +116,6 @@
             this.PanelFourListe.Name = "PanelFourListe";
             this.PanelFourListe.Size = new System.Drawing.Size(1129, 580);
             this.PanelFourListe.TabIndex = 6;
-            this.PanelFourListe.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelFourListe_Paint_1);
             // 
             // MainPanel_Four
             // 
@@ -148,7 +149,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel PanelFourListe;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Panel MainPanel_Four;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }

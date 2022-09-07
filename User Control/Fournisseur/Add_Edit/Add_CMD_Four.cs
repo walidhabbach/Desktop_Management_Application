@@ -18,13 +18,60 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             IDFOUR = ID;
             ENTREPRISE = NFour;
         }
-        public void CheckBox()
+        private void Add_Colone()
+        {
+            // DataGridViewCheckBoxColumn check = new DataGridViewCheckBoxColumn();
+            //  check.Name = "SELECTER";
+            //   dataGridView1.Columns.Add(check);
+        }
+        private void CheckBox()
         {
             //DataGridViewCheckBoxColumn Cb = new DataGridViewCheckBoxColumn();
             //DataGridView.Columns.Insert(0, Cb);
+            this.dataGridView2.Rows.Clear();
+            if (dataGridView1.RowCount > 0)
+            {
+                foreach (DataGridViewRow item in dataGridView1.Rows)
+                {
+                    if (Convert.ToBoolean(item.Cells["Check"].Value))
+                    {
+                        Add_Selected_Product(item.Cells["IDPRODUIT"].Value.ToString());
+                    }
+                }
+            }
+        }
+        private void Add_Selected_Product(string IDPRODUIT)
+        {
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE IDPRODUIT = @IDPRODUIT;", Conx);
+                Cmd.Parameters.AddWithValue("IDPRODUIT", IDPRODUIT);
+                Conx.Open();
+                SqlDataReader ReadProduit = Cmd.ExecuteReader();
+
+                if (ReadProduit.HasRows)
+                {
+                    while (ReadProduit.Read())
+                    {
+                        this.dataGridView2.Rows.Add(ReadProduit[0], ReadProduit[2], null);
+                    }
+
+                    dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+                    dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
+
+
+                }
+                else
+                {
+                    MessageBox.Show("La Table Produit est vide !!!");
+                }
+
+
+            }
         }
         private void Data_Produit()
         {
+            dataGridView1.Rows.Clear();
 
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
@@ -33,26 +80,24 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 Conx.Open();
                 SqlDataReader ReadProduit = Cmd.ExecuteReader();
                 dataGridView1.Rows.Clear();
-                dataGridView1.AllowUserToAddRows = true;
+
                 if (ReadProduit.HasRows)
                 {
-                    //Button Delete, Edit
+                    /*/Button Delete, Edit
                     MainClass.Button_DGV(dataGridView1, "Edit", "edit");
                     dataGridView1.Columns["Edit"].Width = 50;
                     MainClass.Button_DGV(dataGridView1, "Delete", "delete");
                     dataGridView1.Columns["Delete"].Width = 50;
 
-                    //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    //
                     ///dataGridView1.AllowUserToAddRows = true;
-                    MainClass.DataGridMod(this.dataGridView1);
+                    MainClass.DataGridMod(this.dataGridView1);*/
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     while (ReadProduit.Read())
                     {
-                        this.dataGridView1.Rows.Add(false, ReadProduit[0], ReadProduit[2], String.Format("{0:0.##}", ReadProduit[3]), String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]));
+                        this.dataGridView1.Rows.Add(false, ReadProduit[0], ReadProduit[2], ReadProduit[3], ReadProduit[4], ReadProduit[5]);
                     }
-
-                    dataGridView1.Columns["SELECTER"].Width = 40;
-                    dataGridView1.Columns[2].Width = 150;
-
+                    dataGridView1.Columns["DESIGNATION"].Width = 200;
                     dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
                     dataGridView1.Columns["PRIXACHAT"].DefaultCellStyle.Font = new Font("Tahoma", 12);
                     dataGridView1.Columns["PRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
@@ -73,7 +118,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             if (Search != "")
             {
                 Search.ToCharArray();
-                dataGridView1.Rows.Clear();
+
                 using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
                     SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR and DESIGNATION LIKE  '@Search%' ; ", Conx);
@@ -82,7 +127,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                     Conx.Open();
                     SqlDataReader ReadProduit = Cmd.ExecuteReader();
                     dataGridView1.Rows.Clear();
-                    dataGridView1.AllowUserToAddRows = true;
+
                     if (ReadProduit.HasRows)
                     {
                         //Button Delete, Edit
@@ -96,10 +141,10 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         MainClass.DataGridMod(this.dataGridView1);
                         while (ReadProduit.Read())
                         {
-                            this.dataGridView1.Rows.Add(false, ReadProduit[0], ReadProduit[2], String.Format("{0:0.##}", ReadProduit[3]), String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]));
+                            this.dataGridView1.Rows.Add(ReadProduit[0], ReadProduit[2], String.Format("{0:0.##}", ReadProduit[3]), String.Format("{0:0.##}", ReadProduit[4], false), String.Format("{0:0.##}", ReadProduit[5]));
                         }
 
-                        dataGridView1.Columns["SELECTER"].Width = 40;
+                        dataGridView1.Columns["Check"].Width = 40;
                         dataGridView1.Columns[2].Width = 150;
 
                         dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
@@ -126,8 +171,20 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            Search_Produit(Search.Text);
+
+            if (Search.Text == "")
+            {
+                this.Close();
+                Add_CMD_Four Form = new Add_CMD_Four(IDFOUR, ENTREPRISE);
+                Form.Show();
+            }
+            else
+            {
+                Search_Produit(Search.Text);
+            }
+
         }
+
         public void Clear()
         {
             Description.Text = "";
@@ -135,65 +192,52 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             MONTANTTOTAL.Text = "";
             comboBox.Text = "";
         }
-        private void Add_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-            {
-                if (Description.Text != "" && comboBox.Text != "" && MONTANTTOTAL.Text != "")
-                {
-                    Conx.Open();
-                    string Query = "INSERT INTO COMMANDEFOUR(IDFOUR,DESCRIPTION,STATUT,DATECMD,PESPECE,PCHEQUE,MONTANTTOTAL,MTRESTE,MTAVANCE) values(@IDFOUR,@DESCRIPTION,@STATUT,@DATECMD,@PESPECE,@PCHEQUE,@MONTANTTOTAL,@MTRESTE,@MTAVANCE)";
-                    SqlCommand Cmd = new SqlCommand(Query, Conx);
-                    try
-                    {
-                        if (comboBox.Text == "payee")
-                        {
-                            Cmd.Parameters.AddWithValue("STATUT", true);
-                        }
-                        else
-                        {
-                            Cmd.Parameters.AddWithValue("STATUT", false);
-                        }
-                        Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                        Cmd.Parameters.AddWithValue("DESCRIPTION", Description.Text);
-                        Cmd.Parameters.AddWithValue("DATECMD", dateTimePicker2.Text);
-                        Cmd.Parameters.AddWithValue("PESPECE", radioButton1);
-                        Cmd.Parameters.AddWithValue("PCHEQUE", radioButton);
-                        Cmd.Parameters.AddWithValue("MONTANTTOTAL", MONTANTTOTAL.Text);
-                        Cmd.Parameters.AddWithValue("MTRESTE", null);
-                        Cmd.Parameters.AddWithValue("MTAVANCE", null);
-                        Cmd.ExecuteNonQuery();
-
-                        this.Close();
-                        Clear();
-
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Add_Produit Form = new Add_Produit(IDFOUR);
+            Add_Produit Form = new Add_Produit(IDFOUR, ENTREPRISE);
             Form.Show();
         }
-
-
-
         private void Add_CMD_Four_Load(object sender, EventArgs e)
         {
             Data_Produit();
             label1.Text = ENTREPRISE;
         }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void Add_Click(object sender, EventArgs e)
+        {
 
-        
+        }
+
+        private void Add_CMD_Four_Load_1(object sender, EventArgs e)
+        {
+            label1.Text = ENTREPRISE;
+            Add_Colone();
+            Data_Produit();
+
+
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CheckBox();
+        }
+
+
     }
+
 }
 

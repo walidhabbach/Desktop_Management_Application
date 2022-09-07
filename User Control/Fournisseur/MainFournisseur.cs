@@ -24,6 +24,8 @@ namespace Store_Management_System.User_Control.Fournisseur
         private void Fournisseur_Load(object sender, EventArgs e)
         {
             label1.Text = ENTREPRISE;
+            comboBox1.Text = "Lister";
+            comboBox2.Text = "Lister";
             panel2.Controls.Clear();
             ListCMD MFour = new ListCMD(IDFOUR);
             MainClass.ShowControl(MFour, panel2);
@@ -57,7 +59,7 @@ namespace Store_Management_System.User_Control.Fournisseur
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            Add_Produit Form = new Add_Produit(IDFOUR);
+            Add_Produit Form = new Add_Produit(IDFOUR, ENTREPRISE);
             Form.Show();
         }
 

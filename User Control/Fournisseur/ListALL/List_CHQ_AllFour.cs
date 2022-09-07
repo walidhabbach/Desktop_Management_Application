@@ -23,22 +23,17 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                 ConnectionString = MainClass.ConnectionDataBase()
             };
 
-            String Query_RCHQFour = "SELECT * From REGLE_CHQ_FOUR;";
-            SqlCommand Cmd_RCHQFour = new SqlCommand(Query_RCHQFour, Conx);
-
+            SqlCommand Cmd_RCHQFour = new SqlCommand("SELECT * From REGLE_CHQ_FOUR;", Conx);
 
             //Nom Four
-            String Query_NOMFour;
             SqlCommand Cmd_NOMFour;
             SqlDataReader Read_NomFour;
 
             //CMD Four
-            String Query_CMDFour;
             SqlCommand Cmd_CMDFour;
             SqlDataReader Read_CMDFour;
 
             //CHQFour
-            String Query_CHQFour;
             SqlCommand Cmd_CHQFour;
             SqlDataReader Read_CHQFour;
 
@@ -53,24 +48,21 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                 {
 
                     //Return CMD Four
-                    Query_CMDFour = $"SELECT IDFOUR , MONTANTTOTAL FROM COMMANDEFOUR WHERE ID_CMD_FOUR = '{Read_RCHQFour[1]}';";
-                    Cmd_CMDFour = new SqlCommand(Query_CMDFour, Conx);
+                    Cmd_CMDFour = new SqlCommand($"SELECT IDFOUR , MONTANTTOTAL FROM COMMANDEFOUR WHERE ID_CMD_FOUR = '{Read_RCHQFour[1]}';", Conx);
                     Read_CMDFour = Cmd_CMDFour.ExecuteReader();
 
                     while (Read_CMDFour.Read())
                     {
 
                         //Return NomFour
-                        Query_NOMFour = $"SELECT ENTREPRISE FROM FOURNISSEUR WHERE IDFOUR = '{Read_CMDFour["IDFOUR"]}';";
-                        Cmd_NOMFour = new SqlCommand(Query_NOMFour, Conx);
+                        Cmd_NOMFour = new SqlCommand($"SELECT ENTREPRISE FROM FOURNISSEUR WHERE IDFOUR = '{Read_CMDFour["IDFOUR"]}';", Conx);
                         Read_NomFour = Cmd_NOMFour.ExecuteReader();
 
                         while (Read_NomFour.Read())
                         {
 
                             //Return CHQ Details
-                            Query_CHQFour = $"SELECT * From CHEQUEFOURNISSEUR WHERE IDCHQ_FOUR = '{Read_RCHQFour[0]}';";
-                            Cmd_CHQFour = new SqlCommand(Query_CHQFour, Conx);
+                            Cmd_CHQFour = new SqlCommand($"SELECT * From CHEQUEFOURNISSEUR WHERE IDCHQ_FOUR = '{Read_RCHQFour[0]}';", Conx);
                             Read_CHQFour = Cmd_CHQFour.ExecuteReader();
 
                             while (Read_CHQFour.Read())

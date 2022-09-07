@@ -32,16 +32,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
                 if (ReadFour.HasRows)
                 {
-
                     this.DataGridView.Rows.Clear();
-                    while (ReadFour.Read())
-                    {
-                        this.DataGridView.Rows.Add(ReadFour["IDFOUR"], ReadFour["ENTREPRISE"], ReadFour["TELEPHONE"], ReadFour["CATEGORIE"], ReadFour["ADRESSE"]);
-                    }
-                    Conx.Close();
-
-                    MainClass.DataGridMod(this.DataGridView);
-
                     DataGridView.Columns["IDFOUR"].Width = 150;
                     DataGridView.Columns["ENTREPRISE"].Width = 300;
                     DataGridView.Columns["TELEPHONE"].Width = 300;
@@ -56,6 +47,16 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                     DataGridView.Columns["Edit"].Width = 50;
                     MainClass.Button_DGV(DataGridView, "Delete", "delete");
                     DataGridView.Columns["Delete"].Width = 50;
+                    
+                    while (ReadFour.Read())
+                    {
+                        this.DataGridView.Rows.Add(ReadFour["IDFOUR"], ReadFour["ENTREPRISE"], ReadFour["TELEPHONE"], ReadFour["CATEGORIE"], ReadFour["ADRESSE"]);
+                    }
+                    Conx.Close();
+
+                    MainClass.DataGridMod(this.DataGridView);
+
+                    
 
                 }
                 else

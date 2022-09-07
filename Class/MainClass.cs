@@ -73,8 +73,9 @@ namespace Store_Management_System.Class
                 Image = icon
             };
 
-            Btn.HeaderCell.Style.Padding = new Padding(10, 0, 10, 0);
+            //Btn.HeaderCell.Style.Padding = new Padding(10, 0, 10, 0);
             DGV.Columns.Add(Btn);
+
 
 
         }
