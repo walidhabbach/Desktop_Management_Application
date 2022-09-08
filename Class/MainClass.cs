@@ -19,7 +19,11 @@ namespace Store_Management_System.Class
         {
             return ConfigurationManager.ConnectionStrings["Store_Management_System.Properties.Settings.DataBaseMagasinConnectionString"].ConnectionString;
         }
-
+        public static bool TypeCheckFloat(string input)
+        {
+            float Value;
+            return float.TryParse(input, out Value);
+        }
         public static void ShowControl(Control control, Panel Content)
         {
             Content.Controls.Clear();
@@ -40,9 +44,7 @@ namespace Store_Management_System.Class
             //DGV.DefaultCellStyle.Font = new Font("Tahoma", 15);
             //DGV.RowHeadersVisible = false;
             //DGV.EnableHeadersVisualStyles = false;
-//DGV.RowTemplate.Height = 40;
-
-
+            //DGV.RowTemplate.Height = 40;
         }
 
         //Retrieve number of columns in SQL Table 
@@ -75,8 +77,6 @@ namespace Store_Management_System.Class
 
             //Btn.HeaderCell.Style.Padding = new Padding(10, 0, 10, 0);
             DGV.Columns.Add(Btn);
-
-
 
         }
 

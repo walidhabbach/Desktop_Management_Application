@@ -31,13 +31,6 @@ namespace Store_Management_System.User_Control.Fournisseur
             MainClass.ShowControl(MFour, panel2);
         }
         
-        private void Button1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        
-
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
@@ -55,8 +48,6 @@ namespace Store_Management_System.User_Control.Fournisseur
             }
         }
 
-        
-
         private void Button3_Click(object sender, EventArgs e)
         {
             Add_Produit Form = new Add_Produit(IDFOUR, ENTREPRISE);
@@ -66,15 +57,6 @@ namespace Store_Management_System.User_Control.Fournisseur
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
     }
 }

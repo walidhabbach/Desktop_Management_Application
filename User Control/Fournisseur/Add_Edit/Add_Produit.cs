@@ -95,9 +95,5 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             textBox1.Text =  ENTREPRISE;
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

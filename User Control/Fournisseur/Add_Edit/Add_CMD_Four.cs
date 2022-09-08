@@ -207,37 +207,194 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         {
             this.Close();
         }
-        private void Add_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Add_CMD_Four_Load_1(object sender, EventArgs e)
         {
             label1.Text = ENTREPRISE;
             Add_Colone();
             Data_Produit();
-
-
-
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
         private void button3_Click(object sender, EventArgs e)
         {
             CheckBox();
         }
 
 
+        private string CheckeSelectedProduct()
+        {
+
+            if (dataGridView2.RowCount > 0)
+            {
+                string Temp = "false";
+                foreach (DataGridViewRow item in dataGridView2.Rows)
+                {
+                    if (item.Cells["Quantite"].Value.ToString() != null)
+                    {
+                        if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
+                        {
+                            Temp = "true";
+                        }
+                        else
+                        {
+                            Temp = item.Cells["IDPRODUIT1"].Value.ToString();
+                        }
+                    }
+                    else
+                    {
+                        Temp = item.Cells["IDPRODUIT1"].Value.ToString();
+                    }
+                }
+                return Temp;
+            }
+            else
+            {
+                return "false";
+            }
+        }
+        private void COMMANDER(int IDCMD)
+        {
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                SqlCommand Cmd;
+                Conx.Open();
+                try
+                {
+                    foreach (DataGridViewRow item in dataGridView2.Rows)
+                    {
+                        Cmd = new SqlCommand("INSERT INTO COMMANDER(IDPRODUIT,ID_CMD_FOUR,QUANTITE) values(@IDPRODUIT1,@ID_CMD_FOUR1,@QUANTITE);", Conx);
+                        Cmd.Parameters.AddWithValue("IDPRODUIT1", item.Cells["IDPRODUIT1"].Value.ToString());
+                        Cmd.Parameters.AddWithValue("ID_CMD_FOUR1", IDCMD);
+                        Cmd.Parameters.AddWithValue("QUANTITE", float.Parse(item.Cells["Quantite"].Value.ToString()));
+                        Cmd.ExecuteNonQuery();
+                    }
+ 
+                    Conx.Close();
+                    Clear();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                if (CheckeSelectedProduct() == "true" && Description.Text != "" && MONTANTTOTAL.Text != "" && comboBox.Text != "" && (Cheque.Checked || Espece.Checked))
+                {
+                    string Query = "INSERT INTO COMMANDEFOUR(IDFOUR,DESCRIPTION,STATUT,DATECMD,PESPECE,PCHEQUE,MONTANTTOTAL) values(@IDFOUR,@DESCRIPTION,@STATUT,@DATECMD,@PESPECE,@PCHEQUE,@MONTANTTOTAL);";
+                    Conx.Open();
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    try
+                    {
+                        if (Cheque.Checked)
+                        {
+                            Cmd.Parameters.AddWithValue("PCHEQUE", true);
+                        }
+                        else
+                        {
+                            Cmd.Parameters.AddWithValue("PCHEQUE", false);
+                        }
+                        if (Espece.Checked)
+                        {
+                            Cmd.Parameters.AddWithValue("PESPECE", true);
+                        }
+                        else
+                        {
+                            Cmd.Parameters.AddWithValue("PESPECE", false);
+                        }
+
+
+                        if (comboBox.Text == "payee")
+                        {
+                            Cmd.Parameters.AddWithValue("STATUT", true);
+                        }
+                        else
+                        {
+                            Cmd.Parameters.AddWithValue("STATUT", false);
+                        }
+
+                        Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
+                        Cmd.Parameters.AddWithValue("DESCRIPTION", Description.Text);
+                        Cmd.Parameters.AddWithValue("DATECMD", DateTime.Parse(dateTimePicker.Text));
+                        Cmd.Parameters.AddWithValue("MONTANTTOTAL", double.Parse(MONTANTTOTAL.Text));
+                        Cmd.ExecuteNonQuery();
+
+                        SqlCommand CmdId = new SqlCommand("SELECT max(ID_CMD_FOUR) FROM COMMANDEFOUR;", Conx);
+                        SqlDataReader Read = CmdId.ExecuteReader();
+
+                        while(Read.Read())
+                        {
+                            MessageBox.Show(Read[0].ToString());
+                            COMMANDER(int.Parse(Read[0].ToString()));
+                        }
+
+
+                        Conx.Close();
+
+                        Clear();
+                        this.Close();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+
+                else
+                {
+                    if (Description.Text != "")
+                    {
+                        labelDescription.Visible = true;
+                        label2.BackColor = Color.Red;
+                        MessageBox.Show("Veuillez Saisir La Description de La Commande");
+                    }
+                    if (comboBox.Text != "")
+                    {
+                        labelStatut.Visible = true;
+                        label4.BackColor = Color.Red;
+                        MessageBox.Show("Veuillez Préciser La Statut de La Commande");
+                    }
+                    if (MONTANTTOTAL.Text != "")
+                    {
+                        labelMT.Visible = true;
+                        label8.BackColor = Color.Red;
+                        MessageBox.Show("Veuillez Saisir Le Montant Total de La Commande");
+                    }
+                    if (Cheque.Checked == false || Espece.Checked == false)
+                    {
+                        label3.BackColor = Color.Red;
+                        MessageBox.Show("Veuillez choisir le moyen de paiement de La Command ");
+                    }
+                    if (CheckeSelectedProduct() == "false" || CheckeSelectedProduct() != "true")
+                    {
+                        labelQuantite.BackColor = Color.Red;
+                        if (CheckeSelectedProduct() != "true" && CheckeSelectedProduct() != "false")
+                        {
+                            MessageBox.Show("Veuillez Verifier La Quantite de Produit ' " + CheckeSelectedProduct() + "' .");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Veuillez Selecter les Produit.");
+                        }
+
+                    }
+                }
+
+
+            }
+        }
+
+
+
     }
 
+
 }
+
+
 

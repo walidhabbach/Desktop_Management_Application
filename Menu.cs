@@ -41,23 +41,14 @@ namespace Store_Management_System
 
             }*/
 
-
-
         }
-
-
-
         public void Menu_Four_Click(object sender, EventArgs e)
         {
             PanelContent.Controls.Clear();
             MenuFournisseur MFour = new MenuFournisseur();
             MainClass.ShowControl(MFour,PanelContent);
      
-        }
-        
-        private void PanelContent_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        }      
+    
     }
 }

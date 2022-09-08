@@ -76,6 +76,7 @@ namespace Store_Management_System.User_Control
         {
             comboBox2.Items.Clear();
             comboBox2.Items.Add("Tous");
+            
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 String Query = "SELECT * From FOURNISSEUR;";
@@ -88,7 +89,8 @@ namespace Store_Management_System.User_Control
                 // DataGridView.DefaultCellStyle.Font = new Font("Tahoma", 15);
 
                 if (ReadFour.HasRows)
-                {   
+                {
+
                     while (ReadFour.Read())
                     {
                         comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());   
@@ -159,10 +161,6 @@ namespace Store_Management_System.User_Control
             return 0;
 
         }
-
-   
-
-      
 
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {

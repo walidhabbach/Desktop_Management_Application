@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 
 
-
 namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 {
     public partial class Add_Four : Form
@@ -78,11 +77,9 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
              }
         }
 
-  
         private void PictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
-           
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

@@ -144,7 +144,6 @@
             this.PanelContent.Name = "PanelContent";
             this.PanelContent.Size = new System.Drawing.Size(1161, 720);
             this.PanelContent.TabIndex = 5;
-            this.PanelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelContent_Paint);
             // 
             // Menu
             // 

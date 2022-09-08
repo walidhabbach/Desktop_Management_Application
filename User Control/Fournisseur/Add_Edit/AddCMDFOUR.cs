@@ -20,10 +20,5 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             IDFOUR = ID;
             ENTREPRISE = Four;
         }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
