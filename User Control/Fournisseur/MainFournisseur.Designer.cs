@@ -32,17 +32,17 @@
             this.MenuPanel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.Button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Display_Panel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
+            this.Button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.MenuPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -53,7 +53,7 @@
             // 
             // MenuPanel1
             // 
-            this.MenuPanel1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.MenuPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(162)))), ((int)(((byte)(215)))));
             this.MenuPanel1.Controls.Add(this.panel4);
             this.MenuPanel1.Controls.Add(this.panel3);
             this.MenuPanel1.Controls.Add(this.panel1);
@@ -89,22 +89,6 @@
             this.comboBox3.Size = new System.Drawing.Size(123, 24);
             this.comboBox3.TabIndex = 7;
             // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.PowderBlue;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(0, 0);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(141, 31);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "    Cheque";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.PowderBlue;
@@ -130,22 +114,6 @@
             this.comboBox2.Size = new System.Drawing.Size(127, 24);
             this.comboBox2.TabIndex = 7;
             // 
-            // Button3
-            // 
-            this.Button3.BackColor = System.Drawing.Color.PowderBlue;
-            this.Button3.FlatAppearance.BorderSize = 0;
-            this.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Button3.Image = ((System.Drawing.Image)(resources.GetObject("Button3.Image")));
-            this.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Button3.Location = new System.Drawing.Point(0, 0);
-            this.Button3.Name = "Button3";
-            this.Button3.Size = new System.Drawing.Size(129, 31);
-            this.Button3.TabIndex = 3;
-            this.Button3.Text = " Produit";
-            this.Button3.UseVisualStyleBackColor = false;
-            this.Button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PowderBlue;
@@ -155,22 +123,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(266, 31);
             this.panel1.TabIndex = 7;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.PowderBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(136, 31);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "      Commande";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // comboBox1
             // 
@@ -216,7 +168,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1491, 508);
             this.panel2.TabIndex = 2;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // dataGridView1
             // 
@@ -227,6 +178,54 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1491, 508);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.PowderBlue;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.Location = new System.Drawing.Point(0, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(141, 31);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "    Cheque";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // Button3
+            // 
+            this.Button3.BackColor = System.Drawing.Color.PowderBlue;
+            this.Button3.FlatAppearance.BorderSize = 0;
+            this.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Button3.Image = ((System.Drawing.Image)(resources.GetObject("Button3.Image")));
+            this.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Button3.Location = new System.Drawing.Point(0, 0);
+            this.Button3.Name = "Button3";
+            this.Button3.Size = new System.Drawing.Size(129, 31);
+            this.Button3.TabIndex = 3;
+            this.Button3.Text = " Produit";
+            this.Button3.UseVisualStyleBackColor = false;
+            this.Button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.PowderBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 31);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "      Commande";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Button1_Click_1);
             // 
             // MainFournisseur
             // 

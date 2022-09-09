@@ -36,7 +36,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             {
                 if (IDPRODUIT.Text != "" && DESIGNATION.Text != "" && PRIXACHAT.Text != "" )
                 {
-                    if (CheckIdProduit(IDPRODUIT.Text , IDFOUR))
+                    if (CheckIdProduit(IDPRODUIT.Text ))
                     {
                         MessageBox.Show("ID produit Existe deja dans la base de donne");
                        
@@ -72,16 +72,17 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
         }
       
-        private bool CheckIdProduit(string ID  , int IDFour)
+        private bool CheckIdProduit(string ID )
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 Conx.Open();
-                SqlCommand Cmd = new SqlCommand("SELECT * FROM PRODUIT;", Conx);
+                SqlCommand Cmd = new SqlCommand("SELECT * FROM PRODUIT WHERE IDFOUR = @IDFOUR;", Conx);
+                Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
                 SqlDataReader Read = Cmd.ExecuteReader();
                 while (Read.Read())
                 {
-                    if (ID.ToLower() == Read["IDPRODUIT"].ToString().ToLower() && IDFour == int.Parse(Read["IDFOUR"].ToString()))
+                    if (ID.ToLower() == Read["IDPRODUIT"].ToString().ToLower())
                     {
                         return true;
                     }

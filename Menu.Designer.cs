@@ -30,19 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.Menu_Panel = new System.Windows.Forms.Panel();
+            this.PanelContent = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Menu_Four = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PanelContent = new System.Windows.Forms.Panel();
             this.Menu_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Panel
             // 
-            this.Menu_Panel.BackColor = System.Drawing.Color.SkyBlue;
+            this.Menu_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(97)))), ((int)(((byte)(152)))));
             this.Menu_Panel.Controls.Add(this.button4);
             this.Menu_Panel.Controls.Add(this.button3);
             this.Menu_Panel.Controls.Add(this.button2);
@@ -54,9 +54,17 @@
             this.Menu_Panel.Size = new System.Drawing.Size(253, 720);
             this.Menu_Panel.TabIndex = 4;
             // 
+            // PanelContent
+            // 
+            this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelContent.Location = new System.Drawing.Point(253, 0);
+            this.PanelContent.Name = "PanelContent";
+            this.PanelContent.Size = new System.Drawing.Size(1161, 720);
+            this.PanelContent.TabIndex = 5;
+            // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(17)))), ((int)(((byte)(57)))));
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -74,7 +82,7 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(162)))), ((int)(((byte)(215)))));
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -92,7 +100,6 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.PaleTurquoise;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -110,7 +117,7 @@
             // 
             // Menu_Four
             // 
-            this.Menu_Four.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.Menu_Four.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(134)))), ((int)(((byte)(210)))));
             this.Menu_Four.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Menu_Four.FlatAppearance.BorderSize = 0;
             this.Menu_Four.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -136,14 +143,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // PanelContent
-            // 
-            this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContent.Location = new System.Drawing.Point(253, 0);
-            this.PanelContent.Name = "PanelContent";
-            this.PanelContent.Size = new System.Drawing.Size(1161, 720);
-            this.PanelContent.TabIndex = 5;
             // 
             // Menu
             // 

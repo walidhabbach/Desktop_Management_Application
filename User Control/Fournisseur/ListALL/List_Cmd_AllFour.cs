@@ -96,8 +96,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
         private void Edit(int IDCMDFOUR)
         {
-            Edit_CMD_Four Form = new Edit_CMD_Four(IDCMDFOUR);
-            Form.Show();
+          
         }
         private void Delete(int IDCMDFour)
         {

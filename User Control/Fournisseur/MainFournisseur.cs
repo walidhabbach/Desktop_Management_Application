@@ -3,14 +3,10 @@ using Store_Management_System.User_Control.Fournisseur.A_M_D;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit;
 using Store_Management_System.User_Control.Fournisseur.ListALL;
 using System;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Windows.Documents;
-using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur
 {
-    public partial class MainFournisseur : UserControl
+    public partial class MainFournisseur : System.Windows.Forms.UserControl
     {
         private readonly int IDFOUR;
         private readonly string ENTREPRISE;
@@ -27,24 +23,24 @@ namespace Store_Management_System.User_Control.Fournisseur
             comboBox1.Text = "Lister";
             comboBox2.Text = "Lister";
             panel2.Controls.Clear();
-            ListCMD MFour = new ListCMD(IDFOUR);
+            ListCMD MFour = new ListCMD(IDFOUR, panel2);
             MainClass.ShowControl(MFour, panel2);
         }
-        
+
 
         private void Button1_Click_1(object sender, EventArgs e)
         {
-            if(comboBox1.Text == "Ajouter")
+            if (comboBox1.Text == "Ajouter")
             {
                 Add_CMD_Four Form = new Add_CMD_Four(IDFOUR, ENTREPRISE);
                 Form.Show();
-                
+
             }
             else
             {
                 panel2.Controls.Clear();
-                ListCMD MFour = new ListCMD(IDFOUR);
-                MainClass.ShowControl(MFour, panel2);               
+                ListCMD MFour = new ListCMD(IDFOUR, panel2);
+                MainClass.ShowControl(MFour, panel2);
             }
         }
 
@@ -54,9 +50,5 @@ namespace Store_Management_System.User_Control.Fournisseur
             Form.Show();
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

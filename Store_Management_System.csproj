@@ -126,12 +126,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User Control\Fournisseur\Add_Edit\AddCMDFOUR.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\AddCMDFOUR.Designer.cs">
-      <DependentUpon>AddCMDFOUR.cs</DependentUpon>
-    </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\Add_CMD_Four.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,7 +139,7 @@
       <DependentUpon>Add_Four.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\Edit_CMD_Four.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\Edit_CMD_Four.Designer.cs">
       <DependentUpon>Edit_CMD_Four.cs</DependentUpon>
@@ -211,9 +205,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\AddCMDFOUR.resx">
-      <DependentUpon>AddCMDFOUR.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Add_CMD_Four.resx">
       <DependentUpon>Add_CMD_Four.cs</DependentUpon>
     </EmbeddedResource>

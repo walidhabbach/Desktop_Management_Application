@@ -34,20 +34,12 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_CMD_Four));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add_CMD_Four));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IDPRODUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESIGNATION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRIXACHAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRIXVENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DPRIXVENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.Search = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelMT = new System.Windows.Forms.Label();
             this.labelQuantite = new System.Windows.Forms.Label();
@@ -56,14 +48,12 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.panel5 = new System.Windows.Forms.Panel();
             this.Cheque = new System.Windows.Forms.CheckBox();
             this.Espece = new System.Windows.Forms.CheckBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.MONTANTTOTAL = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Add = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -73,11 +63,23 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ID_PRODUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDPRODUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESIGNATION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRIXACHAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRIXVENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DPRIXVENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_PRODUIT1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDPRODUIT1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DESIGNATIONQ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantite = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -110,6 +112,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.dataGridView1.ColumnHeadersHeight = 40;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Check,
+            this.ID_PRODUIT,
             this.IDPRODUIT,
             this.DESIGNATION,
             this.PRIXACHAT,
@@ -143,56 +146,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(766, 418);
             this.dataGridView1.TabIndex = 49;
-            // 
-            // Check
-            // 
-            this.Check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Check.FillWeight = 70F;
-            this.Check.HeaderText = "Selecter";
-            this.Check.Name = "Check";
-            this.Check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Check.Width = 86;
-            // 
-            // IDPRODUIT
-            // 
-            this.IDPRODUIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.IDPRODUIT.FillWeight = 87.66498F;
-            this.IDPRODUIT.HeaderText = "IDPRODUIT";
-            this.IDPRODUIT.Name = "IDPRODUIT";
-            this.IDPRODUIT.Width = 98;
-            // 
-            // DESIGNATION
-            // 
-            this.DESIGNATION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DESIGNATION.FillWeight = 87.66498F;
-            this.DESIGNATION.HeaderText = "DESIGNATION";
-            this.DESIGNATION.Name = "DESIGNATION";
-            this.DESIGNATION.Width = 113;
-            // 
-            // PRIXACHAT
-            // 
-            this.PRIXACHAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PRIXACHAT.FillWeight = 87.66498F;
-            this.PRIXACHAT.HeaderText = "PRIXACHAT";
-            this.PRIXACHAT.Name = "PRIXACHAT";
-            this.PRIXACHAT.Width = 98;
-            // 
-            // PRIXVENTE
-            // 
-            this.PRIXVENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.PRIXVENTE.FillWeight = 87.66498F;
-            this.PRIXVENTE.HeaderText = "PRIXVENTE";
-            this.PRIXVENTE.Name = "PRIXVENTE";
-            this.PRIXVENTE.Width = 99;
-            // 
-            // DPRIXVENTE
-            // 
-            this.DPRIXVENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.DPRIXVENTE.FillWeight = 87.66498F;
-            this.DPRIXVENTE.HeaderText = "DPRIXVENTE";
-            this.DPRIXVENTE.Name = "DPRIXVENTE";
-            this.DPRIXVENTE.Width = 108;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel1
             // 
@@ -205,28 +159,10 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 47);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1493, 639);
             this.panel1.TabIndex = 35;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.LightBlue;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1321, 17);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 28);
-            this.button2.TabIndex = 48;
-            this.button2.Text = "  Rechercher  ";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // Search
             // 
@@ -235,23 +171,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(289, 28);
             this.Search.TabIndex = 47;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.LightBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(770, 11);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 38);
-            this.button1.TabIndex = 42;
-            this.button1.Text = "Ajouter un produit";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel3
             // 
@@ -372,25 +291,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.Espece.Text = "Espece";
             this.Espece.UseVisualStyleBackColor = false;
             // 
-            // button3
-            // 
-            this.button3.AutoSize = true;
-            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(84, 523);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(172, 38);
-            this.button3.TabIndex = 45;
-            this.button3.Text = "  Actualiser ";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.dataGridView2);
@@ -413,6 +313,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_PRODUIT1,
             this.IDPRODUIT1,
             this.DESIGNATIONQ,
             this.Quantite});
@@ -471,25 +372,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.label3.Size = new System.Drawing.Size(189, 24);
             this.label3.TabIndex = 20;
             this.label3.Text = "Moyen de Paiement :";
-            // 
-            // Add
-            // 
-            this.Add.AutoSize = true;
-            this.Add.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.Add.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Add.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
-            this.Add.FlatAppearance.BorderSize = 0;
-            this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
-            this.Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Add.Location = new System.Drawing.Point(282, 523);
-            this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(172, 38);
-            this.Add.TabIndex = 26;
-            this.Add.Text = "Enregistrer";
-            this.Add.UseVisualStyleBackColor = false;
-            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // label8
             // 
@@ -585,11 +467,160 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.panel2.BackColor = System.Drawing.Color.SkyBlue;
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1493, 47);
+            this.panel2.Size = new System.Drawing.Size(1493, 686);
             this.panel2.TabIndex = 36;
+            // 
+            // Check
+            // 
+            this.Check.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Check.FillWeight = 70F;
+            this.Check.HeaderText = "Selecter";
+            this.Check.Name = "Check";
+            this.Check.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Check.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Check.Width = 86;
+            // 
+            // ID_PRODUIT
+            // 
+            this.ID_PRODUIT.HeaderText = "ID_PRODUIT";
+            this.ID_PRODUIT.Name = "ID_PRODUIT";
+            this.ID_PRODUIT.Visible = false;
+            // 
+            // IDPRODUIT
+            // 
+            this.IDPRODUIT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IDPRODUIT.FillWeight = 87.66498F;
+            this.IDPRODUIT.HeaderText = "IDPRODUIT";
+            this.IDPRODUIT.Name = "IDPRODUIT";
+            this.IDPRODUIT.Width = 98;
+            // 
+            // DESIGNATION
+            // 
+            this.DESIGNATION.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DESIGNATION.FillWeight = 87.66498F;
+            this.DESIGNATION.HeaderText = "DESIGNATION";
+            this.DESIGNATION.Name = "DESIGNATION";
+            this.DESIGNATION.Width = 113;
+            // 
+            // PRIXACHAT
+            // 
+            this.PRIXACHAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.PRIXACHAT.FillWeight = 87.66498F;
+            this.PRIXACHAT.HeaderText = "PRIXACHAT";
+            this.PRIXACHAT.Name = "PRIXACHAT";
+            this.PRIXACHAT.Width = 98;
+            // 
+            // PRIXVENTE
+            // 
+            this.PRIXVENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.PRIXVENTE.FillWeight = 87.66498F;
+            this.PRIXVENTE.HeaderText = "PRIXVENTE";
+            this.PRIXVENTE.Name = "PRIXVENTE";
+            this.PRIXVENTE.Width = 99;
+            // 
+            // DPRIXVENTE
+            // 
+            this.DPRIXVENTE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.DPRIXVENTE.FillWeight = 87.66498F;
+            this.DPRIXVENTE.HeaderText = "DPRIXVENTE";
+            this.DPRIXVENTE.Name = "DPRIXVENTE";
+            this.DPRIXVENTE.Width = 108;
+            // 
+            // ID_PRODUIT1
+            // 
+            this.ID_PRODUIT1.HeaderText = "ID_PRODUIT1";
+            this.ID_PRODUIT1.Name = "ID_PRODUIT1";
+            this.ID_PRODUIT1.Visible = false;
+            // 
+            // IDPRODUIT1
+            // 
+            this.IDPRODUIT1.HeaderText = "IDPRODUIT";
+            this.IDPRODUIT1.Name = "IDPRODUIT1";
+            // 
+            // DESIGNATIONQ
+            // 
+            this.DESIGNATIONQ.HeaderText = "DESIGNATION";
+            this.DESIGNATIONQ.Name = "DESIGNATIONQ";
+            // 
+            // Quantite
+            // 
+            this.Quantite.HeaderText = "Quantite";
+            this.Quantite.Name = "Quantite";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.LightBlue;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(1321, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 28);
+            this.button2.TabIndex = 48;
+            this.button2.Text = "  Rechercher  ";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(770, 11);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(162, 38);
+            this.button1.TabIndex = 42;
+            this.button1.Text = "Ajouter un produit";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.AutoSize = true;
+            this.button3.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(84, 523);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(172, 38);
+            this.button3.TabIndex = 45;
+            this.button3.Text = "  Actualiser ";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // Add
+            // 
+            this.Add.AutoSize = true;
+            this.Add.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.Add.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Add.FlatAppearance.BorderColor = System.Drawing.Color.MediumTurquoise;
+            this.Add.FlatAppearance.BorderSize = 0;
+            this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Add.Image = ((System.Drawing.Image)(resources.GetObject("Add.Image")));
+            this.Add.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Add.Location = new System.Drawing.Point(282, 523);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(172, 38);
+            this.Add.TabIndex = 26;
+            this.Add.Text = "Enregistrer";
+            this.Add.UseVisualStyleBackColor = false;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // label5
             // 
@@ -616,21 +647,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // IDPRODUIT1
-            // 
-            this.IDPRODUIT1.HeaderText = "IDPRODUIT";
-            this.IDPRODUIT1.Name = "IDPRODUIT1";
-            // 
-            // DESIGNATIONQ
-            // 
-            this.DESIGNATIONQ.HeaderText = "DESIGNATION";
-            this.DESIGNATIONQ.Name = "DESIGNATIONQ";
-            // 
-            // Quantite
-            // 
-            this.Quantite.HeaderText = "Quantite";
-            this.Quantite.Name = "Quantite";
             // 
             // Add_CMD_Four
             // 
@@ -687,12 +703,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridView2;
         private Button button3;
-        private DataGridViewCheckBoxColumn Check;
-        private DataGridViewTextBoxColumn IDPRODUIT;
-        private DataGridViewTextBoxColumn DESIGNATION;
-        private DataGridViewTextBoxColumn PRIXACHAT;
-        private DataGridViewTextBoxColumn PRIXVENTE;
-        private DataGridViewTextBoxColumn DPRIXVENTE;
         private CheckBox Cheque;
         private CheckBox Espece;
         private Panel panel5;
@@ -700,6 +710,14 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         private Label labelQuantite;
         private Label labelDescription;
         private Label labelStatut;
+        private DataGridViewCheckBoxColumn Check;
+        private DataGridViewTextBoxColumn ID_PRODUIT;
+        private DataGridViewTextBoxColumn IDPRODUIT;
+        private DataGridViewTextBoxColumn DESIGNATION;
+        private DataGridViewTextBoxColumn PRIXACHAT;
+        private DataGridViewTextBoxColumn PRIXVENTE;
+        private DataGridViewTextBoxColumn DPRIXVENTE;
+        private DataGridViewTextBoxColumn ID_PRODUIT1;
         private DataGridViewTextBoxColumn IDPRODUIT1;
         private DataGridViewTextBoxColumn DESIGNATIONQ;
         private DataGridViewTextBoxColumn Quantite;

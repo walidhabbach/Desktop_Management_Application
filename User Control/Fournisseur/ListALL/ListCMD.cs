@@ -11,10 +11,12 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
     public partial class ListCMD : UserControl
     {
         private readonly int IDFOUR;
-        public ListCMD(int ID)
+        private  Panel Content;
+        public ListCMD(int ID, Panel content)
         {
             InitializeComponent();
             IDFOUR = ID;
+            Content = content;
         }
 
         private void ListCMD_Load(object sender, EventArgs e)
@@ -95,8 +97,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
         private void Edit(int IDCMD)
         {
-            Edit_CMD_Four Form = new Edit_CMD_Four(IDCMD);
-            Form.Show();
+            Content.Controls.Clear();
+            Edit_CMD_Four ECmd = new Edit_CMD_Four(IDCMD,IDFOUR);
+            MainClass.ShowControl(ECmd, Content);
         }
         private void Delete(int IDCMD)
         {
