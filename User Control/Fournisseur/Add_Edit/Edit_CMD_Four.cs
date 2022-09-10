@@ -53,39 +53,53 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                     while (ReadCMD.Read())
                     {
                         //Add Selected Product to datagridview 2 :
-                        Add_Selected_Product(int.Parse(ReadCMD["ID_PRODUIT"].ToString()), ReadCMD["QUANTITE"].ToString());
-
-                        /*Select  selected Products in datagridview 1 :
-                        foreach (DataGridViewRow Item in dataGridView1.Rows)
-                        {
-                            if (int.Parse(ReadCMD["ID_PRODUIT"].ToString()) == int.Parse(Item.Cells[0].Value.ToString()))
-                            {
-                                Item.Cells["Check"].Value = true;
-                            }
-                        }*/
+                        Add_Selected_Product(int.Parse(ReadCMD["ID_PRODUIT"].ToString()), float.Parse(ReadCMD["QUANTITE"].ToString()));
                     }
                 }
             }
         }
 
+        private bool TestDataGridView2(int ID)
+        {
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                SqlCommand Cmd = new SqlCommand($"SELECT ID_PRODUIT FROM COMMANDER WHERE ID_CMD_FOUR = @IDCMD;", Conx);
+                Cmd.Parameters.AddWithValue("IDCMD", IDCMD);
+
+                Conx.Open();
+                SqlDataReader ReadProduit = Cmd.ExecuteReader();
+
+                while (ReadProduit.Read())
+                {
+                    //Select selected Products in datagridview 1 :
+                    if (ID == int.Parse(ReadProduit["ID_PRODUIT"].ToString()))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         private void CheckBox()
         {
             //DataGridViewCheckBoxColumn Cb = new DataGridViewCheckBoxColumn();
             //DataGridView.Columns.Insert(0, Cb);
-            this.dataGridView2.Rows.Clear();
+            //this.dataGridView2.Rows.Clear();
+
             if (dataGridView1.RowCount > 0)
             {
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    if (Convert.ToBoolean(item.Cells["Check"].Value))
+                    if (Convert.ToBoolean(item.Cells["Check"].Value) && TestDataGridView2(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString())) == false)
                     {
                         MessageBox.Show(item.Cells["ID_PRODUIT"].Value.ToString());
-                        Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()), "0");
+                        Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) , 0 );
                     }
                 }
             }
+
         }
-        private void Add_Selected_Product(int ID_PRODUIT, string QTE)
+        private void Add_Selected_Product(int ID_PRODUIT, float QTE)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
@@ -99,7 +113,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 {
                     while (ReadProduit.Read())
                     {
-                        this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], float.Parse(QTE));
+                        this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], QTE);
                     }
                     dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
                     dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
@@ -117,73 +131,77 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 SqlCommand Cmd = new SqlCommand($"SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR;", Conx);
-                SqlCommand Cmd1 = new SqlCommand($"SELECT ID_PRODUIT FROM COMMANDER WHERE ID_CMD_FOUR = '{IDCMD}';", Conx);
+                SqlCommand Cmd1 = new SqlCommand($"SELECT ID_PRODUIT FROM COMMANDER WHERE ID_CMD_FOUR = @IDCMD;", Conx);
 
-                Cmd1.Parameters.AddWithValue("ID_CMD_FOUR", IDCMD);
+                Cmd1.Parameters.AddWithValue("IDCMD", IDCMD);
                 Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
 
                 Conx.Open();
                 SqlDataReader ReadProduit = Cmd.ExecuteReader();
                 SqlDataReader Read = Cmd1.ExecuteReader();
 
-                dataGridView1.Rows.Clear();
-
                 if (ReadProduit.HasRows)
                 {
-                    if (Read.HasRows)
+                    while (ReadProduit.Read())
                     {
-                        /*
+                        this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4].ToString()), String.Format("{0:0.##}", ReadProduit[5].ToString()), String.Format("{0:0.##}", ReadProduit[6].ToString()));
+                    }
+
+                    if (Read.HasRows && dataGridView1.Rows.Count > 0)
+                    {
                         while (Read.Read())
                         {
-                            while (ReadProduit.Read())
+                            //Select  selected Products in datagridview 1 :
+                            foreach (DataGridViewRow Item in dataGridView1.Rows)
                             {
-                                //Select  selected Products in datagridview 1 :
-                                if (int.Parse(Read["ID_PRODUIT"].ToString()) == int.Parse(ReadProduit["ID_PRODUIT"].ToString()))
+                                if (int.Parse(Read["ID_PRODUIT"].ToString()) == int.Parse(Item.Cells[1].Value.ToString()))
                                 {
-                                    this.dataGridView1.Rows.Add(true, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
-                                    break;
-                                }
-                                else
-                                {
-                                    this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
+                                    dataGridView1.Rows.Add(true, Item.Cells["ID_PRODUIT"].Value.ToString(), Item.Cells["IDPRODUIT"].Value.ToString(), Item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", Item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", Item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", Item.Cells["DPRIXVENTE"].Value.ToString()));
+                                    dataGridView1.Rows.RemoveAt(Item.Index);
                                 }
                             }
                         }
-                        */
-                        bool Temp;
+                    }
+                    /*
+                    while (Read.Read())
+                    {
                         while (ReadProduit.Read())
                         {
-                            Temp = false;
-                            while (Read.Read())
+                            //Select  selected Products in datagridview 1 :
+                            if (int.Parse(Read["ID_PRODUIT"].ToString()) == int.Parse(ReadProduit["ID_PRODUIT"].ToString()))
                             {
-                                //Select  selected Products in datagridview 1 :
-                                if (int.Parse(Read["ID_PRODUIT"].ToString()) == int.Parse(ReadProduit["ID_PRODUIT"].ToString()))
-                                {
-                                    this.dataGridView1.Rows.Add(true, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
-                                    Temp = true;
-                                    break;
-                                }
+                                this.dataGridView1.Rows.Add(true, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
+                                break;
                             }
-                            if (Temp == false)
+                            else
                             {
                                 this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
                             }
                         }
                     }
-                    else
+                    bool Temp;
+                    while (ReadProduit.Read())
                     {
-                        while (ReadProduit.Read())
+                        Temp = false;
+                        while (Read.Read())
+                        {
+                            //Select  selected Products in datagridview 1 :
+                            if (int.Parse(Read["ID_PRODUIT"].ToString()) == int.Parse(ReadProduit["ID_PRODUIT"].ToString()))
+                            {
+                                this.dataGridView1.Rows.Add(true, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
+                                Temp = true;
+                                break;
+                            }
+                        }
+                        if (Temp == false)
                         {
                             this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5]), String.Format("{0:0.##}", ReadProduit[6]));
-
                         }
-                    }
+                    } */
+
                     dataGridView1.Columns["DESIGNATION"].Width = 200;
-                    dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
-                    dataGridView1.Columns["PRIXACHAT"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    dataGridView1.Columns["PRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    dataGridView1.Columns["DPRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    dataGridView1.Columns["DESIGNATION"].DefaultCellStyle.Font = new Font("Tahoma", 12);
+                    dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+
                 }
                 else
                 {
@@ -247,10 +265,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             MONTANTTOTAL.Text = "";
             comboBox.Text = "";
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CheckBox();
-        }
+
 
         private string CheckeSelectedProduct()
         {
@@ -368,10 +383,9 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
                         COMMANDER(IDCMD);
 
-
                         Conx.Close();
                         MessageBox.Show("La Commande a ete Modifie2");
-                        Clear();
+                       
 
                     }
                     catch (Exception ex)
@@ -431,6 +445,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
             if (Search.Text == "")
             {
+
                 Load_Data_Produit();
 
             }
@@ -443,5 +458,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         {
             CheckBox();
         }
+
+        
     }
 }

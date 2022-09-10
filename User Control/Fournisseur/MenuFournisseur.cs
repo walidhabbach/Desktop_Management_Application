@@ -55,7 +55,7 @@ namespace Store_Management_System.User_Control
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            List_Cmd_AllFour LFour = new List_Cmd_AllFour();
+            List_Cmd_AllFour LFour = new List_Cmd_AllFour(PanelFourListe);
             MainClass.ShowControl(LFour, PanelFourListe);
 
         }
@@ -165,6 +165,11 @@ namespace Store_Management_System.User_Control
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             Display_Click(sender, e);
+        }
+
+        private void PanelFourListe_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -162,7 +162,10 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 }
             }
         }
-        private void dataGridView2_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+
+
+
+        private void dataGridView2_CellMouseEnter_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex >= 0)
             {
@@ -177,6 +180,11 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     dataGridView2.Cursor = Cursors.Hand;
                 }
             }
+        }
+
+        private void dataGridView2_Move(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -116,6 +116,7 @@
             this.PanelFourListe.Name = "PanelFourListe";
             this.PanelFourListe.Size = new System.Drawing.Size(1129, 580);
             this.PanelFourListe.TabIndex = 6;
+            this.PanelFourListe.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelFourListe_Paint);
             // 
             // MainPanel_Four
             // 

@@ -103,6 +103,7 @@
             this.DataGridView.Size = new System.Drawing.Size(1129, 611);
             this.DataGridView.TabIndex = 1;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
+            this.DataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellMouseEnter);
             // 
             // ID_CMD_FOUR
             // 
