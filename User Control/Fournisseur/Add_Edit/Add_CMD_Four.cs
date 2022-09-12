@@ -54,7 +54,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 {
                     while (ReadProduit.Read())
                     {
-                        this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], null);
+                        this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], 0);
                     }
 
                     dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
@@ -226,7 +226,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 string Temp = "false";
                 foreach (DataGridViewRow item in dataGridView2.Rows)
                 {
-                    if (item.Cells["Quantite"].Value.ToString() != "0")
+                    if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0 )
                     {
                         if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
                         {

@@ -30,19 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu));
             this.Menu_Panel = new System.Windows.Forms.Panel();
-            this.PanelContent = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Menu_Four = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.PanelContent = new System.Windows.Forms.Panel();
             this.Menu_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // Menu_Panel
             // 
-            this.Menu_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(97)))), ((int)(((byte)(152)))));
+            this.Menu_Panel.BackColor = System.Drawing.Color.SlateGray;
             this.Menu_Panel.Controls.Add(this.button4);
             this.Menu_Panel.Controls.Add(this.button3);
             this.Menu_Panel.Controls.Add(this.button2);
@@ -54,26 +54,18 @@
             this.Menu_Panel.Size = new System.Drawing.Size(253, 720);
             this.Menu_Panel.TabIndex = 4;
             // 
-            // PanelContent
-            // 
-            this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContent.Location = new System.Drawing.Point(253, 0);
-            this.PanelContent.Name = "PanelContent";
-            this.PanelContent.Size = new System.Drawing.Size(1161, 720);
-            this.PanelContent.TabIndex = 5;
-            // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(17)))), ((int)(((byte)(57)))));
+            this.button4.BackColor = System.Drawing.Color.Transparent;
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(3, 369);
+            this.button4.Location = new System.Drawing.Point(3, 370);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(244, 67);
+            this.button4.Size = new System.Drawing.Size(250, 67);
             this.button4.TabIndex = 4;
             this.button4.Text = "  Commande";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -82,16 +74,16 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(56)))), ((int)(((byte)(162)))), ((int)(((byte)(215)))));
+            this.button3.BackColor = System.Drawing.Color.Transparent;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(3, 475);
+            this.button3.Location = new System.Drawing.Point(0, 475);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(243, 62);
+            this.button3.Size = new System.Drawing.Size(253, 62);
             this.button3.TabIndex = 3;
             this.button3.Text = "  Calendrie";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -100,6 +92,7 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -117,16 +110,16 @@
             // 
             // Menu_Four
             // 
-            this.Menu_Four.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(134)))), ((int)(((byte)(210)))));
+            this.Menu_Four.BackColor = System.Drawing.Color.Transparent;
             this.Menu_Four.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Menu_Four.FlatAppearance.BorderSize = 0;
             this.Menu_Four.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Menu_Four.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Four.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Four.Image")));
             this.Menu_Four.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Menu_Four.Location = new System.Drawing.Point(3, 140);
+            this.Menu_Four.Location = new System.Drawing.Point(0, 140);
             this.Menu_Four.Name = "Menu_Four";
-            this.Menu_Four.Size = new System.Drawing.Size(243, 71);
+            this.Menu_Four.Size = new System.Drawing.Size(250, 71);
             this.Menu_Four.TabIndex = 1;
             this.Menu_Four.Text = "  Fournisseur";
             this.Menu_Four.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -143,6 +136,14 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // PanelContent
+            // 
+            this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelContent.Location = new System.Drawing.Point(253, 0);
+            this.PanelContent.Name = "PanelContent";
+            this.PanelContent.Size = new System.Drawing.Size(1161, 720);
+            this.PanelContent.TabIndex = 5;
             // 
             // Menu
             // 

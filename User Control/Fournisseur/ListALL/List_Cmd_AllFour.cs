@@ -99,7 +99,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
         private void Edit(int IDCMDFOUR, int IDFOUR)
         {
             Content.Controls.Clear();
-            Edit_CMD_Four ECmd = new Edit_CMD_Four(IDCMDFOUR, IDFOUR);
+            Edit_CMD_Four ECmd = new Edit_CMD_Four(IDCMDFOUR, IDFOUR , Content);
             MainClass.ShowControl(ECmd, Content);
         }
         private void Delete(int IDCMD)

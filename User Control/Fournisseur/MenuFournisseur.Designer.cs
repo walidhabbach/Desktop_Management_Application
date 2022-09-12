@@ -42,7 +42,7 @@
             // 
             // OperationPanel
             // 
-            this.OperationPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(80)))), ((int)(((byte)(169)))));
+            this.OperationPanel.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.OperationPanel.Controls.Add(this.comboBox2);
             this.OperationPanel.Controls.Add(this.button3);
             this.OperationPanel.Controls.Add(this.button2);

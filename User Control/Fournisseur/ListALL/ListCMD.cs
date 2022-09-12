@@ -98,7 +98,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
         private void Edit(int IDCMD)
         {
             Content.Controls.Clear();
-            Edit_CMD_Four ECmd = new Edit_CMD_Four(IDCMD,IDFOUR);
+            Edit_CMD_Four ECmd = new Edit_CMD_Four(IDCMD,IDFOUR,Content);
             MainClass.ShowControl(ECmd, Content);
         }
         private void Delete(int IDCMD)
@@ -151,8 +151,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 }
                 else if (ColName == "Delete")
                 {
-
-                     Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (Dialog == DialogResult.No)
                     {
                         return;
