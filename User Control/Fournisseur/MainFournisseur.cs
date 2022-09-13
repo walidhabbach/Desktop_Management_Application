@@ -50,5 +50,20 @@ namespace Store_Management_System.User_Control.Fournisseur
             Form.Show();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (comboBox3.Text == "Ajouter")
+            {
+                panel2.Controls.Clear();
+                Add_CHQ_Four MFour = new Add_CHQ_Four(IDFOUR, panel2);
+                MainClass.ShowControl(MFour, panel2);
+            }
+            else
+            {
+                panel2.Controls.Clear();
+                ListCMD MFour = new ListCMD(IDFOUR, panel2);
+                MainClass.ShowControl(MFour, panel2);
+            }
+        }
     }
 }

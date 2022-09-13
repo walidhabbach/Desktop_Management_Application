@@ -18,25 +18,54 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             IDFOUR = ID;
             ENTREPRISE = NFour;
         }
-        private void Add_Colone()
+        private bool IDProduit_DGV2(int ID)
         {
-            // DataGridViewCheckBoxColumn check = new DataGridViewCheckBoxColumn();
-            //  check.Name = "SELECTER";
-            //   dataGridView1.Columns.Add(check);
+            foreach (DataGridViewRow item in dataGridView2.Rows)
+            {
+                if (ID == int.Parse(item.Cells["ID_PRODUIT1"].Value.ToString()))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
+
+       
+        //Delete or ADD Selected Product From DataGridView(Selected Products)
         private void CheckBox()
         {
-            //DataGridViewCheckBoxColumn Cb = new DataGridViewCheckBoxColumn();
-            //DataGridView.Columns.Insert(0, Cb);
-            this.dataGridView2.Rows.Clear();
             if (dataGridView1.RowCount > 0)
             {
+                bool Temp;
                 foreach (DataGridViewRow item in dataGridView1.Rows)
                 {
-                    if (Convert.ToBoolean(item.Cells["Check"].Value))
+                    Temp = IDProduit_DGV2(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
+
+                    if (Convert.ToBoolean(item.Cells["Check"].Value) && Temp == false)
                     {
-                        MessageBox.Show(item.Cells["ID_PRODUIT"].Value.ToString());
                         Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
+                    }
+                    else if (Convert.ToBoolean(item.Cells["Check"].Value) == false && Temp)
+                    {
+                        foreach (DataGridViewRow item2 in dataGridView2.Rows)
+                        {
+                            if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                            {
+                                DialogResult Dialog = MessageBox.Show("Do You Want To Delete Product N° = ' " + item.Cells["ID_PRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (Dialog == DialogResult.Yes)
+                                {
+                                    dataGridView2.Rows.RemoveAt(item2.Index);
+                                }
+                                else if (Dialog == DialogResult.No)
+                                {
+                                    /*dataGridView1.Rows.Add(true, item.Cells["ID_PRODUIT"].Value.ToString(), item.Cells["IDPRODUIT"].Value.ToString(), item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", item.Cells["DPRIXVENTE"].Value.ToString()));
+                                    dataGridView1.Rows.RemoveAt(item.Index);*/
+                                    item.Cells["Check"].Value = true;
+                                    return;
+                                }
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -198,8 +227,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
         private void Add_CMD_Four_Load(object sender, EventArgs e)
         {
-            Data_Produit();
-            label1.Text = ENTREPRISE;
+           
         }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -208,9 +236,9 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         private void Add_CMD_Four_Load_1(object sender, EventArgs e)
         {
-            label1.Text = ENTREPRISE;
-            Add_Colone();
             Data_Produit();
+            label1.Text = ENTREPRISE;
+            dateTimePicker.Value = DateTime.Now;
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -387,10 +415,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 
 

@@ -161,6 +161,7 @@
             // 
             // Check
             // 
+            this.Check.FillWeight = 50F;
             this.Check.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.Check.HeaderText = "Selecter";
             this.Check.Name = "Check";
@@ -426,6 +427,7 @@
             this.dataGridView2.RowHeadersVisible = false;
             this.dataGridView2.Size = new System.Drawing.Size(525, 214);
             this.dataGridView2.TabIndex = 53;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // ID_PRODUIT1
             // 

@@ -3,8 +3,6 @@ using Store_Management_System.User_Control.Fournisseur.ListALL;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Windows.Documents;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
@@ -15,7 +13,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         private readonly int IDFOUR;
         private readonly Panel Panel;
 
-        public Edit_CMD_Four(int ID, int FOUR , Panel panel)
+        public Edit_CMD_Four(int ID, int FOUR, Panel panel)
         {
             InitializeComponent();
             IDCMD = ID;
@@ -116,7 +114,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 break;
                             }
                         }
-                    }                
+                    }
                 }
             }
         }
@@ -178,10 +176,10 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                             {
                                 if (int.Parse(Read["ID_PRODUIT"].ToString()) == int.Parse(Item.Cells[1].Value.ToString()))
                                 {
-                                   /* 
-                                        dataGridView1.Rows.Add(true, Item.Cells["ID_PRODUIT"].Value.ToString(), Item.Cells["IDPRODUIT"].Value.ToString(), Item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", Item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", Item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", Item.Cells["DPRIXVENTE"].Value.ToString()));
-                                        dataGridView1.Rows.RemoveAt(Item.Index); 
-                                   */
+                                    /* 
+                                         dataGridView1.Rows.Add(true, Item.Cells["ID_PRODUIT"].Value.ToString(), Item.Cells["IDPRODUIT"].Value.ToString(), Item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", Item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", Item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", Item.Cells["DPRIXVENTE"].Value.ToString()));
+                                         dataGridView1.Rows.RemoveAt(Item.Index); 
+                                    */
                                     Item.Cells["Check"].Value = true;
                                 }
                             }
@@ -237,7 +235,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
         }
 
-        private void Search_Produit(string Search , String Query)
+        private void Search_Produit(string Search, String Query)
         {
             if (Search != "")
             {
@@ -254,11 +252,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
                     if (ReadProduit.HasRows)
                     {
-                        //Button Delete, Edit
-                        MainClass.Button_DGV(dataGridView1, "Edit", "edit");
-                        dataGridView1.Columns["Edit"].Width = 50;
-                        MainClass.Button_DGV(dataGridView1, "Delete", "delete");
-                        dataGridView1.Columns["Delete"].Width = 50;
 
                         //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                         ///dataGridView1.AllowUserToAddRows = true;
@@ -313,7 +306,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                             else
                             {
                                 Temp = "Refresh";
-                            }       
+                            }
 
                         }
                         else
@@ -401,6 +394,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             {
                 MessageBox.Show("Actualiser !!!");
                 CheckBox();
+                return ;
             }
             else
             {
@@ -456,7 +450,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                             MessageBox.Show("La Commande a ete Modifie2");
 
                             Panel.Controls.Clear();
-                            ListCMD L = new ListCMD(IDFOUR , Panel);
+                            ListCMD L = new ListCMD(IDFOUR, Panel);
                             MainClass.ShowControl(L, Panel);
                         }
                         catch (Exception ex)
@@ -517,7 +511,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             {
                 Load_Data_Produit();
             }
-            else if(Search.Text == "ID_PRODUIT")
+            else if (Search.Text == "ID_PRODUIT")
             {
                 Search_Produit(Search.Text, "SELECT * From PRODUIT WHERE ID_PRODUIT = @Search ;");
             }
@@ -528,18 +522,46 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         }
         private void button3_Click_1(object sender, EventArgs e)
         {
-            CheckBox();
+           CheckBox();
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            button2_Click_1( sender, e);
+            button2_Click_1(sender, e);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+            if (e.RowIndex >= 0)
+            {
+
+                String ColName;
+
+                ColName = this.dataGridView1.Columns[e.ColumnIndex].Name;
+                if (ColName == "Check")
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        if (Convert.ToBoolean(row.Cells[0].Value))
+                        {
+                            if (CheckeSelectedProduct() == "Refresh")
+                            {
+                                CheckBox();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
+
 

@@ -19,6 +19,20 @@ namespace Store_Management_System.Class
         {
             return ConfigurationManager.ConnectionStrings["Store_Management_System.Properties.Settings.DataBaseMagasinConnectionString"].ConnectionString;
         }
+        public static int ConvertToNumber(string Mois)
+        {
+            //recherche du mois
+            String[] tabMois = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
+
+            for (int i = 0; i < tabMois.Length; i++)
+            {
+                if (Mois.ToLower() == tabMois[i].ToLower())
+                {
+                    return (i + 1);
+                }
+            }
+            return 0;
+        }
         public static bool TypeCheckFloat(string input)
         {
             float Value;

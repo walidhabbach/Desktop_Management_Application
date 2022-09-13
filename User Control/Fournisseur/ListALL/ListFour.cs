@@ -156,8 +156,6 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                     DataGridView.Cursor = Cursors.Hand;
                 }
             }
-
-
         }
     }
 }
