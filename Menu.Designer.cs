@@ -51,7 +51,7 @@
             this.Menu_Panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.Menu_Panel.Location = new System.Drawing.Point(0, 0);
             this.Menu_Panel.Name = "Menu_Panel";
-            this.Menu_Panel.Size = new System.Drawing.Size(253, 720);
+            this.Menu_Panel.Size = new System.Drawing.Size(247, 720);
             this.Menu_Panel.TabIndex = 4;
             // 
             // button4
@@ -92,7 +92,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackColor = System.Drawing.Color.SlateGray;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -140,9 +140,9 @@
             // PanelContent
             // 
             this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContent.Location = new System.Drawing.Point(253, 0);
+            this.PanelContent.Location = new System.Drawing.Point(247, 0);
             this.PanelContent.Name = "PanelContent";
-            this.PanelContent.Size = new System.Drawing.Size(1161, 720);
+            this.PanelContent.Size = new System.Drawing.Size(1167, 720);
             this.PanelContent.TabIndex = 5;
             // 
             // Menu

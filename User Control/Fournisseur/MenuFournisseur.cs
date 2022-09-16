@@ -2,10 +2,8 @@
 using Store_Management_System.User_Control.Fournisseur;
 using Store_Management_System.User_Control.Fournisseur.A_M_D;
 using Store_Management_System.User_Control.Fournisseur.List;
-using Store_Management_System.User_Control.Fournisseur.ListALL;
 using Store_Management_System.User_Control.Fournisseur.ListFour;
 using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -41,13 +39,13 @@ namespace Store_Management_System.User_Control
             {
                 ListFour LFour = new ListFour();
                 MainClass.ShowControl(LFour, PanelFourListe);
-                
+
             }
             else if (SearshFournisseur(comboBox2.Text.ToString()) != 0)
             {
                 MainPanel_Four.Controls.Clear();
                 //MainFournisseur Four = new MainFournisseur(Convert.ToInt32(comboBox2.SelectedValue));
-               
+
                 MainFournisseur Four = new MainFournisseur(SearshFournisseur(comboBox2.Text), comboBox2.Text);
                 MainClass.ShowControl(Four, MainPanel_Four);
             }
@@ -76,7 +74,7 @@ namespace Store_Management_System.User_Control
         {
             comboBox2.Items.Clear();
             comboBox2.Items.Add("Tous");
-            
+
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 String Query = "SELECT * From FOURNISSEUR;";
@@ -93,43 +91,18 @@ namespace Store_Management_System.User_Control
 
                     while (ReadFour.Read())
                     {
-                        comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());   
+                        comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());
                     }
                     Conx.Close();
-                   
+
                 }
                 else
                 {
                     MessageBox.Show("La Table Fournisseur est vide !!!");
                 }
             }
-           
-
-                /*
-                try
-                {
-                    Conx.Open();
-                    SqlDataReader ReadFour = Cmd.ExecuteReader();
-                    if (ReadFour.HasRows)
-                    {
-                        while (ReadFour.Read())
-                        {
-                           comboBox2.Items.Add(ReadFour.GetString(1));
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("La Table Fournisseur est vide !!!");
-                    }
-
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message);
-                }*/
-
-            
         }
+
         private int SearshFournisseur(string Four)
         {
             comboBox2.Items.Clear();
@@ -155,7 +128,7 @@ namespace Store_Management_System.User_Control
                 }
                 else
                 {
-                    MessageBox.Show("La Table Fournisseur est vide !!!"); 
+                    MessageBox.Show("La Table Fournisseur est vide !!!");
                 }
             }
             return 0;

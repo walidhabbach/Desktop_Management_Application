@@ -7,24 +7,21 @@ using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 {
-    public partial class Add_CHQ_Four : UserControl
+    public partial class Add_ESP_Four : UserControl
     {
+
         private readonly int IDFOUR;
         private readonly Panel Panel;
         private float TOTAL;
         private String QueryCMD;
         private String QueryCMDAll;
-        public Add_CHQ_Four(int FOUR, Panel panel)
+        public Add_ESP_Four(int FOUR, Panel Panel)
         {
             InitializeComponent();
             IDFOUR = FOUR;
-            this.Panel = panel;
+            this.Panel = Panel;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private bool IDCMD_DGV2(int ID)
         {
             foreach (DataGridViewRow item in dataGridView2.Rows)
@@ -68,7 +65,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
             }
         }
-        private string CheckeSelectedProduct()
+        private string CheckeSelected_Cmd()
         {
             if (dataGridView2.RowCount > 0)
             {
@@ -126,19 +123,29 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 Cmd.Parameters.AddWithValue("ID_CMD_FOUR", IDCMD);
                 Conx.Open();
                 SqlDataReader ReadCmd = Cmd.ExecuteReader();
-
                 if (ReadCmd.HasRows)
                 {
-                    while (ReadCmd.Read())
+                    try
                     {
-                        this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString(), ReadCmd["MTRESTE"]);
 
-                        TOTAL = TOTAL + float.Parse(ReadCmd["MONTANTTOTAL"].ToString());
-                        TOTALCMD.Text = TOTAL.ToString() + " DH";
+                        while (ReadCmd.Read())
+                        {
+                            this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString(), ReadCmd["MTRESTE"]);
+
+                            TOTAL = TOTAL + float.Parse(ReadCmd["MONTANTTOTAL"].ToString());
+                            TOTALCMD.Text = TOTAL.ToString() + " DH";
+                        }
+
+
+                        dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+                            dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
+
                     }
-
-                    dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-                    dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
+                    catch (SqlException EX)
+                    {
+                        MessageBox.Show(EX.Message);
+                    }
+                    CheckBox();
                 }
                 else
                 {
@@ -155,32 +162,40 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             {
                 string Statut = "non payée";
                 SqlCommand CmdFour = new SqlCommand(Query, Conx);
-
-                Conx.Open();
-                SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
-                if (ReadCmdFour.HasRows)
+                try
                 {
-                    while (ReadCmdFour.Read())
+                    Conx.Open();
+                    SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
+                    if (ReadCmdFour.HasRows)
                     {
-                        if ((bool)ReadCmdFour["STATUT"])
+                        while (ReadCmdFour.Read())
                         {
-                            Statut = "payée";
-                        }
+                            if ((bool)ReadCmdFour["STATUT"])
+                            {
+                                Statut = "payée";
+                            }
 
-                        this.dataGridView1.Rows.Add(
-                            false,
-                            ReadCmdFour["ID_CMD_FOUR"],
-                            ReadCmdFour["DESCRIPTION"],
-                            Statut,
-                            ReadCmdFour["MTRESTE"],
-                            ReadCmdFour["MONTANTTOTAL"],
-                            Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
-                    };
+                            this.dataGridView1.Rows.Add(
+                                false,
+                                ReadCmdFour["ID_CMD_FOUR"],
+                                ReadCmdFour["DESCRIPTION"],
+                                Statut,
+                                ReadCmdFour["MTRESTE"],
+                                ReadCmdFour["MONTANTTOTAL"],
+                                Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
+                        };
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune Commande a ete enregistrer de ce Fournisseur !!!");
+                    }
+
                 }
-                else
+                catch (SqlException EX)
                 {
-                    MessageBox.Show("Aucune Commande a ete enregistrer de ce Fournisseur !!!");
+                    MessageBox.Show(EX.Message);
                 }
+
             }
 
         }
@@ -229,6 +244,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
 
         }
+
         private void FilterCmdToAll()
         {
 
@@ -250,16 +266,16 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
             }
         }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             CheckBox();
             dataGridView1.Rows.Clear();
             if (comboBox1.Text == "Tous")
             {
-                QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
                 
+                QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
                 Data_Cmd(QueryCMDAll);
-            
             }
             else
             {
@@ -268,20 +284,14 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
         }
 
-
         public void Clear()
         {
-            IDCHQ.Text = "";
+            textBox1.Text = "";
             Montant.Text = "";
             comboBox1.Text = "";
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CheckBox();
-        }
-
-        private void REGLE_CHQ_FOUR(int IDCHQ_FOUR)
+        private void REGLER_ESP_FOUR(int IDESP_FOUR)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
@@ -292,14 +302,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 {
                     foreach (DataGridViewRow item in dataGridView2.Rows)
                     {
-                        Cmd = new SqlCommand("INSERT INTO REGLE_CHQ_FOUR(IDCHQ_FOUR,ID_CMD_FOUR) values(@IDCHQ_FOUR,@ID_CMD_FOUR);", Conx);
-                        Cmd2 = new SqlCommand($"UPDATE COMMANDEFOUR SET PCHEQUE = '{true}' WHERE ID_CMD_FOUR = '{int.Parse(item.Cells["ID_CMD1"].Value.ToString())}' ;", Conx);
+                        Cmd = new SqlCommand($"INSERT INTO REGLER_ESP_FOUR(ID_CMD_FOUR,IDESP_FOUR) values('{int.Parse(item.Cells["ID_CMD1"].Value.ToString())}' , '{IDESP_FOUR}');", Conx);
+                        Cmd2 = new SqlCommand($"UPDATE COMMANDEFOUR SET PESPECE = '{true}' WHERE ID_CMD_FOUR = '{int.Parse(item.Cells["ID_CMD1"].Value.ToString())}' ;", Conx);
 
-                        Cmd.Parameters.AddWithValue("IDCHQ_FOUR", IDCHQ_FOUR);
-                        Cmd.Parameters.AddWithValue("ID_CMD_FOUR", int.Parse(item.Cells["ID_CMD1"].Value.ToString()));
                         Cmd.ExecuteNonQuery();
                         Cmd2.ExecuteNonQuery();
-
 
                     }
 
@@ -313,34 +320,69 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
             }
         }
-        private void Add_Click(object sender, EventArgs e)
+        private string N_PAIEMENT()
         {
-            string temp = CheckeSelectedProduct();
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                if (temp == "true" && IDCHQ.Text != "" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text) && DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) < 0)
+                SqlCommand CmdId = new SqlCommand("SELECT max(IDESP_FOUR) FROM PAIEMENTESPECEFOUR;", Conx);
+                Conx.Open();
+                SqlDataReader Read = CmdId.ExecuteReader();
+                if (Read.HasRows)
+                {
+                    try
+                    {
+                        int Num;
+                        while (Read.Read())
+                        {
+                            Num = Convert.ToInt32(Read[0].ToString()) + 1;
+                            return Num.ToString().TrimStart();
+                        }
+
+                        Conx.Close();
+                        Clear();
+
+                    }
+                    catch (SqlException ex)
+                    {
+                        MessageBox.Show(ex.Message);
+
+                    }
+                    return null;
+                }
+                else
+                {
+                    return "1";
+                }
+            }
+
+        }
+        private void Add_Click(object sender, EventArgs e)
+        {
+            string temp = CheckeSelected_Cmd();
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                if (temp == "true" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text) && DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) < 0)
                 {
                     Conx.Open();
-                    SqlCommand Cmd = new SqlCommand($"INSERT INTO CHEQUEFOURNISSEUR(DATEDONNER,DATEPAYER,MONTANT,N_CHQ,IDFOUR) values(@DATEDONNER,@DATEPAYER,@MONTANT,@N_CHQ,@IDFOUR);", Conx);
+                    SqlCommand Cmd = new SqlCommand($"INSERT INTO PAIEMENTESPECEFOUR(DATEDONNER,DATE_PAIEMENT,MONTANT,IDFOUR) values(@DATEDONNER,@DATEPAYER,@MONTANT,@IDFOUR);", Conx);
                     try
                     {
                         Cmd.Parameters.AddWithValue("DATEDONNER", dateTimePicker.Value);
+                        Cmd.Parameters.AddWithValue("DATEPAYER", dateTimePicker1.Value); 
                         Cmd.Parameters.AddWithValue("@IDFOUR", IDFOUR);
-                        Cmd.Parameters.AddWithValue("DATEPAYER", dateTimePicker1.Value);
                         Cmd.Parameters.AddWithValue("MONTANT", float.Parse(Montant.Text));
-                        Cmd.Parameters.AddWithValue("N_CHQ", IDCHQ.Text);
                         Cmd.ExecuteNonQuery();
                         MessageBox.Show("test1");
-                        SqlCommand CmdId = new SqlCommand("SELECT max(IDCHQ_FOUR) FROM CHEQUEFOURNISSEUR;", Conx);
+                        SqlCommand CmdId = new SqlCommand("SELECT max(IDESP_FOUR) FROM PAIEMENTESPECEFOUR;", Conx);
                         SqlDataReader Read = CmdId.ExecuteReader();
                         if (Read.HasRows)
                         {
                             while (Read.Read())
                             {
                                 MessageBox.Show(Read[0].ToString());
-                                REGLE_CHQ_FOUR(int.Parse(Read[0].ToString()));
+                                REGLER_ESP_FOUR(int.Parse(Read[0].ToString()));
+                                MessageBox.Show($"PAIEMENT N°" + int.Parse(Read[0].ToString()) + " a été ajouté");
                             }
-                            MessageBox.Show($"CHQ N°'{IDCHQ.Text}' a été ajouté");
                             Conx.Close();
                             Clear();
                         }
@@ -352,13 +394,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
                 else
                 {
-                    if (IDCHQ.Text == "")
-                    {
-                        labelDescription.Visible = true;
-                        label2.BackColor = Color.Red;
-                        MessageBox.Show("Veuillez Saisir La Description de La Commande");
-                    }
-                    if (DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) > 0)
+
+                    if (DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) >= 0)
                     {
                         label1.Visible = true;
                         DATE.BackColor = Color.Red;
@@ -393,17 +430,17 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             this.dataGridView2.Rows.Clear();
             TOTAL = 0;
             TOTALCMD.Text = "  0 DH";
         }
-
-        private void button3_Click_1(object sender, EventArgs e)
+        private void button3_Click_2(object sender, EventArgs e)
         {
             CheckBox();
         }
+
         public void SetMyCustomFormat()
         {
             // Set the Format type and the CustomFormat string.
@@ -412,9 +449,9 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             dateTimePicker2.CustomFormat = "yyyy";
             //dateTimePicker2.ShowUpDown = true;
         }
-        private void Add_CHQ_Four_Load(object sender, EventArgs e)
+        private void Add_ESP_Four_Load(object sender, EventArgs e)
         {
-            //QueryAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}'";
+
             TOTAL = 0;
             TOTALCMD.Text = " 0 DH";
             comboBox1.Text = "Tous";
@@ -422,25 +459,19 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             dateTimePicker.Value = DateTime.Now;
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
-
+            textBox1.Text = N_PAIEMENT();
             this.dataGridView1.Rows.Clear();
             QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
             Data_Cmd(QueryCMDAll);
             AddDeleteButton();
             SetMyCustomFormat();
-
-
         }
-
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        private void dateTimePicker2_ValueChanged_1(object sender, EventArgs e)
         {
             SetMyCustomFormat();
         }
-
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             if (e.RowIndex >= 0)
             {
                 int IDCMD;
@@ -479,6 +510,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
             }
         }
+
+
     }
 }
+
+
+
+
 

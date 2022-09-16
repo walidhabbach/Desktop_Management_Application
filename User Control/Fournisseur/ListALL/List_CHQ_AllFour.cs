@@ -14,7 +14,6 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             InitializeComponent();
         }
 
-     
 
         private void List_CHQ_AllFour_Load(object sender, EventArgs e)
         {

@@ -450,7 +450,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                             MessageBox.Show("La Commande a ete Modifie2");
 
                             Panel.Controls.Clear();
-                            ListCMD L = new ListCMD(IDFOUR, Panel);
+                            ListCMD L = new ListCMD(IDFOUR, Panel,1);
                             MainClass.ShowControl(L, Panel);
                         }
                         catch (Exception ex)
