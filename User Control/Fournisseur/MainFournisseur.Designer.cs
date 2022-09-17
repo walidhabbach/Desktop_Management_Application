@@ -30,46 +30,50 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFournisseur));
             this.MenuPanel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.PanelCHQ = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.Button3 = new System.Windows.Forms.Button();
             this.PanelProduit = new System.Windows.Forms.Panel();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.PanelCMD = new System.Windows.Forms.Panel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Display_Panel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PanelCHQ = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.Button3 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.MenuPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.PanelCHQ.SuspendLayout();
             this.PanelProduit.SuspendLayout();
             this.PanelCMD.SuspendLayout();
             this.Display_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.PanelCHQ.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuPanel1
             // 
             this.MenuPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MenuPanel1.Controls.Add(this.dateTimePicker2);
+            this.MenuPanel1.Controls.Add(this.comboBox1);
             this.MenuPanel1.Controls.Add(this.panel3);
             this.MenuPanel1.Controls.Add(this.panel1);
             this.MenuPanel1.Controls.Add(this.Button3);
@@ -83,107 +87,14 @@
             this.MenuPanel1.Size = new System.Drawing.Size(1491, 140);
             this.MenuPanel1.TabIndex = 0;
             // 
-            // panel4
+            // panel3
             // 
-            this.panel4.BackColor = System.Drawing.Color.PowderBlue;
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Location = new System.Drawing.Point(5, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(154, 31);
-            this.panel4.TabIndex = 9;
-            // 
-            // PanelProduit
-            // 
-            this.PanelProduit.BackColor = System.Drawing.Color.LightBlue;
-            this.PanelProduit.Controls.Add(this.button6);
-            this.PanelProduit.Controls.Add(this.button7);
-            this.PanelProduit.Location = new System.Drawing.Point(589, 76);
-            this.PanelProduit.Name = "PanelProduit";
-            this.PanelProduit.Size = new System.Drawing.Size(154, 56);
-            this.PanelProduit.TabIndex = 11;
-            this.PanelProduit.Visible = false;
-            // 
-            // PanelCMD
-            // 
-            this.PanelCMD.BackColor = System.Drawing.Color.LightBlue;
-            this.PanelCMD.Controls.Add(this.button5);
-            this.PanelCMD.Controls.Add(this.button2);
-            this.PanelCMD.Location = new System.Drawing.Point(274, 76);
-            this.PanelCMD.Name = "PanelCMD";
-            this.PanelCMD.Size = new System.Drawing.Size(154, 54);
-            this.PanelCMD.TabIndex = 10;
-            this.PanelCMD.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(33, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 31);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Richbond";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Display_Panel
-            // 
-            this.Display_Panel.Controls.Add(this.panel2);
-            this.Display_Panel.Controls.Add(this.dataGridView1);
-            this.Display_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Display_Panel.Location = new System.Drawing.Point(0, 140);
-            this.Display_Panel.Name = "Display_Panel";
-            this.Display_Panel.Size = new System.Drawing.Size(1491, 508);
-            this.Display_Panel.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1491, 508);
-            this.panel2.TabIndex = 2;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1491, 508);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // PanelCHQ
-            // 
-            this.PanelCHQ.BackColor = System.Drawing.Color.LightBlue;
-            this.PanelCHQ.Controls.Add(this.button8);
-            this.PanelCHQ.Controls.Add(this.button9);
-            this.PanelCHQ.Location = new System.Drawing.Point(5, 35);
-            this.PanelCHQ.Name = "PanelCHQ";
-            this.PanelCHQ.Size = new System.Drawing.Size(154, 56);
-            this.PanelCHQ.TabIndex = 12;
-            this.PanelCHQ.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.PanelCHQ);
-            this.panel1.Location = new System.Drawing.Point(896, 41);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(162, 96);
-            this.panel1.TabIndex = 13;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.LightBlue;
-            this.panel6.Controls.Add(this.button11);
-            this.panel6.Controls.Add(this.button12);
-            this.panel6.Location = new System.Drawing.Point(5, 35);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(154, 56);
-            this.panel6.TabIndex = 12;
-            this.panel6.Visible = false;
+            this.panel3.Controls.Add(this.panel5);
+            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Location = new System.Drawing.Point(990, 42);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(162, 96);
+            this.panel3.TabIndex = 14;
             // 
             // panel5
             // 
@@ -193,15 +104,6 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(154, 31);
             this.panel5.TabIndex = 9;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.panel5);
-            this.panel3.Controls.Add(this.panel6);
-            this.panel3.Location = new System.Drawing.Point(1203, 38);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(162, 96);
-            this.panel3.TabIndex = 14;
             // 
             // button10
             // 
@@ -219,6 +121,17 @@
             this.button10.Text = "    Espece";
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.LightBlue;
+            this.panel6.Controls.Add(this.button11);
+            this.panel6.Controls.Add(this.button12);
+            this.panel6.Location = new System.Drawing.Point(5, 35);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(154, 56);
+            this.panel6.TabIndex = 12;
+            this.panel6.Visible = false;
             // 
             // button11
             // 
@@ -252,6 +165,24 @@
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.PanelCHQ);
+            this.panel1.Location = new System.Drawing.Point(735, 42);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(162, 96);
+            this.panel1.TabIndex = 13;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.PowderBlue;
+            this.panel4.Controls.Add(this.button4);
+            this.panel4.Location = new System.Drawing.Point(5, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(154, 31);
+            this.panel4.TabIndex = 9;
+            // 
             // button4
             // 
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -268,6 +199,17 @@
             this.button4.Text = "    Cheque";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // PanelCHQ
+            // 
+            this.PanelCHQ.BackColor = System.Drawing.Color.LightBlue;
+            this.PanelCHQ.Controls.Add(this.button8);
+            this.PanelCHQ.Controls.Add(this.button9);
+            this.PanelCHQ.Location = new System.Drawing.Point(5, 35);
+            this.PanelCHQ.Name = "PanelCHQ";
+            this.PanelCHQ.Size = new System.Drawing.Size(154, 56);
+            this.PanelCHQ.TabIndex = 12;
+            this.PanelCHQ.Visible = false;
             // 
             // button8
             // 
@@ -309,13 +251,24 @@
             this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Button3.Image = ((System.Drawing.Image)(resources.GetObject("Button3.Image")));
             this.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Button3.Location = new System.Drawing.Point(589, 44);
+            this.Button3.Location = new System.Drawing.Point(489, 42);
             this.Button3.Name = "Button3";
             this.Button3.Size = new System.Drawing.Size(154, 31);
             this.Button3.TabIndex = 3;
             this.Button3.Text = " Produit";
             this.Button3.UseVisualStyleBackColor = false;
             this.Button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // PanelProduit
+            // 
+            this.PanelProduit.BackColor = System.Drawing.Color.LightBlue;
+            this.PanelProduit.Controls.Add(this.button6);
+            this.PanelProduit.Controls.Add(this.button7);
+            this.PanelProduit.Location = new System.Drawing.Point(489, 74);
+            this.PanelProduit.Name = "PanelProduit";
+            this.PanelProduit.Size = new System.Drawing.Size(154, 56);
+            this.PanelProduit.TabIndex = 11;
+            this.PanelProduit.Visible = false;
             // 
             // button6
             // 
@@ -361,9 +314,20 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 33);
             this.button1.TabIndex = 1;
-            this.button1.Text = "      Commande";
+            this.button1.Text = "   Achat";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
+            // PanelCMD
+            // 
+            this.PanelCMD.BackColor = System.Drawing.Color.LightBlue;
+            this.PanelCMD.Controls.Add(this.button5);
+            this.PanelCMD.Controls.Add(this.button2);
+            this.PanelCMD.Location = new System.Drawing.Point(274, 76);
+            this.PanelCMD.Name = "PanelCMD";
+            this.PanelCMD.Size = new System.Drawing.Size(154, 54);
+            this.PanelCMD.TabIndex = 10;
+            this.PanelCMD.Visible = false;
             // 
             // button5
             // 
@@ -397,6 +361,79 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label1.Location = new System.Drawing.Point(33, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 31);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Richbond";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Display_Panel
+            // 
+            this.Display_Panel.Controls.Add(this.panel2);
+            this.Display_Panel.Controls.Add(this.dataGridView1);
+            this.Display_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Display_Panel.Location = new System.Drawing.Point(0, 140);
+            this.Display_Panel.Name = "Display_Panel";
+            this.Display_Panel.Size = new System.Drawing.Size(1491, 508);
+            this.Display_Panel.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1491, 508);
+            this.panel2.TabIndex = 2;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1491, 508);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(1359, 47);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(99, 26);
+            this.dateTimePicker2.TabIndex = 61;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DisplayMember = "0";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Tous",
+            "Janvier",
+            "Fevrier",
+            "Mars",
+            "Avril",
+            "Mai",
+            "Juin",
+            "Juillet",
+            "Aout",
+            "Septembre",
+            "Octobre",
+            "Novembre",
+            "Decembre"});
+            this.comboBox1.Location = new System.Drawing.Point(1239, 50);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(97, 21);
+            this.comboBox1.TabIndex = 60;
+            // 
             // MainFournisseur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,16 +445,16 @@
             this.Load += new System.EventHandler(this.Fournisseur_Load);
             this.MenuPanel1.ResumeLayout(false);
             this.MenuPanel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.PanelCHQ.ResumeLayout(false);
             this.PanelProduit.ResumeLayout(false);
             this.PanelCMD.ResumeLayout(false);
             this.Display_Panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.PanelCHQ.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -449,5 +486,7 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

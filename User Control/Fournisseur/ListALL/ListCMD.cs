@@ -55,8 +55,6 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     MainClass.DataGridMod(this.dataGridView2);
 
 
-
-
                     //Button Delete, Edit
                     MainClass.Button_DGV(dataGridView2, "Edit", "edit");
                     dataGridView2.Columns["Edit"].Width = 70;
@@ -378,9 +376,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 {
                     Data_Cmd($"SELECT ID_CMD_FOUR FROM REGLE_CHQ_FOUR WHERE IDCHQ_FOUR = '{Convert.ToInt32(Row.Cells["IDCHQ"].Value)}';");
                 }
-                else if (label.Text == "Listes des Paiement :")
+                else if (label.Text == "Listes des Paiement : ")
                 {
-                    Data_Cmd($"SELECT ID_CMD_FOUR FROM REGLE_CHQ_FOUR WHERE IDCHQ_FOUR = '{Convert.ToInt32(Row.Cells["IDESP"].Value)}';");
+                    Data_Cmd($"SELECT ID_CMD_FOUR FROM REGLER_ESP_FOUR WHERE IDESP_FOUR = '{Convert.ToInt32(Row.Cells["IDESP"].Value)}';");
 
                 }
 
@@ -423,6 +421,11 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
