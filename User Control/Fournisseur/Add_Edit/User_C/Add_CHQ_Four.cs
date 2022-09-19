@@ -231,7 +231,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 Data_Cmd(QueryCMD);
             }
             CheckBox();
-            SelectProductsAfterSearch();
+            SelectCmdAfterSearch();
             
         }
 
@@ -403,7 +403,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            SelectProductsAfterSearch();
+            SelectCmdAfterSearch();
             CheckBox();
 
         }
