@@ -30,7 +30,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             return false;
         }
 
-       
+
         //Delete or ADD Selected Product From DataGridView(Selected Products)
         private void CheckBox()
         {
@@ -70,6 +70,28 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 }
             }
         }
+
+
+        private void SelectProductsAfterSearch()
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
+                {
+                    //Select  selected Products in datagridview 1 :
+
+                    foreach (DataGridViewRow Item in dataGridView1.Rows)
+                    {
+                        if (int.Parse(Item2.Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(Item.Cells["ID_PRODUIT"].Value.ToString()))
+                        {
+                            Item.Cells["Check"].Value = true;
+                        }
+                    }
+                }
+            }
+            return;
+
+        }
         private void Add_Selected_Product(int ID_PRODUIT)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
@@ -86,8 +108,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], 0);
                     }
 
-                    dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-                    dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
+                    dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
 
                 }
                 else
@@ -98,13 +119,13 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
             }
         }
-        private void Data_Produit()
+        private void Load_Data_Produit(String Query)
         {
             dataGridView1.Rows.Clear();
 
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                SqlCommand Cmd = new SqlCommand($"SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR;", Conx);
+                SqlCommand Cmd = new SqlCommand(Query, Conx);
                 Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
                 Conx.Open();
                 SqlDataReader ReadProduit = Cmd.ExecuteReader();
@@ -112,104 +133,51 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
                 if (ReadProduit.HasRows)
                 {
-                    /*/Button Delete, Edit
-                    MainClass.Button_DGV(dataGridView1, "Edit", "edit");
-                    dataGridView1.Columns["Edit"].Width = 50;
-                    MainClass.Button_DGV(dataGridView1, "Delete", "delete");
-                    dataGridView1.Columns["Delete"].Width = 50;
 
-                    //
-                    ///dataGridView1.AllowUserToAddRows = true;
-                    MainClass.DataGridMod(this.dataGridView1);*/
-                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     while (ReadProduit.Read())
                     {
                         this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
                     }
-                    dataGridView1.Columns["DESIGNATION"].Width = 200;
                     dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
-                    dataGridView1.Columns["PRIXACHAT"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    dataGridView1.Columns["PRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    dataGridView1.Columns["DPRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    dataGridView1.Columns["DESIGNATION"].DefaultCellStyle.Font = new Font("Tahoma", 12);
+
                 }
                 else
                 {
                     MessageBox.Show("La Table Produit est vide !!!");
                 }
-
-
             }
-        }
-
-        private void Search_Produit(string Search)
-        {
-            if (Search != "")
-            {
-                Search.ToCharArray();
-
-                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-                {
-                    SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR and DESIGNATION LIKE  '@Search%' ; ", Conx);
-                    Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                    Cmd.Parameters.AddWithValue("Search", Search[1]);
-                    Conx.Open();
-                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
-                    dataGridView1.Rows.Clear();
-
-                    if (ReadProduit.HasRows)
-                    {
-                        //Button Delete, Edit
-                        MainClass.Button_DGV(dataGridView1, "Edit", "edit");
-                        dataGridView1.Columns["Edit"].Width = 50;
-                        MainClass.Button_DGV(dataGridView1, "Delete", "delete");
-                        dataGridView1.Columns["Delete"].Width = 50;
-
-                        //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        ///dataGridView1.AllowUserToAddRows = true;
-                        MainClass.DataGridMod(this.dataGridView1);
-                        while (ReadProduit.Read())
-                        {
-                            this.dataGridView1.Rows.Add(false,ReadProduit[0], ReadProduit[2], ReadProduit[3], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
-                        }
-
-                        dataGridView1.Columns["Check"].Width = 40;
-                        dataGridView1.Columns[2].Width = 150;
-
-                        dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
-                        dataGridView1.Columns["PRIXACHAT"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["PRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["DPRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["DESIGNATION"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                    }
-                    else
-                    {
-                        MessageBox.Show("La Table Produit est vide !!!");
-                    }
-
-
-                }
-            }
-
         }
 
         private void PictureBox1_Click_1(object sender, EventArgs e)
         {
             this.Close();
         }
+        private void Search_Produit(string Search)
+        {
+            String Query = "SELECT * From PRODUIT";
 
+            if (comboBox1.SelectedIndex == 0 || Search == string.Empty)
+            {
+                Query += $" WHERE IDFOUR = '{IDFOUR}'";
+
+            }
+            else if (comboBox1.SelectedIndex == 1)
+            {
+                Query += " WHERE IDPRODUIT LIKE '%" + Search + $"%' and IDFOUR = '{IDFOUR}';";
+            }
+            else if (comboBox1.SelectedIndex == 2)
+            {
+                Query += " WHERE DESIGNATION LIKE '%" + Search + $"%' and IDFOUR = '{IDFOUR}'";
+            }
+
+            Load_Data_Produit(Query);
+        }
         private void Button2_Click(object sender, EventArgs e)
         {
-
-            if (Search.Text == "")
-            {
-                Data_Produit();
-            }
-            else
-            {
-                Search_Produit(Search.Text);
-            }
-
+            CheckBox();
+            Search_Produit(Search.Text);
+            SelectProductsAfterSearch();
+           
         }
 
         public void Clear()
@@ -225,10 +193,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             Add_Produit Form = new Add_Produit(IDFOUR, ENTREPRISE);
             Form.Show();
         }
-        private void Add_CMD_Four_Load(object sender, EventArgs e)
-        {
-           
-        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -236,9 +200,10 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         private void Add_CMD_Four_Load_1(object sender, EventArgs e)
         {
-            Data_Produit();
             label1.Text = ENTREPRISE;
             dateTimePicker.Value = DateTime.Now;
+            comboBox1.Text = "Tous";
+            Search_Produit("");
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -254,7 +219,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 string Temp = "false";
                 foreach (DataGridViewRow item in dataGridView2.Rows)
                 {
-                    if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0 )
+                    if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0)
                     {
                         if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
                         {
@@ -294,7 +259,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         Cmd.Parameters.AddWithValue("QUANTITE", float.Parse(item.Cells["Quantite"].Value.ToString()));
                         Cmd.ExecuteNonQuery();
                     }
- 
+
                     Conx.Close();
                     Clear();
                     this.Close();
@@ -353,7 +318,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         SqlCommand CmdId = new SqlCommand("SELECT max(ID_CMD_FOUR) FROM COMMANDEFOUR;", Conx);
                         SqlDataReader Read = CmdId.ExecuteReader();
 
-                        while(Read.Read())
+                        while (Read.Read())
                         {
                             COMMANDER(int.Parse(Read[0].ToString()));
                         }
@@ -378,20 +343,23 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         labelDescription.Visible = true;
                         label2.BackColor = Color.Red;
                         MessageBox.Show("Veuillez Saisir La Description de La Commande");
+                        Description.Focus();
                     }
                     if (comboBox.Text == "")
                     {
                         labelStatut.Visible = true;
                         label4.BackColor = Color.Red;
+                        comboBox.Focus();
                         MessageBox.Show("Veuillez Préciser La Statut de La Commande");
                     }
                     if (MONTANTTOTAL.Text == "")
                     {
                         labelMT.Visible = true;
                         label8.BackColor = Color.Red;
+                        MONTANTTOTAL.Focus();
                         MessageBox.Show("Veuillez Saisir Le Montant Total de La Commande");
                     }
-                    if (Cheque.Checked == false && Espece.Checked == false )
+                    if (Cheque.Checked == false && Espece.Checked == false)
                     {
                         label3.BackColor = Color.Red;
                         MessageBox.Show("Veuillez choisir le moyen de paiement de La Command ");
@@ -402,6 +370,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         if (CheckeSelectedProduct() != "true" && CheckeSelectedProduct() != "false")
                         {
                             MessageBox.Show("Veuillez Verifier La Quantite de Produit ' " + CheckeSelectedProduct() + "' .");
+                            this.dataGridView2.Columns["MONTANT"].HeaderCell.Style.BackColor = Color.Red;
                         }
                         else
                         {
@@ -415,11 +384,12 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             }
         }
 
-        
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckBox();
+            SelectProductsAfterSearch();
+        }
     }
 
 
 }
-
-
-

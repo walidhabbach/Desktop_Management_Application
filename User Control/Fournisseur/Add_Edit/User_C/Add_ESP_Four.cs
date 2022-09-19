@@ -360,13 +360,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             string temp = CheckeSelected_Cmd();
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                if (temp == "true" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text) && DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) < 0)
+                if (temp == "true" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text))
                 {
                     Conx.Open();
-                    SqlCommand Cmd = new SqlCommand($"INSERT INTO PAIEMENTESPECEFOUR(DATEDONNER,DATE_PAIEMENT,MONTANT,IDFOUR) values(@DATEDONNER,@DATEPAYER,@MONTANT,@IDFOUR);", Conx);
+                    SqlCommand Cmd = new SqlCommand($"INSERT INTO PAIEMENTESPECEFOUR(DATE_PAIEMENT,MONTANT,IDFOUR) values(@DATEPAYER,@MONTANT,@IDFOUR);", Conx);
                     try
                     {
-                        Cmd.Parameters.AddWithValue("DATEDONNER", dateTimePicker.Value);
                         Cmd.Parameters.AddWithValue("DATEPAYER", dateTimePicker1.Value); 
                         Cmd.Parameters.AddWithValue("@IDFOUR", IDFOUR);
                         Cmd.Parameters.AddWithValue("MONTANT", float.Parse(Montant.Text));
@@ -393,13 +392,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
                 else
                 {
-
-                    if (DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) >= 0)
-                    {
-                        label1.Visible = true;
-                        DATE.BackColor = Color.Red;
-                        MessageBox.Show("Veuillez Choisir La Date de Paiement ");
-                    }
                     if (Montant.Text == "")
                     {
                         labelMT.Visible = true;
@@ -455,7 +447,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             TOTALCMD.Text = " 0 DH";
             comboBox1.Text = "Tous";
 
-            dateTimePicker.Value = DateTime.Now;
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
             textBox1.Text = N_PAIEMENT();
@@ -510,7 +501,15 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
         }
 
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

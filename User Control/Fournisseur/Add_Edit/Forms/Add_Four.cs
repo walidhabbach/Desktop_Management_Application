@@ -1,5 +1,5 @@
-﻿using System;
-using Store_Management_System.Class;
+﻿using Store_Management_System.Class;
+using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -19,13 +19,13 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             ADRESSE.Text = "";
             comboBox1.Text = "";
         }
-        public static bool CheckFour(int ID , string NomFour)
+        public static bool CheckFour(int ID, string NomFour)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 Conx.Open();
                 String Query = "SELECT * FROM FOURNISSEUR;";
-                SqlCommand Cmd = new SqlCommand(Query , Conx);
+                SqlCommand Cmd = new SqlCommand(Query, Conx);
                 SqlDataReader RFour = Cmd.ExecuteReader();
                 while (RFour.Read())
                 {
@@ -39,42 +39,52 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
         private void Add_Click(object sender, EventArgs e)
         {
-             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-             {
-                  if(ENTREPRISE.Text!="" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
-                  {
-                    if (CheckFour(0,ENTREPRISE.Text))
+            try
+            {
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                {
+                    if (ENTREPRISE.Text != "" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
                     {
-                        MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
-                        Clear();
-                    }
-                    else
-                    {   Conx.Open();
-                        string Query = "INSERT into FOURNISSEUR(ENTREPRISE,TELEPHONE,CATEGORIE,ADRESSE) values(@ENTREPRISE,@TELEPHONE,@CATEGORIE,@ADRESSE)";
-                        SqlCommand Cmd = new SqlCommand(Query, Conx);
-                        try
+                        if (CheckFour(0, ENTREPRISE.Text))
                         {
-                            Cmd.Parameters.AddWithValue("ENTREPRISE", ENTREPRISE.Text);
-                            Cmd.Parameters.AddWithValue("TELEPHONE", TELEPHONE.Text);
-                            Cmd.Parameters.AddWithValue("CATEGORIE", comboBox1.Text);
-                            Cmd.Parameters.AddWithValue("ADRESSE", ADRESSE.Text);
-                            Cmd.ExecuteNonQuery();
+                            MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
+                            ENTREPRISE.Text = String.Empty;
+                            ENTREPRISE.Focus();
+                        }
+                        else
+                        {
+                            Conx.Open();
+                            string Query = "INSERT into FOURNISSEUR(ENTREPRISE,TELEPHONE,CATEGORIE,ADRESSE) values(@ENTREPRISE,@TELEPHONE,@CATEGORIE,@ADRESSE)";
+                            SqlCommand Cmd = new SqlCommand(Query, Conx);
+                            try
+                            {
+                                Cmd.Parameters.AddWithValue("ENTREPRISE", ENTREPRISE.Text);
+                                Cmd.Parameters.AddWithValue("TELEPHONE", TELEPHONE.Text);
+                                Cmd.Parameters.AddWithValue("CATEGORIE", comboBox1.Text);
+                                Cmd.Parameters.AddWithValue("ADRESSE", ADRESSE.Text);
+                                Cmd.ExecuteNonQuery();
 
-                         
-                            this.Close();
-                            Clear();
-                            Conx.Close();
-                            
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
+
+                                this.Close();
+                                Clear();
+                                Conx.Close();
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
                         }
                     }
+
+
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
-                
-             }
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
@@ -83,6 +93,11 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ENTREPRISE_TextChanged(object sender, EventArgs e)
         {
 
         }

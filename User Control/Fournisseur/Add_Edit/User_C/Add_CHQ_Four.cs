@@ -150,85 +150,50 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         private void Data_Cmd(String Query)
         {
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                string Statut = "non payée";
-                SqlCommand CmdFour = new SqlCommand(Query, Conx);
-
-                Conx.Open();
-                SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
-                if (ReadCmdFour.HasRows)
-                {
-                    while (ReadCmdFour.Read())
-                    {
-                        if ((bool)ReadCmdFour["STATUT"])
-                        {
-                            Statut = "payée";
-                        }
-
-                        this.dataGridView1.Rows.Add(
-                            false,
-                            ReadCmdFour["ID_CMD_FOUR"],
-                            ReadCmdFour["DESCRIPTION"],
-                            Statut,
-                            ReadCmdFour["MTRESTE"],
-                            ReadCmdFour["MONTANTTOTAL"],
-                            Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
-                    };
-                }
-                else
-                {
-                    MessageBox.Show("Aucune Commande a ete enregistrer de ce Fournisseur !!!");
-                }
-            }
-
-        }
-
-        private void Search_Cmd(string Search)
-        {
-            if (Search != "")
-            {
-                Search.ToCharArray();
-
                 using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR and DESIGNATION LIKE  '@Search%' ; ", Conx);
-                    Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                    Cmd.Parameters.AddWithValue("Search", Search[1]);
+                    string Statut = "non payée";
+                    SqlCommand CmdFour = new SqlCommand(Query, Conx);
+
                     Conx.Open();
-                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
-                    dataGridView1.Rows.Clear();
-
-                    if (ReadProduit.HasRows)
+                    SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
+                    if (ReadCmdFour.HasRows)
                     {
-
-                        //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        ///dataGridView1.AllowUserToAddRows = true;
-                        MainClass.DataGridMod(this.dataGridView1);
-                        while (ReadProduit.Read())
+                        this.dataGridView1.Rows.Clear();
+                        while (ReadCmdFour.Read())
                         {
-                            this.dataGridView1.Rows.Add(false, ReadProduit[0], ReadProduit[2], ReadProduit[3], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
-                        }
+                            if ((bool)ReadCmdFour["STATUT"])
+                            {
+                                Statut = "payée";
+                            }
 
-                        dataGridView1.Columns["Check"].Width = 40;
-                        dataGridView1.Columns[2].Width = 150;
-
-                        dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
-                        dataGridView1.Columns["PRIXACHAT"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["PRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["DPRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["DESIGNATION"].DefaultCellStyle.Font = new Font("Tahoma", 12);
+                            this.dataGridView1.Rows.Add(
+                                false,
+                                ReadCmdFour["ID_CMD_FOUR"],
+                                ReadCmdFour["DESCRIPTION"],
+                                Statut,
+                                ReadCmdFour["MTRESTE"],
+                                ReadCmdFour["MONTANTTOTAL"],
+                                Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
+                        };
                     }
                     else
                     {
-                        MessageBox.Show("La Table Produit est vide !!!");
+                        MessageBox.Show("Aucune Commande a ete enregistrer de ce Fournisseur !!!");
                     }
-
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
         }
+
+
         private void FilterCmdToAll()
         {
 
@@ -252,20 +217,22 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CheckBox();
+
             dataGridView1.Rows.Clear();
             if (comboBox1.Text == "Tous")
             {
                 QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                
+
                 Data_Cmd(QueryCMDAll);
-            
             }
             else
             {
-                QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{MainClass.ConvertToNumber(comboBox1.Text)}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+                QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
                 Data_Cmd(QueryCMD);
             }
+            CheckBox();
+            SelectProductsAfterSearch();
+            
         }
 
 
@@ -299,7 +266,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                         Cmd.Parameters.AddWithValue("ID_CMD_FOUR", int.Parse(item.Cells["ID_CMD1"].Value.ToString()));
                         Cmd.ExecuteNonQuery();
                         Cmd2.ExecuteNonQuery();
-
 
                     }
 
@@ -404,13 +370,15 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         {
             CheckBox();
         }
-        public void SetMyCustomFormat()
+        public void SetMyCustomFormat(string Format)
         {
-            // Set the Format type and the CustomFormat string.
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            // Set the Format type and the CustomFormat string. 
             //dateTimePicker2.CustomFormat = "MMMM yyyy";
-            dateTimePicker2.CustomFormat = "yyyy";
             //dateTimePicker2.ShowUpDown = true;
+
+                dateTimePicker2.Format = DateTimePickerFormat.Custom;
+                dateTimePicker2.CustomFormat = "MMMM yyyy";
+
         }
         private void Add_CHQ_Four_Load(object sender, EventArgs e)
         {
@@ -419,23 +387,25 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             TOTALCMD.Text = " 0 DH";
             comboBox1.Text = "Tous";
 
+            comboBox2.SelectedIndex = 0;
+
+
             dateTimePicker.Value = DateTime.Now;
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
+            SetMyCustomFormat("MMMM yyyy");
 
-            this.dataGridView1.Rows.Clear();
             QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-            Data_Cmd(QueryCMDAll);
+            Data_Cmd($"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;");
             AddDeleteButton();
-            SetMyCustomFormat();
-
 
         }
 
-
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            SetMyCustomFormat();
+            SelectProductsAfterSearch();
+            CheckBox();
+
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -473,11 +443,89 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                         }
                         this.dataGridView2.Rows.RemoveAt(this.dataGridView2.CurrentRow.Index);
 
-
                     }
 
                 }
             }
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void SelectCmdAfterSearch()
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
+                {
+                    //Select  selected Products in datagridview 1 :
+
+                    foreach (DataGridViewRow Item in dataGridView1.Rows)
+                    {
+                        if (int.Parse(Item2.Cells["ID_CMD1"].Value.ToString()) == int.Parse(Item.Cells["ID_CMD"].Value.ToString()))
+                        {
+                            Item.Cells["Check"].Value = true;
+                        }
+                    }
+                }
+            }
+            return;
+
+        }
+        private void Search_Produit(string Search)
+        {
+            String Query = "SELECT * From COMMANDEFOUR";
+
+            if (comboBox2.SelectedIndex == 0 )
+            {
+                Query += $" WHERE IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+
+            }
+            else if (comboBox2.SelectedIndex == 1)
+            {
+                Query += $" WHERE IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+            }
+            else if (comboBox2.SelectedIndex == 2)
+            {
+                Query += $" WHERE ID_CMD_FOUR = '{int.Parse(Search)}';";
+            }
+            else if (comboBox2.SelectedIndex == 3)
+            {
+                Query += " WHERE DESCRIPTION LIKE '%" + Search + $"%' and IDFOUR = '{IDFOUR}'";
+            }
+            else if (comboBox2.SelectedIndex == 4)
+            {
+                if (Search.Substring(0, 1).ToLower() == "n")
+                {
+                    Query += $" WHERE STATUT = 0 and IDFOUR = '{IDFOUR}'";
+                }
+                else if (Search.Substring(0, 1).ToLower() == "p")
+                {
+                    Query += $" WHERE STATUT = 1 and IDFOUR = '{IDFOUR}'";
+                }
+            }
+            else if (comboBox2.SelectedIndex == 5)
+            {
+                Query += $" WHERE MONTANTTOTAL = '{float.Parse(Search)}' and IDFOUR = '{IDFOUR}'";
+            }
+
+            Data_Cmd(Query);
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            CheckBox();
+            Search_Produit(Search.Text);
+            SelectCmdAfterSearch();
+            
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckBox();
+            SelectCmdAfterSearch();
+            
         }
     }
 }

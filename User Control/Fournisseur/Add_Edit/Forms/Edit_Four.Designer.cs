@@ -74,7 +74,7 @@
             this.ADRESSE.Multiline = true;
             this.ADRESSE.Name = "ADRESSE";
             this.ADRESSE.Size = new System.Drawing.Size(172, 24);
-            this.ADRESSE.TabIndex = 25;
+            this.ADRESSE.TabIndex = 3;
             // 
             // label1
             // 
@@ -108,7 +108,7 @@
             this.comboBox1.Location = new System.Drawing.Point(41, 142);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(182, 24);
-            this.comboBox1.TabIndex = 28;
+            this.comboBox1.TabIndex = 2;
             // 
             // label3
             // 
@@ -134,7 +134,7 @@
             this.Add.Location = new System.Drawing.Point(141, 199);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(172, 38);
-            this.Add.TabIndex = 26;
+            this.Add.TabIndex = 4;
             this.Add.Text = "Enregistrer";
             this.Add.UseVisualStyleBackColor = false;
             this.Add.Click += new System.EventHandler(this.Add_Click);
@@ -156,7 +156,7 @@
             this.ENTREPRISE.Multiline = true;
             this.ENTREPRISE.Name = "ENTREPRISE";
             this.ENTREPRISE.Size = new System.Drawing.Size(182, 25);
-            this.ENTREPRISE.TabIndex = 22;
+            this.ENTREPRISE.TabIndex = 0;
             // 
             // TELEPHONE
             // 
@@ -165,7 +165,7 @@
             this.TELEPHONE.Multiline = true;
             this.TELEPHONE.Name = "TELEPHONE";
             this.TELEPHONE.Size = new System.Drawing.Size(172, 25);
-            this.TELEPHONE.TabIndex = 23;
+            this.TELEPHONE.TabIndex = 1;
             // 
             // label5
             // 

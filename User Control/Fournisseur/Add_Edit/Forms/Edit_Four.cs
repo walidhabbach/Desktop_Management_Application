@@ -63,6 +63,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                     if (Add_Four.CheckFour(ID,ENTREPRISE.Text))
                     {
                         MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
+                        ENTREPRISE.Focus();
                         Display(ID);
                         return;
                     }

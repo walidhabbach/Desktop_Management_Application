@@ -147,11 +147,17 @@
     <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Produit.Designer.cs">
       <DependentUpon>Add_Produit.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Fournisseur\ListALL\ListCMD.cs">
+    <Compile Include="User Control\Fournisseur\ListALL\Form_List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\Form_List.Designer.cs">
+      <DependentUpon>Form_List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\ListALL\List_Main_Four.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\ListALL\ListCMD.Designer.cs">
-      <DependentUpon>ListCMD.cs</DependentUpon>
+    <Compile Include="User Control\Fournisseur\ListALL\List_Main_Four.Designer.cs">
+      <DependentUpon>List_Main_Four.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\MainFournisseur.cs">
       <SubType>UserControl</SubType>
@@ -226,8 +232,11 @@
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Add_Produit.resx">
       <DependentUpon>Add_Produit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Fournisseur\ListALL\ListCMD.resx">
-      <DependentUpon>ListCMD.cs</DependentUpon>
+    <EmbeddedResource Include="User Control\Fournisseur\ListALL\Form_List.resx">
+      <DependentUpon>Form_List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\ListALL\List_Main_Four.resx">
+      <DependentUpon>List_Main_Four.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\MainFournisseur.resx">
       <DependentUpon>MainFournisseur.cs</DependentUpon>
@@ -282,6 +291,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\ICONES GC\icons8_google_web_search_32px_2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

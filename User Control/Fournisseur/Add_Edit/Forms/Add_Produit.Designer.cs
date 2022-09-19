@@ -95,7 +95,7 @@
             this.DPRIXVENTE.Multiline = true;
             this.DPRIXVENTE.Name = "DPRIXVENTE";
             this.DPRIXVENTE.Size = new System.Drawing.Size(181, 24);
-            this.DPRIXVENTE.TabIndex = 25;
+            this.DPRIXVENTE.TabIndex = 4;
             // 
             // label1
             // 
@@ -143,7 +143,7 @@
             this.Add.Location = new System.Drawing.Point(147, 259);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(174, 38);
-            this.Add.TabIndex = 26;
+            this.Add.TabIndex = 5;
             this.Add.Text = "Enregistrer";
             this.Add.UseVisualStyleBackColor = false;
             this.Add.Click += new System.EventHandler(this.Add_Click);
@@ -165,7 +165,7 @@
             this.DESIGNATION.Multiline = true;
             this.DESIGNATION.Name = "DESIGNATION";
             this.DESIGNATION.Size = new System.Drawing.Size(183, 25);
-            this.DESIGNATION.TabIndex = 22;
+            this.DESIGNATION.TabIndex = 1;
             // 
             // PRIXACHAT
             // 
@@ -175,7 +175,7 @@
             this.PRIXACHAT.Multiline = true;
             this.PRIXACHAT.Name = "PRIXACHAT";
             this.PRIXACHAT.Size = new System.Drawing.Size(181, 25);
-            this.PRIXACHAT.TabIndex = 23;
+            this.PRIXACHAT.TabIndex = 2;
             // 
             // panel1
             // 
@@ -208,6 +208,7 @@
             this.textBox1.Location = new System.Drawing.Point(116, 13);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(123, 25);
             this.textBox1.TabIndex = 33;
             // 
@@ -241,7 +242,7 @@
             this.IDPRODUIT.Multiline = true;
             this.IDPRODUIT.Name = "IDPRODUIT";
             this.IDPRODUIT.Size = new System.Drawing.Size(182, 25);
-            this.IDPRODUIT.TabIndex = 31;
+            this.IDPRODUIT.TabIndex = 0;
             // 
             // PRIXVENTE
             // 
@@ -250,7 +251,7 @@
             this.PRIXVENTE.Multiline = true;
             this.PRIXVENTE.Name = "PRIXVENTE";
             this.PRIXVENTE.Size = new System.Drawing.Size(183, 25);
-            this.PRIXVENTE.TabIndex = 29;
+            this.PRIXVENTE.TabIndex = 3;
             // 
             // Add_Produit
             // 

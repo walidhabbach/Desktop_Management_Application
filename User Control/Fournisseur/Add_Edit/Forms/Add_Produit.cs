@@ -16,8 +16,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             IDFOUR = ID;
             ENTREPRISE = Four;
         }
-
-
         private void PictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -32,14 +30,22 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         }
         private void Add_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
                 if (IDPRODUIT.Text != "" && DESIGNATION.Text != "" && PRIXACHAT.Text != "" )
                 {
-                    if (CheckIdProduit(IDPRODUIT.Text ))
+                    if (CheckIdProduit(IDPRODUIT.Text))
                     {
                         MessageBox.Show("ID produit Existe deja dans la base de donne");
-                       
+                        IDPRODUIT.Focus();
                     }
                     else
                     {
@@ -48,7 +54,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                         SqlCommand Cmd = new SqlCommand(Query, Conx);
                         try
                         {
-                            
                             Cmd.Parameters.AddWithValue("IDPRODUIT", IDPRODUIT.Text);
                             Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
                             Cmd.Parameters.AddWithValue("DESIGNATION", DESIGNATION.Text);
