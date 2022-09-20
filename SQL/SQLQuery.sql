@@ -353,10 +353,42 @@ go
 /*==============================================================*/
 
 
-
-
 create nonclustered index R_CHQ_FOUR_FK on REGLE_CHQ_FOUR (ID_CMD_FOUR ASC)
 go
+
+/*==============================================================*/
+/* Table : [Task]                                       */
+/*==============================================================*/
+
+CREATE TABLE [dbo].[Task](
+	[IdTask] [int] IDENTITY(1,1) NOT NULL,
+	[Details] [varchar](max) NULL,
+	[Statut] [bit] NULL,
+	[Category] [varchar](30) NOT NULL,
+	[TaskDate] [date] NOT NULL,
+	[PriorityLevel] [varchar](30) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdTask] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+/*==============================================================*/
+/* Table : [CALENDAR]						*/
+/*==============================================================*/
+
+CCREATE TABLE [dbo].[CALENDAR](
+	[idCalendar] [int] IDENTITY(1,1) NOT NULL,
+	[Category] [varchar](30) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idCalendar] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/*==============================================================*/
 
 alter table COMMANDECLIENT
    add constraint FK_COMMANDE_PASSER_CLIENT foreign key (IDCLIENT)

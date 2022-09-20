@@ -15,6 +15,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -87,6 +102,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Task.Designer.cs">
+      <DependentUpon>Add_Task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Category.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Category.Designer.cs">
+      <DependentUpon>Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Add_CHQ_Four.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +229,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Add_Task.resx">
+      <DependentUpon>Add_Task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Category.resx">
+      <DependentUpon>Category.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\Add_CHQ_Four.resx">
       <DependentUpon>Add_CHQ_Four.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,6 +327,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\ICONES GC\icons8_google_web_search_32px_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\ICONES GC\used\icons8-edit-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\ICONES GC\used\icons8-remove-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\ICONES GC\used\icons8-add-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

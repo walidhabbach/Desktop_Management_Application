@@ -474,7 +474,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             return;
 
         }
-        private void Search_Produit(string Search)
+        private void Search_Cmd(string Search)
         {
             String Query = "SELECT * From COMMANDEFOUR";
 
@@ -516,7 +516,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         private void button2_Click(object sender, EventArgs e)
         {
             CheckBox();
-            Search_Produit(Search.Text);
+            Search_Cmd(Search.Text);
             SelectCmdAfterSearch();
             
         }

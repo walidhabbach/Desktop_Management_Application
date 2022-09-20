@@ -12,108 +12,12 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
         private readonly int IDFOUR;
         private readonly Panel Content;
         private readonly int load;
-        private readonly string Period;
-        private readonly int Year;
-        public List_Main_Four(int ID, Panel content, int load, string period, int Year)
+        public List_Main_Four(int ID, Panel content, int load)
         {
             InitializeComponent();
             this.load = load;
             IDFOUR = ID;
             Content = content;
-            Period = period;
-            this.Year = Year;
-        }
-
-        private void List_Cmd_Four(int IDFOUR)
-        {
-            label.Text = "Les Commandes :";
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-            {
-
-                string Statut = "non payée";
-                string MPaiement = "PESPECE";
-                String QueryCmdFour = $"SELECT * From COMMANDEFOUR WHERE IDFOUR = '{IDFOUR}' ;";
-
-                dataGridView2.Rows.Clear();
-                if (Period.ToLower() == "tous")
-                {
-                    QueryCmdFour = $"SELECT * From COMMANDEFOUR WHERE IDFOUR = '{IDFOUR}' and year(DATECMD) = '{Year}';";
-                }
-                else
-                {
-                    QueryCmdFour = $"SELECT * From COMMANDEFOUR WHERE IDFOUR = '{IDFOUR}' and month(DATECMD) = '{DateTime.Parse(Period).Month}' and year(DATECMD) = '{Year}' ;";
-                }
-
-                SqlCommand CmdFour = new SqlCommand(QueryCmdFour, Conx);
-
-
-                Conx.Open();
-                SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
-                if (ReadCmdFour.HasRows)
-                {
-                    this.dataGridView2.Rows.Clear();
-                    this.dataGridView2.Columns.Clear();
-
-                    this.dataGridView2.ColumnCount = 7;
-                    this.dataGridView2.Columns[0].Name = "#";
-                    this.dataGridView2.Columns[0].Width = 30;
-                    this.dataGridView2.Columns[1].Name = "Id";
-                    this.dataGridView2.Columns[1].Width = 50;
-                    this.dataGridView2.Columns[2].Name = "Description";
-                    this.dataGridView2.Columns[3].Name = "Statut";
-                    this.dataGridView2.Columns[4].Name = "Date";
-                    this.dataGridView2.Columns[5].Name = "Paiement";
-                    this.dataGridView2.Columns[6].Name = "MT";
-
-                    InitializeButtons("Produit");
-
-                    while (ReadCmdFour.Read())
-                    {
-                        if ((bool)ReadCmdFour["STATUT"])
-                        {
-                            Statut = "payée";
-                            this.dataGridView2.Columns[3].DefaultCellStyle.BackColor = Color.Green;
-                        }
-                        else
-                        {
-                            this.dataGridView2.Columns[3].DefaultCellStyle.BackColor = Color.Red;
-                        }
-                        if ((bool)ReadCmdFour["PCHEQUE"] && (bool)ReadCmdFour["PESPECE"])
-                        {
-                            MPaiement = "CHQ et Espece";
-                        }
-                        else if ((bool)ReadCmdFour["PCHEQUE"])
-                        {
-                            MPaiement = "CHQ";
-                        }
-                        else if ((bool)ReadCmdFour["PESPECE"])
-                        {
-                            MPaiement = "Espece";
-                        }
-                        else
-                        {
-                            MPaiement = "Rien";
-                        }
-
-                        this.dataGridView2.Rows.Add(
-                            (dataGridView2.RowCount + 1),
-                            ReadCmdFour["ID_CMD_FOUR"],
-                            ReadCmdFour["DESCRIPTION"],
-                            Statut,
-                            DateTime.Parse(ReadCmdFour["DATECMD"].ToString()).ToString("dd MMMM yy"),
-                            MPaiement,
-                            Math.Round(double.Parse(ReadCmdFour["MONTANTTOTAL"].ToString()), 2)
-
-                        );
-                    };
-                }
-
-                else
-                {
-                    MessageBox.Show("La Table Fournisseur est vide !!!");
-                }
-            }
         }
 
         public void SetMyCustomFormat()
@@ -122,176 +26,295 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             //dateTimePicker2.CustomFormat = "MMMM yyyy";
             //dateTimePicker2.ShowUpDown = true;
 
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "MMMM yyyy";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "MMMM yyyy";
         }
 
-        private void List_CHQ_Four(int IDFOUR, bool temp)
+        private void List_Cmd_Four(String Query)
+        {
+            label.Text = "Les Commandes :";
+            try
+            {
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                {
+
+                    string Statut = "non payée";
+                    string MPaiement = "PESPECE";
+                    String QueryCmdFour = $"SELECT * From COMMANDEFOUR WHERE IDFOUR = '{IDFOUR}' ;";
+
+                    dataGridView2.Rows.Clear();
+                    SqlCommand CmdFour = new SqlCommand(Query, Conx);
+
+                    Conx.Open();
+                    SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
+                    if (ReadCmdFour.HasRows)
+                    {
+                        this.dataGridView2.Rows.Clear();
+                        this.dataGridView2.Columns.Clear();
+
+                        this.dataGridView2.ColumnCount = 7;
+                        this.dataGridView2.Columns[0].Name = "#";
+                        this.dataGridView2.Columns[0].Width = 30;
+                        this.dataGridView2.Columns[1].Name = "Id";
+                        this.dataGridView2.Columns[1].Width = 50;
+                        this.dataGridView2.Columns[2].Name = "Description";
+                        this.dataGridView2.Columns[3].Name = "Statut";
+                        this.dataGridView2.Columns[4].Name = "Date";
+                        this.dataGridView2.Columns[5].Name = "Paiement";
+                        this.dataGridView2.Columns[6].Name = "Montant";
+
+                        InitializeButtons("Produit");
+
+                        while (ReadCmdFour.Read())
+                        {
+                            if ((bool)ReadCmdFour["STATUT"])
+                            {
+                                Statut = "payée";
+                                this.dataGridView2.Columns[3].DefaultCellStyle.BackColor = Color.Green;
+                            }
+                            else
+                            {
+                                this.dataGridView2.Columns[3].DefaultCellStyle.BackColor = Color.Red;
+                            }
+                            if ((bool)ReadCmdFour["PCHEQUE"] && (bool)ReadCmdFour["PESPECE"])
+                            {
+                                MPaiement = "CHQ et Espece";
+                            }
+                            else if ((bool)ReadCmdFour["PCHEQUE"])
+                            {
+                                MPaiement = "CHQ";
+                            }
+                            else if ((bool)ReadCmdFour["PESPECE"])
+                            {
+                                MPaiement = "Espece";
+                            }
+                            else
+                            {
+                                MPaiement = "Rien";
+                            }
+
+                            this.dataGridView2.Rows.Add(
+                                (dataGridView2.RowCount + 1),
+                                ReadCmdFour["ID_CMD_FOUR"],
+                                ReadCmdFour["DESCRIPTION"],
+                                Statut,
+                                DateTime.Parse(ReadCmdFour["DATECMD"].ToString()).ToString("dd MMMM yy"),
+                                MPaiement,
+                                Math.Round(double.Parse(ReadCmdFour["MONTANTTOTAL"].ToString()), 2)
+
+                            );
+                        };
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune donnée existe !!!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void List_CHQ_Four(String Query)
         {
             label.Text = "Liste des Cheques :";
             SetMyCustomFormat();
-            PanelEncaissement.Visible = true;
 
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                this.dataGridView2.Rows.Clear();
-                this.dataGridView2.Columns.Clear();
-                this.dataGridView2.ColumnCount = 6;
-                this.dataGridView2.Columns[0].Name = "#";
-                this.dataGridView2.Columns[0].Width = 30;
-                this.dataGridView2.Columns[1].Name = "IDCHQ";
-                this.dataGridView2.Columns[1].Visible = false;
-                this.dataGridView2.Columns[2].Name = "N°CHQ";
-                this.dataGridView2.Columns[3].Name = "Rédaction";
-                this.dataGridView2.Columns[4].Name = "Encaissement";
-                this.dataGridView2.Columns[5].Name = "Montant";
-
-                InitializeButtons("cmd");
-
-
-                String Query = $"SELECT * From CHEQUEFOURNISSEUR WHERE IDFOUR = '{IDFOUR}' and year(DATEDONNER) = '{Year}' ;";
-
-                if (Period.ToLower() != "" && Period.ToLower() != "tous" && temp == false)
-                {
-                    Query = $"SELECT * From CHEQUEFOURNISSEUR WHERE IDFOUR = '{IDFOUR}' and month(DATEDONNER) = '{DateTime.Parse(Period).Month}' and year(DATEDONNER) = '{Year}' ;";
-                    this.dataGridView2.Columns["Rédaction"].HeaderCell.Style.BackColor = Color.Green;
-                }
-                else if (temp == true)
-                {
-                    Query = $"SELECT * From CHEQUEFOURNISSEUR WHERE IDFOUR = '{IDFOUR}' and month(DATEPAYER) = '{dateTimePicker1.Value.Month}' and year(DATEPAYER) = '{dateTimePicker1.Value.Year}' ;";
-                    this.dataGridView2.Columns["Encaissement"].HeaderCell.Style.BackColor = Color.Green;
-                }
-
-                //Return CHQ Details
-
-                SqlCommand Cmd_CHQFour = new SqlCommand(Query, Conx);
-                Conx.Open();
-                SqlDataReader Read = Cmd_CHQFour.ExecuteReader();
-
-                if (Read.HasRows)
-                {
-                    while (Read.Read())
-                    {
-                        this.dataGridView2.Rows.Add(
-                                (dataGridView2.RowCount + 1),
-                                Read["IDCHQ_FOUR"],
-                                Read["N_CHQ"],
-                                DateTime.Parse(Read["DATEDONNER"].ToString()).ToString("dd MMMM yy"),
-                                DateTime.Parse(Read["DATEPAYER"].ToString()).ToString("dd MMMM yy"),
-                                Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)
-                        );
-
-                    }
-                    dataGridView2.Columns["N°CHQ"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-
-                }
-
-                else
-                {
-                    MessageBox.Show("La Table CHQ est vide !!!");
-
-                }
-            }
-
-        }
-        private void List_Produit()
-        {
-            dataGridView2.Rows.Clear();
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-            {
-                SqlCommand Cmd = new SqlCommand($"SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR;", Conx);
-                Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                Conx.Open();
-                SqlDataReader ReadProduit = Cmd.ExecuteReader();
-                dataGridView2.Rows.Clear();
-                if (ReadProduit.HasRows)
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
                     this.dataGridView2.Rows.Clear();
                     this.dataGridView2.Columns.Clear();
-                    this.dataGridView2.ColumnCount = 7;
-
+                    this.dataGridView2.ColumnCount = 6;
                     this.dataGridView2.Columns[0].Name = "#";
                     this.dataGridView2.Columns[0].Width = 30;
-                    this.dataGridView2.Columns[1].Name = "ID_PRODUIT";
+                    this.dataGridView2.Columns[1].Name = "IDCHQ";
                     this.dataGridView2.Columns[1].Visible = false;
-                    this.dataGridView2.Columns[2].Name = "IDPRODUIT";
-                    this.dataGridView2.Columns[3].Name = "DESIGNATION";
-                    this.dataGridView2.Columns[4].Name = "Prix Achat";
-                    this.dataGridView2.Columns[5].Name = "Prix Vente";
-                    this.dataGridView2.Columns[6].Name = "DPrix Vente ";
-
-                    InitializeButtons(null);
-
-                    while (ReadProduit.Read())
-                    {
-                        this.dataGridView2.Rows.Add(
-                            this.dataGridView2.RowCount + 1
-                            , ReadProduit["ID_PRODUIT"]
-                            , ReadProduit["IDPRODUIT"],
-                            ReadProduit["DESIGNATION"],
-                            Math.Round(double.Parse(ReadProduit[4].ToString()), 2),
-                            Math.Round(double.Parse(ReadProduit[5].ToString()), 2),
-                            Math.Round(double.Parse(ReadProduit[6].ToString()), 2)
-                        );
-                    }
-
-                    dataGridView2.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-
-                }
-                else
-                {
-                    MessageBox.Show("La Table Produit est vide !!!");
-                }
-            }
-        }
-        private void List_ESP_Four(int IDFOUR)
-        {
-            label.Text = "Liste des Paiement : ";
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-            {
-
-                SqlCommand Cmd = new SqlCommand($"SELECT * From PAIEMENTESPECEFOUR WHERE IDFOUR = '{IDFOUR}';", Conx);
-
-                Conx.Open();
-                SqlDataReader Read = Cmd.ExecuteReader();
-
-                if (Read.HasRows)
-                {
-                    this.dataGridView2.Rows.Clear();
-                    this.dataGridView2.Columns.Clear();
-
-                    this.dataGridView2.ColumnCount = 4;
-                    this.dataGridView2.Columns[0].Name = "#";
-                    this.dataGridView2.Columns[0].Width = 30;
-                    this.dataGridView2.Columns[1].Name = "IDESP";
-                    this.dataGridView2.Columns[1].Width = 50;
-                    this.dataGridView2.Columns[2].Name = "Date de Paiement";
-                    this.dataGridView2.Columns[3].Name = "Montant";
+                    this.dataGridView2.Columns[2].Name = "N°CHQ";
+                    this.dataGridView2.Columns[3].Name = "Rédaction";
+                    this.dataGridView2.Columns[4].Name = "Encaissement";
+                    this.dataGridView2.Columns[5].Name = "Montant";
 
                     InitializeButtons("cmd");
 
-                    while (Read.Read())
+                    // Change the Searched HeaderCell Style BackColor
+                    if (comboBox1.Text == "N°CHQ")
                     {
-                        this.dataGridView2.Rows.Add(
-                                (dataGridView2.RowCount + 1),
-                                Read["IDESP_FOUR"],
-                                DateTime.Parse(Read["DATE_PAIEMENT"].ToString()).ToString("dd MMMM yy"),
-                                Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)
-                        );
+                        this.dataGridView2.Columns["IDCHQ"].HeaderCell.Style.BackColor = Color.Green;
+                    }
+                    else if (comboBox1.Text == "Date Rédaction")
+                    {
+                        this.dataGridView2.Columns["Rédaction"].HeaderCell.Style.BackColor = Color.Green;
+                    }
+                    else if (comboBox1.Text == "Date Encaissement")
+                    {
+                        this.dataGridView2.Columns["Encaissement"].HeaderCell.Style.BackColor = Color.Green;
+                    }
+                    else if (comboBox1.Text == "Montant")
+                    {
+                        this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
                     }
 
-                    Conx.Close();
+                    //Return CHQ Details
 
+                    SqlCommand Cmd_CHQFour = new SqlCommand(Query, Conx);
+                    Conx.Open();
+                    SqlDataReader Read = Cmd_CHQFour.ExecuteReader();
+
+                    if (Read.HasRows)
+                    {
+                        while (Read.Read())
+                        {
+                            this.dataGridView2.Rows.Add(
+                                    (dataGridView2.RowCount + 1),
+                                    Read["IDCHQ_FOUR"],
+                                    Read["N_CHQ"],
+                                    DateTime.Parse(Read["DATEDONNER"].ToString()).ToString("dd MMMM yy"),
+                                    DateTime.Parse(Read["DATEPAYER"].ToString()).ToString("dd MMMM yy"),
+                                    Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)
+                            );
+
+                        }
+                        dataGridView2.Columns["N°CHQ"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune donnée existe !!!");
+                        this.dataGridView2.Rows.Clear();
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("La Table PAIEMENT est vide !!!");
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+        private void List_Produit(String Query)
+        {
+            dataGridView2.Rows.Clear();
+            try
+            {
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                {
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+
+                    Conx.Open();
+
+                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
+                    dataGridView2.Rows.Clear();
+                    if (ReadProduit.HasRows)
+                    {
+                        this.dataGridView2.Rows.Clear();
+                        this.dataGridView2.Columns.Clear();
+                        this.dataGridView2.ColumnCount = 7;
+
+                        this.dataGridView2.Columns[0].Name = "#";
+                        this.dataGridView2.Columns[0].Width = 30;
+                        this.dataGridView2.Columns[1].Name = "ID_PRODUIT";
+                        this.dataGridView2.Columns[1].Visible = false;
+                        this.dataGridView2.Columns[2].Name = "IDPRODUIT";
+                        this.dataGridView2.Columns[3].Name = "DESIGNATION";
+                        this.dataGridView2.Columns[4].Name = "Prix Achat";
+                        this.dataGridView2.Columns[5].Name = "Prix Vente";
+                        this.dataGridView2.Columns[6].Name = "DPrix Vente ";
+
+                        InitializeButtons(null);
+
+                        while (ReadProduit.Read())
+                        {
+                            this.dataGridView2.Rows.Add(
+                                this.dataGridView2.RowCount + 1
+                                , ReadProduit["ID_PRODUIT"]
+                                , ReadProduit["IDPRODUIT"],
+                                ReadProduit["DESIGNATION"],
+                                Math.Round(double.Parse(ReadProduit[4].ToString()), 2),
+                                Math.Round(double.Parse(ReadProduit[5].ToString()), 2),
+                                Math.Round(double.Parse(ReadProduit[6].ToString()), 2)
+                            );
+                        }
+
+                        dataGridView2.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune donnée existe !!!");
+                        this.dataGridView2.Rows.Clear();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void List_ESP_Four(String Query)
+        {
+            label.Text = "Liste des Paiement : ";
+            try
+            {
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                {
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
 
+                    Conx.Open();
+                    SqlDataReader Read = Cmd.ExecuteReader();
+
+                    if (Read.HasRows)
+                    {
+                        this.dataGridView2.Rows.Clear();
+                        this.dataGridView2.Columns.Clear();
+
+                        this.dataGridView2.ColumnCount = 4;
+                        this.dataGridView2.Columns[0].Name = "#";
+                        this.dataGridView2.Columns[0].Width = 30;
+                        this.dataGridView2.Columns[1].Name = "IDESP";
+                        this.dataGridView2.Columns[1].Width = 50;
+                        this.dataGridView2.Columns[2].Name = "Date de Paiement";
+                        this.dataGridView2.Columns[3].Name = "Montant";
+
+                        InitializeButtons("cmd");
+
+                        if (comboBox1.Text == "id ESP")
+                        {
+                            this.dataGridView2.Columns["IDESP"].HeaderCell.Style.BackColor = Color.Green;
+                        }
+                        else if (comboBox1.Text == "Date de Paiement")
+                        {
+                            this.dataGridView2.Columns["Date de Paiement"].HeaderCell.Style.BackColor = Color.Green;
+                        }
+                        else if (comboBox1.Text == "Montant")
+                        {
+                            this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
+                        }
+
+                        while (Read.Read())
+                        {
+                            this.dataGridView2.Rows.Add(
+                                    (dataGridView2.RowCount + 1),
+                                    Read["IDESP_FOUR"],
+                                    DateTime.Parse(Read["DATE_PAIEMENT"].ToString()).ToString("dd MMMM yy"),
+                                    Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)
+                            );
+                        }
+                        Conx.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Aucune donnée existe !!!");
+                        this.dataGridView2.Rows.Clear();
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Edit(int IDCMD)
@@ -320,7 +343,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     Conx.Open();
                     Cmd.ExecuteNonQuery();
                     Conx.Close();
-                    List_Cmd_Four(IDFOUR);
+
                 }
                 catch (Exception Ex)
                 {
@@ -416,7 +439,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             {
                 string ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
 
-                if (ColName != "Edit" && ColName != "Delete" && ColName != "Produit" && ColName != "cmd" )
+                if (ColName != "Edit" && ColName != "Delete" && ColName != "Produit" && ColName != "cmd")
                 {
                     dataGridView2.Cursor = Cursors.Default;
                 }
@@ -429,23 +452,32 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
         private void ListCMD_Load(object sender, EventArgs e)
         {
+            dateTimePicker2.Value = DateTime.Now;
+            CustomDateFormat();
             if (load == 1)
             {
-                List_Cmd_Four(IDFOUR);
+                FillComboBox(1);
+                comboBox1.Text = "Tous";
+                Search_Cmd(Search.Text);
             }
             else if (load == 2)
             {
-                List_Produit();
+                FillComboBox(2);
+                comboBox1.Text = "Tous";
+                Search_Produit(Search.Text);
             }
             else if (load == 3)
             {
-                List_CHQ_Four(IDFOUR, false);
+                FillComboBox(3);
+                comboBox1.Text = "Tous";
+                Search_CHQ(Search.Text);
             }
             else if (load == 4)
             {
-                List_ESP_Four(IDFOUR);
+                FillComboBox(4);
+                comboBox1.Text = "Tous";
+                Search_ESP(Search.Text);
             }
-
         }
 
         private void InitializeButtons(string Name)
@@ -464,13 +496,294 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
         // List By Date Encaissement(DATEPAYER) : true
         // List By Date de Rédaction(DATEDONNER) : false
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Search_Produit(string search)
         {
-            List_CHQ_Four(IDFOUR, true);
+            String Query = $"SELECT * From PRODUIT WHERE IDFOUR = '{IDFOUR}'";
+            try
+            {
+                if (comboBox1.Text == "Tous")
+                {
+                    Query = $"SELECT * From PRODUIT WHERE IDFOUR = '{IDFOUR}';";
+                }
+                else if (search != string.Empty)
+                {
+                    if (comboBox1.Text == "id Produit")
+                    {
+                        Query += $" and IDPRODUIT = '{search}' ;";
+                    }
+                    else if (comboBox1.Text == "Designation")
+                    {
+                        Query += $" and DESIGNATION LIKE '%" + search + $"%' ;";
+                    }
+                    else if (comboBox1.Text == "PrixAchat")
+                    {
+                        Query += $" and PRIXACHAT = '{search}' ;";
+                    }
+                    else if (comboBox1.Text == "PrixVente")
+                    {
+                        Query += $" and PRIXVENTE = '{search}' ;";
+                    }
+                    else if (comboBox1.Text == "DPrixVente")
+                    {
+                        Query += $" and DPRIXVENTE = '{search}' ;";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Remplir la barre de recherche !!!");
+                    Search.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            List_Produit(Query);
+        }
+        private void Search_Cmd(string search)
+        {
+            String Query = $"SELECT * From COMMANDEFOUR WHERE IDFOUR = '{IDFOUR}' ";
+            try
+            {
+                if (comboBox1.Text == "Tous")
+                {
+                    Query += $" and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+                }
+                else if (search != string.Empty)
+                {
+                    if (comboBox1.Text == "idCmd")
+                    {
+                        Query += $" and ID_CMD_FOUR = '{int.Parse(search)}';";
+                    }
+                    else if (comboBox1.Text == "Description")
+                    {
+                        Query += " and DESCRIPTION LIKE '%" + search + $"%' ;";
+                    }
+                    else if (comboBox1.Text == "Statut")
+                    {
+                        if (search.Substring(0, 1).ToLower() == "n")
+                        { 
+                            Query += $" and STATUT = 0 ; ";
+                        }
+                        else if (search.Substring(0, 1).ToLower() == "p")
+                        {
+                            Query += $" and STATUT = 1 ;";
+                        }
+                    }
+                    else if (comboBox1.Text == "Mode Paiement")
+                    {
+                        if (search.Substring(0, 1).ToLower() == "c")
+                        {
+                            Query += $" and PCHEQUE = 1 ; ";
+                        }
+                        else if (search.Substring(0, 1).ToLower() == "e")
+                        {
+                            Query += $" and PESPECE = 1 ;";
+                        }
+                    }
+                    else if (comboBox1.Text == "Montant Total")
+                    {
+                        Query += $" and MONTANTTOTAL = '{float.Parse(search)}' ;";
+                    }
+                }
+                else if (search == String.Empty && comboBox1.Text != "Date Mois")
+                {
+                    MessageBox.Show("Remplir la barre de recherche !!!");
+                    Search.Focus();
+                }
+                else
+                {
+                    if (comboBox1.Text == "Date Mois")
+                    {
+                        Query += $" and month(DATECMD) = '{dateTimePicker2.Value.Month}'  and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            List_Cmd_Four(Query);
 
         }
 
+        private void Search_CHQ(string search)
+        {
+            String Query = $"SELECT * From CHEQUEFOURNISSEUR WHERE IDFOUR = '{IDFOUR}' ";
+            try
+            {
+                if (comboBox1.Text == "Tous")
+                {
+                    Query += $" and year(DATEDONNER) = '{dateTimePicker2.Value.Year}' ";
+                }
+                else if (search != string.Empty)
+                {
+                    if (comboBox1.Text == "Date Rédaction")
+                    {
+                        Query += $" and month(DATEDONNER) = '{dateTimePicker2.Value.Month}' and year(DATEDONNER) = '{dateTimePicker2.Value.Year}' ;";
+                    }
+                    else if (comboBox1.Text == "Date Encaissement")
+                    {
+                        Query += $" and month(DATEPAYER) = '{dateTimePicker2.Value.Month}' and year(DATEPAYER) = '{dateTimePicker2.Value.Year}' ;";
+                    }
+                    else if (comboBox1.Text == "N°CHQ")
+                    {
+                        Query += $" and N_CHQ  '{int.Parse(search)}'";
+                    }
+                    else if (comboBox1.Text == "Montant")
+                    {
+                        Query += $" and MONTANT = '{float.Parse(search)}' ;";
+                    }
+                }
+                else if (search == String.Empty && comboBox1.Text != "Date Rédaction" && comboBox1.Text != "Date Encaissement")
+                {
+                    MessageBox.Show("Remplir la barre de recherche !!!");
+                    Search.Focus();
+                }
+                else
+                {
+                    if (comboBox1.Text == "Date Rédaction")
+                    {
+                        Query += $" and month(DATEDONNER) = '{dateTimePicker2.Value.Month}' and year(DATEDONNER) = '{dateTimePicker2.Value.Year}' ;";
+                    }
+                    else if (comboBox1.Text == "Date Encaissement")
+                    {
+                        Query += $" and month(DATEPAYER) = '{dateTimePicker2.Value.Month}' and year(DATEPAYER) = '{dateTimePicker2.Value.Year}' ;";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
+            List_CHQ_Four(Query);
+            Console.WriteLine("valider");
+        }
+
+        private void Search_ESP(string search)
+        {
+            String Query = $"SELECT * From PAIEMENTESPECEFOUR WHERE IDFOUR = '{IDFOUR}' ";
+            try
+            {
+                if (comboBox1.Text == "Tous")
+                {
+                    Query += $" and year(DATE_PAIEMENT) = '{dateTimePicker2.Value.Year}' ;";
+                }
+                else if (search != string.Empty)
+                {
+                    if (comboBox1.Text == "id ESP")
+                    {
+                        Query += $" and IDESP_FOUR = '{int.Parse(search)}' ;";
+                    }
+                    else if (comboBox1.Text == "Designation")
+                    {
+                        Query += " and DESIGNATION LIKE '%" + search + $"%' ;";
+                    }
+                    else if (comboBox1.Text == "Montant")
+                    {
+                        Query += $" and MONTANT = '{search}' ;";
+                    }
+                }
+                else if (search == String.Empty && comboBox1.Text != "Date de Paiement" )
+                {
+                    MessageBox.Show("Remplir la barre de recherche !!!");
+                    Search.Focus();
+                }
+                else
+                {
+                    if (comboBox1.Text == "Date de Paiement")
+                    {
+                        Query += $" and month(DATEDONNER) = '{dateTimePicker2.Value.Month}' and year(DATEDONNER) = '{dateTimePicker2.Value.Year}' ;";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            List_ESP_Four(Query);
+
+        }
+
+        private void FillComboBox(int loadList)
+        {
+            comboBox1.Items.Clear();
+
+            comboBox1.Items.Add("Tous");
+
+            if (loadList == 1)
+            {
+                comboBox1.Items.Add("idCmd");
+                comboBox1.Items.Add("Description");
+                comboBox1.Items.Add("Statut");
+                comboBox1.Items.Add("Date Mois");
+                comboBox1.Items.Add("Mode Paiement");
+                comboBox1.Items.Add("Montant Total");
+            }
+            else if (loadList == 2)
+            {
+                comboBox1.Items.Add("id Produit");
+                comboBox1.Items.Add("Designation");
+                comboBox1.Items.Add("PrixAchat");
+                comboBox1.Items.Add("PrixVente");
+                comboBox1.Items.Add("DPrixVente");
+            }
+            else if (loadList == 3)
+            {
+                comboBox1.Items.Add("N°CHQ");
+                comboBox1.Items.Add("Designation");
+                comboBox1.Items.Add("Date Rédaction");
+                comboBox1.Items.Add("Date Encaissement");
+                comboBox1.Items.Add("Montant");
+
+            }
+            else if (loadList == 4)
+            {
+                comboBox1.Items.Add("id ESP");
+                comboBox1.Items.Add("Date de Paiement");
+                comboBox1.Items.Add("Montant");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (load == 1)
+            {
+                Search_Cmd(Search.Text);
+            }
+            else if (load == 2)
+            {
+                Search_Produit(Search.Text);
+            }
+            else if (load == 3)
+            {
+                Search_CHQ(Search.Text);
+            }
+            else if (load == 4)
+            {
+                Search_ESP(Search.Text);
+            }
+        }
+
+        private void CustomDateFormat()
+        {
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "MMMM yyyy";
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Search.Text = "";
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-}
 
+}

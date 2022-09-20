@@ -428,7 +428,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                             MessageBox.Show("La Commande a ete Modifie2");
 
                             Panel.Controls.Clear();
-                            List_Main_Four L = new List_Main_Four(IDFOUR, Panel, 1, DateTime.Now.ToString(), DateTime.Now.Year);
+                            List_Main_Four L = new List_Main_Four(IDFOUR, Panel, 1);
                             MainClass.ShowControl(L, Panel);
                         }
                         catch (Exception ex)

@@ -26,3 +26,5 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Deb
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.CalendarFolder.UserControlDays.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListALL.List_Main_Four.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListALL.Form_List.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Add_Task.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Category.resources
