@@ -32,49 +32,49 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         {
             try
             {
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                {
+                    if (IDPRODUIT.Text != "" && DESIGNATION.Text != "" && PRIXACHAT.Text != "")
+                    {
+                        if (CheckIdProduit(IDPRODUIT.Text))
+                        {
+                            MessageBox.Show("ID produit Existe deja dans la base de donne");
+                            IDPRODUIT.Focus();
+                        }
+                        else
+                        {
+                            Conx.Open();
+                            string Query = "INSERT into PRODUIT(IDPRODUIT,IDFOUR,DESIGNATION,PRIXACHAT,PRIXVENTE,DPRIXVENTE) values(@IDPRODUIT,@IDFOUR,@DESIGNATION,@PRIXACHAT,@PRIXVENTE,@DPRIXVENTE)";
+                            SqlCommand Cmd = new SqlCommand(Query, Conx);
+                            try
+                            {
+                                Cmd.Parameters.AddWithValue("IDPRODUIT", IDPRODUIT.Text);
+                                Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
+                                Cmd.Parameters.AddWithValue("DESIGNATION", DESIGNATION.Text);
+                                Cmd.Parameters.AddWithValue("PRIXACHAT", PRIXACHAT.Text);
+                                Cmd.Parameters.AddWithValue("PRIXVENTE", PRIXVENTE.Text);
+                                Cmd.Parameters.AddWithValue("DPRIXVENTE", DPRIXVENTE.Text);
+                                Cmd.ExecuteNonQuery();
 
+                                this.Close();
+                                Clear();
+                                Conx.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+                        }
+                    }
+
+
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-            {
-                if (IDPRODUIT.Text != "" && DESIGNATION.Text != "" && PRIXACHAT.Text != "" )
-                {
-                    if (CheckIdProduit(IDPRODUIT.Text))
-                    {
-                        MessageBox.Show("ID produit Existe deja dans la base de donne");
-                        IDPRODUIT.Focus();
-                    }
-                    else
-                    {
-                        Conx.Open();
-                        string Query = "INSERT into PRODUIT(IDPRODUIT,IDFOUR,DESIGNATION,PRIXACHAT,PRIXVENTE,DPRIXVENTE) values(@IDPRODUIT,@IDFOUR,@DESIGNATION,@PRIXACHAT,@PRIXVENTE,@DPRIXVENTE)";
-                        SqlCommand Cmd = new SqlCommand(Query, Conx);
-                        try
-                        {
-                            Cmd.Parameters.AddWithValue("IDPRODUIT", IDPRODUIT.Text);
-                            Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                            Cmd.Parameters.AddWithValue("DESIGNATION", DESIGNATION.Text);
-                            Cmd.Parameters.AddWithValue("PRIXACHAT", PRIXACHAT.Text);
-                            Cmd.Parameters.AddWithValue("PRIXVENTE", PRIXVENTE.Text);
-                            Cmd.Parameters.AddWithValue("DPRIXVENTE", DPRIXVENTE.Text);
-                            Cmd.ExecuteNonQuery();
-                           
-                            this.Close();
-                            Clear();
-                            Conx.Close();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                }
-
-
-            }
+            
         }
       
         private bool CheckIdProduit(string ID )

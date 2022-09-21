@@ -131,7 +131,6 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             this.dateTimePicker2.Size = new System.Drawing.Size(169, 26);
             this.dateTimePicker2.TabIndex = 58;
             this.dateTimePicker2.Value = new System.DateTime(2022, 9, 18, 15, 28, 36, 0);
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // label10
             // 

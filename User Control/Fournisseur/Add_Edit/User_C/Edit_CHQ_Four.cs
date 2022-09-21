@@ -1,28 +1,69 @@
 ﻿using Store_Management_System.Class;
 using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
+namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 {
-    public partial class Add_CHQ_Four : UserControl
+    public partial class Edit_CHQ_Four : UserControl
     {
         private readonly int IDFOUR;
-        private readonly Panel Panel;
+        private readonly int IDCHQ;
+    
         private float TOTAL;
         private String QueryCMD;
         private String QueryCMDAll;
-        public Add_CHQ_Four(int FOUR, Panel panel)
+        public Edit_CHQ_Four(int FOUR, int IDCHQ)
         {
             InitializeComponent();
             IDFOUR = FOUR;
-            this.Panel = panel;
+     
+            this.IDCHQ = IDCHQ;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void Edit_CHQ_Four_Load(object sender, EventArgs e)
         {
+          
+            comboBox1.Text = "Tous";
+
+            comboBox2.SelectedIndex = 0;
+
+            Load_CHQ_Data();
+            AddDeleteButton();
+        }
+       
+    
+        private void Load_CHQ_Data()
+        {
+
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                Conx.ConnectionString = MainClass.ConnectionDataBase();
+                SqlCommand Cmd = new SqlCommand($"SELECT * FROM CHEQUEFOURNISSEUR WHERE IDCHQ_FOUR = '{IDCHQ}';", Conx);
+                SqlCommand CmdCMD = new SqlCommand($"SELECT ID_CMD_FOUR FROM REGLE_CHQ_FOUR WHERE IDCHQ_FOUR= '{IDCHQ}';", Conx);
+                
+                Conx.Open();
+                SqlDataReader Read = Cmd.ExecuteReader();
+                SqlDataReader ReadCMD = CmdCMD.ExecuteReader();
+
+                this.dataGridView1.Rows.Clear();
+                while (Read.Read())
+                {
+                    NCHQ.Text = Read["N_CHQ"].ToString();
+                    dateTimePicker.Value = DateTime.Parse(Read["DATEDONNER"].ToString());
+                    dateTimePicker1.Value = DateTime.Parse(Read["DATEPAYER"].ToString());
+                    Montant.Text = Read["MONTANT"].ToString();
+             
+                    while (ReadCMD.Read())
+                    {
+                        //Add Selected Cmd to datagridview 2 :
+                        Add_Selected_Cmd(int.Parse(ReadCMD[0].ToString()));
+                    }
+                }
+            }
+
 
         }
         private bool IDCMD_DGV2(int ID)
@@ -113,11 +154,28 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 return "false";
             }
         }
-        private void AddDeleteButton()
+
+        private void SelectCmdAfterSearch()
         {
-            MainClass.Button_DGV(dataGridView2, "Delete", "remove1");
-            dataGridView2.Columns["Delete"].Width = 50;
+            if (dataGridView2.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
+                {
+                    //Select  selected Products in datagridview 1 :
+
+                    foreach (DataGridViewRow Item in dataGridView1.Rows)
+                    {
+                        if (int.Parse(Item2.Cells["ID_CMD1"].Value.ToString()) == int.Parse(Item.Cells["ID_CMD"].Value.ToString()))
+                        {
+                            Item.Cells["Check"].Value = true;
+                        }
+                    }
+                }
+            }
+            return;
+
         }
+
         private void Add_Selected_Cmd(int IDCMD)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
@@ -189,43 +247,9 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
 
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            dataGridView1.Rows.Clear();
-            if (comboBox1.Text == "Tous")
-            {
-                QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-
-                Data_Cmd(QueryCMDAll);
-            }
-            else
-            {
-                QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                Data_Cmd(QueryCMD);
-            }
-            CheckBox();
-            SelectCmdAfterSearch();
-            
-        }
-
-
-        public void Clear()
-        {
-            IDCHQ.Text = "";
-            Montant.Text = "";
-            comboBox1.Text = "";
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CheckBox();
-        }
-
         private void REGLE_CHQ_FOUR(int IDCHQ_FOUR)
         {
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
@@ -257,12 +281,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
             }
         }
-        private void Add_Click(object sender, EventArgs e)
+        private void Add_Click_1(object sender, EventArgs e)
         {
             string temp = CheckeSelectedProduct();
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                if (temp == "true" && IDCHQ.Text != "" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text) && DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) < 0)
+                if (temp == "true" && NCHQ.Text != "" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text) && DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) < 0)
                 {
                     Conx.Open();
                     SqlCommand Cmd = new SqlCommand($"INSERT INTO CHEQUEFOURNISSEUR(DATEDONNER,DATEPAYER,MONTANT,N_CHQ,IDFOUR) values(@DATEDONNER,@DATEPAYER,@MONTANT,@N_CHQ,@IDFOUR);", Conx);
@@ -272,7 +296,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                         Cmd.Parameters.AddWithValue("@IDFOUR", IDFOUR);
                         Cmd.Parameters.AddWithValue("DATEPAYER", dateTimePicker1.Value);
                         Cmd.Parameters.AddWithValue("MONTANT", float.Parse(Montant.Text));
-                        Cmd.Parameters.AddWithValue("N_CHQ", IDCHQ.Text);
+                        Cmd.Parameters.AddWithValue("N_CHQ", NCHQ.Text);
                         Cmd.ExecuteNonQuery();
                         MessageBox.Show("test1");
                         SqlCommand CmdId = new SqlCommand("SELECT max(IDCHQ_FOUR) FROM CHEQUEFOURNISSEUR;", Conx);
@@ -284,7 +308,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 MessageBox.Show(Read[0].ToString());
                                 REGLE_CHQ_FOUR(int.Parse(Read[0].ToString()));
                             }
-                            MessageBox.Show($"CHQ N°'{IDCHQ.Text}' a été ajouté");
+                            MessageBox.Show($"CHQ N°'{NCHQ.Text}' a été ajouté");
                             Conx.Close();
                             Clear();
                         }
@@ -296,7 +320,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
                 else
                 {
-                    if (IDCHQ.Text == "")
+                    if (NCHQ.Text == "")
                     {
                         labelDescription.Visible = true;
                         label2.BackColor = Color.Red;
@@ -336,122 +360,33 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
             }
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.dataGridView2.Rows.Clear();
-            TOTAL = 0;
-            TOTALCMD.Text = "  0 DH";
-        }
-
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            CheckBox();
-        }
         public void SetMyCustomFormat(string Format)
         {
             // Set the Format type and the CustomFormat string. 
             //dateTimePicker2.CustomFormat = "MMMM yyyy";
             //dateTimePicker2.ShowUpDown = true;
 
-                dateTimePicker2.Format = DateTimePickerFormat.Custom;
-                dateTimePicker2.CustomFormat = "MMMM yyyy";
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "MMMM yyyy";
 
         }
-        private void Add_CHQ_Four_Load(object sender, EventArgs e)
+        private void AddDeleteButton()
         {
-            //QueryAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}'";
-            TOTAL = 0;
-            TOTALCMD.Text = " 0 DH";
-            comboBox1.Text = "Tous";
-
-            comboBox2.SelectedIndex = 0;
-
-
-            dateTimePicker.Value = DateTime.Now;
-            dateTimePicker1.Value = DateTime.Now;
-            dateTimePicker2.Value = DateTime.Now;
-            SetMyCustomFormat("MMMM yyyy");
-
-            QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-            Data_Cmd($"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;");
-            AddDeleteButton();
-
+            MainClass.Button_DGV(dataGridView2, "Delete", "remove1");
+            dataGridView2.Columns["Delete"].Width = 50;
         }
-
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        public void Clear()
         {
-            SelectCmdAfterSearch();
-            CheckBox();
-
+            NCHQ.Text = "";
+            Montant.Text = "";
+            comboBox1.Text = "";
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex >= 0)
-            {
-                int IDCMD;
-                DialogResult Dialog;
-                String ColName;
-                DataGridViewRow Row;
-
-                Row = dataGridView2.Rows[e.RowIndex];
-                Row.Selected = true;
-                IDCMD = Convert.ToInt32(Row.Cells[0].Value.ToString());
-                ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
-                if (ColName == "Delete")
-                {
-                    Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (Dialog == DialogResult.No)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        TOTAL = TOTAL - float.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["MONTANTTOTAL1"].Value.ToString());
-                        TOTALCMD.Text = TOTAL.ToString() + " DH";
-                        foreach (DataGridViewRow row in this.dataGridView1.Rows)
-                        {
-                            if (int.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["ID_CMD1"].Value.ToString()) == int.Parse(row.Cells["ID_CMD"].Value.ToString()))
-                            {
-                                row.Cells["Check"].Value = false;
-                                break;
-                            }
-                        }
-                        this.dataGridView2.Rows.RemoveAt(this.dataGridView2.CurrentRow.Index);
-
-                    }
-
-                }
-            }
-        }
-
-        private void SelectCmdAfterSearch()
-        {
-            if (dataGridView2.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
-                {
-                    //Select  selected Products in datagridview 1 :
-
-                    foreach (DataGridViewRow Item in dataGridView1.Rows)
-                    {
-                        if (int.Parse(Item2.Cells["ID_CMD1"].Value.ToString()) == int.Parse(Item.Cells["ID_CMD"].Value.ToString()))
-                        {
-                            Item.Cells["Check"].Value = true;
-                        }
-                    }
-                }
-            }
-            return;
-
-        }
         private void Search_Cmd(string Search)
         {
             String Query = "SELECT * From COMMANDEFOUR";
 
-            if (comboBox2.SelectedIndex == 0 )
+            if (comboBox2.SelectedIndex == 0)
             {
                 Query += $" WHERE IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
 
@@ -486,21 +421,93 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
             Data_Cmd(Query);
         }
-        private void button2_Click(object sender, EventArgs e)
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            CheckBox();
-            Search_Cmd(Search.Text);
-            SelectCmdAfterSearch();
-            
-        }
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    int IDCMD;
+                    DialogResult Dialog;
+                    String ColName;
+                    DataGridViewRow Row;
 
+                    Row = dataGridView2.Rows[e.RowIndex];
+                    Row.Selected = true;
+                    IDCMD = Convert.ToInt32(Row.Cells[0].Value.ToString());
+                    ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
+                    if (ColName == "Delete")
+                    {
+                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (Dialog == DialogResult.No)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            TOTAL = TOTAL - float.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["MONTANTTOTAL1"].Value.ToString());
+                            TOTALCMD.Text = TOTAL.ToString() + " DH";
+                            foreach (DataGridViewRow row in this.dataGridView1.Rows)
+                            {
+                                if (int.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["ID_CMD1"].Value.ToString()) == int.Parse(row.Cells["ID_CMD"].Value.ToString()))
+                                {
+                                    row.Cells["Check"].Value = false;
+                                    break;
+                                }
+                            }
+                            this.dataGridView2.Rows.RemoveAt(this.dataGridView2.CurrentRow.Index);
+
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             CheckBox();
             SelectCmdAfterSearch();
-            
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            if (comboBox1.Text == "Tous")
+            {
+                QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+
+                Data_Cmd(QueryCMDAll);
+            }
+            else
+            {
+                QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+                Data_Cmd(QueryCMD);
+            }
+            CheckBox();
+            SelectCmdAfterSearch();
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            CheckBox();
+            Search_Cmd(Search.Text);
+            SelectCmdAfterSearch();
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.dataGridView2.Rows.Clear();
+            TOTAL = 0;
+            TOTALCMD.Text = "  0 DH";
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CheckBox();
+
         }
 
+        
     }
 }
-

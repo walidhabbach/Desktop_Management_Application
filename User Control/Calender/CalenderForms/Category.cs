@@ -194,7 +194,10 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                         }
                         Delete(Convert.ToInt32(Row.Cells[0].Value));
 
-
+                    }else if(ColName == "Delete" && Button2.Visible == true )
+                    {
+                        this.dataGridView1.Rows.RemoveAt(e.RowIndex);
+                        Button2.Visible = false;
                     }
                 }
             }

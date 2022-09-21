@@ -1,5 +1,7 @@
 ﻿using Store_Management_System.Class;
+using Store_Management_System.User_Control.Fournisseur.A_M_D;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -191,7 +193,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
         private void List_Produit(String Query)
         {
@@ -323,34 +325,36 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             Edit_CMD_Four ECmd = new Edit_CMD_Four(IDCMD, IDFOUR, Content);
             MainClass.ShowControl(ECmd, Content);
         }
-        private void Delete(int IDCMD)
+        
+        private void Delete(String Query)
         {
-            //int position = this.DataGridView.CurrentRow.Index;
-            //int IDFour = int.Parse(this.DataGridView.Rows[position].Cells[0].Value);
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-
-                SqlCommand Cmd = new SqlCommand
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    Connection = Conx,
-                    CommandText = "DELETE FROM COMMANDEFOUR WHERE ID_CMD_FOUR = @IDCMD;"
-                };
 
-                try
-                {
-                    Cmd.Parameters.AddWithValue("@IDCMD", IDCMD);
-                    Conx.Open();
-                    Cmd.ExecuteNonQuery();
-                    Conx.Close();
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    try
+                    {
+                        Conx.Open();
+                        Cmd.ExecuteNonQuery();
+                        Conx.Close();
 
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message);
+                    }
+                    catch (Exception Ex)
+                    {
+                        MessageBox.Show(Ex.Message);
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
+
+
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -376,30 +380,55 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         {
                             return;
                         }
-                        Delete(Convert.ToInt32(Row.Cells["Id"].Value));
+                        else
+                        {
+                            Delete($"DELETE FROM COMMANDEFOUR WHERE ID_CMD_FOUR = '{Convert.ToInt32(Row.Cells["Id"].Value)}';");
+                        }
+                        
                     }
                     else if (ColName == "Produit")
                     {
-
                         Form_List Form = new Form_List(IDFOUR, 1, $"SELECT ID_PRODUIT FROM COMMANDER WHERE ID_CMD_FOUR = '{int.Parse(Row.Cells[1].Value.ToString())}';");
                         Form.Show();
                     }
+                }
+                else if (load == 2)
+                {
+                    if (ColName == "Edit")
+                    {
+
+                        //UPDATE FORM
+                    }
+                    else if (ColName == "Delete")
+                    {
+                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (Dialog == DialogResult.No)
+                        {
+                            return;
+                        }
+                        Delete($"DELETE FROM PRODUIT WHERE ID_PRODUIT = '{Convert.ToInt32(Row.Cells["ID_PRODUIT"].Value)}';");
+                        Search_Produit(Search.Text);
+                    }
+
                 }
                 else if (load == 3)
                 {
                     if (ColName == "Edit")
                     {
                         Edit(Convert.ToInt32(Row.Cells[1].Value));
+                        Content.Controls.Clear();
+                        Edit_CHQ_Four ECHQ = new Edit_CHQ_Four(Convert.ToInt32(Row.Cells[1].Value), IDFOUR);
+                        MainClass.ShowControl(ECHQ, Content);
                     }
                     else if (ColName == "Delete")
                     {
-
                         Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (Dialog == DialogResult.No)
                         {
                             return;
                         }
-                        Delete(Convert.ToInt32(Row.Cells["Id"].Value));
+                        Delete($"DELETE FROM CHEQUEFOURNISSEUR WHERE IDCHQ_FOUR = '{Convert.ToInt32(Row.Cells["Id"].Value)}';");
+                        Search_CHQ(Search.Text);
                     }
                     else if (ColName == "cmd")
                     {
@@ -421,7 +450,8 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         {
                             return;
                         }
-                        Delete(Convert.ToInt32(Row.Cells["Id"].Value));
+                        Delete($"SELECT ID_CMD_FOUR FROM REGLE_CHQ_FOUR WHERE IDCHQ_FOUR = '{Convert.ToInt32(Row.Cells["Id"].Value)}';");
+                        Search_ESP(Search.Text);
                     }
                     else if (ColName == "cmd")
                     {
@@ -510,23 +540,23 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 {
                     if (comboBox1.Text == "id Produit")
                     {
-                        Query += $" and IDPRODUIT = '{search}' ;";
+                        Query += $" and IDPRODUIT LIKE '%" + search + "%' ;";
                     }
                     else if (comboBox1.Text == "Designation")
                     {
-                        Query += $" and DESIGNATION LIKE '%" + search + $"%' ;";
+                        Query += $" and DESIGNATION LIKE '%" + search + "%' ;";
                     }
                     else if (comboBox1.Text == "PrixAchat")
                     {
-                        Query += $" and PRIXACHAT = '{search}' ;";
+                        Query += $" and PRIXACHAT = '{float.Parse(search)}' ;";
                     }
                     else if (comboBox1.Text == "PrixVente")
                     {
-                        Query += $" and PRIXVENTE = '{search}' ;";
+                        Query += $" and PRIXVENTE = '{float.Parse(search)}' ;";
                     }
                     else if (comboBox1.Text == "DPrixVente")
                     {
-                        Query += $" and DPRIXVENTE = '{search}' ;";
+                        Query += $" and DPRIXVENTE = '{float.Parse(search)}' ;";
                     }
                 }
                 else
@@ -563,7 +593,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     else if (comboBox1.Text == "Statut")
                     {
                         if (search.Substring(0, 1).ToLower() == "n")
-                        { 
+                        {
                             Query += $" and STATUT = 0 ; ";
                         }
                         else if (search.Substring(0, 1).ToLower() == "p")
@@ -687,7 +717,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         Query += $" and MONTANT = '{search}' ;";
                     }
                 }
-                else if (search == String.Empty && comboBox1.Text != "Date de Paiement" )
+                else if (search == String.Empty && comboBox1.Text != "Date de Paiement")
                 {
                     MessageBox.Show("Remplir la barre de recherche !!!");
                     Search.Focus();
@@ -780,10 +810,8 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             Search.Text = "";
         }
 
-        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
+
     }
 
 }

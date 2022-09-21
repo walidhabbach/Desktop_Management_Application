@@ -28,25 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbdays = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lbdays
+            // button1
             // 
-            this.lbdays.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbdays.Location = new System.Drawing.Point(0, 0);
-            this.lbdays.Name = "lbdays";
-            this.lbdays.Size = new System.Drawing.Size(53, 39);
-            this.lbdays.TabIndex = 0;
-            this.lbdays.Text = "1";
-            this.lbdays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGray;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 39);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // UserControlDays
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.lbdays);
+            this.Controls.Add(this.button1);
             this.Name = "UserControlDays";
             this.Size = new System.Drawing.Size(53, 39);
             this.Load += new System.EventHandler(this.UserControlDays_Load);
@@ -56,6 +61,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbdays;
+        private System.Windows.Forms.Button button1;
     }
 }

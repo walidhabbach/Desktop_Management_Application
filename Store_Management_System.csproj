@@ -102,17 +102,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Task.cs">
+    <Compile Include="User Control\Calender\CalenderForms\Add_Task.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Task.Designer.cs">
+    <Compile Include="User Control\Calender\CalenderForms\Add_Task.Designer.cs">
       <DependentUpon>Add_Task.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Category.cs">
+    <Compile Include="User Control\Calender\CalenderForms\Category.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Category.Designer.cs">
+    <Compile Include="User Control\Calender\CalenderForms\Category.Designer.cs">
       <DependentUpon>Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Calender\CalenderForms\Edit_Task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Calender\CalenderForms\Edit_Task.Designer.cs">
+      <DependentUpon>Edit_Task.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Add_CHQ_Four.cs">
       <SubType>UserControl</SubType>
@@ -138,23 +144,35 @@
     <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Four.Designer.cs">
       <DependentUpon>Add_Four.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\Calendar.cs">
+    <Compile Include="User Control\Calender\CalendarFolder\Calendar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\Calendar.Designer.cs">
+    <Compile Include="User Control\Calender\CalendarFolder\Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\UserControlBlank.cs">
+    <Compile Include="User Control\Calender\CalendarFolder\DGVTask.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\UserControlBlank.Designer.cs">
+    <Compile Include="User Control\Calender\CalendarFolder\DGVTask.Designer.cs">
+      <DependentUpon>DGVTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Calender\CalendarFolder\UserControlBlank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Calender\CalendarFolder\UserControlBlank.Designer.cs">
       <DependentUpon>UserControlBlank.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\UserControlDays.cs">
+    <Compile Include="User Control\Calender\CalendarFolder\UserControlDays.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\UserControlDays.Designer.cs">
+    <Compile Include="User Control\Calender\CalendarFolder\UserControlDays.Designer.cs">
       <DependentUpon>UserControlDays.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Edit_CHQ_Four.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Edit_CHQ_Four.Designer.cs">
+      <DependentUpon>Edit_CHQ_Four.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Edit_CMD_Four.cs">
       <SubType>UserControl</SubType>
@@ -173,6 +191,12 @@
     </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Add_Produit.Designer.cs">
       <DependentUpon>Add_Produit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Edit_ESP_Four.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Edit_ESP_Four.Designer.cs">
+      <DependentUpon>Edit_ESP_Four.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\ListALL\Form_List.cs">
       <SubType>Form</SubType>
@@ -229,11 +253,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Add_Task.resx">
+    <EmbeddedResource Include="User Control\Calender\CalenderForms\Add_Task.resx">
       <DependentUpon>Add_Task.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Category.resx">
+    <EmbeddedResource Include="User Control\Calender\CalenderForms\Category.resx">
       <DependentUpon>Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Calender\CalenderForms\Edit_Task.resx">
+      <DependentUpon>Edit_Task.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\Add_CHQ_Four.resx">
       <DependentUpon>Add_CHQ_Four.cs</DependentUpon>
@@ -247,14 +274,20 @@
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Add_Four.resx">
       <DependentUpon>Add_Four.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\Calendar.resx">
+    <EmbeddedResource Include="User Control\Calender\CalendarFolder\Calendar.resx">
       <DependentUpon>Calendar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\UserControlBlank.resx">
+    <EmbeddedResource Include="User Control\Calender\CalendarFolder\DGVTask.resx">
+      <DependentUpon>DGVTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Calender\CalendarFolder\UserControlBlank.resx">
       <DependentUpon>UserControlBlank.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\CalendarFolder\UserControlDays.resx">
+    <EmbeddedResource Include="User Control\Calender\CalendarFolder\UserControlDays.resx">
       <DependentUpon>UserControlDays.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\Edit_CHQ_Four.resx">
+      <DependentUpon>Edit_CHQ_Four.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\Edit_CMD_Four.resx">
       <DependentUpon>Edit_CMD_Four.cs</DependentUpon>

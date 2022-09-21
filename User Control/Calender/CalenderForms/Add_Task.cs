@@ -1,15 +1,20 @@
 ﻿using Store_Management_System.Class;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.CalendarFolder;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Calendar = Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calendar;
 
 namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
 {
     public partial class Add_Task : Form
     {
-        public Add_Task()
+        Panel PanelDGV;
+        public Add_Task(DateTime date , Panel panel )
         {
             InitializeComponent();
+            dateTimePicker1.Value = date;
+            PanelDGV = panel;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -18,25 +23,56 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
         }
         private void Add_Click(object sender, EventArgs e)
         {
-            try
+            if (comboBox1.Text != "" && comboBox2.Text != "" && comboBox1.Text != "" && richTextBox1.Text != String.Empty)
             {
-                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                try
                 {
-                    if (comboBox1.Text != "" && comboBox2.Text != "" && comboBox1.Text != "" && richTextBox1.Text != String.Empty)
+                    using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                     {
+
                         string Query = $"INSERT INTO Task(Details,Statut,Category,TaskDate,PriorityLevel) values('{richTextBox1.Text}','{0}','{comboBox1.Text}',@Date,'{comboBox2.Text}')";
                         SqlCommand Cmd = new SqlCommand(Query, Conx);
                         Cmd.Parameters.AddWithValue("Date", (DateTime)dateTimePicker1.Value);
                         Conx.Open();
                         Cmd.ExecuteNonQuery();
                         this.Close();
-                        
+
+                    }
+
+                    PanelDGV.Controls.Clear();
+
+                    if (Calendar.Category == "Tous")
+                    {
+                        DGVTask UC = new DGVTask($"SELECT * FROM Task  WHERE day(TaskDate)= '{Calendar.Day}'and month(TaskDate) = '{Calendar.Month}' and year(TaskDate) = '{Calendar.Year}';", PanelDGV);
+                        MainClass.ShowControl(UC, PanelDGV);
+
+                    }
+                    else
+                    {
+                        DGVTask UC = new DGVTask($"SELECT * FROM Task  WHERE Category = '{Calendar.Category}'and  day(TaskDate)= '{Calendar.Day}'and month(TaskDate) = '{Calendar.Month}' and year(TaskDate) = '{Calendar.Year}';", PanelDGV);
+                        MainClass.ShowControl(UC, PanelDGV);
+
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else if (comboBox1.Text == "")
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Selecter la categorie !!! ");
+                comboBox1.Focus();
+            }
+            else if (comboBox2.Text == "")
+            {
+                MessageBox.Show("Selecter  Niveau de Priority !!! ");
+                comboBox2.Focus();
+            }
+            else if (richTextBox1.Text == String.Empty)
+            {
+                MessageBox.Show("Verifier Details !!! ");
+                richTextBox1.Focus();
             }
         }
 
@@ -76,24 +112,14 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
         }
 
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void Add_Task_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(dateTimePicker1.Value.ToString());
             FillCombobox();
         }
 
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 }
