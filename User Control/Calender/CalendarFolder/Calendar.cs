@@ -101,7 +101,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                     UserControlDays UCdays = new UserControlDays(i, daycontainer, PanelDGV, false);
                     daycontainer.Controls.Add(UCdays);
                 }
-
             }
 
         }
@@ -295,6 +294,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         }
 
         private void PanelDGV_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void daycontainer_Paint(object sender, PaintEventArgs e)
         {
 
         }

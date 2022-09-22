@@ -56,9 +56,6 @@
             this.labelQuantite = new System.Windows.Forms.Label();
             this.labelDescription = new System.Windows.Forms.Label();
             this.labelStatut = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.Cheque = new System.Windows.Forms.CheckBox();
-            this.Espece = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -69,7 +66,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.MONTANTTOTAL = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.Add = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -82,7 +78,6 @@
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -279,13 +274,11 @@
             this.panel3.Controls.Add(this.labelQuantite);
             this.panel3.Controls.Add(this.labelDescription);
             this.panel3.Controls.Add(this.labelStatut);
-            this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.label9);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.MONTANTTOTAL);
-            this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.Add);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.dateTimePicker);
@@ -333,7 +326,7 @@
             this.labelQuantite.BackColor = System.Drawing.Color.Transparent;
             this.labelQuantite.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelQuantite.ForeColor = System.Drawing.Color.Black;
-            this.labelQuantite.Location = new System.Drawing.Point(235, 355);
+            this.labelQuantite.Location = new System.Drawing.Point(252, 273);
             this.labelQuantite.Name = "labelQuantite";
             this.labelQuantite.Size = new System.Drawing.Size(17, 24);
             this.labelQuantite.TabIndex = 50;
@@ -369,42 +362,6 @@
             this.labelStatut.UseWaitCursor = true;
             this.labelStatut.Visible = false;
             // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.panel5.Controls.Add(this.Cheque);
-            this.panel5.Controls.Add(this.Espece);
-            this.panel5.Location = new System.Drawing.Point(262, 250);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(100, 60);
-            this.panel5.TabIndex = 46;
-            // 
-            // Cheque
-            // 
-            this.Cheque.AutoSize = true;
-            this.Cheque.BackColor = System.Drawing.Color.Transparent;
-            this.Cheque.FlatAppearance.BorderSize = 0;
-            this.Cheque.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cheque.Location = new System.Drawing.Point(11, 3);
-            this.Cheque.Name = "Cheque";
-            this.Cheque.Size = new System.Drawing.Size(78, 22);
-            this.Cheque.TabIndex = 0;
-            this.Cheque.Text = "Cheque";
-            this.Cheque.UseVisualStyleBackColor = false;
-            // 
-            // Espece
-            // 
-            this.Espece.AutoSize = true;
-            this.Espece.BackColor = System.Drawing.Color.Transparent;
-            this.Espece.FlatAppearance.BorderSize = 0;
-            this.Espece.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Espece.Location = new System.Drawing.Point(10, 31);
-            this.Espece.Name = "Espece";
-            this.Espece.Size = new System.Drawing.Size(77, 22);
-            this.Espece.TabIndex = 1;
-            this.Espece.Text = "Espece";
-            this.Espece.UseVisualStyleBackColor = false;
-            // 
             // button3
             // 
             this.button3.AutoSize = true;
@@ -416,7 +373,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(138, 620);
+            this.button3.Location = new System.Drawing.Point(114, 620);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(172, 38);
             this.button3.TabIndex = 4;
@@ -427,9 +384,9 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.dataGridView2);
-            this.panel4.Location = new System.Drawing.Point(65, 384);
+            this.panel4.Location = new System.Drawing.Point(65, 300);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(525, 214);
+            this.panel4.Size = new System.Drawing.Size(525, 304);
             this.panel4.TabIndex = 44;
             // 
             // dataGridView2
@@ -463,9 +420,8 @@
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(525, 214);
+            this.dataGridView2.Size = new System.Drawing.Size(525, 304);
             this.dataGridView2.TabIndex = 0;
-            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // ID_PRODUIT1
             // 
@@ -493,7 +449,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(63, 355);
+            this.label9.Location = new System.Drawing.Point(64, 273);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(189, 24);
             this.label9.TabIndex = 43;
@@ -518,16 +474,6 @@
             this.MONTANTTOTAL.Name = "MONTANTTOTAL";
             this.MONTANTTOTAL.Size = new System.Drawing.Size(179, 24);
             this.MONTANTTOTAL.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(67, 263);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(189, 24);
-            this.label3.TabIndex = 20;
-            this.label3.Text = "Moyen de Paiement :";
             // 
             // Add
             // 
@@ -631,8 +577,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
@@ -648,9 +592,6 @@
         private System.Windows.Forms.Label labelQuantite;
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Label labelStatut;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.CheckBox Cheque;
-        private System.Windows.Forms.CheckBox Espece;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridView2;
@@ -661,7 +602,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox MONTANTTOTAL;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DateTimePicker dateTimePicker;

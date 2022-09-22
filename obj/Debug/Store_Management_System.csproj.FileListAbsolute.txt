@@ -31,3 +31,11 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Deb
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.CalendarFolder.DGVTask.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Edit_Task.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Edit_CHQ_Four.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Edit_ESP_Four.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Edit_Produit.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Print.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\bin\Debug\Microsoft.ReportViewer.WebForms.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Store_Management_System\obj\Debug\Store_Management_System.csproj.CopyComplete

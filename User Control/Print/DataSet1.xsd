@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="DataBaseMagasinConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DataBaseMagasinConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Store_Management_System.Properties.Settings.GlobalReference.Default.DataBaseMagasinConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ChequeTableAdapter" GeneratorDataComponentClassName="ChequeTableAdapter" Name="Cheque" UserDataComponentName="ChequeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DataBaseMagasinConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT  CHEQUEFOURNISSEUR.DATEPAYER,
+		CHEQUEFOURNISSEUR.N_CHQ,
+		FOURNISSEUR.ENTREPRISE, 
+		CHEQUEFOURNISSEUR.DATEDONNER,
+		CHEQUEFOURNISSEUR.MONTANT
+		FROM CHEQUEFOURNISSEUR
+INNER JOIN FOURNISSEUR ON CHEQUEFOURNISSEUR.IDFOUR = FOURNISSEUR.IDFOUR ;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DATEPAYER" DataSetColumn="DATEPAYER" />
+              <Mapping SourceColumn="N_CHQ" DataSetColumn="N_CHQ" />
+              <Mapping SourceColumn="ENTREPRISE" DataSetColumn="ENTREPRISE" />
+              <Mapping SourceColumn="DATEDONNER" DataSetColumn="DATEDONNER" />
+              <Mapping SourceColumn="MONTANT" DataSetColumn="MONTANT" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSet1" msprop:Generator_DataSetName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Cheque" msprop:Generator_RowEvHandlerName="ChequeRowChangeEventHandler" msprop:Generator_RowDeletedName="ChequeRowDeleted" msprop:Generator_RowDeletingName="ChequeRowDeleting" msprop:Generator_RowEvArgName="ChequeRowChangeEvent" msprop:Generator_TablePropName="Cheque" msprop:Generator_RowChangedName="ChequeRowChanged" msprop:Generator_RowChangingName="ChequeRowChanging" msprop:Generator_TableClassName="ChequeDataTable" msprop:Generator_RowClassName="ChequeRow" msprop:Generator_TableVarName="tableCheque" msprop:Generator_UserTableName="Cheque">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DATEPAYER" msprop:Generator_ColumnPropNameInRow="DATEPAYER" msprop:Generator_ColumnPropNameInTable="DATEPAYERColumn" msprop:Generator_ColumnVarNameInTable="columnDATEPAYER" msprop:Generator_UserColumnName="DATEPAYER" type="xs:dateTime" />
+              <xs:element name="N_CHQ" msprop:Generator_ColumnPropNameInRow="N_CHQ" msprop:Generator_ColumnPropNameInTable="N_CHQColumn" msprop:Generator_ColumnVarNameInTable="columnN_CHQ" msprop:Generator_UserColumnName="N_CHQ" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ENTREPRISE" msprop:Generator_ColumnPropNameInRow="ENTREPRISE" msprop:Generator_ColumnPropNameInTable="ENTREPRISEColumn" msprop:Generator_ColumnVarNameInTable="columnENTREPRISE" msprop:Generator_UserColumnName="ENTREPRISE">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DATEDONNER" msprop:Generator_ColumnPropNameInRow="DATEDONNER" msprop:Generator_ColumnPropNameInTable="DATEDONNERColumn" msprop:Generator_ColumnVarNameInTable="columnDATEDONNER" msprop:Generator_UserColumnName="DATEDONNER" type="xs:dateTime" />
+              <xs:element name="MONTANT" msprop:Generator_ColumnPropNameInRow="MONTANT" msprop:Generator_ColumnPropNameInTable="MONTANTColumn" msprop:Generator_ColumnVarNameInTable="columnMONTANT" msprop:Generator_UserColumnName="MONTANT" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

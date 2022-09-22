@@ -176,6 +176,7 @@
             this.PRIXACHAT.Name = "PRIXACHAT";
             this.PRIXACHAT.Size = new System.Drawing.Size(181, 25);
             this.PRIXACHAT.TabIndex = 2;
+
             // 
             // panel1
             // 
@@ -209,7 +210,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(123, 25);
+            this.textBox1.Size = new System.Drawing.Size(151, 25);
             this.textBox1.TabIndex = 33;
             // 
             // FOURNISSEURLABEL

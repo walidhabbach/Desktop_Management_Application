@@ -1,5 +1,7 @@
 ﻿using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.A_M_D;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C;
+using Store_Management_System.User_Control.Fournisseur.ListALL;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -10,11 +12,13 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
     {
         private readonly int IDFOUR;
         private readonly string ENTREPRISE;
-        public Add_Produit(int ID , string Four)
+        private Panel panel;
+        public Add_Produit(int ID ,Panel panel)
         {
             InitializeComponent();
             IDFOUR = ID;
-            ENTREPRISE = Four;
+            ENTREPRISE = MainFournisseur.ENTREPRISE;
+            this.panel = panel; 
         }
         private void PictureBox1_Click(object sender, EventArgs e)
         {
@@ -55,6 +59,9 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 Cmd.Parameters.AddWithValue("PRIXVENTE", PRIXVENTE.Text);
                                 Cmd.Parameters.AddWithValue("DPRIXVENTE", DPRIXVENTE.Text);
                                 Cmd.ExecuteNonQuery();
+
+                                List_Main_Four ListProduit = new List_Main_Four(IDFOUR, panel,2);
+                                MainClass.ShowControl(ListProduit, panel);
 
                                 this.Close();
                                 Clear();
@@ -101,5 +108,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             textBox1.Text =  ENTREPRISE;
         }
 
+   
     }
 }

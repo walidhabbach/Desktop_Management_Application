@@ -11,7 +11,7 @@ namespace Store_Management_System.User_Control.Fournisseur
     {
         private readonly int IDFOUR;
         public string Period = DateTime.Now.ToString();
-        private readonly string ENTREPRISE;
+        public static string ENTREPRISE;
         public int load = 1;
 
         /* 
@@ -26,22 +26,14 @@ namespace Store_Management_System.User_Control.Fournisseur
             InitializeComponent();
             IDFOUR = ID;
             ENTREPRISE = NFour;
-        }
-        public void SetMyCustomFormat()
-        {
-            // Set the Format type and the CustomFormat string. 
-            //dateTimePicker2.CustomFormat = "MMMM yyyy";
-            //dateTimePicker2.ShowUpDown = true;
 
-            dateTimePicker2.Format = DateTimePickerFormat.Custom;
-            dateTimePicker2.CustomFormat = "MMMM yyyy";
         }
+       
         private void Fournisseur_Load(object sender, EventArgs e)
         {
             label1.Text = ENTREPRISE;
-            dateTimePicker2.Value = DateTime.Now;
-            SetMyCustomFormat();
             Period = DateTime.Now.ToString();
+            loadList(sender, e);
         }
 
 
@@ -60,7 +52,7 @@ namespace Store_Management_System.User_Control.Fournisseur
         }
         private void button6_Click(object sender, EventArgs e)
         {
-            Add_Produit Form = new Add_Produit(IDFOUR, ENTREPRISE);
+            Add_Produit Form = new Add_Produit(IDFOUR, panel2);
             Form.Show();
             PanelProduit.Visible = false;
         }
@@ -75,12 +67,12 @@ namespace Store_Management_System.User_Control.Fournisseur
         {
             PanelCHQ.Visible = false;
             panel2.Controls.Clear();
-            Add_CHQ_Four MFour = new Add_CHQ_Four(IDFOUR, panel2);
+            Add_CHQ_Four MFour = new Add_CHQ_Four(IDFOUR, MainFournisseur.ENTREPRISE, panel2);
             MainClass.ShowControl(MFour, panel2);
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            Add_CMD_Four Form = new Add_CMD_Four(IDFOUR, ENTREPRISE);
+            Add_CMD_Four Form = new Add_CMD_Four(IDFOUR, ENTREPRISE, panel2);
             Form.Show();
             PanelCMD.Visible = false;
         }
@@ -150,14 +142,17 @@ namespace Store_Management_System.User_Control.Fournisseur
         }
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            SetMyCustomFormat();
-            Period = dateTimePicker2.Value.ToString();
-            loadList(sender, e);
+      
+       
         }
         private void button13_Click(object sender, EventArgs e)
         {
             loadList(sender, e);
         }
 
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

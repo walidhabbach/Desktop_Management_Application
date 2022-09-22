@@ -137,6 +137,7 @@ namespace Store_Management_System.User_Control
 
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+
             Display_Click(sender, e);
         }
 

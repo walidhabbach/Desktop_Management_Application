@@ -92,8 +92,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         }
                     }
                 }
-
-
             }
         }
 

@@ -1,6 +1,5 @@
 ﻿using Store_Management_System.Class;
 using System;
-using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
@@ -137,7 +136,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
 
                         dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-                            dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
+                        dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
 
                     }
                     catch (SqlException EX)
@@ -152,6 +151,65 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 }
 
             }
+        }
+        private void SelectCmdAfterSearch()
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
+                {
+                    //Select  selected Products in datagridview 1 :
+
+                    foreach (DataGridViewRow Item in dataGridView1.Rows)
+                    {
+                        if (int.Parse(Item2.Cells["ID_CMD1"].Value.ToString()) == int.Parse(Item.Cells["ID_CMD"].Value.ToString()))
+                        {
+                            Item.Cells["Check"].Value = true;
+                        }
+                    }
+                }
+            }
+            return;
+
+        }
+        private void Search_Cmd(string Search)
+        {
+            String Query = "SELECT * From COMMANDEFOUR";
+
+            if (comboBox2.SelectedIndex == 0)
+            {
+                Query += $" WHERE IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+
+            }
+            else if (comboBox2.SelectedIndex == 1)
+            {
+                Query += $" WHERE IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
+            }
+            else if (comboBox2.SelectedIndex == 2)
+            {
+                Query += $" WHERE ID_CMD_FOUR = '{int.Parse(Search)}';";
+            }
+            else if (comboBox2.SelectedIndex == 3)
+            {
+                Query += $" WHERE DESCRIPTION LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}'";
+            }
+            else if (comboBox2.SelectedIndex == 4)
+            {
+                if (Search.Substring(0, 1).ToLower() == "n")
+                {
+                    Query += $" WHERE STATUT = 0 and IDFOUR = '{IDFOUR}'";
+                }
+                else if (Search.Substring(0, 1).ToLower() == "p")
+                {
+                    Query += $" WHERE STATUT = 1 and IDFOUR = '{IDFOUR}'";
+                }
+            }
+            else if (comboBox2.SelectedIndex == 5)
+            {
+                Query += $" WHERE MONTANTTOTAL = '{float.Parse(Search)}' and IDFOUR = '{IDFOUR}'";
+            }
+
+            Load_Data_Cmd(Query);
         }
 
         private void Data_Cmd(String Query)
@@ -198,72 +256,51 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
 
         }
-
-        private void Search_Cmd(string Search)
+        private void Load_Data_Cmd(String Query)
         {
-            if (Search != "")
+            try
             {
-                Search.ToCharArray();
-
                 using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE IDFOUR = @IDFOUR and DESIGNATION LIKE  '@Search%' ; ", Conx);
-                    Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                    Cmd.Parameters.AddWithValue("Search", Search[1]);
-                    Conx.Open();
-                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
-                    dataGridView1.Rows.Clear();
+                    string Statut = "non payée";
+                    SqlCommand CmdFour = new SqlCommand(Query, Conx);
 
-                    if (ReadProduit.HasRows)
+                    Conx.Open();
+                    SqlDataReader ReadCmdFour = CmdFour.ExecuteReader();
+                    this.dataGridView1.Rows.Clear();
+                    if (ReadCmdFour.HasRows)
                     {
 
-                        //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                        ///dataGridView1.AllowUserToAddRows = true;
-                        MainClass.DataGridMod(this.dataGridView1);
-                        while (ReadProduit.Read())
+                        while (ReadCmdFour.Read())
                         {
-                            this.dataGridView1.Rows.Add(false, ReadProduit[0], ReadProduit[2], ReadProduit[3], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
-                        }
+                            if ((bool)ReadCmdFour["STATUT"])
+                            {
+                                Statut = "payée";
+                            }
 
-                        dataGridView1.Columns["Check"].Width = 40;
-                        dataGridView1.Columns[2].Width = 150;
-
-                        dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
-                        dataGridView1.Columns["PRIXACHAT"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["PRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["DPRIXVENTE"].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                        dataGridView1.Columns["DESIGNATION"].DefaultCellStyle.Font = new Font("Tahoma", 12);
+                            this.dataGridView1.Rows.Add(
+                                false,
+                                ReadCmdFour["ID_CMD_FOUR"],
+                                ReadCmdFour["DESCRIPTION"],
+                                Statut,
+                                ReadCmdFour["MTRESTE"],
+                                ReadCmdFour["MONTANTTOTAL"],
+                                Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
+                        };
+                        SelectCmdAfterSearch();
                     }
                     else
                     {
-                        MessageBox.Show("La Table Produit est vide !!!");
+                        MessageBox.Show("Aucune Commande a ete enregistrer de ce Fournisseur !!!");
                     }
-
                 }
             }
-
-        }
-
-        private void FilterCmdToAll()
-        {
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            catch (Exception ex)
             {
-                SqlCommand Cmd = new SqlCommand($"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;", Conx);
-                try
-                {
-                    Conx.Open();
-                    DataTable Table = new DataTable();
-                    Table.Load(Cmd.ExecuteReader());
-                    Conx.Close();
-                    dataGridView1.DataSource = Table;
-
-                }
-                catch (SqlException EX)
-                {
-                    MessageBox.Show(EX.Message);
-                }
+                MessageBox.Show(ex.Message);
             }
+
+
         }
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -272,7 +309,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             dataGridView1.Rows.Clear();
             if (comboBox1.Text == "Tous")
             {
-                
+
                 QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
                 Data_Cmd(QueryCMDAll);
             }
@@ -306,8 +343,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
                         Cmd.ExecuteNonQuery();
                         Cmd2.ExecuteNonQuery();
-
                     }
+                    MessageBox.Show($"PAIEMENT N°'{IDESP_FOUR}' a été ajouté");
 
                     Conx.Close();
                     Clear();
@@ -355,67 +392,87 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             }
 
         }
+        private bool TestifAnySelectedCmd()
+        {
+            foreach (DataGridViewRow item in dataGridView1.Rows)
+            {
+                if (Convert.ToBoolean(item.Cells["Check"].Value) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         private void Add_Click(object sender, EventArgs e)
         {
-            string temp = CheckeSelected_Cmd();
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            string CheckSelected = CheckeSelected_Cmd();
+            if (CheckSelected == "Refresh")
             {
-                if (temp == "true" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text))
+                MessageBox.Show("Actualiser !!!");
+                CheckBox();
+                return;
+            }
+            else if (CheckSelected == "false" && TestifAnySelectedCmd())
+            {
+                CheckBox();
+                MessageBox.Show("Actualiser !!!");
+                return;
+            }
+            else
+            {
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    Conx.Open();
-                    SqlCommand Cmd = new SqlCommand($"INSERT INTO PAIEMENTESPECEFOUR(DATE_PAIEMENT,MONTANT,IDFOUR) values(@DATEPAYER,@MONTANT,@IDFOUR);", Conx);
-                    try
+                    if (CheckSelected == "true" && Montant.Text != "" && MainClass.TypeCheckFloat(Montant.Text))
                     {
-                        Cmd.Parameters.AddWithValue("DATEPAYER", dateTimePicker1.Value); 
-                        Cmd.Parameters.AddWithValue("@IDFOUR", IDFOUR);
-                        Cmd.Parameters.AddWithValue("MONTANT", float.Parse(Montant.Text));
-                        Cmd.ExecuteNonQuery();
-                        MessageBox.Show("test1");
-                        SqlCommand CmdId = new SqlCommand("SELECT max(IDESP_FOUR) FROM PAIEMENTESPECEFOUR;", Conx);
-                        SqlDataReader Read = CmdId.ExecuteReader();
-                        if (Read.HasRows)
+                        Conx.Open();
+                        SqlCommand Cmd = new SqlCommand($"INSERT INTO PAIEMENTESPECEFOUR(DATE_PAIEMENT,MONTANT,IDFOUR) values(@DATE_PAIEMENT,@MONTANT,@IDFOUR);", Conx);
+                        try
                         {
-                            while (Read.Read())
+                            Cmd.Parameters.AddWithValue("DATE_PAIEMENT", dateTimePicker1.Value);
+                            Cmd.Parameters.AddWithValue("@IDFOUR", IDFOUR);
+                            Cmd.Parameters.AddWithValue("MONTANT", float.Parse(Montant.Text));
+                            Cmd.ExecuteNonQuery();
+                            MessageBox.Show("test1");
+                            SqlCommand CmdId = new SqlCommand("SELECT max(IDESP_FOUR) FROM PAIEMENTESPECEFOUR;", Conx);
+                            SqlDataReader Read = CmdId.ExecuteReader();
+                            if (Read.HasRows)
                             {
-                                MessageBox.Show(Read[0].ToString());
-                                REGLER_ESP_FOUR(int.Parse(Read[0].ToString()));
-                                MessageBox.Show($"PAIEMENT N°" + int.Parse(Read[0].ToString()) + " a été ajouté");
+                                while (Read.Read())
+                                {
+                                    MessageBox.Show(Read[0].ToString());
+                                    REGLER_ESP_FOUR(int.Parse(Read[0].ToString()));
+                                }
+                                Conx.Close();
+                                Clear();
                             }
-                            Conx.Close();
-                            Clear();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-                else
-                {
-                    if (Montant.Text == "")
-                    {
-                        labelMT.Visible = true;
-                        label8.BackColor = Color.Red;
-                        MessageBox.Show("Veuillez Saisir Le Montant Total de La Commande");
-                    }
-                    else if (MainClass.TypeCheckFloat(Montant.Text) == false)
-                    {
-                        labelMT.Visible = true;
-                        label8.BackColor = Color.Red;
-                        MessageBox.Show("veuillez Vérifier Le Montant de Cheque");
-                    }
+                        if (Montant.Text == "")
+                        {
+                            labelMT.Visible = true;
+                            label8.BackColor = Color.Red;
+                            MessageBox.Show("Veuillez Saisir Le Montant Total de La Commande");
+                        }
+                        else if (MainClass.TypeCheckFloat(Montant.Text) == false)
+                        {
+                            labelMT.Visible = true;
+                            label8.BackColor = Color.Red;
+                            MessageBox.Show("veuillez Vérifier Le Montant de Cheque");
+                        }
 
-                    if (temp == "false")
-                    {
-                        labelCmd.BackColor = Color.Red;
-                        labelCmd.Visible = true;
-                        MessageBox.Show("Veuillez Selecter les Produit.");
+                        if (CheckSelected == "false")
+                        {
+                            labelCmd.BackColor = Color.Red;
+                            labelCmd.Visible = true;
+                            MessageBox.Show("Veuillez Selecter les Produit.");
 
-                    }
-                    else if (temp == "Refresh")
-                    {
-                        MessageBox.Show("Actualiser !!!");
-                        CheckBox();
+                        }
                     }
                 }
             }
@@ -512,6 +569,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

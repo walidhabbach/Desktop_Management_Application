@@ -15,6 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -51,6 +51,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.WebForms.10.0.40219.1\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -74,6 +90,7 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Speech" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -119,6 +136,24 @@
     </Compile>
     <Compile Include="User Control\Calender\CalenderForms\Edit_Task.Designer.cs">
       <DependentUpon>Edit_Task.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Edit_Produit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Fournisseur\Add_Edit\Forms\Edit_Produit.Designer.cs">
+      <DependentUpon>Edit_Produit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Control\Print\CrystalReportCHQ.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportCHQ.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="User Control\Print\Print.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Control\Print\Print.Designer.cs">
+      <DependentUpon>Print.cs</DependentUpon>
     </Compile>
     <Compile Include="User Control\Fournisseur\Add_Edit\User_C\Add_CHQ_Four.cs">
       <SubType>UserControl</SubType>
@@ -240,6 +275,11 @@
     <Compile Include="User Control\Fournisseur\MenuFournisseur.Designer.cs">
       <DependentUpon>MenuFournisseur.cs</DependentUpon>
     </Compile>
+    <Compile Include="User Control\Print\DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +293,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Report1.rdlc" />
     <EmbeddedResource Include="User Control\Calender\CalenderForms\Add_Task.resx">
       <DependentUpon>Add_Task.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +302,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Calender\CalenderForms\Edit_Task.resx">
       <DependentUpon>Edit_Task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Edit_Produit.resx">
+      <DependentUpon>Edit_Produit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Print\CrystalReportCHQ.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportCHQ.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Print\Print.resx">
+      <DependentUpon>Print.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\Add_CHQ_Four.resx">
       <DependentUpon>Add_CHQ_Four.cs</DependentUpon>
@@ -298,6 +349,9 @@
     <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\Forms\Add_Produit.resx">
       <DependentUpon>Add_Produit.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User Control\Fournisseur\Add_Edit\User_C\Edit_ESP_Four.resx">
+      <DependentUpon>Edit_ESP_Four.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Control\Fournisseur\ListALL\Form_List.resx">
       <DependentUpon>Form_List.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,6 +384,7 @@
     <None Include="DataBaseMagasinDataSet.xss">
       <DependentUpon>DataBaseMagasinDataSet.xsd</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -339,6 +394,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="User Control\Print\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="User Control\Print\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="User Control\Print\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -357,6 +423,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\ICONES GC\icons8_google_web_search_32px_2.png" />

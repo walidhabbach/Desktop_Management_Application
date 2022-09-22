@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFournisseur));
             this.MenuPanel1 = new System.Windows.Forms.Panel();
             this.button13 = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.button10 = new System.Windows.Forms.Button();
@@ -70,7 +69,6 @@
             this.MenuPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.MenuPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MenuPanel1.Controls.Add(this.button13);
-            this.MenuPanel1.Controls.Add(this.dateTimePicker2);
             this.MenuPanel1.Controls.Add(this.panel3);
             this.MenuPanel1.Controls.Add(this.panel1);
             this.MenuPanel1.Controls.Add(this.Button3);
@@ -99,16 +97,6 @@
             this.button13.Text = "      Tous ";
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(1301, 47);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(175, 26);
-            this.dateTimePicker2.TabIndex = 61;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // panel3
             // 
@@ -404,6 +392,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1491, 508);
             this.panel2.TabIndex = 2;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // MainFournisseur
             // 
@@ -453,7 +442,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.Button button13;
     }
 }

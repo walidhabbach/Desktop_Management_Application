@@ -1,6 +1,7 @@
 ﻿using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.A_M_D;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C;
 using System;
 using System.Data.SqlClient;
@@ -12,13 +13,15 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
     public partial class List_Main_Four : UserControl
     {
         private readonly int IDFOUR;
+
         private readonly Panel Content;
         private readonly int load;
-        public List_Main_Four(int ID, Panel content, int load)
+        public List_Main_Four(int IDFOUR, Panel content, int load)
         {
             InitializeComponent();
             this.load = load;
-            IDFOUR = ID;
+
+            this.IDFOUR = IDFOUR;
             Content = content;
         }
 
@@ -233,9 +236,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                                 , ReadProduit["ID_PRODUIT"]
                                 , ReadProduit["IDPRODUIT"],
                                 ReadProduit["DESIGNATION"],
-                                Math.Round(double.Parse(ReadProduit[4].ToString()), 2),
-                                Math.Round(double.Parse(ReadProduit[5].ToString()), 2),
-                                Math.Round(double.Parse(ReadProduit[6].ToString()), 2)
+                                Math.Round(float.Parse(ReadProduit[3].ToString()), 2),
+                                Math.Round(float.Parse(ReadProduit[4].ToString()), 2),
+                                Math.Round(float.Parse(ReadProduit[5].ToString()), 2)
                             );
                         }
 
@@ -396,8 +399,8 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 {
                     if (ColName == "Edit")
                     {
-
-                        //UPDATE FORM
+                        Edit_Produit Form = new Edit_Produit(Convert.ToInt32(Row.Cells["ID_PRODUIT"].Value),IDFOUR, panel2);
+                        Form.Show();
                     }
                     else if (ColName == "Delete")
                     {
@@ -415,9 +418,8 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 {
                     if (ColName == "Edit")
                     {
-                        Edit(Convert.ToInt32(Row.Cells[1].Value));
                         Content.Controls.Clear();
-                        Edit_CHQ_Four ECHQ = new Edit_CHQ_Four(Convert.ToInt32(Row.Cells[1].Value), IDFOUR);
+                        Edit_CHQ_Four ECHQ = new Edit_CHQ_Four( IDFOUR,Convert.ToInt32(Row.Cells[1].Value), Content);
                         MainClass.ShowControl(ECHQ, Content);
                     }
                     else if (ColName == "Delete")
@@ -441,6 +443,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     if (ColName == "Edit")
                     {
                         Edit(Convert.ToInt32(Row.Cells[1].Value));
+                        Content.Controls.Clear();
+                        Edit_ESP_Four ECHQ = new Edit_ESP_Four(IDFOUR,Convert.ToInt32(Row.Cells[1].Value),Content);
+                        MainClass.ShowControl(ECHQ, Content);
                     }
                     else if (ColName == "Delete")
                     {
@@ -540,23 +545,23 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 {
                     if (comboBox1.Text == "id Produit")
                     {
-                        Query += $" and IDPRODUIT LIKE '%" + search + "%' ;";
+                        Query += $" and IDPRODUIT LIKE '" + search + "%' ;";
                     }
                     else if (comboBox1.Text == "Designation")
                     {
-                        Query += $" and DESIGNATION LIKE '%" + search + "%' ;";
+                        Query += $" and DESIGNATION LIKE '" + search + "%' ;";
                     }
                     else if (comboBox1.Text == "PrixAchat")
                     {
-                        Query += $" and PRIXACHAT = '{float.Parse(search)}' ;";
+                        Query += $" and PRIXACHAT = '{Convert.ToDouble(search)}' ;";
                     }
                     else if (comboBox1.Text == "PrixVente")
                     {
-                        Query += $" and PRIXVENTE = '{float.Parse(search)}' ;";
+                        Query += $" and PRIXVENTE = '{Convert.ToDouble(search)}' ;";
                     }
                     else if (comboBox1.Text == "DPrixVente")
                     {
-                        Query += $" and DPRIXVENTE = '{float.Parse(search)}' ;";
+                        Query += $" and DPRIXVENTE = '{Convert.ToDouble(search)}' ;";
                     }
                 }
                 else
@@ -564,12 +569,13 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     MessageBox.Show("Remplir la barre de recherche !!!");
                     Search.Focus();
                 }
+                List_Produit(Query);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            List_Produit(Query);
+          
         }
         private void Search_Cmd(string search)
         {
@@ -588,7 +594,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     }
                     else if (comboBox1.Text == "Description")
                     {
-                        Query += " and DESCRIPTION LIKE '%" + search + $"%' ;";
+                        Query += $" and DESCRIPTION LIKE '" + search + "%' ;";
                     }
                     else if (comboBox1.Text == "Statut")
                     {
@@ -710,7 +716,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     }
                     else if (comboBox1.Text == "Designation")
                     {
-                        Query += " and DESIGNATION LIKE '%" + search + $"%' ;";
+                        Query += $" and DESIGNATION LIKE '" + search + "%' ;";
                     }
                     else if (comboBox1.Text == "Montant")
                     {
@@ -726,7 +732,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 {
                     if (comboBox1.Text == "Date de Paiement")
                     {
-                        Query += $" and month(DATEDONNER) = '{dateTimePicker2.Value.Month}' and year(DATEDONNER) = '{dateTimePicker2.Value.Year}' ;";
+                        Query += $" and month(DATE_PAIEMENT) = '{dateTimePicker2.Value.Month}' and year(DATE_PAIEMENT) = '{dateTimePicker2.Value.Year}' ;";
                     }
                 }
             }

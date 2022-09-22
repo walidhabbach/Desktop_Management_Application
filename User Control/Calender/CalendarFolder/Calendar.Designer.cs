@@ -175,6 +175,7 @@
             this.daycontainer.Name = "daycontainer";
             this.daycontainer.Size = new System.Drawing.Size(416, 274);
             this.daycontainer.TabIndex = 0;
+            this.daycontainer.Paint += new System.Windows.Forms.PaintEventHandler(this.daycontainer_Paint);
             this.daycontainer.MouseHover += new System.EventHandler(this.daycontainer_MouseHover);
             this.daycontainer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.daycontainer_MouseMove);
             // 
@@ -518,9 +519,9 @@
         private System.Windows.Forms.Button button7;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Panel PanelDGV;
-        public System.Windows.Forms.FlowLayoutPanel daycontainer;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.FlowLayoutPanel daycontainer;
     }
 }
