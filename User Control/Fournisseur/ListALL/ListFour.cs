@@ -33,13 +33,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                 if (ReadFour.HasRows)
                 {
                     this.DataGridView.Rows.Clear();
-                    DataGridView.Columns["IDFOUR"].Width = 150;
-                    DataGridView.Columns["ENTREPRISE"].Width = 300;
-                    DataGridView.Columns["TELEPHONE"].Width = 300;
-                    DataGridView.Columns["CATEGORIE"].Width = 300;
-                    DataGridView.Columns["ADRESSE"].Width = 300;
+
                     DataGridView.Columns["ENTREPRISE"].DefaultCellStyle.Font = new Font("Tahoma", 15, FontStyle.Bold);
-                    DataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
 
 
                     //Button Delete, Edit

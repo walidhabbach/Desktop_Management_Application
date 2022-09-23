@@ -1,6 +1,7 @@
 ﻿using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur;
 using Store_Management_System.User_Control.Fournisseur.A_M_D;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using Store_Management_System.User_Control.Fournisseur.List;
 using Store_Management_System.User_Control.Fournisseur.ListFour;
 using System;
@@ -143,6 +144,13 @@ namespace Store_Management_System.User_Control
 
         private void PanelFourListe_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Print Form = new Print();
+            Form.Show();
 
         }
     }

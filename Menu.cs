@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using Store_Management_System.User_Control;
 using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C;
+using Store_Management_System.User_Control.Home;
 
 namespace Store_Management_System
 {
@@ -18,29 +19,7 @@ namespace Store_Management_System
 
         private void Display_Click(object sender, EventArgs e)
         {
-            /*SqlConnection Conx = new SqlConnection();
-            Conx.ConnectionString = MainClass.ConnectionString;
-
-            String Query = "SELECT * From FOURNISSEUR;";
-            SqlCommand Cmd = new SqlCommand(Query, Conx);
-
-            Conx.Open();
-            SqlDataReader ReadFour = Cmd.ExecuteReader();
-
-            if (ReadFour.HasRows)
-            {
-                this.DataGridViewFour.Rows.Clear();
-                while (ReadFour.Read())
-                {
-                    this.DataGridViewFour.Rows.Add(ReadFour["IDFOUR"], ReadFour["ENTREPRISE"], ReadFour["TELEPHONE"], ReadFour["CATEGORIE"], ReadFour["ADRESSE"]);
-                }
-                Conx.Close();
-            }
-            else
-            {
-                 MessageBox.Show("La Table Fournisseur est vide !!!");
-
-            }*/
+           
 
         }
         public void Menu_Four_Click(object sender, EventArgs e)
@@ -55,6 +34,19 @@ namespace Store_Management_System
         {
             PanelContent.Controls.Clear();
             Calendar MFour = new Calendar();
+            MainClass.ShowControl(MFour, PanelContent);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Backup Form = new Backup();
+            Form.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            PanelContent.Controls.Clear();
+            Home MFour = new Home();
             MainClass.ShowControl(MFour, PanelContent);
         }
     }

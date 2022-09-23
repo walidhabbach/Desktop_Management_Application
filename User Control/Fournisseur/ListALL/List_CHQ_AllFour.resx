@@ -117,13 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="DATEPAYER.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="ID_CHQ_FOUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="ID_CMD_FOUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="IDFOUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="Fournisseur.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -132,13 +129,22 @@
   <metadata name="DATEDONNEE.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="DATEPAYER.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="MONTANT.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="MONTANTTOTAL.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAe9JREFUOE/N
+        k79LW1EUxyNKqav4LzgVurV2EEQQlA5RiBGLQ/LuTZ6iHQwidSkN7VDs0sEiVVqdnERd/B3NopAhSnEv
+        ij8GFaUEWpMQ5fT7fbmC9CWpUpF+4ZBL3vl+7j33nOu5N2mtqyzLqke0YP00Go1WmE+3UzAYrAFkGpGz
+        lBbL7hGsGWf49sbv91ea1L9LKdUIY0q9GhI98U1Ccz8lNH8uevZU1HBMrJ4IwUnbtquNpbjMyVLq/SRA
+        vxyQK2ZOxIq8JjQOS1neWURImlaDQ8VhJvTUoahQl6CadmN1yzQg55RZAPJnqHdfecp5Y3cLuzWwAbyz
+        l8tpGdnKir1wLn2xtHzazDiQ/tW0fEzm1/rzOoHHxu4WgF52k8kfEhnZT13KwFoetoc1N5nYzsr3H5fO
+        Rnp8i8CMsbuFhjxBgoTQTUIJ4O/1dRjRu5Rf6+EVgWfH2N3i0AJ4ytG4ApUKNg9VjRl7YSEhyjnjaBSC
+        XIUeS7Dci0Ag8MhYC4svAIlJzhlHoygs3E1g4kZPkS8AyXGLc/b2i+jRDacBvDOWyZMRhhD/i84Y7vGh
+        sZZUGYcWpgXEESLLBvDOWCYqKW/r6Fx81twqDV7fwU2hJQXoA8B2a5ta/nMoIYDt1z1vzTX7fI/N3/8m
+        Qu8M5pbH8xsPXsG0e8mlNwAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

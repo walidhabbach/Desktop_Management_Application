@@ -302,6 +302,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         {
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

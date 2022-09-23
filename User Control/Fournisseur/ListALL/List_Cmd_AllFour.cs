@@ -54,7 +54,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                     DataGridView.Columns["Edit"].Width = 50;
                     MainClass.Button_DGV(DataGridView, "Delete", "delete");
                     DataGridView.Columns["Delete"].Width = 50;
-
+                    DataGridView.AllowUserToOrderColumns = false;
                     while (ReadCmdFour.Read())
                     {
                         CmdNomFour = new SqlCommand("SELECT ENTREPRISE FROM FOURNISSEUR WHERE IDFOUR = @IDFOUR;", Conx);

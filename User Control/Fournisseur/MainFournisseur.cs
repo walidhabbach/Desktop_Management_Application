@@ -33,7 +33,7 @@ namespace Store_Management_System.User_Control.Fournisseur
         {
             label1.Text = ENTREPRISE;
             Period = DateTime.Now.ToString();
-            loadList(sender, e);
+            button2_Click(sender, e);
         }
 
 
@@ -88,6 +88,7 @@ namespace Store_Management_System.User_Control.Fournisseur
         private void button9_Click(object sender, EventArgs e)
         {
             load = 3;
+        
             PanelCHQ.Visible = false;
             panel2.Controls.Clear();
             List_Main_Four MFour = new List_Main_Four(IDFOUR, panel2, 3);

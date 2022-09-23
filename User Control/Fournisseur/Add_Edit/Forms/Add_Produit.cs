@@ -94,7 +94,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 SqlDataReader Read = Cmd.ExecuteReader();
                 while (Read.Read())
                 {
-                    if (ID.ToLower() == Read["IDPRODUIT"].ToString().ToLower())
+                    if (Read["IDPRODUIT"].ToString().ToLower() == ID.ToLower())
                     {
                         return true;
                     }

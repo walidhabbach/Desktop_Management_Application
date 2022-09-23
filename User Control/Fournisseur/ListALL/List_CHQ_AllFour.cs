@@ -2,6 +2,7 @@
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.List
@@ -15,107 +16,356 @@ namespace Store_Management_System.User_Control.Fournisseur.List
         }
 
 
-        private void List_CHQ_AllFour_Load(object sender, EventArgs e)
+
+        private void ListCHQ_Search(String Query, String QueryCount)
         {
-            SqlConnection Conx = new SqlConnection
-            {
-                ConnectionString = MainClass.ConnectionDataBase()
-            };
-
-            SqlCommand Cmd_RCHQFour = new SqlCommand("SELECT * From REGLE_CHQ_FOUR;", Conx);
-
-            //Nom Four
-            SqlCommand Cmd_NOMFour;
-            SqlDataReader Read_NomFour;
-
-            //CMD Four
-            SqlCommand Cmd_CMDFour;
-            SqlDataReader Read_CMDFour;
-
-            //CHQFour
-            SqlCommand Cmd_CHQFour;
-            SqlDataReader Read_CHQFour;
-
-            Conx.Open();
-            SqlDataReader Read_RCHQFour = Cmd_RCHQFour.ExecuteReader();
-
-
-            if (Read_RCHQFour.HasRows)
+            try
             {
                 this.DataGridView.Rows.Clear();
-                while (Read_RCHQFour.Read())
+
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    SqlCommand CmdCount = new SqlCommand(QueryCount, Conx);
 
-                    //Return CMD Four
-                    Cmd_CMDFour = new SqlCommand($"SELECT IDFOUR , MONTANTTOTAL FROM COMMANDEFOUR WHERE ID_CMD_FOUR = '{Read_RCHQFour[1]}';", Conx);
-                    Read_CMDFour = Cmd_CMDFour.ExecuteReader();
+                    int i = 0;
+                    double Total = 0;
+                    int temp = 0;
+                    int Number = 0;
 
-                    while (Read_CMDFour.Read())
+                    Conx.Open();
+                    SqlDataReader Read = Cmd.ExecuteReader();
+                    SqlDataReader Count = CmdCount.ExecuteReader();
+
+
+                    // DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+
+                    while (Count.Read())
+                    {
+                        Number = int.Parse(Count[0].ToString());
+                    }
+
+                    if (Read.HasRows)
                     {
 
-                        //Return NomFour
-                        Cmd_NOMFour = new SqlCommand($"SELECT ENTREPRISE FROM FOURNISSEUR WHERE IDFOUR = '{Read_CMDFour["IDFOUR"]}';", Conx);
-                        Read_NomFour = Cmd_NOMFour.ExecuteReader();
-
-                        while (Read_NomFour.Read())
+                        while (Read.Read())
                         {
+                            if (temp == 0)
+                            {
+                                temp = int.Parse(Read[0].ToString());
+                            }
 
-                            //Return CHQ Details
-                            Cmd_CHQFour = new SqlCommand($"SELECT * From CHEQUEFOURNISSEUR WHERE IDCHQ_FOUR = '{Read_RCHQFour[0]}';", Conx);
-                            Read_CHQFour = Cmd_CHQFour.ExecuteReader();
-
-                            while (Read_CHQFour.Read())
+                            if (temp == int.Parse(Read[0].ToString()))
                             {
 
                                 this.DataGridView.Rows.Add(
-                                        Read_RCHQFour["IDCHQ_FOUR"],
-                                        Read_RCHQFour["ID_CMD_FOUR"],
-                                        Read_CMDFour["IDFOUR"],
-                                        Read_NomFour["ENTREPRISE"],
-                                        Read_CHQFour["DATEDONNER"],
-                                        Read_CHQFour["DATEPAYER"],
-                                        Read_CHQFour["MONTANT"],
-                                        Read_CMDFour["MONTANTTOTAL"]
+                                           Convert.ToDateTime(Read[1]).ToString("dd MMMM yyyy"),
+                                           Read[2],
+                                           Read[3],
+                                             Convert.ToDateTime(Read[4]).ToString("dd MMMM yyyy"),
+                                           Math.Round(double.Parse(Read["MONTANT"].ToString()), 2) + " DH"
 
-                                );
+                                   );
+                                Total += Math.Round(double.Parse(Read["MONTANT"].ToString()), 2);
+                            }
+                            else
+                            {
 
+                                this.DataGridView.Rows.Add(
+
+                                           $"Total CHQ de " + DateTimeFormatInfo.CurrentInfo.GetMonthName(temp) + " = ",
+                                            "",
+                                            "",
+                                            "",
+                                           Total + " DH"
+
+                                   );
+                                DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                Total = 0;
+                                temp = int.Parse(Read[0].ToString());
+                                this.DataGridView.Rows.Add(
+                                              Convert.ToDateTime(Read[1]).ToString("dd MMMM yyyy"),
+                                              Read[2],
+                                              Read[3],
+                                                Convert.ToDateTime(Read[4]).ToString("dd MMMM yyyy"),
+                                              Math.Round(double.Parse(Read["MONTANT"].ToString()), 2) + " DH"
+
+                                      );
+                                Total += Math.Round(double.Parse(Read["MONTANT"].ToString()), 2);
+                            }
+                            i++;
+                            if (Number == i)
+                            {
+                                temp = int.Parse(Read[0].ToString());
+                                this.DataGridView.Rows.Add(
+
+                                           $"Total CHQ de " + DateTimeFormatInfo.CurrentInfo.GetMonthName(temp) + " = ",
+                                            "",
+                                            "",
+                                            "",
+                                         Total + " DH"
+
+                                 ); DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
                             }
 
+
                         }
+                        Conx.Close();
+
+
 
                     }
+                    else
+                    {
+                        MessageBox.Show(" 0 result!!!");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void List_CHQ_AllFour_Load(object sender, EventArgs e)
+        {
+            CustomDateFormat();
+
+            comboBox1.Text = "Tous";
+            Search_CHQ(comboBox1.Text);
+            FillCombobox();
+            comboBox2.Visible = false;
+        }
+
+        private int SearshFournisseur(string Four)
+        {
+
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                String Query = "SELECT IDFOUR From FOURNISSEUR WHERE ENTREPRISE = @Four;";
+                SqlCommand Cmd = new SqlCommand(Query, Conx);
+                Cmd.Parameters.AddWithValue("Four", Four);
+                Conx.Open();
+                SqlDataReader ReadFour = Cmd.ExecuteReader();
+
+
+                // DataGridView.DefaultCellStyle.Font = new Font("Tahoma", 15);
+
+                if (ReadFour.HasRows)
+                {
+                    while (ReadFour.Read())
+                    {
+                        return int.Parse(ReadFour["IDFOUR"].ToString());
+                    }
+                    Conx.Close();
+                }
+                else
+                {
+                    MessageBox.Show("La Table Fournisseur est vide !!!");
+                }
+            }
+            return 0;
+
+        }
+        private void Search_CHQ(string search)
+        {
+
+            String Count;
+
+            try
+            {
+
+                if (comboBox1.Text == "Tous")
+                {
+                    Count = $"Select count(*) FROM CHEQUEFOURNISSEUR WHERE Year(CHEQUEFOURNISSEUR.DATEDONNER) = '{int.Parse(dateTimePicker2.Value.Year.ToString())}';";
+                    ListCHQ_Search($"EXECUTE CHEQUE_FOURNISSEUR_All '{dateTimePicker2.Value.Year}';", Count);
+                }
+                else if (comboBox1.Text == "Date Redaction" || comboBox1.Text == "Date Encaissement")
+                {
+
+                    if (comboBox1.Text == "Date Redaction")
+                    {
+                        this.DataGridView.Rows.Clear();
+                        this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor = Color.Green;
+                        Count = $"Select count(*) FROM CHEQUEFOURNISSEUR where month(CHEQUEFOURNISSEUR.DATEDONNER) = '{int.Parse(dateTimePicker2.Value.Month.ToString())}' and year(CHEQUEFOURNISSEUR.DATEDONNER) = '{dateTimePicker2.Value.Year}';";
+                        ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_Redaction '{int.Parse(dateTimePicker2.Value.Month.ToString())}','{dateTimePicker2.Value.Year}' ;", Count);
+                    }
+                    else if (comboBox1.Text == "Date Encaissement")
+                    {
+                        this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor = Color.Green;
+                        Count = $"Select count(*) FROM CHEQUEFOURNISSEUR where month(CHEQUEFOURNISSEUR.DATEPAYER) = '{int.Parse(dateTimePicker2.Value.Month.ToString())}' and year(CHEQUEFOURNISSEUR.DATEPAYER) = '{dateTimePicker2.Value.Year}';";
+                        ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_Encaissement '{int.Parse(dateTimePicker2.Value.Month.ToString())}','{dateTimePicker2.Value.Year}';", Count);
+                    }
+                }
+                else if (comboBox1.Text == "Fournisseur")
+                {
+                    this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = Color.Green;
+                    comboBox2.Visible = true;
+                    int id = SearshFournisseur(comboBox2.Text);
+                    if (id != 0)
+                    {
+
+                        Count = $"Select count(*) FROM CHEQUEFOURNISSEUR WHERE IDFOUR ='{id}' and Year(CHEQUEFOURNISSEUR.DATEDONNER) ='{int.Parse(dateTimePicker2.Value.Year.ToString())}' ;";
+                        ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_FOURNISSEUR '{id}' , '{int.Parse(dateTimePicker2.Value.Year.ToString())}' ;", Count);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(" Selecter le Fournisseur ");
+                        comboBox2.Visible = true;
+                        dateTimePicker2.Visible = false;
+                    }
+                }
+
+                else if (search != string.Empty)
+                {
+
+                    if (comboBox1.Text == "N°CHQ")
+                    {
+
+                        this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = Color.Green;
+                        Count = $"Select count(*) FROM CHEQUEFOURNISSEUR WHERE N_CHQ = '{Search.Text}';";
+                        ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_NCHQ  '{Search.Text}'; ", Count);
+
+                    }
+                    return;
 
                 }
-                Conx.Close();
+                else if (search == String.Empty && comboBox1.Text != "Date Redaction" && comboBox1.Text != "Date Encaissement")
+                {
+                    comboBox2.Text = "";
 
-                MainClass.DataGridMod(DataGridView);
-                DataGridView.Columns["ID_CHQ_FOUR"].Width = 75;
-                DataGridView.Columns["ID_CMD_FOUR"].Width = 75;
-                DataGridView.Columns["IDFOUR"].Width = 75;
-                DataGridView.Columns["Fournisseur"].Width = 150;
-                DataGridView.Columns["Fournisseur"].DefaultCellStyle.Font = new Font("Tahoma", 14, FontStyle.Bold);
-                DataGridView.Columns["DATEDONNEE"].Width = 150;
-                DataGridView.Columns["DATEPAYER"].Width = 150;
-                DataGridView.Columns["MONTANT"].Width = 150;
-                DataGridView.Columns["MONTANTTOTAL"].Width = 150;
-
-                DataGridView.EnableHeadersVisualStyles = false;
-                DataGridView.Columns["MONTANT"].HeaderCell.Style.BackColor = Color.Green; 
-                DataGridView.Columns["MONTANT"].HeaderCell.Style.Font = new Font("Tahoma", 12, FontStyle.Bold);
-
-                
+                    MessageBox.Show("Remplir la barre de recherche !!!");
+                    Search.Focus();
+                }
 
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("La Table Fournisseur est vide !!!");
-
+                MessageBox.Show(ex.Message);
             }
+
+            Console.WriteLine("valider");
         }
 
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Search_CHQ(comboBox1.Text);
+        }
+
+
+        private void FillCombobox()
+        {
+            comboBox2.Items.Clear();
+
+            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            {
+                String Query = "SELECT * From FOURNISSEUR;";
+                SqlCommand Cmd = new SqlCommand(Query, Conx);
+
+                Conx.Open();
+                SqlDataReader ReadFour = Cmd.ExecuteReader();
+
+
+                // DataGridView.DefaultCellStyle.Font = new Font("Tahoma", 15);
+
+                if (ReadFour.HasRows)
+                {
+
+                    while (ReadFour.Read())
+                    {
+                        comboBox2.Items.Add(ReadFour["ENTREPRISE"].ToString());
+                    }
+                    Conx.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("La Table Fournisseur est vide !!!");
+                }
+            }
+        }
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor == Color.Green)
+            {
+
+                this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor = Color.White;
+            }
+            else if (this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor == Color.Green)
+            {
+
+                this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor = Color.White;
+
+            }
+            else if (this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor == Color.Green)
+            {
+
+                this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = Color.White;
+
+            }
+            else if (this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor == Color.Green)
+            {
+
+                this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = Color.White;
+
+            }
+
+            if (comboBox1.Text == "Fournisseur")
+            {
+                this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = Color.Green;
+                comboBox2.Visible = true;
+                FillCombobox();
+                dateTimePicker2.Visible = false;
+            }
+            else if (comboBox1.Text == "Date Redaction" || comboBox1.Text == "Date Encaissement")
+            {
+
+                dateTimePicker2.Visible = true;
+                Search.Text = "";
+                Search_CHQ("");
+                comboBox2.Visible = false;
+
+            }
+            else
+            {
+                if (comboBox1.Text == "N°CHQ")
+                {
+                    this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = Color.Green;
+                }
+                Search_CHQ(Search.Text);
+                dateTimePicker2.Visible = true;
+                comboBox2.Visible = false;
+            }
+        }
+
+        private void CustomDateFormat()
+        {
+            dateTimePicker2.Format = DateTimePickerFormat.Custom;
+            dateTimePicker2.CustomFormat = "MMMM yyyy";
+        }
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+            dateTimePicker2.Visible = true;
+            if (comboBox1.Text == "Date Redaction" || comboBox1.Text == "Date Encaissement")
+            {
+                Search.Text = "";
+                Search_CHQ("");
+
+            }
         }
     }
 }

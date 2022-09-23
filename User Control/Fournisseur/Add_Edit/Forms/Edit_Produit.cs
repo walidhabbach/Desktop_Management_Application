@@ -71,7 +71,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                     SqlDataReader RFour = Cmd.ExecuteReader();
                     while (RFour.Read())
                     {
-                        if (RFour["IDPRODUIT"].ToString().ToLower() == id_Produit.ToLower() && id != int.Parse(RFour["IDFOUR"].ToString()))
+                        if (RFour["IDPRODUIT"].ToString().ToLower() == id_Produit.ToLower() && id != int.Parse(RFour["ID_PRODUIT"].ToString()))
                         {
                             return true;
                         }
