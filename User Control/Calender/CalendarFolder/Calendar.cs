@@ -22,6 +22,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         private void InitializeDGV(string Query)
         {
             // PanelDGV.Controls.Clear();
+
             DGVTask UC = new DGVTask(Query, PanelDGV);
             MainClass.ShowControl(UC, PanelDGV);
         }
@@ -46,6 +47,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         //Display days in Calendar 
         public static void Display_Days(int add, Panel daycontainer, Panel PanelDGV)
         {
+            try { 
             //First Day of the month
             DateTime startofmonth;
 
@@ -101,6 +103,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                     UserControlDays UCdays = new UserControlDays(i, daycontainer, PanelDGV, false);
                     daycontainer.Controls.Add(UCdays);
                 }
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+              
             }
 
         }
@@ -304,6 +312,16 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DateNow_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button11_Click(object sender, EventArgs e)
         {
 
         }

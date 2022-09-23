@@ -1,7 +1,7 @@
 ﻿using Store_Management_System.Class;
+using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -81,7 +81,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                                            Total + " DH"
 
                                    );
-                                DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
                                 Total = 0;
                                 temp = int.Parse(Read[0].ToString());
                                 this.DataGridView.Rows.Add(
@@ -106,7 +106,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                                             "",
                                          Total + " DH"
 
-                                 ); DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = Color.LightGreen;
+                                 ); DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
                             }
 
 
@@ -188,20 +188,20 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                     if (comboBox1.Text == "Date Redaction")
                     {
                         this.DataGridView.Rows.Clear();
-                        this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor = Color.Green;
+                        this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                         Count = $"Select count(*) FROM CHEQUEFOURNISSEUR where month(CHEQUEFOURNISSEUR.DATEDONNER) = '{int.Parse(dateTimePicker2.Value.Month.ToString())}' and year(CHEQUEFOURNISSEUR.DATEDONNER) = '{dateTimePicker2.Value.Year}';";
                         ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_Redaction '{int.Parse(dateTimePicker2.Value.Month.ToString())}','{dateTimePicker2.Value.Year}' ;", Count);
                     }
                     else if (comboBox1.Text == "Date Encaissement")
                     {
-                        this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor = Color.Green;
+                        this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                         Count = $"Select count(*) FROM CHEQUEFOURNISSEUR where month(CHEQUEFOURNISSEUR.DATEPAYER) = '{int.Parse(dateTimePicker2.Value.Month.ToString())}' and year(CHEQUEFOURNISSEUR.DATEPAYER) = '{dateTimePicker2.Value.Year}';";
                         ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_Encaissement '{int.Parse(dateTimePicker2.Value.Month.ToString())}','{dateTimePicker2.Value.Year}';", Count);
                     }
                 }
                 else if (comboBox1.Text == "Fournisseur")
                 {
-                    this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = Color.Green;
+                    this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                     comboBox2.Visible = true;
                     int id = SearshFournisseur(comboBox2.Text);
                     if (id != 0)
@@ -225,7 +225,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                     if (comboBox1.Text == "N°CHQ")
                     {
 
-                        this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = Color.Green;
+                        this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                         Count = $"Select count(*) FROM CHEQUEFOURNISSEUR WHERE N_CHQ = '{Search.Text}';";
                         ListCHQ_Search($"EXEC CHEQUE_FOURNISSEUR_NCHQ  '{Search.Text}'; ", Count);
 
@@ -299,33 +299,33 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor == Color.Green)
+            if (this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor == System.Drawing.Color.Green)
             {
 
-                this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor = Color.White;
+                this.DataGridView.Columns["DATEPAYER"].HeaderCell.Style.BackColor = System.Drawing.Color.White;
             }
-            else if (this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor == Color.Green)
+            else if (this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor == System.Drawing.Color.Green)
             {
 
-                this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor = Color.White;
-
-            }
-            else if (this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor == Color.Green)
-            {
-
-                this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = Color.White;
+                this.DataGridView.Columns["DATEDONNEE"].HeaderCell.Style.BackColor = System.Drawing.Color.White;
 
             }
-            else if (this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor == Color.Green)
+            else if (this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor == System.Drawing.Color.Green)
             {
 
-                this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = Color.White;
+                this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = System.Drawing.Color.White;
+
+            }
+            else if (this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor == System.Drawing.Color.Green)
+            {
+
+                this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
 
             }
 
             if (comboBox1.Text == "Fournisseur")
             {
-                this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = Color.Green;
+                this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                 comboBox2.Visible = true;
                 FillCombobox();
                 dateTimePicker2.Visible = false;
@@ -343,7 +343,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             {
                 if (comboBox1.Text == "N°CHQ")
                 {
-                    this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = Color.Green;
+                    this.DataGridView.Columns["ID_CHQ_FOUR"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                 }
                 Search_CHQ(Search.Text);
                 dateTimePicker2.Visible = true;
@@ -366,6 +366,24 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                 Search_CHQ("");
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (DataGridView.Rows.Count > 0)
+            {
+                PrintPdfXlsx.Xlsx(DataGridView);
+            }
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (DataGridView.Rows.Count > 0)
+            {
+                PrintPdfXlsx.Pdf(DataGridView);
+            }
+
         }
     }
 }

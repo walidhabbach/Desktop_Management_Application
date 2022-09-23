@@ -1,13 +1,6 @@
 ﻿using Store_Management_System.Class;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.A_M_D
@@ -22,77 +15,92 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
         public void Display(int IDFOUR)
         {
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                Conx.ConnectionString = MainClass.ConnectionDataBase();
-                String Query = $"SELECT * FROM FOURNISSEUR WHERE IDFOUR = '{IDFOUR}';";
-                SqlCommand Cmd = new SqlCommand(Query, Conx);
-
-                Conx.Open();
-                SqlDataReader ReadFour = Cmd.ExecuteReader();
-                while (ReadFour.Read())
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    ENTREPRISE.Text = ReadFour["ENTREPRISE"].ToString();
-                    TELEPHONE.Text = ReadFour["TELEPHONE"].ToString();
-                    comboBox1.Text = ReadFour["CATEGORIE"].ToString();
-                    ADRESSE.Text = ReadFour["ADRESSE"].ToString();
+                    Conx.ConnectionString = MainClass.ConnectionDataBase();
+                    String Query = $"SELECT * FROM FOURNISSEUR WHERE IDFOUR = '{IDFOUR}';";
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+
+                    Conx.Open();
+                    SqlDataReader ReadFour = Cmd.ExecuteReader();
+                    while (ReadFour.Read())
+                    {
+                        ENTREPRISE.Text = ReadFour["ENTREPRISE"].ToString();
+                        TELEPHONE.Text = ReadFour["TELEPHONE"].ToString();
+                        comboBox1.Text = ReadFour["CATEGORIE"].ToString();
+                        ADRESSE.Text = ReadFour["ADRESSE"].ToString();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
 
         }
 
-        
-        private void Edit_Four_Load(object sender, EventArgs e )
+
+        private void Edit_Four_Load(object sender, EventArgs e)
         {
             Display(ID);
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
         {
-            this.Close();         
+            this.Close();
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                if (ENTREPRISE.Text != "" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    if (Add_Four.CheckFour(ID,ENTREPRISE.Text))
+                    if (ENTREPRISE.Text != "" && TELEPHONE.Text != "" && comboBox1.Text != "" && ADRESSE.Text != "")
                     {
-                        MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
-                        ENTREPRISE.Focus();
-                        Display(ID);
-                        return;
-                    }
-                    else
-                    {
-                        Conx.Open();
-
-                        string Query = "UPDATE FOURNISSEUR SET ENTREPRISE = @ENTREPRISE,TELEPHONE = @TELEPHONE,CATEGORIE = @CATEGORIE,ADRESSE = @ADRESSE WHERE IDFOUR = @IDFOUR;";
-                        SqlCommand Cmd = new SqlCommand(Query, Conx);
-                        try
+                        if (Add_Four.CheckFour(ID, ENTREPRISE.Text))
                         {
-                            Cmd.Parameters.AddWithValue("IDFOUR", ID);
-                            Cmd.Parameters.AddWithValue("ENTREPRISE", ENTREPRISE.Text);
-                            Cmd.Parameters.AddWithValue("TELEPHONE", TELEPHONE.Text);
-                            Cmd.Parameters.AddWithValue("CATEGORIE", comboBox1.Text);
-                            Cmd.Parameters.AddWithValue("ADRESSE", ADRESSE.Text);
-                            Cmd.ExecuteNonQuery();
-
-
-                            this.Close();
-                            Conx.Close();
+                            MessageBox.Show("Ce Nom d'Entreprise Existe deja dans la base de donne");
+                            ENTREPRISE.Focus();
+                            Display(ID);
+                            return;
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            MessageBox.Show(ex.Message);
+                            Conx.Open();
+
+                            string Query = "UPDATE FOURNISSEUR SET ENTREPRISE = @ENTREPRISE,TELEPHONE = @TELEPHONE,CATEGORIE = @CATEGORIE,ADRESSE = @ADRESSE WHERE IDFOUR = @IDFOUR;";
+                            SqlCommand Cmd = new SqlCommand(Query, Conx);
+                            try
+                            {
+                                Cmd.Parameters.AddWithValue("IDFOUR", ID);
+                                Cmd.Parameters.AddWithValue("ENTREPRISE", ENTREPRISE.Text);
+                                Cmd.Parameters.AddWithValue("TELEPHONE", TELEPHONE.Text);
+                                Cmd.Parameters.AddWithValue("CATEGORIE", comboBox1.Text);
+                                Cmd.Parameters.AddWithValue("ADRESSE", ADRESSE.Text);
+                                Cmd.ExecuteNonQuery();
+
+
+                                this.Close();
+                                Conx.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)

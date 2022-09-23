@@ -21,20 +21,31 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
         public static bool CheckFour(int ID, string NomFour)
         {
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                Conx.Open();
-                String Query = "SELECT * FROM FOURNISSEUR;";
-                SqlCommand Cmd = new SqlCommand(Query, Conx);
-                SqlDataReader RFour = Cmd.ExecuteReader();
-                while (RFour.Read())
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    if (RFour["ENTREPRISE"].ToString().ToLower() == NomFour.ToLower() && ID != int.Parse(RFour["IDFOUR"].ToString()))
+                    Conx.Open();
+                    String Query = "SELECT * FROM FOURNISSEUR;";
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    SqlDataReader RFour = Cmd.ExecuteReader();
+                    while (RFour.Read())
                     {
-                        return true;
+                        if (RFour["ENTREPRISE"].ToString().ToLower() == NomFour.ToLower() && ID != int.Parse(RFour["IDFOUR"].ToString()))
+                        {
+                            return true;
+                        }
                     }
+                    return false;
+
                 }
-                return false;
+      
+            }
+            catch (Exception ex)
+            {
+                
+                MessageBox.Show(ex.Message);
+            return false;
             }
         }
         private void Add_Click(object sender, EventArgs e)

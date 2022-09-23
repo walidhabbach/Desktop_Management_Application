@@ -85,3 +85,10 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Man
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.pdb
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Backup.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Home.Home.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\ClosedXML.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\DocumentFormat.OpenXml.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\ExcelNumberFormat.dll
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\ClosedXML.pdb
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\ClosedXML.xml
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\ExcelNumberFormat.xml

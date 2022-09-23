@@ -2,6 +2,7 @@
 using Store_Management_System.User_Control.Fournisseur.Add_Edit;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C;
+using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -434,19 +435,27 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
         private void dataGridView2_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex >= 0)
+            try
             {
-                string ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
+                if (e.ColumnIndex >= 0)
+                {
+                    string ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
 
-                if (ColName != "Edit" && ColName != "Delete" && ColName != "Produit" && ColName != "cmd")
-                {
-                    dataGridView2.Cursor = Cursors.Default;
-                }
-                else
-                {
-                    dataGridView2.Cursor = Cursors.Hand;
+                    if (ColName != "Edit" && ColName != "Delete" && ColName != "Produit" && ColName != "cmd")
+                    {
+                        dataGridView2.Cursor = Cursors.Default;
+                    }
+                    else
+                    {
+                        dataGridView2.Cursor = Cursors.Hand;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void ListCMD_Load(object sender, EventArgs e)
@@ -848,22 +857,30 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (load == 1)
+            try
             {
-                Search_Cmd(Search.Text);
+                if (load == 1)
+                {
+                    Search_Cmd(Search.Text);
+                }
+                else if (load == 2)
+                {
+                    Search_Produit(Search.Text);
+                }
+                else if (load == 3)
+                {
+                    Search_CHQ(Search.Text);
+                }
+                else if (load == 4)
+                {
+                    Search_ESP(Search.Text);
+                }
             }
-            else if (load == 2)
+            catch (Exception ex)
             {
-                Search_Produit(Search.Text);
+                MessageBox.Show(ex.Message);
             }
-            else if (load == 3)
-            {
-                Search_CHQ(Search.Text);
-            }
-            else if (load == 4)
-            {
-                Search_ESP(Search.Text);
-            }
+
         }
 
         private void CustomDateFormat()
@@ -874,138 +891,146 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (FirstloadCombo != true)
+            try
             {
-                try
+                if (FirstloadCombo != true)
                 {
-                    if (dataGridView2.ColumnCount > 0)
+                    try
                     {
-                        for (int i = 0; i < dataGridView2.ColumnCount; i++)
+                        if (dataGridView2.ColumnCount > 0)
                         {
-                            this.dataGridView2.Columns[i].HeaderCell.Style.BackColor = Color.White;
+                            for (int i = 0; i < dataGridView2.ColumnCount; i++)
+                            {
+                                this.dataGridView2.Columns[i].HeaderCell.Style.BackColor = Color.White;
+                            }
                         }
-                    }
 
-                    if (load == 1)
+                        if (load == 1)
+                        {
+                            if (comboBox1.Text == "idCmd")
+                            {
+                                this.dataGridView2.Columns["Id"].HeaderCell.Style.BackColor = Color.Green;
+                            }
+                            else if (comboBox1.Text == "Description")
+                            {
+                                this.dataGridView2.Columns["Description"].HeaderCell.Style.BackColor = Color.Green;
+                            }
+                            else if (comboBox1.Text == "Statut")
+                            {
+                                this.dataGridView2.Columns["Statut"].HeaderCell.Style.BackColor = Color.Green;
+                            }
+                            else if (comboBox1.Text == "Mode Paiement")
+                            {
+                                this.dataGridView2.Columns["Paiement"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "Montant Total")
+                            {
+                                this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "Date Mois")
+                            {
+                                this.dataGridView2.Columns["Date"].HeaderCell.Style.BackColor = Color.Green;
+                                Search_Cmd(Search.Text);
+                            }
+
+                        }
+                        else if (load == 2)
+                        {
+
+                            if (comboBox1.Text == "id Produit")
+                            {
+                                this.dataGridView2.Columns["IDPRODUIT"].HeaderCell.Style.BackColor = Color.Green;
+                            }
+                            else if (comboBox1.Text == "Designation")
+                            {
+
+                                this.dataGridView2.Columns["DESIGNATION"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "PrixAchat")
+                            {
+
+                                this.dataGridView2.Columns["Prix Achat"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "PrixVente")
+                            {
+
+                                this.dataGridView2.Columns["Prix Vente"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "DPrixVente")
+                            {
+
+                                this.dataGridView2.Columns["DPrix Vente"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+
+
+                        }
+                        else if (load == 3)
+                        {
+
+                            if (comboBox1.Text == "N°CHQ")
+                            {
+                                this.dataGridView2.Columns["N°CHQ"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "Montant")
+                            {
+                                this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "Date Rédaction")
+                            {
+                                this.dataGridView2.Columns["Rédaction"].HeaderCell.Style.BackColor = Color.Green;
+                                Search_CHQ(Search.Text);
+                            }
+                            else if (comboBox1.Text == "Date Encaissement")
+                            {
+                                this.dataGridView2.Columns["Encaissement"].HeaderCell.Style.BackColor = Color.Green;
+                                Search_CHQ(Search.Text);
+                            }
+
+
+                        }
+                        else if (load == 4)
+                        {
+                            if (comboBox1.Text == "id ESP")
+                            {
+                                this.dataGridView2.Columns["IDESP"].HeaderCell.Style.BackColor = Color.Green;
+
+                            }
+                            else if (comboBox1.Text == "Montant")
+                            {
+                                this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
+                            }
+                            else if (comboBox1.Text == "Date de Paiement")
+                            {
+                                this.dataGridView2.Columns["Date de Paiement"].HeaderCell.Style.BackColor = Color.Green;
+                                Search_ESP(Search.Text);
+                            }
+
+                        }
+
+                    }
+                    catch (Exception ex)
                     {
-                        if (comboBox1.Text == "idCmd")
-                        {
-                            this.dataGridView2.Columns["Id"].HeaderCell.Style.BackColor = Color.Green;
-                        }
-                        else if (comboBox1.Text == "Description")
-                        {
-                            this.dataGridView2.Columns["Description"].HeaderCell.Style.BackColor = Color.Green;
-                        }
-                        else if (comboBox1.Text == "Statut")
-                        {
-                            this.dataGridView2.Columns["Statut"].HeaderCell.Style.BackColor = Color.Green;
-                        }
-                        else if (comboBox1.Text == "Mode Paiement")
-                        {
-                            this.dataGridView2.Columns["Paiement"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "Montant Total")
-                        {
-                            this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "Date Mois")
-                        {
-                            this.dataGridView2.Columns["Date"].HeaderCell.Style.BackColor = Color.Green;
-                            Search_Cmd(Search.Text);
-                        }
-
+                        MessageBox.Show(ex.Message);
                     }
-                    else if (load == 2)
-                    {
-
-                        if (comboBox1.Text == "id Produit")
-                        {
-                            this.dataGridView2.Columns["IDPRODUIT"].HeaderCell.Style.BackColor = Color.Green;
-                        }
-                        else if (comboBox1.Text == "Designation")
-                        {
-
-                            this.dataGridView2.Columns["DESIGNATION"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "PrixAchat")
-                        {
-
-                            this.dataGridView2.Columns["Prix Achat"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "PrixVente")
-                        {
-
-                            this.dataGridView2.Columns["Prix Vente"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "DPrixVente")
-                        {
-
-                            this.dataGridView2.Columns["DPrix Vente"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-
-
-                    }
-                    else if (load == 3)
-                    {
-
-                        if (comboBox1.Text == "N°CHQ")
-                        {
-                            this.dataGridView2.Columns["N°CHQ"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "Montant")
-                        {
-                            this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "Date Rédaction")
-                        {
-                            this.dataGridView2.Columns["Rédaction"].HeaderCell.Style.BackColor = Color.Green;
-                            Search_CHQ(Search.Text);
-                        }
-                        else if (comboBox1.Text == "Date Encaissement")
-                        {
-                            this.dataGridView2.Columns["Encaissement"].HeaderCell.Style.BackColor = Color.Green;
-                            Search_CHQ(Search.Text);
-                        }
-
-
-                    }
-                    else if (load == 4)
-                    {
-                        if (comboBox1.Text == "id ESP")
-                        {
-                            this.dataGridView2.Columns["IDESP"].HeaderCell.Style.BackColor = Color.Green;
-
-                        }
-                        else if (comboBox1.Text == "Montant")
-                        {
-                            this.dataGridView2.Columns["Montant"].HeaderCell.Style.BackColor = Color.Green;
-                        }
-                        else if (comboBox1.Text == "Date de Paiement")
-                        {
-                            this.dataGridView2.Columns["Date de Paiement"].HeaderCell.Style.BackColor = Color.Green;
-                            Search_ESP(Search.Text);
-                        }
-
-                    }
-
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    FirstloadCombo = false;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                FirstloadCombo = false;
+                MessageBox.Show(ex.Message);
             }
+
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -1023,6 +1048,25 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+           
+
+            if (dataGridView2.Rows.Count > 0)
+            {
+                PrintPdfXlsx.Pdf(dataGridView2);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.Rows.Count > 0)
+            {
+                PrintPdfXlsx.Xlsx(dataGridView2);
+            }
+ 
         }
     }
 

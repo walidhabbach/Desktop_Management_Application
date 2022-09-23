@@ -209,8 +209,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(767, 476);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
+             // 
             // Check
             // 
             this.Check.FillWeight = 40F;
@@ -475,8 +474,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1433, 722);
             this.panel3.TabIndex = 44;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
+             // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -502,8 +500,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(96, 26);
             this.comboBox2.TabIndex = 61;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
+             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -549,8 +546,7 @@
             this.button2.Text = "  Rechercher  ";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
+             // 
             // label5
             // 
             this.label5.AutoSize = true;

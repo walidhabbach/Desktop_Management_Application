@@ -19,61 +19,74 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             IDCMD = ID;
             IDFOUR = FOUR;
             Panel = panel;
-  
+
         }
 
         private void Load_Data_Cmd()
         {
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                Conx.ConnectionString = MainClass.ConnectionDataBase();
-                SqlCommand Cmd = new SqlCommand($"SELECT * FROM COMMANDEFOUR WHERE ID_CMD_FOUR = '{IDCMD}';", Conx);
-                SqlCommand Cmd1 = new SqlCommand($"SELECT ID_PRODUIT , QUANTITE FROM COMMANDER WHERE ID_CMD_FOUR = '{IDCMD}';", Conx);
-
-                Conx.Open();
-                SqlDataReader Read = Cmd.ExecuteReader();
-                SqlDataReader ReadCMD = Cmd1.ExecuteReader();
-
-                while (Read.Read())
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    Description.Text = Read["DESCRIPTION"].ToString();
-                    MONTANTTOTAL.Text = Read["MONTANTTOTAL"].ToString();
-                    dateTimePicker.Value = DateTime.Parse(Read["DATECMD"].ToString());
+                    Conx.ConnectionString = MainClass.ConnectionDataBase();
+                    SqlCommand Cmd = new SqlCommand($"SELECT * FROM COMMANDEFOUR WHERE ID_CMD_FOUR = '{IDCMD}';", Conx);
+                    SqlCommand Cmd1 = new SqlCommand($"SELECT ID_PRODUIT , QUANTITE FROM COMMANDER WHERE ID_CMD_FOUR = '{IDCMD}';", Conx);
 
-                    if (Convert.ToBoolean(Read["STATUT"].ToString()) == true)
-                    {
+                    Conx.Open();
+                    SqlDataReader Read = Cmd.ExecuteReader();
+                    SqlDataReader ReadCMD = Cmd1.ExecuteReader();
 
-                        comboBox.Text = "payee";
-                    }
-                    else
+                    while (Read.Read())
                     {
-                        comboBox.Text = "Non payee";
-                    }
+                        Description.Text = Read["DESCRIPTION"].ToString();
+                        MONTANTTOTAL.Text = Read["MONTANTTOTAL"].ToString();
+                        dateTimePicker.Value = DateTime.Parse(Read["DATECMD"].ToString());
 
-                    while (ReadCMD.Read())
-                    {
-                        //Add Selected Product to datagridview 2 :
-                        Add_Selected_Product(int.Parse(ReadCMD["ID_PRODUIT"].ToString()), float.Parse(ReadCMD["QUANTITE"].ToString()));
+                        if (Convert.ToBoolean(Read["STATUT"].ToString()) == true)
+                        {
+
+                            comboBox.Text = "payee";
+                        }
+                        else
+                        {
+                            comboBox.Text = "Non payee";
+                        }
+
+                        while (ReadCMD.Read())
+                        {
+                            //Add Selected Product to datagridview 2 :
+                            Add_Selected_Product(int.Parse(ReadCMD["ID_PRODUIT"].ToString()), float.Parse(ReadCMD["QUANTITE"].ToString()));
+                        }
+                        Search.Text = "";
+                        comboBox1.SelectedIndex = 0;
+                        Search_Produit(Search.Text);
                     }
-                    Search.Text = "";
-                    comboBox1.SelectedIndex = 0;
-                    Search_Produit(Search.Text);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         //Search For a Product From DataGridView(Selected Products)
         private bool IDProduit_DGV2(int ID)
         {
-            foreach (DataGridViewRow item in dataGridView2.Rows)
+            try
             {
-                if (ID == int.Parse(item.Cells["ID_PRODUIT1"].Value.ToString()))
+                foreach (DataGridViewRow item in dataGridView2.Rows)
                 {
-                    return true;
+                    if (ID == int.Parse(item.Cells["ID_PRODUIT1"].Value.ToString()))
+                    {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);return false;
+            }
         }
 
         //Delete or ADD Selected Product From DataGridView(Selected Products)
@@ -82,87 +95,109 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             //DataGridViewCheckBoxColumn Cb = new DataGridViewCheckBoxColumn();
             //DataGridView.Columns.Insert(0, Cb);
             //this.dataGridView2.Rows.Clear();
-
-            if (dataGridView1.RowCount > 0)
+            try
             {
-                bool Temp;
-                foreach (DataGridViewRow item in dataGridView1.Rows)
+                if (dataGridView1.RowCount > 0)
                 {
-                    Temp = IDProduit_DGV2(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
+                    bool Temp;
+                    foreach (DataGridViewRow item in dataGridView1.Rows)
+                    {
+                        Temp = IDProduit_DGV2(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
 
-                    if (Convert.ToBoolean(item.Cells["Check"].Value) && Temp == false)
-                    {
-                        Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()), 0);
-                    }
-                    else if (Convert.ToBoolean(item.Cells["Check"].Value) == false && Temp)
-                    {
-                        foreach (DataGridViewRow item2 in dataGridView2.Rows)
+                        if (Convert.ToBoolean(item.Cells["Check"].Value) && Temp == false)
                         {
-                            if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                            Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()), 0);
+                        }
+                        else if (Convert.ToBoolean(item.Cells["Check"].Value) == false && Temp)
+                        {
+                            foreach (DataGridViewRow item2 in dataGridView2.Rows)
                             {
-                                DialogResult Dialog = MessageBox.Show("Do You Want To unselect Product N° = ' " + item.Cells["ID_PRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (Dialog == DialogResult.Yes)
+                                if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
                                 {
-                                    dataGridView2.Rows.RemoveAt(item2.Index);
+                                    DialogResult Dialog = MessageBox.Show("Do You Want To unselect Product N° = ' " + item.Cells["ID_PRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (Dialog == DialogResult.Yes)
+                                    {
+                                        dataGridView2.Rows.RemoveAt(item2.Index);
+                                    }
+                                    else if (Dialog == DialogResult.No)
+                                    {
+                                        /*dataGridView1.Rows.Add(true, item.Cells["ID_PRODUIT"].Value.ToString(), item.Cells["IDPRODUIT"].Value.ToString(), item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", item.Cells["DPRIXVENTE"].Value.ToString()));
+                                        dataGridView1.Rows.RemoveAt(item.Index);*/
+                                        item.Cells["Check"].Value = true;
+
+                                    }
+
                                 }
-                                else if (Dialog == DialogResult.No)
-                                {
-                                    /*dataGridView1.Rows.Add(true, item.Cells["ID_PRODUIT"].Value.ToString(), item.Cells["IDPRODUIT"].Value.ToString(), item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", item.Cells["DPRIXVENTE"].Value.ToString()));
-                                    dataGridView1.Rows.RemoveAt(item.Index);*/
-                                    item.Cells["Check"].Value = true;
-                                    
-                                }
-                               
                             }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void Add_Selected_Product(int ID_PRODUIT, float QTE)
         {
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE ID_PRODUIT = @ID_PRODUIT;", Conx);
-
-                Cmd.Parameters.AddWithValue("ID_PRODUIT", ID_PRODUIT);
-                Conx.Open();
-                SqlDataReader ReadProduit = Cmd.ExecuteReader();
-
-                if (ReadProduit.HasRows)
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    while (ReadProduit.Read())
+                    SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE ID_PRODUIT = @ID_PRODUIT;", Conx);
+
+                    Cmd.Parameters.AddWithValue("ID_PRODUIT", ID_PRODUIT);
+                    Conx.Open();
+                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
+
+                    if (ReadProduit.HasRows)
                     {
-                        this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], QTE);
+                        while (ReadProduit.Read())
+                        {
+                            this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], QTE);
+                        }
+                        dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+                        dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
                     }
-                    dataGridView2.Columns[0].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-                    dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 12);
-                }
-                else
-                {
-                    MessageBox.Show("La Table Produit est vide !!!");
+                    else
+                    {
+                        MessageBox.Show("La Table Produit est vide !!!");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
         private void SelectProductsAfterSearch()
         {
-            if (dataGridView2.Rows.Count > 0)
+            try
             {
-                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
+                if (dataGridView2.Rows.Count > 0)
                 {
-                    //Select  selected Products in datagridview 1 :
-
-                    foreach (DataGridViewRow Item in dataGridView1.Rows)
+                    foreach (DataGridViewRow Item2 in dataGridView2.Rows)
                     {
-                        if (int.Parse(Item2.Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(Item.Cells["ID_PRODUIT"].Value.ToString()))
+                        //Select  selected Products in datagridview 1 :
+
+                        foreach (DataGridViewRow Item in dataGridView1.Rows)
                         {
-                            Item.Cells["Check"].Value = true;
+                            if (int.Parse(Item2.Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(Item.Cells["ID_PRODUIT"].Value.ToString()))
+                            {
+                                Item.Cells["Check"].Value = true;
+                            }
                         }
                     }
                 }
             }
-            return;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
 
         }
         private void SelectProducts_Load()
@@ -201,55 +236,69 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         }
         private void Load_Data_Produit(String Query)
         {
-            dataGridView1.Rows.Clear();
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                SqlCommand Cmd = new SqlCommand(Query, Conx);
-                Conx.Open();
-                SqlDataReader ReadProduit = Cmd.ExecuteReader();
+                dataGridView1.Rows.Clear();
 
-
-                if (ReadProduit.HasRows)
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    while (ReadProduit.Read())
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    Conx.Open();
+                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
+
+
+                    if (ReadProduit.HasRows)
                     {
-                        this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4].ToString()), String.Format("{0:0.##}", ReadProduit[5].ToString()), String.Format("{0:0.##}", ReadProduit[6].ToString()));
+                        while (ReadProduit.Read())
+                        {
+                            this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4].ToString()), String.Format("{0:0.##}", ReadProduit[5].ToString()), String.Format("{0:0.##}", ReadProduit[6].ToString()));
+                        }
+
+                        dataGridView1.Columns["DESIGNATION"].Width = 200;
+                        dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+
+                        SelectProducts_Load();
+
                     }
-
-                    dataGridView1.Columns["DESIGNATION"].Width = 200;
-                    dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
-
-                    SelectProducts_Load();
-
+                    else
+                    {
+                        MessageBox.Show("La Table Produit est vide !!!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("La Table Produit est vide !!!");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void Search_Produit(string Search)
         {
-            String Query = "SELECT * From PRODUIT";
-
-            if (comboBox1.SelectedIndex == 0 || Search == string.Empty)
+            try
             {
-                Query += $" WHERE IDFOUR = '{IDFOUR}'";
+                String Query = "SELECT * From PRODUIT";
 
-            }
-            else if (comboBox1.SelectedIndex == 1)
-            {
-                Query += $" WHERE IDPRODUIT LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}';";
-            }
-            else if (comboBox1.SelectedIndex == 2)
-            {
-                Query += $" WHERE DESIGNATION LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}'";
-            }
+                if (comboBox1.SelectedIndex == 0 || Search == string.Empty)
+                {
+                    Query += $" WHERE IDFOUR = '{IDFOUR}'";
 
-            Load_Data_Produit(Query);
-            SelectProductsAfterSearch();
+                }
+                else if (comboBox1.SelectedIndex == 1)
+                {
+                    Query += $" WHERE IDPRODUIT LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}';";
+                }
+                else if (comboBox1.SelectedIndex == 2)
+                {
+                    Query += $" WHERE DESIGNATION LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}'";
+                }
+
+                Load_Data_Produit(Query);
+                SelectProductsAfterSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void button2_Click_1(object sender, EventArgs e)
         {
@@ -267,65 +316,73 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         private string CheckeSelectedProduct()
         {
-            if (dataGridView2.RowCount > 0)
+            try
             {
-                string Temp = "false";
-                foreach (DataGridViewRow item in dataGridView1.Rows)
+                if (dataGridView2.RowCount > 0)
                 {
-                    foreach (DataGridViewRow item2 in dataGridView2.Rows)
+                    string Temp = "false";
+                    foreach (DataGridViewRow item in dataGridView1.Rows)
                     {
-                        if (Convert.ToBoolean(item.Cells["Check"].Value) == true)
+                        foreach (DataGridViewRow item2 in dataGridView2.Rows)
                         {
-
-                            if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                            if (Convert.ToBoolean(item.Cells["Check"].Value) == true)
                             {
-                                Temp = "true";
-                                break;
+
+                                if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                                {
+                                    Temp = "true";
+                                    break;
+                                }
+                                else
+                                {
+                                    Temp = "Refresh";
+                                }
+
                             }
                             else
                             {
-                                Temp = "Refresh";
-                            }
+                                if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                                {
+                                    return "Refresh";
+                                }
 
+                            }
                         }
-                        else
+                        if (Temp == "Refresh")
                         {
-                            if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                            return Temp;
+                        }
+
+                    }
+
+                    foreach (DataGridViewRow item in dataGridView2.Rows)
+                    {
+                        if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
+                        {
+                            if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0)
                             {
-                                return "Refresh";
+                                Temp = "true";
                             }
-
-                        }
-                    }
-                    if (Temp == "Refresh")
-                    {
-                        return Temp;
-                    }
-
-                }
-
-                foreach (DataGridViewRow item in dataGridView2.Rows)
-                {
-                    if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
-                    {
-                        if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0)
-                        {
-                            Temp = "true";
+                            else
+                            {
+                                Temp = item.Cells["IDPRODUIT1"].Value.ToString();
+                            }
                         }
                         else
                         {
-                            Temp = item.Cells["IDPRODUIT1"].Value.ToString();
+                            return item.Cells["IDPRODUIT1"].Value.ToString();
                         }
                     }
-                    else
-                    {
-                        return item.Cells["IDPRODUIT1"].Value.ToString();
-                    }
+                    return Temp;
                 }
-                return Temp;
+                else
+                {
+                    return "false";
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 return "false";
             }
         }
@@ -371,98 +428,105 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         private void Add_Click(object sender, EventArgs e)
         {
             string SelectedProduct = CheckeSelectedProduct();
-
-            if (SelectedProduct == "Refresh")
+            try
             {
-                MessageBox.Show("Actualiser !!!");
-                CheckBox();
-                return;
-            }
-            else
-            {
-                
-                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                if (SelectedProduct == "Refresh")
+                {
+                    MessageBox.Show("Actualiser !!!");
+                    CheckBox();
+                    return;
+                }
+                else
                 {
 
-                    if (SelectedProduct == "true" && Description.Text != "" && MONTANTTOTAL.Text != "" && comboBox.Text != "" )
+                    using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                     {
 
-                        string Query = "UPDATE COMMANDEFOUR SET IDFOUR = @IDFOUR ,DESCRIPTION = @DESCRIPTION , STATUT = @STATUT, DATECMD=@DATECMD,MONTANTTOTAL=@MONTANTTOTAL WHERE ID_CMD_FOUR = @ID_CMD_FOUR ;";
-                        Conx.Open();
-                        SqlCommand Cmd = new SqlCommand(Query, Conx);
-                        try
+                        if (SelectedProduct == "true" && Description.Text != "" && MONTANTTOTAL.Text != "" && comboBox.Text != "")
                         {
-                           
 
-                            if (comboBox.Text == "payee")
+                            string Query = "UPDATE COMMANDEFOUR SET IDFOUR = @IDFOUR ,DESCRIPTION = @DESCRIPTION , STATUT = @STATUT, DATECMD=@DATECMD,MONTANTTOTAL=@MONTANTTOTAL WHERE ID_CMD_FOUR = @ID_CMD_FOUR ;";
+                            Conx.Open();
+                            SqlCommand Cmd = new SqlCommand(Query, Conx);
+                            try
                             {
-                                Cmd.Parameters.AddWithValue("STATUT", true);
+
+
+                                if (comboBox.Text == "payee")
+                                {
+                                    Cmd.Parameters.AddWithValue("STATUT", true);
+                                }
+                                else
+                                {
+                                    Cmd.Parameters.AddWithValue("STATUT", false);
+                                }
+
+                                Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
+                                Cmd.Parameters.AddWithValue("DESCRIPTION", Description.Text);
+                                Cmd.Parameters.AddWithValue("DATECMD", DateTime.Parse(dateTimePicker.Text));
+                                Cmd.Parameters.AddWithValue("MONTANTTOTAL", double.Parse(MONTANTTOTAL.Text));
+                                Cmd.Parameters.AddWithValue("ID_CMD_FOUR", IDCMD);
+                                Cmd.ExecuteNonQuery();
+
+                                COMMANDER(IDCMD);
+
+                                Conx.Close();
+                                MessageBox.Show("La Commande a ete Modifie2");
+
+                                Panel.Controls.Clear();
+                                List_Main_Four L = new List_Main_Four(IDFOUR, Panel, 1);
+                                MainClass.ShowControl(L, Panel);
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                Cmd.Parameters.AddWithValue("STATUT", false);
+                                MessageBox.Show(ex.Message);
                             }
-
-                            Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                            Cmd.Parameters.AddWithValue("DESCRIPTION", Description.Text);
-                            Cmd.Parameters.AddWithValue("DATECMD", DateTime.Parse(dateTimePicker.Text));
-                            Cmd.Parameters.AddWithValue("MONTANTTOTAL", double.Parse(MONTANTTOTAL.Text));
-                            Cmd.Parameters.AddWithValue("ID_CMD_FOUR", IDCMD);
-                            Cmd.ExecuteNonQuery();
-
-                            COMMANDER(IDCMD);
-
-                            Conx.Close();
-                            MessageBox.Show("La Commande a ete Modifie2");
-
-                            Panel.Controls.Clear();
-                            List_Main_Four L = new List_Main_Four(IDFOUR, Panel, 1);
-                            MainClass.ShowControl(L, Panel);
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            MessageBox.Show(ex.Message);
-                        }
-                    }
-                    else
-                    {
-                        if (Description.Text == "")
-                        {
-                            Description.Focus();
-                            labelDescription.Visible = true;
-                            label2.BackColor = Color.Red;
-                            MessageBox.Show("Veuillez Saisir La Description de La Commande");
-                        }
-                        if (comboBox.Text == "")
-                        {
-                            comboBox.Focus();
-                            labelStatut.Visible = true;
-                            label4.BackColor = Color.Red;
-                            MessageBox.Show("Veuillez Préciser La Statut de La Commande");
-                        }
-                        if (MONTANTTOTAL.Text == "")
-                        {
-                            MONTANTTOTAL.Focus();
-                            labelMT.Visible = true;
-                            label8.BackColor = Color.Red;
-                            MessageBox.Show("Veuillez Saisir Le Montant Total de La Commande");
-                        }
-                        if (SelectedProduct == "false" || SelectedProduct != "true")
-                        {
-                            labelQuantite.BackColor = Color.Red;
-                            if (SelectedProduct != "true" && SelectedProduct != "false")
+                            if (Description.Text == "")
                             {
-                                MessageBox.Show("Veuillez Verifier La Quantite de Produit ' " + CheckeSelectedProduct() + "' .");
-                                this.dataGridView2.Columns["MONTANT"].HeaderCell.Style.BackColor = Color.Red;
+                                Description.Focus();
+                                labelDescription.Visible = true;
+                                label2.BackColor = Color.Red;
+                                MessageBox.Show("Veuillez Saisir La Description de La Commande");
                             }
-                            else if (SelectedProduct == "false")
+                            if (comboBox.Text == "")
                             {
-                                MessageBox.Show("Veuillez Selecter les Produit.");
+                                comboBox.Focus();
+                                labelStatut.Visible = true;
+                                label4.BackColor = Color.Red;
+                                MessageBox.Show("Veuillez Préciser La Statut de La Commande");
+                            }
+                            if (MONTANTTOTAL.Text == "")
+                            {
+                                MONTANTTOTAL.Focus();
+                                labelMT.Visible = true;
+                                label8.BackColor = Color.Red;
+                                MessageBox.Show("Veuillez Saisir Le Montant Total de La Commande");
+                            }
+                            if (SelectedProduct == "false" || SelectedProduct != "true")
+                            {
+                                labelQuantite.BackColor = Color.Red;
+                                if (SelectedProduct != "true" && SelectedProduct != "false")
+                                {
+                                    MessageBox.Show("Veuillez Verifier La Quantite de Produit ' " + SelectedProduct + "' .");
+                                    this.dataGridView2.Columns["MONTANT"].HeaderCell.Style.BackColor = Color.Red;
+                                }
+                                else if (SelectedProduct == "false")
+                                {
+                                    MessageBox.Show("Veuillez Selecter les Produit.");
+                                }
                             }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
         private void Edit_CMD_Four_Load_1(object sender, EventArgs e)
         {
@@ -482,28 +546,34 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            if (e.RowIndex >= 0)
+            try
             {
-
-                String ColName;
-
-                ColName = this.dataGridView1.Columns[e.ColumnIndex].Name;
-                if (ColName == "Check")
+                if (e.RowIndex >= 0)
                 {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+
+                    String ColName;
+
+                    ColName = this.dataGridView1.Columns[e.ColumnIndex].Name;
+                    if (ColName == "Check")
                     {
-                        if (Convert.ToBoolean(row.Cells[0].Value))
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
                         {
-                            if (CheckeSelectedProduct() == "Refresh")
+                            if (Convert.ToBoolean(row.Cells[0].Value))
                             {
-                                CheckBox();
-                                break;
+                                if (CheckeSelectedProduct() == "Refresh")
+                                {
+                                    CheckBox();
+                                    break;
+                                }
                             }
                         }
                     }
-                }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -513,6 +583,10 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             SelectProductsAfterSearch();
         }
 
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 

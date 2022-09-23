@@ -1,5 +1,6 @@
 ﻿using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
+using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -132,6 +133,24 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
         {
             InitializeButtons();
             LoadTasks(Query);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.Rows.Count > 0)
+            {
+                PrintPdfXlsx.Pdf(dataGridView1);
+            }
+        
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            if (dataGridView1.Rows.Count > 0)
+            {
+                PrintPdfXlsx.Xlsx(dataGridView1);
+            }
         }
     }
 }

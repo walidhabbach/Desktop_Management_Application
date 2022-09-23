@@ -59,11 +59,13 @@
             this.dataGridViewCat = new System.Windows.Forms.DataGridView();
             this.button6 = new System.Windows.Forms.Button();
             this.PanelDGV = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.calendarPanel.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCat)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // calendarPanel
@@ -109,6 +111,7 @@
             this.DateNow.TabIndex = 18;
             this.DateNow.Text = "label3";
             this.DateNow.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.DateNow.Click += new System.EventHandler(this.DateNow_Click);
             // 
             // label2
             // 
@@ -466,19 +469,29 @@
             // 
             // PanelDGV
             // 
-            this.PanelDGV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PanelDGV.Location = new System.Drawing.Point(434, 64);
+            this.PanelDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelDGV.Location = new System.Drawing.Point(0, 0);
             this.PanelDGV.Name = "PanelDGV";
-            this.PanelDGV.Size = new System.Drawing.Size(1090, 759);
+            this.PanelDGV.Size = new System.Drawing.Size(1090, 710);
             this.PanelDGV.TabIndex = 129;
             this.PanelDGV.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDGV_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.PanelDGV);
+            this.panel1.Location = new System.Drawing.Point(434, 66);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1090, 710);
+            this.panel1.TabIndex = 130;
             // 
             // Calendar
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(this.PanelDGV);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Name = "Calendar";
@@ -490,6 +503,7 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCat)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -524,5 +538,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.FlowLayoutPanel daycontainer;
+        private System.Windows.Forms.Panel panel1;
     }
 }

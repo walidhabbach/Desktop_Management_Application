@@ -23,131 +23,167 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
         private bool IDProduit_DGV2(int ID)
         {
-            foreach (DataGridViewRow item in dataGridView2.Rows)
+            try
             {
-                if (ID == int.Parse(item.Cells["ID_PRODUIT1"].Value.ToString()))
+                foreach (DataGridViewRow item in dataGridView2.Rows)
                 {
-                    return true;
+                    if (ID == int.Parse(item.Cells["ID_PRODUIT1"].Value.ToString()))
+                    {
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
         }
 
 
         //Delete or ADD Selected Product From DataGridView(Selected Products)
         private void CheckBox()
         {
-            if (dataGridView1.RowCount > 0)
+            try
             {
-                bool Temp;
-                foreach (DataGridViewRow item in dataGridView1.Rows)
+                if (dataGridView1.RowCount > 0)
                 {
-                    Temp = IDProduit_DGV2(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
+                    bool Temp;
+                    foreach (DataGridViewRow item in dataGridView1.Rows)
+                    {
+                        Temp = IDProduit_DGV2(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
 
-                    if (Convert.ToBoolean(item.Cells["Check"].Value) && Temp == false)
-                    {
-                        Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
-                    }
-                    else if (Convert.ToBoolean(item.Cells["Check"].Value) == false && Temp)
-                    {
-                        foreach (DataGridViewRow item2 in dataGridView2.Rows)
+                        if (Convert.ToBoolean(item.Cells["Check"].Value) && Temp == false)
                         {
-                            if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
+                            Add_Selected_Product(int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()));
+                        }
+                        else if (Convert.ToBoolean(item.Cells["Check"].Value) == false && Temp)
+                        {
+                            foreach (DataGridViewRow item2 in dataGridView2.Rows)
                             {
-                                DialogResult Dialog = MessageBox.Show("Do You Want To unselect Product N° = ' " + item.Cells["ID_PRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (Dialog == DialogResult.Yes)
+                                if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
                                 {
-                                    dataGridView2.Rows.RemoveAt(item2.Index);
+                                    DialogResult Dialog = MessageBox.Show("Do You Want To unselect Product N° = ' " + item.Cells["ID_PRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (Dialog == DialogResult.Yes)
+                                    {
+                                        dataGridView2.Rows.RemoveAt(item2.Index);
+                                    }
+                                    else if (Dialog == DialogResult.No)
+                                    {
+                                        /*dataGridView1.Rows.Add(true, item.Cells["ID_PRODUIT"].Value.ToString(), item.Cells["IDPRODUIT"].Value.ToString(), item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", item.Cells["DPRIXVENTE"].Value.ToString()));
+                                        dataGridView1.Rows.RemoveAt(item.Index);*/
+                                        item.Cells["Check"].Value = true;
+                                        return;
+                                    }
+                                    break;
                                 }
-                                else if (Dialog == DialogResult.No)
-                                {
-                                    /*dataGridView1.Rows.Add(true, item.Cells["ID_PRODUIT"].Value.ToString(), item.Cells["IDPRODUIT"].Value.ToString(), item.Cells["DESIGNATION"].Value.ToString(), String.Format("{0:0.##}", item.Cells["PRIXACHAT"].Value.ToString()), String.Format("{0:0.##}", item.Cells["PRIXVENTE"].Value.ToString()), String.Format("{0:0.##}", item.Cells["DPRIXVENTE"].Value.ToString()));
-                                    dataGridView1.Rows.RemoveAt(item.Index);*/
-                                    item.Cells["Check"].Value = true;
-                                    return;
-                                }
-                                break;
                             }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
 
         private void SelectProductsAfterSearch()
         {
-            if (dataGridView2.Rows.Count > 0)
+            try
             {
-                foreach (DataGridViewRow Item2 in dataGridView2.Rows)
+                if (dataGridView2.Rows.Count > 0)
                 {
-                    //Select  selected Products in datagridview 1 :
-
-                    foreach (DataGridViewRow Item in dataGridView1.Rows)
+                    foreach (DataGridViewRow Item2 in dataGridView2.Rows)
                     {
-                        if (int.Parse(Item2.Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(Item.Cells["ID_PRODUIT"].Value.ToString()))
+                        //Select  selected Products in datagridview 1 :
+
+                        foreach (DataGridViewRow Item in dataGridView1.Rows)
                         {
-                            Item.Cells["Check"].Value = true;
+                            if (int.Parse(Item2.Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(Item.Cells["ID_PRODUIT"].Value.ToString()))
+                            {
+                                Item.Cells["Check"].Value = true;
+                            }
                         }
                     }
                 }
+                return;
             }
-            return;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
         private void Add_Selected_Product(int ID_PRODUIT)
         {
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE ID_PRODUIT = @ID_PRODUIT;", Conx);
-                Cmd.Parameters.AddWithValue("ID_PRODUIT", ID_PRODUIT);
-                Conx.Open();
-                SqlDataReader ReadProduit = Cmd.ExecuteReader();
-
-                if (ReadProduit.HasRows)
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    while (ReadProduit.Read())
+                    SqlCommand Cmd = new SqlCommand("SELECT * From PRODUIT WHERE ID_PRODUIT = @ID_PRODUIT;", Conx);
+                    Cmd.Parameters.AddWithValue("ID_PRODUIT", ID_PRODUIT);
+                    Conx.Open();
+                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
+
+                    if (ReadProduit.HasRows)
                     {
-                        this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], 0);
+                        while (ReadProduit.Read())
+                        {
+                            this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], 0);
+                        }
+
+                        dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Table Produit est vide !!!");
                     }
 
-                    dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
 
                 }
-                else
-                {
-                    MessageBox.Show("La Table Produit est vide !!!");
-                }
-
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void Load_Data_Produit(String Query)
         {
             dataGridView1.Rows.Clear();
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            try
             {
-                SqlCommand Cmd = new SqlCommand(Query, Conx);
-                Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
-                Conx.Open();
-                SqlDataReader ReadProduit = Cmd.ExecuteReader();
-                dataGridView1.Rows.Clear();
-
-                if (ReadProduit.HasRows)
+                using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
+                    SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    Cmd.Parameters.AddWithValue("IDFOUR", IDFOUR);
+                    Conx.Open();
+                    SqlDataReader ReadProduit = Cmd.ExecuteReader();
+                    dataGridView1.Rows.Clear();
 
-                    while (ReadProduit.Read())
+                    if (ReadProduit.HasRows)
                     {
-                        this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
-                    }
-                    dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
 
+                        while (ReadProduit.Read())
+                        {
+                            this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
+                        }
+                        dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Table Produit est vide !!!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("La Table Produit est vide !!!");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -158,22 +194,30 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         private void Search_Produit(string Search)
         {
             String Query = "SELECT * From PRODUIT";
-
-            if (comboBox1.SelectedIndex == 0 || Search == string.Empty)
+            try
             {
-                Query += $" WHERE IDFOUR = '{IDFOUR}'";
 
+                if (comboBox1.SelectedIndex == 0 || Search == string.Empty)
+                {
+                    Query += $" WHERE IDFOUR = '{IDFOUR}'";
+
+                }
+                else if (comboBox1.SelectedIndex == 1)
+                {
+                    Query += $" WHERE IDPRODUIT LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}';";
+                }
+                else if (comboBox1.SelectedIndex == 2)
+                {
+                    Query += $" WHERE DESIGNATION LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}'";
+                }
+
+                Load_Data_Produit(Query);
             }
-            else if (comboBox1.SelectedIndex == 1)
+            catch (Exception ex)
             {
-                Query += $" WHERE IDPRODUIT LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}';";
-            }
-            else if (comboBox1.SelectedIndex == 2)
-            {
-                Query += $" WHERE DESIGNATION LIKE '" + Search + $"%' and IDFOUR = '{IDFOUR}'";
+                MessageBox.Show(ex.Message);
             }
 
-            Load_Data_Produit(Query);
         }
         private void Button2_Click(object sender, EventArgs e)
         {
@@ -193,7 +237,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Add_Produit Form = new Add_Produit(IDFOUR,panel);
+            Add_Produit Form = new Add_Produit(IDFOUR, panel);
             Form.Show();
         }
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -216,34 +260,42 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         private string CheckeSelectedProduct()
         {
-
-            if (dataGridView2.RowCount > 0)
+            try
             {
-                string Temp = "false";
-                foreach (DataGridViewRow item in dataGridView2.Rows)
+                if (dataGridView2.RowCount > 0)
                 {
-                    if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0)
+                    string Temp = "false";
+                    foreach (DataGridViewRow item in dataGridView2.Rows)
                     {
-                        if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
+                        if (float.Parse(item.Cells["Quantite"].Value.ToString()) != 0)
                         {
-                            Temp = "true";
+                            if (MainClass.TypeCheckFloat(item.Cells["Quantite"].Value.ToString()))
+                            {
+                                Temp = "true";
+                            }
+                            else
+                            {
+                                Temp = item.Cells["IDPRODUIT1"].Value.ToString();
+                            }
                         }
                         else
                         {
                             Temp = item.Cells["IDPRODUIT1"].Value.ToString();
                         }
                     }
-                    else
-                    {
-                        Temp = item.Cells["IDPRODUIT1"].Value.ToString();
-                    }
+                    return Temp;
                 }
-                return Temp;
+                else
+                {
+                    return "false";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return "false";
+
+                MessageBox.Show(ex.Message); return "false";
             }
+
         }
         private void COMMANDER(int IDCMD)
         {
@@ -312,7 +364,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                             }
 
                             panel.Controls.Clear();
-                            List_Main_Four MFour = new List_Main_Four(IDFOUR,panel, 1);
+                            List_Main_Four MFour = new List_Main_Four(IDFOUR, panel, 1);
                             MainClass.ShowControl(MFour, panel);
                             Conx.Close();
 
@@ -379,8 +431,16 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CheckBox();
-            SelectProductsAfterSearch();
+            try
+            {
+                CheckBox();
+                SelectProductsAfterSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
