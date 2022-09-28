@@ -33,27 +33,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.TOTALCMD = new System.Windows.Forms.TextBox();
-            this.ID_CMD1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCRIPTION1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.DATE = new System.Windows.Forms.Label();
-            this.MONTANTTOTAL1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Montant = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.RMontant = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Add = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,7 +61,6 @@
             this.ID_CMD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDPRODUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MTRESTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MONTANTTOTAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateCmd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Search = new System.Windows.Forms.TextBox();
@@ -73,6 +68,9 @@
             this.labelCmd = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ID_CMD1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCRIPTION1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTANTTOTAL1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -80,33 +78,6 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(823, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 20);
-            this.label6.TabIndex = 62;
-            this.label6.Text = "Filtrer";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Tous",
-            "Date",
-            "id cmd",
-            "Designation",
-            "Statut",
-            "Montant Total"});
-            this.comboBox2.Location = new System.Drawing.Point(878, 46);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(96, 26);
-            this.comboBox2.TabIndex = 61;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -197,17 +168,6 @@
             this.TOTALCMD.Size = new System.Drawing.Size(157, 28);
             this.TOTALCMD.TabIndex = 34;
             // 
-            // ID_CMD1
-            // 
-            this.ID_CMD1.FillWeight = 50F;
-            this.ID_CMD1.HeaderText = "ID_CMD";
-            this.ID_CMD1.Name = "ID_CMD1";
-            // 
-            // DESCRIPTION1
-            // 
-            this.DESCRIPTION1.HeaderText = "Description";
-            this.DESCRIPTION1.Name = "DESCRIPTION1";
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -229,11 +189,6 @@
             this.DATE.Size = new System.Drawing.Size(159, 24);
             this.DATE.TabIndex = 21;
             this.DATE.Text = "Date de Paiement";
-            // 
-            // MONTANTTOTAL1
-            // 
-            this.MONTANTTOTAL1.HeaderText = "MONTANTTOTAL";
-            this.MONTANTTOTAL1.Name = "MONTANTTOTAL1";
             // 
             // Montant
             // 
@@ -282,11 +237,6 @@
             this.label2.Text = "N°Paiement :";
             this.label2.UseWaitCursor = true;
             // 
-            // RMontant
-            // 
-            this.RMontant.HeaderText = "MTRESTE";
-            this.RMontant.Name = "RMontant";
-            // 
             // Add
             // 
             this.Add.AutoSize = true;
@@ -308,20 +258,19 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.BackColor = System.Drawing.Color.LightBlue;
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.TOTALCMD);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 267);
+            this.panel1.Location = new System.Drawing.Point(0, 264);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(525, 35);
+            this.panel1.Size = new System.Drawing.Size(525, 38);
             this.panel1.TabIndex = 60;
             // 
             // panel3
             // 
             this.panel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel3.Controls.Add(this.label6);
+            this.panel3.BackColor = System.Drawing.Color.LightBlue;
             this.panel3.Controls.Add(this.comboBox2);
             this.panel3.Controls.Add(this.textBox1);
             this.panel3.Controls.Add(this.dateTimePicker2);
@@ -350,6 +299,23 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1434, 703);
             this.panel3.TabIndex = 45;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Tous",
+            "Date",
+            "id cmd",
+            "Designation",
+            "Statut",
+            "Montant Total"});
+            this.comboBox2.Location = new System.Drawing.Point(878, 46);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(96, 26);
+            this.comboBox2.TabIndex = 61;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // dateTimePicker2
             // 
@@ -405,6 +371,8 @@
             // 
             // panel9
             // 
+            this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.Controls.Add(this.dataGridView1);
             this.panel9.Location = new System.Drawing.Point(639, 102);
             this.panel9.Name = "panel9";
@@ -416,17 +384,16 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLight;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -434,29 +401,38 @@
             this.ID_CMD,
             this.IDPRODUIT,
             this.STATUT,
-            this.MTRESTE,
             this.MONTANTTOTAL,
             this.DateCmd});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightSteelBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(767, 476);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Check
             // 
-            this.Check.FillWeight = 40F;
-            this.Check.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Check.FillWeight = 60F;
             this.Check.HeaderText = "Selecter";
             this.Check.Name = "Check";
             // 
@@ -468,22 +444,17 @@
             // 
             // IDPRODUIT
             // 
-            this.IDPRODUIT.HeaderText = "DESCRIPTION";
+            this.IDPRODUIT.HeaderText = "Description";
             this.IDPRODUIT.Name = "IDPRODUIT";
             // 
             // STATUT
             // 
-            this.STATUT.HeaderText = "STATUT";
+            this.STATUT.HeaderText = "Statut";
             this.STATUT.Name = "STATUT";
-            // 
-            // MTRESTE
-            // 
-            this.MTRESTE.HeaderText = "MTRESTE";
-            this.MTRESTE.Name = "MTRESTE";
             // 
             // MONTANTTOTAL
             // 
-            this.MONTANTTOTAL.HeaderText = "Montant Total";
+            this.MONTANTTOTAL.HeaderText = "Montant";
             this.MONTANTTOTAL.Name = "MONTANTTOTAL";
             // 
             // DateCmd
@@ -541,36 +512,55 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SkyBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Yu Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID_CMD1,
             this.DESCRIPTION1,
-            this.MONTANTTOTAL1,
-            this.RMontant});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MONTANTTOTAL1});
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Yu Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView2.EnableHeadersVisualStyles = false;
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.Size = new System.Drawing.Size(525, 302);
+            this.dataGridView2.RowTemplate.Height = 40;
+            this.dataGridView2.Size = new System.Drawing.Size(525, 264);
             this.dataGridView2.TabIndex = 53;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // ID_CMD1
+            // 
+            this.ID_CMD1.FillWeight = 50F;
+            this.ID_CMD1.HeaderText = "ID_CMD";
+            this.ID_CMD1.Name = "ID_CMD1";
+            // 
+            // DESCRIPTION1
+            // 
+            this.DESCRIPTION1.HeaderText = "Description";
+            this.DESCRIPTION1.Name = "DESCRIPTION1";
+            // 
+            // MONTANTTOTAL1
+            // 
+            this.MONTANTTOTAL1.HeaderText = "MONTANT";
+            this.MONTANTTOTAL1.Name = "MONTANTTOTAL1";
             // 
             // Edit_ESP_Four
             // 
@@ -593,25 +583,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox TOTALCMD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label DATE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANTTOTAL1;
         private System.Windows.Forms.TextBox Montant;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RMontant;
         private System.Windows.Forms.Button Add;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
@@ -622,17 +605,20 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Check;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IDPRODUIT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MTRESTE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANTTOTAL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateCmd;
         private System.Windows.Forms.TextBox Search;
         private System.Windows.Forms.Label labelMT;
         private System.Windows.Forms.Label labelCmd;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPTION1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANTTOTAL1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Check;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CMD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDPRODUIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANTTOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateCmd;
     }
 }

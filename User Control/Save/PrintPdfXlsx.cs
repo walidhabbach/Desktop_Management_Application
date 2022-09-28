@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Save
@@ -50,7 +47,6 @@ namespace Store_Management_System.User_Control.Save
                                     {
                                         workbook.Worksheets.Add(Dt, "Cheques");
                                         workbook.SaveAs(sfd.FileName);
-
                                     }
                                     MessageBox.Show("You have succesfully expoted your data to an excel file.,", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -92,9 +88,11 @@ namespace Store_Management_System.User_Control.Save
                     printer.SubTitleSpacing = 15;
                     printer.FooterSpacing = 15;
                     printer.SubTitleColor = System.Drawing.Color.Gray;
-                    printer.printDocument.DefaultPageSettings.Landscape = true;
-                    printer.PrintDataGridView(DataGridView);
 
+                    printer.printDocument.DefaultPageSettings.Landscape = true;
+                    //printer.PrintDataGridView(DataGridView);
+                    printer.PrintPreviewDataGridView(DataGridView); 
+               
 
                 }
                 catch (Exception ex)

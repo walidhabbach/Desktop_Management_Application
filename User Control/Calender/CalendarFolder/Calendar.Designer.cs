@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calendar));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.calendarPanel = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.DateNow = new System.Windows.Forms.Label();
@@ -284,7 +284,7 @@
             this.button10.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
             this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(20, 757);
+            this.button10.Location = new System.Drawing.Point(21, 724);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(389, 50);
             this.button10.TabIndex = 7;
@@ -302,7 +302,7 @@
             this.button9.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
             this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(21, 688);
+            this.button9.Location = new System.Drawing.Point(21, 667);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(389, 51);
             this.button9.TabIndex = 6;
@@ -320,7 +320,7 @@
             this.button8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
             this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(21, 622);
+            this.button8.Location = new System.Drawing.Point(21, 599);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(389, 51);
             this.button8.TabIndex = 5;
@@ -338,7 +338,7 @@
             this.button5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
             this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(21, 826);
+            this.button5.Location = new System.Drawing.Point(21, 791);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(389, 51);
             this.button5.TabIndex = 4;
@@ -356,7 +356,7 @@
             this.button4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(21, 480);
+            this.button4.Location = new System.Drawing.Point(21, 473);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(389, 51);
             this.button4.TabIndex = 3;
@@ -374,7 +374,7 @@
             this.button3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(21, 550);
+            this.button3.Location = new System.Drawing.Point(21, 542);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(389, 51);
             this.button3.TabIndex = 2;
@@ -423,25 +423,25 @@
             this.dataGridViewCat.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dataGridViewCat.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCat.ColumnHeadersVisible = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCat.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCat.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewCat.EnableHeadersVisualStyles = false;
             this.dataGridViewCat.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewCat.Name = "dataGridViewCat";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCat.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewCat.RowHeadersVisible = false;
             this.dataGridViewCat.RowTemplate.Height = 45;
             this.dataGridViewCat.Size = new System.Drawing.Size(878, 45);
@@ -472,7 +472,7 @@
             this.PanelDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelDGV.Location = new System.Drawing.Point(0, 0);
             this.PanelDGV.Name = "PanelDGV";
-            this.PanelDGV.Size = new System.Drawing.Size(1090, 710);
+            this.PanelDGV.Size = new System.Drawing.Size(1090, 793);
             this.PanelDGV.TabIndex = 129;
             this.PanelDGV.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDGV_Paint);
             // 
@@ -484,7 +484,7 @@
             this.panel1.Controls.Add(this.PanelDGV);
             this.panel1.Location = new System.Drawing.Point(434, 66);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1090, 710);
+            this.panel1.Size = new System.Drawing.Size(1090, 793);
             this.panel1.TabIndex = 130;
             // 
             // Calendar

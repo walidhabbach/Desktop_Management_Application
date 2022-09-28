@@ -1,4 +1,5 @@
 ﻿using Store_Management_System.Class;
+using Store_Management_System.User_Control.Fournisseur.ListALL;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -10,15 +11,17 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
     {
         private readonly int IDFOUR;
         private readonly Panel Panel;
-        private float TOTAL;
-        private String QueryCMD;
-        private String QueryCMDAll;
+        private float TOTAL=0;
+
+
         public Add_ESP_Four(int FOUR, Panel Panel)
         {
             InitializeComponent();
             IDFOUR = FOUR;
             this.Panel = Panel;
         }
+
+
 
         private bool IDCMD_DGV2(int ID)
         {
@@ -157,7 +160,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
                             while (ReadCmd.Read())
                             {
-                                this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString(), ReadCmd["MTRESTE"]);
+                                this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString());
 
                                 TOTAL = TOTAL + float.Parse(ReadCmd["MONTANTTOTAL"].ToString());
                                 TOTALCMD.Text = TOTAL.ToString() + " DH";
@@ -289,7 +292,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                     ReadCmdFour["ID_CMD_FOUR"],
                                     ReadCmdFour["DESCRIPTION"],
                                     Statut,
-                                    ReadCmdFour["MTRESTE"],
                                     ReadCmdFour["MONTANTTOTAL"],
                                     Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
                             };
@@ -343,7 +345,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 ReadCmdFour["ID_CMD_FOUR"],
                                 ReadCmdFour["DESCRIPTION"],
                                 Statut,
-                                ReadCmdFour["MTRESTE"],
                                 ReadCmdFour["MONTANTTOTAL"],
                                 Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
                         };
@@ -363,38 +364,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         }
 
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            try
-            {
-                CheckBox();
-                dataGridView1.Rows.Clear();
-                if (comboBox1.Text == "Tous")
-                {
-
-                    QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                    Data_Cmd(QueryCMDAll);
-                }
-                else
-                {
-                    QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{MainClass.ConvertToNumber(comboBox1.Text)}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                    Data_Cmd(QueryCMD);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-
-            }
-
-
-        }
 
         public void Clear()
         {
             textBox1.Text = "";
             Montant.Text = "";
-            comboBox1.Text = "";
+         
         }
 
         private void REGLER_ESP_FOUR(int IDESP_FOUR)
@@ -521,6 +496,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                     }
                                     Conx.Close();
                                     Clear();
+
+
+                                    Panel.Controls.Clear();
+                                    List_Main_Four L = new List_Main_Four(IDFOUR, Panel, 4);
+                                    MainClass.ShowControl(L, Panel);
                                 }
                             }
                             catch (Exception ex)
@@ -585,7 +565,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
             TOTAL = 0;
             TOTALCMD.Text = " 0 DH";
-            comboBox1.Text = "Tous";
 
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
@@ -593,8 +572,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             this.dataGridView1.Rows.Clear();
             try
             {
-                QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                Data_Cmd(QueryCMDAll);
+
+                Data_Cmd($"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;");
                 AddDeleteButton();
                 SetMyCustomFormat();
             }
@@ -654,7 +633,29 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             
         }
 
-       
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckBox();
+                Search_Cmd(Search.Text);
+                SelectCmdAfterSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

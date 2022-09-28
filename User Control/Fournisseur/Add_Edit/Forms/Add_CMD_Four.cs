@@ -14,6 +14,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         private Panel panel;
         private readonly int IDFOUR;
         private readonly string ENTREPRISE;
+        private float TOTAL;
         public Add_CMD_Four(int ID, string NFour, Panel panel)
         {
             InitializeComponent();
@@ -65,9 +66,11 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                             {
                                 if (int.Parse(item.Cells["ID_PRODUIT"].Value.ToString()) == int.Parse(item2.Cells["ID_PRODUIT1"].Value.ToString()))
                                 {
-                                    DialogResult Dialog = MessageBox.Show("Do You Want To unselect Product N° = ' " + item.Cells["ID_PRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    DialogResult Dialog = MessageBox.Show("Do You Want To unselect Product N° = ' " + item.Cells["IDPRODUIT"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (Dialog == DialogResult.Yes)
                                     {
+                                        TOTAL -= float.Parse(item.Cells["PRIXACHAT"].Value.ToString());
+                                        TOTALCMD.Text = TOTAL.ToString() + " DH";
                                         dataGridView2.Rows.RemoveAt(item2.Index);
                                     }
                                     else if (Dialog == DialogResult.No)
@@ -134,6 +137,9 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                         while (ReadProduit.Read())
                         {
                             this.dataGridView2.Rows.Add(ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], 0);
+
+                            TOTAL = TOTAL + float.Parse(ReadProduit["PRIXACHAT"].ToString());
+                            TOTALCMD.Text = TOTAL.ToString() + " DH";
                         }
 
                         dataGridView2.Columns[1].DefaultCellStyle.Font = new Font("Tahoma", 13, FontStyle.Bold);
@@ -170,7 +176,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
                         while (ReadProduit.Read())
                         {
-                            this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[4]), String.Format("{0:0.##}", ReadProduit[5], false), String.Format("{0:0.##}", ReadProduit[6]));
+                            this.dataGridView1.Rows.Add(false, ReadProduit["ID_PRODUIT"], ReadProduit["IDPRODUIT"], ReadProduit["DESIGNATION"], String.Format("{0:0.##}", ReadProduit[3]), String.Format("{0:0.##}", ReadProduit[4], false), String.Format("{0:0.##}", ReadProduit[5]));
                         }
                         dataGridView1.Columns["IDPRODUIT"].DefaultCellStyle.Font = new Font("Tahoma", 12, FontStyle.Bold);
 
@@ -231,6 +237,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         {
             Description.Text = "";
             comboBox.Text = "";
+            TOTAL = 0;
             MONTANTTOTAL.Text = "";
             comboBox.Text = "";
         }
@@ -248,15 +255,23 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         private void Add_CMD_Four_Load_1(object sender, EventArgs e)
         {
             label1.Text = ENTREPRISE;
+            TOTAL = 0;
+            TOTALCMD.Text = " 0 DH";
             dateTimePicker.Value = DateTime.Now;
             comboBox1.Text = "Tous";
+
+            AddDeleteButton();
             Search_Produit("");
         }
         private void button3_Click(object sender, EventArgs e)
         {
             CheckBox();
         }
-
+        private void AddDeleteButton()
+        {
+            MainClass.Button_DGV(dataGridView2, "Delete", "remove1");
+            dataGridView2.Columns["Delete"].Width = 50;
+        }
 
         private string CheckeSelectedProduct()
         {
@@ -449,6 +464,54 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    int IDCMD;
+                    DialogResult Dialog;
+                    String ColName;
+                    DataGridViewRow Row;
+
+                    Row = dataGridView2.Rows[e.RowIndex];
+                    Row.Selected = true;
+                    IDCMD = Convert.ToInt32(Row.Cells[0].Value.ToString());
+                    ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
+                    if (ColName == "Delete")
+                    {
+                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (Dialog == DialogResult.No)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            foreach (DataGridViewRow row in this.dataGridView1.Rows)
+                            {
+                                if (int.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(row.Cells["ID_PRODUIT"].Value.ToString()))
+                                {
+                                    row.Cells["Check"].Value = false;
+                                    TOTAL -= float.Parse(row.Cells["PRIXACHAT"].Value.ToString());
+                                    TOTALCMD.Text = TOTAL.ToString() + " DH";
+                                    break;
+                                }
+                            }
+                            this.dataGridView2.Rows.RemoveAt(this.dataGridView2.CurrentRow.Index);
+
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        
+    }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -46,6 +46,8 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                         Number = int.Parse(Count[0].ToString());
                     }
 
+                    
+
                     if (Read.HasRows)
                     {
 

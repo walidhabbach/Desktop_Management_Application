@@ -94,7 +94,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                                 Statut,
                                 DateTime.Parse(ReadCmdFour["DATECMD"].ToString()).ToString("dd MMMM yy"),
                                 MPaiement,
-                                Math.Round(double.Parse(ReadCmdFour["MONTANTTOTAL"].ToString()), 2)
+                                Math.Round(double.Parse(ReadCmdFour["MONTANTTOTAL"].ToString()), 2) + " DH"
 
                             );
                         };
@@ -157,7 +157,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                                     Read["N_CHQ"],
                                     DateTime.Parse(Read["DATEDONNER"].ToString()).ToString("dd MMMM yy"),
                                     DateTime.Parse(Read["DATEPAYER"].ToString()).ToString("dd MMMM yy"),
-                                    Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)
+                                    Math.Round(double.Parse(Read["MONTANT"].ToString()), 2) + " DH"
                             );
 
                         }
@@ -202,9 +202,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                                 , ReadProduit["ID_PRODUIT"]
                                 , ReadProduit["IDPRODUIT"],
                                 ReadProduit["DESIGNATION"],
-                                Math.Round(float.Parse(ReadProduit[3].ToString()), 2),
-                                Math.Round(float.Parse(ReadProduit[4].ToString()), 2),
-                                Math.Round(float.Parse(ReadProduit[5].ToString()), 2)
+                                Math.Round(float.Parse(ReadProduit[3].ToString()), 2) + " DH",
+                                Math.Round(float.Parse(ReadProduit[4].ToString()), 2) + " DH",
+                                Math.Round(float.Parse(ReadProduit[5].ToString()), 2) + " DH"
                             );
                         }
 
@@ -223,7 +223,6 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                 MessageBox.Show(ex.Message);
             }
         }
-
 
         private void List_ESP_Four(String Query)
         {
@@ -260,7 +259,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                                     (dataGridView2.RowCount + 1),
                                     Read["IDESP_FOUR"],
                                     DateTime.Parse(Read["DATE_PAIEMENT"].ToString()).ToString("dd MMMM yy"),
-                                    Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)
+                                    Math.Round(double.Parse(Read["MONTANT"].ToString()), 2)+ " DH"
                             );
                         }
                         Conx.Close();
@@ -338,7 +337,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         else if (ColName == "Delete")
                         {
 
-                            Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            Dialog = MessageBox.Show("Do You Want To Delete id cmd = " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (Dialog == DialogResult.No)
                             {
                                 return;
@@ -364,7 +363,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         }
                         else if (ColName == "Delete")
                         {
-                            Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[2].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (Dialog == DialogResult.No)
                             {
                                 return;
@@ -384,7 +383,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         }
                         else if (ColName == "Delete")
                         {
-                            Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            Dialog = MessageBox.Show("Do You Want To Delete CHQ N°" + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[2].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (Dialog == DialogResult.No)
                             {
                                 return;
@@ -410,7 +409,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                         else if (ColName == "Delete")
                         {
 
-                            Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            Dialog = MessageBox.Show("Do You Want To Delete ESP id  " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (Dialog == DialogResult.No)
                             {
                                 return;
@@ -512,7 +511,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             this.dataGridView2.Columns[0].Name = "#";
             this.dataGridView2.Columns[0].Width = 30;
             this.dataGridView2.Columns[1].Name = "Id";
-            this.dataGridView2.Columns[1].Width = 50;
+            this.dataGridView2.Columns[1].Width = 60;
             this.dataGridView2.Columns[2].Name = "Description";
             this.dataGridView2.Columns[3].Name = "Statut";
             this.dataGridView2.Columns[4].Name = "Date";
@@ -546,7 +545,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             this.dataGridView2.Columns[0].Name = "#";
             this.dataGridView2.Columns[0].Width = 30;
             this.dataGridView2.Columns[1].Name = "IDESP";
-            this.dataGridView2.Columns[1].Width = 50;
+            this.dataGridView2.Columns[1].Width = 70;
             this.dataGridView2.Columns[2].Name = "Date de Paiement";
             this.dataGridView2.Columns[3].Name = "Montant";
             InitializeButtons("cmd");
@@ -1045,15 +1044,8 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
-           
-
             if (dataGridView2.Rows.Count > 0)
             {
                 PrintPdfXlsx.Pdf(dataGridView2);

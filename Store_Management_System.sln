@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32811.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store_Management_System", "Store_Management_System.csproj", "{89DCD082-1C0A-47FA-91BF-DC5EB030F39B}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Desktop App Setup", "..\Desktop App Setup\Desktop App Setup.vdproj", "{4E961C82-03B6-4346-AC33-45819B3C9896}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{89DCD082-1C0A-47FA-91BF-DC5EB030F39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89DCD082-1C0A-47FA-91BF-DC5EB030F39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89DCD082-1C0A-47FA-91BF-DC5EB030F39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E961C82-03B6-4346-AC33-45819B3C9896}.Debug|Any CPU.ActiveCfg = Debug
+		{4E961C82-03B6-4346-AC33-45819B3C9896}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

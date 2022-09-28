@@ -63,7 +63,7 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Tous"});
-            this.comboBox2.Location = new System.Drawing.Point(733, 54);
+            this.comboBox2.Location = new System.Drawing.Point(906, 54);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(148, 28);
             this.comboBox2.TabIndex = 6;
@@ -71,39 +71,50 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(537, 54);
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(662, 54);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(149, 28);
+            this.button3.Size = new System.Drawing.Size(174, 48);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Lister Commande Four";
+            this.button3.Text = "Commandes";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(348, 54);
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(452, 54);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(142, 28);
+            this.button2.Size = new System.Drawing.Size(168, 48);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Lister Cheque Fournisseur";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Cheques";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // Add
             // 
+            this.Add.BackColor = System.Drawing.Color.Transparent;
+            this.Add.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Add.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Add.Location = new System.Drawing.Point(201, 54);
             this.Add.Name = "Add";
-            this.Add.Size = new System.Drawing.Size(120, 28);
+            this.Add.Size = new System.Drawing.Size(233, 48);
             this.Add.TabIndex = 2;
-            this.Add.Text = "Ajouter Four";
-            this.Add.UseVisualStyleBackColor = true;
+            this.Add.Text = "Ajouter un Fournisseur";
+            this.Add.UseVisualStyleBackColor = false;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
             // Display
             // 
+            this.Display.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Display.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Display.Location = new System.Drawing.Point(51, 54);
             this.Display.Name = "Display";
-            this.Display.Size = new System.Drawing.Size(124, 28);
+            this.Display.Size = new System.Drawing.Size(133, 48);
             this.Display.TabIndex = 0;
             this.Display.Text = "Afficher";
             this.Display.UseVisualStyleBackColor = true;

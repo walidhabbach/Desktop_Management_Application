@@ -155,7 +155,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 
                             while (ReadCmd.Read())
                             {
-                                this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString(), ReadCmd["MTRESTE"]);
+                                this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString()
+                                    );
 
                                 TOTAL = TOTAL + float.Parse(ReadCmd["MONTANTTOTAL"].ToString());
                                 TOTALCMD.Text = TOTAL.ToString() + " DH";
@@ -225,7 +226,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                         }
 
                     }
-                    return "true";
+                    return Temp;
+
                 }
                 else
                 {
@@ -341,7 +343,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                                 ReadCmdFour["ID_CMD_FOUR"],
                                 ReadCmdFour["DESCRIPTION"],
                                 Statut,
-                                ReadCmdFour["MTRESTE"],
                                 ReadCmdFour["MONTANTTOTAL"],
                                 Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
                         };
@@ -419,13 +420,15 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                 string CheckSelected = CheckSelectedCmd();
                 if (CheckSelected == "Refresh")
                 {
-                    MessageBox.Show("Actualiser !!!");
                     CheckBox();
+                    MessageBox.Show("Actualiser !!!");
                     return;
                 }
                 else if (CheckSelected == "false" && TestifAnySelectedCmd())
                 {
                     CheckBox();
+                    MessageBox.Show("Actualiser !!!");
+                    return;
                 }
                 else
                 {
@@ -472,7 +475,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                                 MessageBox.Show("veuillez Vérifier Le Montant de Cheque");
                             }
 
-                            if (CheckSelected == "false")
+                            if (CheckSelected == "false" && TestifAnySelectedCmd() == false)
                             {
                                 labelCmd.BackColor = Color.Red;
                                 labelCmd.Visible = true;
@@ -525,8 +528,16 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 
         private void button2_Click(object sender, EventArgs e)
         {
-            CheckBox();
-            Search_Cmd(Search.Text);
+            try
+            {
+                CheckBox();
+                Search_Cmd(Search.Text);
+                SelectCmdAfterSearch();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -575,6 +586,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             {
                 MessageBox.Show(ex.Message);
             }
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

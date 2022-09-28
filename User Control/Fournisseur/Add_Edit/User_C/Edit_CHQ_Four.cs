@@ -13,8 +13,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         private readonly int IDCHQ;
         private Panel panel;
         private float TOTAL;
-        private String QueryCMD;
-        private String QueryCMDAll;
+  
 
         public Edit_CHQ_Four(int FOUR, int IDCHQ, Panel panel)
         {
@@ -29,7 +28,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         {
             TOTAL = 0;
             TOTALCMD.Text = " 0 DH";
-            comboBox1.Text = "Tous";
+  
             comboBox2.SelectedIndex = 0;
             SetMyCustomFormat();
             try
@@ -130,7 +129,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                             {
                                 if (int.Parse(item.Cells["ID_CMD"].Value.ToString()) == int.Parse(item2.Cells["ID_CMD1"].Value.ToString()))
                                 {
-                                    DialogResult Dialog = MessageBox.Show("Do You Want To unselect Cmd N° = ' " + item.Cells["ID_CMD"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    DialogResult Dialog = MessageBox.Show($"Do You Want To unselect Cmd N° = { item.Cells["ID_CMD"].Value.ToString()}", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (Dialog == DialogResult.Yes)
                                     {
                                         TOTAL -= float.Parse(item2.Cells["MONTANTTOTAL1"].Value.ToString());
@@ -199,7 +198,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                         }
 
                     }
-                    return "Refresh";
+                    return Temp;
                 }
                 else
                 {
@@ -233,13 +232,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                         }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
 
         }
 
@@ -258,7 +255,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                     {
                         while (ReadCmd.Read())
                         {
-                            this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString(), ReadCmd["MTRESTE"]);
+                            this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString());
 
                             TOTAL += float.Parse(ReadCmd["MONTANTTOTAL"].ToString());
                             TOTALCMD.Text = TOTAL.ToString() + " DH";
@@ -352,7 +349,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                                 ReadCmdFour["ID_CMD_FOUR"],
                                 ReadCmdFour["DESCRIPTION"],
                                 Statut,
-                                ReadCmdFour["MTRESTE"],
                                 ReadCmdFour["MONTANTTOTAL"],
                                 Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
                         };
@@ -414,7 +410,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                     {
                         return true;
                     }
-
                 }
                 return false;
             }
@@ -424,6 +419,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                 return false;
             }
         }
+
         private void Add_Click_1(object sender, EventArgs e)
         {
             try
@@ -458,7 +454,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                             Cmd.Parameters.AddWithValue("IDCHQ", IDCHQ);
 
                             Cmd.ExecuteNonQuery();
-                            MessageBox.Show("test1");
+                          
                             REGLE_CHQ_FOUR(IDCHQ);
 
                             MessageBox.Show($"CHQ N°'{NCHQ.Text}' a été modifie");
@@ -478,7 +474,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                                 label2.BackColor = Color.Red;
                                 MessageBox.Show("Veuillez Saisir La Description de La Commande");
                             }
-                            if (DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) > 0)
+                            if (DateTime.Compare(dateTimePicker.Value, dateTimePicker1.Value) >=0 )
                             {
                                 label1.Visible = true;
                                 DATE.BackColor = Color.Red;
@@ -497,7 +493,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                                 MessageBox.Show("veuillez Vérifier Le Montant de Cheque");
                             }
 
-                            if (CheckSelected == "false")
+                            if (CheckSelected == "false" && TestifAnySelectedCmd() == false)
                             {
                                 labelCmd.BackColor = Color.Red;
                                 labelCmd.Visible = true;
@@ -533,7 +529,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         {
             NCHQ.Text = "";
             Montant.Text = "";
-            comboBox1.Text = "";
+     
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -553,7 +549,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                     ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
                     if (ColName == "Delete")
                     {
-                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        Dialog = MessageBox.Show($"Do You Want To Delete '{this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString()}'", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (Dialog == DialogResult.No)
                         {
                             return;
@@ -596,30 +592,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             }
 
         }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                dataGridView1.Rows.Clear();
-                if (comboBox1.Text == "Tous")
-                {
-                    QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-
-                    Load_Data_Cmd(QueryCMDAll);
-                }
-                else
-                {
-                    QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                    Load_Data_Cmd(QueryCMD);
-                }
-                CheckBox();
-                SelectCmdAfterSearch();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
         private void button2_Click_1(object sender, EventArgs e)
         {
             try
@@ -651,6 +624,19 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             }
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

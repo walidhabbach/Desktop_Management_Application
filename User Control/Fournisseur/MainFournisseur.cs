@@ -155,5 +155,10 @@ namespace Store_Management_System.User_Control.Fournisseur
         {
 
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

@@ -58,8 +58,6 @@ namespace Store_Management_System.User_Control
             MainClass.ShowControl(LFour, PanelFourListe);
 
         }
-
-
         private void Button2_Click(object sender, EventArgs e)
         {
             List_CHQ_AllFour LFour = new List_CHQ_AllFour();
@@ -147,11 +145,6 @@ namespace Store_Management_System.User_Control
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Print Form = new Print();
-            Form.Show();
-
-        }
+       
     }
 }

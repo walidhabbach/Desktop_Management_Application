@@ -27,7 +27,7 @@ namespace Store_Management_System.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HB\\SQLEXPRESS;Initial Catalog=DataBaseMagasin;Integrated Security=Tru" +
-            "e")]
+            "e;MultipleActiveResultSets=True")]
         public string DataBaseMagasinConnectionString {
             get {
                 return ((string)(this["DataBaseMagasinConnectionString"]));

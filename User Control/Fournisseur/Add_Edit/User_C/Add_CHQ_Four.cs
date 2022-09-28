@@ -13,8 +13,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         private readonly Panel Panel;
         private readonly string ENTREPRISE;
         private float TOTAL;
-        private String QueryCMD;
-        private String QueryCMDAll;
+
         public Add_CHQ_Four(int FOUR, string ENTREPRISE, Panel panel)
         {
             InitializeComponent();
@@ -23,10 +22,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             this.ENTREPRISE = ENTREPRISE;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+    
         private bool IDCMD_DGV2(int ID)
         {
             try
@@ -73,7 +69,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 DialogResult Dialog = MessageBox.Show("Do You Want To unselect Cmd N° = ' " + item.Cells["ID_CMD"].Value.ToString() + " '", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (Dialog == DialogResult.Yes)
                                 {
-                                    TOTAL -= -float.Parse(item2.Cells["MONTANTTOTAL1"].Value.ToString());
+                                    TOTAL -= float.Parse(item2.Cells["MONTANTTOTAL1"].Value.ToString());
                                     TOTALCMD.Text = TOTAL.ToString() + " DH";
                                     dataGridView2.Rows.RemoveAt(item2.Index);
 
@@ -170,7 +166,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                     {
                         while (ReadCmd.Read())
                         {
-                            this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString(), ReadCmd["MTRESTE"]);
+                            this.dataGridView2.Rows.Add(ReadCmd["ID_CMD_FOUR"], ReadCmd["DESCRIPTION"], ReadCmd["MONTANTTOTAL"].ToString());
 
                             TOTAL = TOTAL + float.Parse(ReadCmd["MONTANTTOTAL"].ToString());
                             TOTALCMD.Text = TOTAL.ToString() + " DH";
@@ -220,7 +216,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 ReadCmdFour["ID_CMD_FOUR"],
                                 ReadCmdFour["DESCRIPTION"],
                                 Statut,
-                                ReadCmdFour["MTRESTE"],
                                 ReadCmdFour["MONTANTTOTAL"],
                                 Convert.ToDateTime(ReadCmdFour["DATECMD"]).ToString("dd MMMM yyyy"));
                         };
@@ -239,39 +234,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                dataGridView1.Rows.Clear();
-                if (comboBox1.Text == "Tous")
-                {
-                    QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-
-                    Data_Cmd(QueryCMDAll);
-                }
-                else
-                {
-                    QueryCMD = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and month(DATECMD) = '{dateTimePicker2.Value.Month}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
-                    Data_Cmd(QueryCMD);
-                }
-                CheckBox();
-                SelectCmdAfterSearch();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-
-        }
-
-
         public void Clear()
         {
             IDCHQ.Text = "";
             Montant.Text = "";
-            comboBox1.Text = "";
+  
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -362,14 +329,13 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                                 Cmd.Parameters.AddWithValue("MONTANT", float.Parse(Montant.Text));
                                 Cmd.Parameters.AddWithValue("N_CHQ", IDCHQ.Text);
                                 Cmd.ExecuteNonQuery();
-                                MessageBox.Show("test1");
+                      
                                 SqlCommand CmdId = new SqlCommand("SELECT max(IDCHQ_FOUR) FROM CHEQUEFOURNISSEUR;", Conx);
                                 SqlDataReader Read = CmdId.ExecuteReader();
                                 if (Read.HasRows)
                                 {
                                     while (Read.Read())
                                     {
-                                        MessageBox.Show(Read[0].ToString());
                                         REGLE_CHQ_FOUR(int.Parse(Read[0].ToString()));
                                     }
                                     MessageBox.Show($"CHQ N°'{IDCHQ.Text}' a été ajouté");
@@ -458,7 +424,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             //QueryAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}'";
             TOTAL = 0;
             TOTALCMD.Text = " 0 DH";
-            comboBox1.Text = "Tous";
+
 
             comboBox2.SelectedIndex = 0;
 
@@ -468,7 +434,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             SetMyCustomFormat("MMMM yyyy");
             try
             {
-                QueryCMDAll = $"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;";
                 Data_Cmd($"select * from COMMANDEFOUR where IDFOUR = '{IDFOUR}' and year(DATECMD) = '{dateTimePicker2.Value.Year}' ;");
                 AddDeleteButton();
             }
@@ -511,7 +476,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                     ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
                     if (ColName == "Delete")
                     {
-                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        Dialog = MessageBox.Show($"Do You Want To Delete '{this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[0].Value.ToString()}'", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (Dialog == DialogResult.No)
                         {
                             return;
