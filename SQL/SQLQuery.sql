@@ -469,4 +469,3 @@ alter table REGLE_CHQ_FOUR
    add constraint FK_REGLE_CH_REGLE_CHQ_CHEQUEFO foreign key (IDCHQ_FOUR)
       references CHEQUEFOURNISSEUR (IDCHQ_FOUR)
 go
-
