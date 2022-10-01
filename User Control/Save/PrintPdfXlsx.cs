@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Save
@@ -87,12 +88,12 @@ namespace Store_Management_System.User_Control.Save
                     printer.FooterColor = System.Drawing.Color.LightGray;
                     printer.SubTitleSpacing = 15;
                     printer.FooterSpacing = 15;
-                    printer.SubTitleColor = System.Drawing.Color.Gray;
-
+                    printer.SubTitleColor = System.Drawing.Color.Gray; 
+                    printer.ColumnWidth = DGVPrinter.ColumnWidthSetting.DataWidth;
+                    printer.RowHeight = DGVPrinter.RowHeightSetting.CellHeight;
                     printer.printDocument.DefaultPageSettings.Landscape = true;
                     //printer.PrintDataGridView(DataGridView);
-                    printer.PrintPreviewDataGridView(DataGridView); 
-               
+                    printer.PrintPreviewDataGridView(DataGridView);
 
                 }
                 catch (Exception ex)

@@ -112,7 +112,6 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1533, 699);
             this.panel7.TabIndex = 51;
-            this.panel7.Paint += new System.Windows.Forms.PaintEventHandler(this.panel7_Paint);
             // 
             // label5
             // 
@@ -200,6 +199,7 @@
             this.button3.TabIndex = 62;
             this.button3.Text = "   Actualiser ";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panel4
             // 
@@ -271,6 +271,7 @@
             this.dataGridView2.RowTemplate.Height = 40;
             this.dataGridView2.Size = new System.Drawing.Size(525, 280);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick_1);
             // 
             // ID_PRODUIT1
             // 
@@ -497,6 +498,7 @@
             this.dataGridView1.RowTemplate.Height = 45;
             this.dataGridView1.Size = new System.Drawing.Size(793, 463);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
             // Check
             // 

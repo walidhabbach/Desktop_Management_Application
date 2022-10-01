@@ -240,11 +240,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
             Montant.Text = "";
   
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            CheckBox();
-        }
+ 
 
         private void REGLE_CHQ_FOUR(int IDCHQ_FOUR)
         {

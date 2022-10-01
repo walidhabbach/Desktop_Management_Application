@@ -34,6 +34,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
 
         private void UserControlDays_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -42,7 +43,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
             try
             {
                 DGVTask UC;
-
+                UserControlDays_Load(sender, e);
                 Calendar.Day = int.Parse(button1.Text);
                 daycontainer.Controls.Clear();
                 Calendar.Display_Days(0, daycontainer,PanelDGV);

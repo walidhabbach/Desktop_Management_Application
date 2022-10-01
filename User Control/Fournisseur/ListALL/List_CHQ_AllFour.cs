@@ -2,9 +2,11 @@
 using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
+using System.Web.ModelBinding;
 using System.Windows.Forms;
-
+ 
 namespace Store_Management_System.User_Control.Fournisseur.List
 {
     public partial class List_CHQ_AllFour : UserControl
@@ -62,10 +64,10 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                             {
 
                                 this.DataGridView.Rows.Add(
-                                           Convert.ToDateTime(Read[1]).ToString("dd MMMM yyyy"),
+                                           Convert.ToDateTime(Read[1]).ToString("dd / MM / yyyy"),
                                            Read[2],
-                                           Read[3],
-                                             Convert.ToDateTime(Read[4]).ToString("dd MMMM yyyy"),
+                                           Read[3] ,
+                                             Convert.ToDateTime(Read[4]).ToString("dd / MM / yyyy"),
                                            Math.Round(double.Parse(Read["MONTANT"].ToString()), 2) + " DH"
 
                                    );
@@ -87,10 +89,10 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                                 Total = 0;
                                 temp = int.Parse(Read[0].ToString());
                                 this.DataGridView.Rows.Add(
-                                              Convert.ToDateTime(Read[1]).ToString("dd MMMM yyyy"),
+                                              Convert.ToDateTime(Read[1]).ToString("dd / MM / yyyy"),
                                               Read[2],
-                                              Read[3],
-                                                Convert.ToDateTime(Read[4]).ToString("dd MMMM yyyy"),
+                                               Read[3]  ,
+                                                Convert.ToDateTime(Read[4]).ToString("dd / MM / yyyy"),
                                               Math.Round(double.Parse(Read["MONTANT"].ToString()), 2) + " DH"
 
                                       );
@@ -375,17 +377,17 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             if (DataGridView.Rows.Count > 0)
             {
                 PrintPdfXlsx.Xlsx(DataGridView);
-            }
-
+            } 
         }
-
+ 
         private void button3_Click(object sender, EventArgs e)
-        {
+        { 
             if (DataGridView.Rows.Count > 0)
             {
                 PrintPdfXlsx.Pdf(DataGridView);
-            }
-
+            }   
         }
+
+        
     }
 }

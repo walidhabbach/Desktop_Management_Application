@@ -33,13 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(List_CHQ_AllFour));
             this.DataGridView = new System.Windows.Forms.DataGridView();
-            this.DATEPAYER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_CHQ_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fournisseur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATEDONNEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MONTANT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -47,7 +43,12 @@
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Search = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.DATEPAYER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_CHQ_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fournisseur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATEDONNEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTANT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -61,9 +62,10 @@
             this.DataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridView.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -87,6 +89,7 @@
             this.DataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataGridView.EnableHeadersVisualStyles = false;
+            this.DataGridView.GridColor = System.Drawing.Color.DimGray;
             this.DataGridView.Location = new System.Drawing.Point(0, 0);
             this.DataGridView.Name = "DataGridView";
             this.DataGridView.ReadOnly = true;
@@ -100,46 +103,13 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridView.RowHeadersVisible = false;
-            this.DataGridView.RowTemplate.Height = 60;
+            this.DataGridView.RowHeadersWidth = 50;
+            this.DataGridView.RowTemplate.Height = 70;
+            this.DataGridView.RowTemplate.ReadOnly = true;
             this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DataGridView.Size = new System.Drawing.Size(1314, 619);
             this.DataGridView.TabIndex = 2;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
-            // 
-            // DATEPAYER
-            // 
-            this.DATEPAYER.FillWeight = 20.30457F;
-            this.DATEPAYER.HeaderText = "Date d\' Encaissement ";
-            this.DATEPAYER.Name = "DATEPAYER";
-            this.DATEPAYER.ReadOnly = true;
-            // 
-            // ID_CHQ_FOUR
-            // 
-            this.ID_CHQ_FOUR.FillWeight = 20.30457F;
-            this.ID_CHQ_FOUR.HeaderText = "N°CHQ";
-            this.ID_CHQ_FOUR.Name = "ID_CHQ_FOUR";
-            this.ID_CHQ_FOUR.ReadOnly = true;
-            // 
-            // Fournisseur
-            // 
-            this.Fournisseur.FillWeight = 20.30457F;
-            this.Fournisseur.HeaderText = "Fournisseur";
-            this.Fournisseur.Name = "Fournisseur";
-            this.Fournisseur.ReadOnly = true;
-            // 
-            // DATEDONNEE
-            // 
-            this.DATEDONNEE.FillWeight = 20.30457F;
-            this.DATEDONNEE.HeaderText = "Date de Rédaction";
-            this.DATEDONNEE.Name = "DATEDONNEE";
-            this.DATEDONNEE.ReadOnly = true;
-            // 
-            // MONTANT
-            // 
-            this.MONTANT.FillWeight = 20.30457F;
-            this.MONTANT.HeaderText = "MONTANT CHQ";
-            this.MONTANT.Name = "MONTANT";
-            this.MONTANT.ReadOnly = true;
             // 
             // panel1
             // 
@@ -168,6 +138,20 @@
             this.panel2.Size = new System.Drawing.Size(1367, 52);
             this.panel2.TabIndex = 8;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // button3
+            // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(1228, 11);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(136, 31);
+            this.button3.TabIndex = 62;
+            this.button3.Text = "pdf";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -259,19 +243,44 @@
             this.Search.Size = new System.Drawing.Size(289, 28);
             this.Search.TabIndex = 54;
             // 
-            // button3
+            // printDialog1
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(1228, 11);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(136, 31);
-            this.button3.TabIndex = 62;
-            this.button3.Text = "pdf";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // DATEPAYER
+            // 
+            this.DATEPAYER.FillWeight = 20.30457F;
+            this.DATEPAYER.HeaderText = "Encaissement ";
+            this.DATEPAYER.Name = "DATEPAYER";
+            this.DATEPAYER.ReadOnly = true;
+            // 
+            // ID_CHQ_FOUR
+            // 
+            this.ID_CHQ_FOUR.FillWeight = 20.30457F;
+            this.ID_CHQ_FOUR.HeaderText = "N°CHQ";
+            this.ID_CHQ_FOUR.Name = "ID_CHQ_FOUR";
+            this.ID_CHQ_FOUR.ReadOnly = true;
+            // 
+            // Fournisseur
+            // 
+            this.Fournisseur.FillWeight = 20.30457F;
+            this.Fournisseur.HeaderText = "Fournisseur";
+            this.Fournisseur.Name = "Fournisseur";
+            this.Fournisseur.ReadOnly = true;
+            // 
+            // DATEDONNEE
+            // 
+            this.DATEDONNEE.FillWeight = 20.30457F;
+            this.DATEDONNEE.HeaderText = "Rédaction";
+            this.DATEDONNEE.Name = "DATEDONNEE";
+            this.DATEDONNEE.ReadOnly = true;
+            // 
+            // MONTANT
+            // 
+            this.MONTANT.FillWeight = 20.30457F;
+            this.MONTANT.HeaderText = "Montant CHQ";
+            this.MONTANT.Name = "MONTANT";
+            this.MONTANT.ReadOnly = true;
             // 
             // List_CHQ_AllFour
             // 
@@ -295,11 +304,6 @@
 
         private System.Windows.Forms.DataGridView DataGridView;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DATEPAYER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CHQ_FOUR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fournisseur;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DATEDONNEE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANT;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -309,5 +313,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATEPAYER;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_CHQ_FOUR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fournisseur;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATEDONNEE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MONTANT;
     }
 }

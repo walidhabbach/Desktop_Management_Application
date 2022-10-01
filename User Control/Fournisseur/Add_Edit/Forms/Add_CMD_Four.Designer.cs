@@ -108,8 +108,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1502, 639);
             this.panel1.TabIndex = 35;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
+             // 
             // panel6
             // 
             this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -172,8 +171,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             this.dataGridView1.RowTemplate.Height = 45;
             this.dataGridView1.Size = new System.Drawing.Size(823, 444);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
+             // 
             // Check
             // 
             this.Check.FillWeight = 60F;

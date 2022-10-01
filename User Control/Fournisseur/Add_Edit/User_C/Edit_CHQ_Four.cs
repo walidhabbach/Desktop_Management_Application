@@ -228,6 +228,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                             if (int.Parse(Item2.Cells["ID_CMD1"].Value.ToString()) == int.Parse(Item.Cells["ID_CMD"].Value.ToString()))
                             {
                                 Item.Cells["Check"].Value = true;
+                                break;
                             }
                         }
                     }

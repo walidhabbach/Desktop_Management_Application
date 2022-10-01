@@ -93,7 +93,6 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
             }
         }
 
-
         private void SelectProductsAfterSearch()
         {
             try
@@ -192,11 +191,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void PictureBox1_Click_1(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+ 
         private void Search_Produit(string Search)
         {
             String Query = "SELECT * From PRODUIT";
@@ -458,11 +453,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
+        
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -511,10 +502,7 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
         
     }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+         
     }
 
 

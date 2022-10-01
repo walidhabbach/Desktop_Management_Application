@@ -307,12 +307,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 MessageBox.Show(ex.Message);
             }
         }
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            CheckBox();
-            Search_Produit(Search.Text);
-        }
-
+   
         public void Clear()
         {
             Description.Text = "";
@@ -432,8 +427,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 MessageBox.Show(ex.Message);
             }
         }
- 
-   
+
         private void Edit_CMD_Four_Load_1(object sender, EventArgs e)
         {
             TOTAL = 0;
@@ -444,117 +438,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
 
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            CheckBox();
-        }
         private void AddDeleteButton()
         {
             MainClass.Button_DGV(dataGridView2, "Delete", "remove1");
-            dataGridView2.Columns["Delete"].Width = 50;
+            dataGridView2.Columns["Delete"].Width = 70;
         }
-        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            button2_Click_1(sender, e);
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex >= 0)
-                {
-
-                    String ColName;
-
-                    ColName = this.dataGridView1.Columns[e.ColumnIndex].Name;
-                    if (ColName == "Check")
-                    {
-                        foreach (DataGridViewRow row in dataGridView1.Rows)
-                        {
-                            if (Convert.ToBoolean(row.Cells[0].Value))
-                            {
-                                if (CheckeSelectedProduct() == "Refresh")
-                                {
-                                    CheckBox();
-                                    break;
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CheckBox();
-            SelectProductsAfterSearch();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex >= 0)
-                {
-                    int IDCMD;
-                    DialogResult Dialog;
-                    String ColName;
-                    DataGridViewRow Row;
-
-                    Row = dataGridView2.Rows[e.RowIndex];
-                    Row.Selected = true;
-                    IDCMD = Convert.ToInt32(Row.Cells[0].Value.ToString());
-                    ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
-                    if (ColName == "Delete")
-                    {
-                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                        if (Dialog == DialogResult.No)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                         
-                            foreach (DataGridViewRow row in this.dataGridView1.Rows)
-                            {
-                                if (int.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(row.Cells["ID_PRODUIT"].Value.ToString()))
-                                {
-                                    row.Cells["Check"].Value = false;
-                                    TOTAL -= float.Parse(row.Cells["PRIXACHAT"].Value.ToString());
-                                    TOTALCMD.Text = TOTAL.ToString() + " DH";
-                                    break;
-                                }
-                            }
-                            this.dataGridView2.Rows.RemoveAt(this.dataGridView2.CurrentRow.Index);
-
-                        }
-
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
+          
         private void button2_Click(object sender, EventArgs e)
         {
             try
@@ -671,6 +560,94 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+        private void dataGridView2_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    int IDCMD;
+                    DialogResult Dialog;
+                    String ColName;
+                    DataGridViewRow Row;
+
+                    Row = dataGridView2.Rows[e.RowIndex];
+                    Row.Selected = true;
+                    IDCMD = Convert.ToInt32(Row.Cells[0].Value.ToString());
+                    ColName = this.dataGridView2.Columns[e.ColumnIndex].Name;
+                    if (ColName == "Delete")
+                    {
+                        Dialog = MessageBox.Show("Do You Want To Delete " + this.dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (Dialog == DialogResult.No)
+                        {
+                            return;
+                        }
+                        else
+                        {
+
+                            foreach (DataGridViewRow row in this.dataGridView1.Rows)
+                            {
+                                if (int.Parse(dataGridView2.Rows[this.dataGridView2.CurrentRow.Index].Cells["ID_PRODUIT1"].Value.ToString()) == int.Parse(row.Cells["ID_PRODUIT"].Value.ToString()))
+                                {
+                                    row.Cells["Check"].Value = false;
+                                    TOTAL -= float.Parse(row.Cells["PRIXACHAT"].Value.ToString());
+                                    TOTALCMD.Text = TOTAL.ToString() + " DH";
+                                    break;
+                                }
+                            }
+                            this.dataGridView2.Rows.RemoveAt(this.dataGridView2.CurrentRow.Index);
+
+                        }
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CheckBox();
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+
+                    String ColName;
+
+                    ColName = this.dataGridView1.Columns[e.ColumnIndex].Name;
+                    if (ColName == "Check")
+                    {
+                        foreach (DataGridViewRow row in dataGridView1.Rows)
+                        {
+                            if (Convert.ToBoolean(row.Cells[0].Value))
+                            {
+                                if (CheckeSelectedProduct() == "Refresh")
+                                {
+                                    CheckBox();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+    
     }
 }
 

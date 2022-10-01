@@ -1,5 +1,8 @@
-﻿using Store_Management_System.Class;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.A_M_D;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
+using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -20,7 +23,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
 
             using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
             {
-                Conx.ConnectionString = MainClass.ConnectionDataBase();
+                
                 String Query = "SELECT * From FOURNISSEUR;";
                 SqlCommand Cmd = new SqlCommand(Query, Conx);
 
@@ -77,35 +80,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
             Edit_Four Form = new Edit_Four(IDFOUR);
             Form.Show();
         }
-        private void Delete(int IDFour)
-        {
-            //int position = this.DataGridView.CurrentRow.Index;
-            //int IDFour = int.Parse(this.DataGridView.Rows[position].Cells[0].Value);
-
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
-            {
-
-                SqlCommand Cmd = new SqlCommand
-                {
-                    Connection = Conx,
-                    CommandText = "DELETE FROM FOURNISSEUR WHERE IDFOUR = @IDFour;"
-                };
-
-                try
-                {
-                    Cmd.Parameters.AddWithValue("@IDFour", IDFour);
-                    Conx.Open();
-                    Cmd.ExecuteNonQuery();
-                    Conx.Close();
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message);
-                }
-
-
-            }
-        }
+        
 
         private void DataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {   int IDFour;
@@ -131,8 +106,9 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                     {
                         return;
                     }
-                    Delete(IDFour);
-
+                    Confirmation Form = new Confirmation(IDFour , Row.Cells["ENTREPRISE"].Value.ToString());
+                    Form.Show();
+                    return;
                 }
             }
         }
@@ -152,6 +128,12 @@ namespace Store_Management_System.User_Control.Fournisseur.ListFour
                     DataGridView.Cursor = Cursors.Hand;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ReportForm Form = new ReportForm();
+            Form.Show();
         }
     }
 }

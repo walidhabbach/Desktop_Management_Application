@@ -76,6 +76,8 @@ namespace Store_Management_System.Class
 
         }
 
+        
+
         // Add Edit , Delete , Print Buttons
         public static void Button_DGV(DataGridView DGV, string BtnName, string IconName)
         {

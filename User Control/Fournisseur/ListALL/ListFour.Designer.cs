@@ -39,6 +39,7 @@
             this.CATEGORIE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ADRESSE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -94,6 +95,7 @@
             this.DataGridView.RowTemplate.Height = 45;
             this.DataGridView.Size = new System.Drawing.Size(1008, 504);
             this.DataGridView.TabIndex = 0;
+            this.DataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             this.DataGridView.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellMouseEnter);
             // 
@@ -140,12 +142,23 @@
             this.panel1.Size = new System.Drawing.Size(1008, 504);
             this.panel1.TabIndex = 1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(712, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ListFour
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Name = "ListFour";
             this.Size = new System.Drawing.Size(1143, 614);
@@ -165,5 +178,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CATEGORIE;
         private System.Windows.Forms.DataGridViewTextBoxColumn ADRESSE;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button1;
     }
 }
