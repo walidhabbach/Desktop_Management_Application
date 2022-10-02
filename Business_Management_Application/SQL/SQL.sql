@@ -202,15 +202,6 @@ create table PRODUIT (
 )
 go
 
-/*==============================================================*/
-/* Index : PRODUIRE_FK                                          */
-/*==============================================================*/
-
-
-
-
-create nonclustered index PRODUIRE_FK on PRODUIT (IDFOUR ASC)
-go
 
 /*==============================================================*/
 /* Table : REGLERCHQ                                            */
@@ -223,35 +214,7 @@ create table REGLERCHQ (
 )
 go
 
-/*==============================================================*/
-/* Index : REGLERCHQ2_FK                                        */
-/*==============================================================*/
 
-
-
-
-create nonclustered index REGLERCHQ2_FK on REGLERCHQ (IDCHQ_CLT ASC)
-go
-
-/*==============================================================*/
-/* Index : REGLERCHQ3_FK                                        */
-/*==============================================================*/
-
-
-
-
-create nonclustered index REGLERCHQ3_FK on REGLERCHQ (ID_CMD_CLT ASC)
-go
-
-/*==============================================================*/
-/* Index : REGLERCHQ_FK                                         */
-/*==============================================================*/
-
-
-
-
-create nonclustered index REGLERCHQ_FK on REGLERCHQ (IDCLIENT ASC)
-go
 
 /*==============================================================*/
 /* Table : REGLERESPECE                                         */
@@ -264,35 +227,7 @@ create table REGLERESPECE (
 )
 go
 
-/*==============================================================*/
-/* Index : REGLERESPECE2_FK                                     */
-/*==============================================================*/
 
-
-
-
-create nonclustered index REGLERESPECE2_FK on REGLERESPECE (IDESPECE_CLT ASC)
-go
-
-/*==============================================================*/
-/* Index : REGLERESPECE3_FK                                     */
-/*==============================================================*/
-
-
-
-
-create nonclustered index REGLERESPECE3_FK on REGLERESPECE (ID_CMD_CLT ASC)
-go
-
-/*==============================================================*/
-/* Index : REGLERESPECE_FK                                      */
-/*==============================================================*/
-
-
-
-
-create nonclustered index REGLERESPECE_FK on REGLERESPECE (IDCLIENT ASC)
-go
 
 /*==============================================================*/
 /* Table : REGLER_ESP_FOUR                                      */
@@ -304,25 +239,7 @@ create table REGLER_ESP_FOUR (
 )
 go
 
-/*==============================================================*/
-/* Index : R_ESP_FOUR2_FK                                       */
-/*==============================================================*/
 
-
-
-
-create nonclustered index R_ESP_FOUR2_FK on REGLER_ESP_FOUR (ID_CMD_FOUR ASC)
-go
-
-/*==============================================================*/
-/* Index : R_ESP_FOUR_FK                                        */
-/*==============================================================*/
-
-
-
-
-create nonclustered index R_ESP_FOUR_FK on REGLER_ESP_FOUR (IDESP_FOUR ASC)
-go
 
 /*==============================================================*/
 /* Table : REGLE_CHQ_FOUR                                       */
@@ -334,23 +251,6 @@ create table REGLE_CHQ_FOUR (
 )
 go
 
-/*==============================================================*/
-/* Index : R_CHQ_FOUR2_FK                                       */
-/*==============================================================*/
-
-
-
-
-create nonclustered index R_CHQ_FOUR2_FK on REGLE_CHQ_FOUR (IDCHQ_FOUR ASC)
-go
-
-/*==============================================================*/
-/* Index : R_CHQ_FOUR_FK                                        */
-/*==============================================================*/
-
-
-create nonclustered index R_CHQ_FOUR_FK on REGLE_CHQ_FOUR (ID_CMD_FOUR ASC)
-go
 
 /*==============================================================*/
 /* Table : [Task]                                       */
