@@ -1,10 +1,13 @@
-﻿using Store_Management_System.Class;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.CalendarFolder;
 using System;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using Category = Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Category;
 
 namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 {
@@ -14,10 +17,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         public static int Month;
         public static int Year;
         public static string Category = "Tous";
-        public Calendar()
+        public static bool Done;
+        private Panel PanelContent ;
+        public Calendar(Panel PanelContent)
         {
             InitializeComponent();
-        
+            this.PanelContent = PanelContent;
         }
         private void InitializeDGV(string Query)
         {
@@ -26,7 +31,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             DGVTask UC = new DGVTask(Query, PanelDGV);
             MainClass.ShowControl(UC, PanelDGV);
         }
-
 
         private void Calendar_Load(object sender, EventArgs e)
         {
@@ -39,7 +43,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
 
             FillCategory();
-
+            Done = true;
             PanelDGV.Controls.Clear();
             InitializeDGV($"SELECT * From Task WHERE day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}';");
 
@@ -193,7 +197,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Category Form = new Category();
+            Category Form = new Category(PanelContent);
             Form.Show();
         }
 
@@ -228,16 +232,21 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Done = true;
             InitializeDGV($"SELECT * FROM Task WHERE Statut = '{0}' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ;");
+          
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Done = false;
             InitializeDGV($"SELECT * FROM Task WHERE Statut = '{1}' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ;");
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Done = true;
             this.dataGridViewCat.Rows[0].Selected = false;
             this.dataGridViewCat.Rows[0].Cells[0].Selected = true;
             InitializeDGV($"SELECT * FROM Task  WHERE day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}';");
@@ -266,6 +275,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
 
         private void button8_Click(object sender, EventArgs e)
         {
+            Done = true;
             if (Category != "Tous" && Category != string.Empty)
             {
                 InitializeDGV($"SELECT * FROM Task WHERE  Category = '{Category}' and  PriorityLevel = 'Urgent' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ");
@@ -274,10 +284,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             {
                 InitializeDGV($"SELECT * FROM Task WHERE PriorityLevel = 'Urgent' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ;");
             }
+        
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            Done = true;
             if (Category != "Tous" && Category != string.Empty)
             {
                 InitializeDGV($"SELECT * FROM Task WHERE  Category = '{Category}' and  PriorityLevel = 'Moins urgent' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ");
@@ -286,11 +298,13 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             {
                 InitializeDGV($"SELECT * FROM Task WHERE PriorityLevel = 'Moins urgent' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ");
             }
+           
 
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
+            Done = true;
             if (Category != "Tous" && Category != string.Empty)
             {
                 InitializeDGV($"SELECT * FROM Task WHERE  Category = '{Category}' and  PriorityLevel = 'Non urgent' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ");
@@ -299,6 +313,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             {
                 InitializeDGV($"SELECT * FROM Task WHERE PriorityLevel = 'Non urgent' and day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}' ");
             }
+          
         }
 
         private void PanelDGV_Paint(object sender, PaintEventArgs e)
@@ -322,6 +337,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         }
 
         private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

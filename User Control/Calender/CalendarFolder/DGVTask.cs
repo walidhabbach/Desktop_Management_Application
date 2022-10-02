@@ -1,8 +1,11 @@
-﻿using Store_Management_System.Class;
+﻿ 
+using Store_Management_System.Class;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.CalendarFolder
@@ -25,6 +28,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
                 {
                     Conx.ConnectionString = MainClass.ConnectionDataBase();
                     SqlCommand Cmd = new SqlCommand(Query, Conx);
+                    string Statut;
 
                     Conx.Open();
                     SqlDataReader Read = Cmd.ExecuteReader();
@@ -34,9 +38,28 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
                     this.dataGridView1.Rows.Clear();
                     if (Read.HasRows)
                     {
+
                         while (Read.Read())
                         {
-                            this.dataGridView1.Rows.Add(Read["IdTask"],Read["Details"], Read["Category"], Read["Statut"], Read["PriorityLevel"]);
+                            if ((bool)Read["Statut"])
+                            {
+                                Statut = "Done";
+                             }
+                            else
+                            {
+                                Statut = "Not Done";
+                             }
+                            this.dataGridView1.Rows.Add(Read["IdTask"],Read["Details"], Read["Category"], Statut, Read["PriorityLevel"]);
+                            if (Statut == "Done")
+                            {
+                               
+                                dataGridView1.Rows[dataGridView1.RowCount-1].Cells["Statut"].Style.BackColor = Color.LightGreen;
+                            }
+                            else
+                            {
+                                dataGridView1.Rows[dataGridView1.RowCount - 1].Cells["Statut"].Style.BackColor = Color.Red;
+                            }
+
                         }
                     }
                     else
@@ -49,6 +72,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private object convertToBool(object v)
+        {
+            throw new NotImplementedException();
         }
 
         private void Edit(int ID)
@@ -110,6 +138,50 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
                             Delete(Convert.ToInt32(Row.Cells["IdTask"].Value));
                         }
                        
+                    }else if (ColName == "Done")
+                    {
+                        try
+                        {
+                            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                            { 
+                                SqlCommand Cmd = new SqlCommand($"UPDATE Task SET Statut = '{1}' where IdTask = @IdTask ", Conx);
+                                Cmd.Parameters.AddWithValue("IdTask", Convert.ToInt32(Row.Cells[0].Value));
+                                Conx.Open();
+                                Cmd.ExecuteNonQuery();
+
+                                MessageBox.Show("la tâche est réalisé");
+
+                                PanelDGV.Controls.Clear();
+                                DGVTask UC = new DGVTask(Query, PanelDGV);
+                                MainClass.ShowControl(UC, PanelDGV);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }else if (ColName == "NotDone")
+                    {
+                        try
+                        {
+                            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+                            {
+                                SqlCommand Cmd = new SqlCommand($"UPDATE Task SET Statut = '{0}' where IdTask = @IdTask ", Conx);
+                                Cmd.Parameters.AddWithValue("IdTask", Convert.ToInt32(Row.Cells[0].Value));
+                                Conx.Open();
+                                Cmd.ExecuteNonQuery();
+
+                                MessageBox.Show("task not done");
+
+                                PanelDGV.Controls.Clear();
+                                DGVTask UC = new DGVTask(Query, PanelDGV);
+                                MainClass.ShowControl(UC, PanelDGV);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
 
                 }
@@ -124,14 +196,24 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
         {
             //Button Delete, Edit
             MainClass.Button_DGV(dataGridView1, "Edit", "edit");
-            this.dataGridView1.Columns["Edit"].Width = 70;
+            this.dataGridView1.Columns["Edit"].Width = 90;
             MainClass.Button_DGV(dataGridView1, "Delete", "delete");
-            this.dataGridView1.Columns["Delete"].Width = 70;
-            
+            this.dataGridView1.Columns["Delete"].Width = 90;
+    
         }
         private void DGVTask_Load(object sender, EventArgs e)
         {
             InitializeButtons();
+            if (Calendar.Done == true)
+            {
+                MainClass.Button_DGV(dataGridView1, "Done", "done");
+                this.dataGridView1.Columns["Done"].Width = 60;
+            }
+            else
+            {
+                MainClass.Button_DGV(dataGridView1, "NotDone", "notdone");
+                this.dataGridView1.Columns["NotDone"].Width = 60;
+            }
             LoadTasks(Query);
         }
 

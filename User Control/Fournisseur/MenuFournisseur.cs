@@ -3,7 +3,7 @@ using Store_Management_System.User_Control.Fournisseur;
 using Store_Management_System.User_Control.Fournisseur.A_M_D;
 using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using Store_Management_System.User_Control.Fournisseur.List;
-using Store_Management_System.User_Control.Fournisseur.ListFour;
+using Store_Management_System.User_Control.Fournisseur.ListALL;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -21,7 +21,7 @@ namespace Store_Management_System.User_Control
 
         private void MenuFournisseur_Load(object sender, EventArgs e)
         {
-            ListFour LFour = new ListFour();
+            ListFour LFour = new ListFour(MainPanel_Four, PanelFourListe);
             MainClass.ShowControl(LFour, PanelFourListe);
             comboBox2.Text = "Tous";
             FillCombobox();
@@ -38,7 +38,7 @@ namespace Store_Management_System.User_Control
         {
             if (comboBox2.Text == "Tous")
             {
-                ListFour LFour = new ListFour();
+                ListFour LFour = new ListFour(MainPanel_Four, PanelFourListe);
                 MainClass.ShowControl(LFour, PanelFourListe);
 
             }
@@ -66,7 +66,7 @@ namespace Store_Management_System.User_Control
 
         private void Add_Click(object sender, EventArgs e)
         {
-            Add_Four myNewForm = new Add_Four();
+            Add_Four myNewForm = new Add_Four(MainPanel_Four, PanelFourListe);           
             myNewForm.Show();
         }
         private void FillCombobox()

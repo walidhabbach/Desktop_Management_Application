@@ -1,4 +1,5 @@
 ﻿using Store_Management_System.Class;
+using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C;
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -7,9 +8,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
 {
     public partial class Category : Form
     {
-        public Category()
+        Panel PanelContent;
+        public Category(Panel PanelContent)
         {
             InitializeComponent();
+            this.PanelContent = PanelContent;
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -85,7 +88,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                 }
                 string temp = this.dataGridView1.Rows[this.dataGridView1.Rows.Count - 1].Cells[1].Value.ToString();
 
-
                 using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
                     Conx.ConnectionString = MainClass.ConnectionDataBase();
@@ -94,11 +96,15 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
 
                     Conx.Open();
                     Cmd.ExecuteNonQuery();
+
+                    PanelContent.Controls.Clear();
+                    Calendar MFour = new Calendar(PanelContent);
+                    MainClass.ShowControl(MFour, PanelContent);
+
                 }
                 MessageBox.Show("Enregistrer avec succès");
                 Button2.Visible = false;
-
-
+                 
             }
             catch (Exception ex)
             {
@@ -108,7 +114,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
         }
 
 
-        private void Edit(int id,string category)
+        private void Edit(int id, string category)
         {
             try
             {
@@ -123,7 +129,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
 
                     Conx.Close();
                 }
-             
+
                 LoadCategory();
                 MessageBox.Show("Modifie avec succès");
 
@@ -170,7 +176,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                     DataGridViewRow Row;
                     Row = dataGridView1.Rows[e.RowIndex];
                     Row.Selected = true;
-                  
+
                     ColName = this.dataGridView1.Columns[e.ColumnIndex].Name;
 
                     if (ColName == "Edit" && Button2.Visible == false)
@@ -179,11 +185,15 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                         {
                             return;
                         }
-                        else {
-                           
+                        else
+                        {
+
                             Edit(Convert.ToInt32(Row.Cells[0].Value), Row.Cells[1].Value.ToString());
+                            PanelContent.Controls.Clear();
+                            Calendar MFour = new Calendar(PanelContent);
+                            MainClass.ShowControl(MFour, PanelContent);
                         }
-                        
+
                     }
                     else if (ColName == "Delete" && Button2.Visible == false)
                     {
@@ -194,7 +204,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                         }
                         Delete(Convert.ToInt32(Row.Cells[0].Value));
 
-                    }else if(ColName == "Delete" && Button2.Visible == true )
+                    }
+                    else if (ColName == "Delete" && Button2.Visible == true)
                     {
                         this.dataGridView1.Rows.RemoveAt(e.RowIndex);
                         Button2.Visible = false;

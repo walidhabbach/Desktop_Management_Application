@@ -108,8 +108,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                     this.dataGridView1.Columns[2].Name = "Description";
                     this.dataGridView1.Columns[4].Name = "Date";
                     this.dataGridView1.Columns[3].Name = "Statut";
-                    this.dataGridView1.Columns[5].Name = "MTReste";
-                    this.dataGridView1.Columns[6].Name = "MT";
+                    this.dataGridView1.Columns[6].Name = "Montant";
 
 
                     while (Read.Read())
@@ -130,7 +129,6 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
                                 ReadCmd["DESCRIPTION"],
                                 Statut,
                                 Convert.ToDateTime(ReadCmd["DATECMD"]).ToString("dd MMMM yyyy"),
-                                ReadCmd["MTRESTE"],
                                 Math.Round(double.Parse(ReadCmd["MONTANTTOTAL"].ToString()), 2)
                                 );
 

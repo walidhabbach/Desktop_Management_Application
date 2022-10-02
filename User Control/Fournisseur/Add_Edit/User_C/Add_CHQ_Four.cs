@@ -611,6 +611,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
         {
 
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

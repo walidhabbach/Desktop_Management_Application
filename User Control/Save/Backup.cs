@@ -129,6 +129,7 @@ namespace Store_Management_System.User_Control
             else
             {
                 MessageBox.Show("Invalid Password !!!");
+                textBox3.Text = "";
             }
         }
     }

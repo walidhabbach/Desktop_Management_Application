@@ -2,15 +2,19 @@
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-
+using Store_Management_System.User_Control.Fournisseur.ListALL;
 
 namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 {
     public partial class Add_Four : Form
-    {
-        public Add_Four()
+    {  
+        Panel MainPanel_Four;
+        Panel PanelFourListe;
+        public Add_Four(Panel MainPanel_Four, Panel PanelFourListe)
         {
             InitializeComponent();
+            this.MainPanel_Four = MainPanel_Four;
+            this.PanelFourListe = PanelFourListe;
         }
         private void Clear()
         {
@@ -74,6 +78,9 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                                 Cmd.Parameters.AddWithValue("CATEGORIE", comboBox1.Text);
                                 Cmd.Parameters.AddWithValue("ADRESSE", ADRESSE.Text);
                                 Cmd.ExecuteNonQuery();
+
+                                ListFour LFour = new ListFour(MainPanel_Four,PanelFourListe);
+                                MainClass.ShowControl(LFour, PanelFourListe);
 
 
                                 this.Close();

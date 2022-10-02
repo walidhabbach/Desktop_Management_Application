@@ -1,4 +1,5 @@
 ﻿using Store_Management_System.Class;
+using Store_Management_System.User_Control.Fournisseur.ListALL;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,12 +11,17 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
     {
         private readonly int IDFOUR;
         private readonly string ENTREPRISE;
-        public Confirmation(int id, string ENTREPRISE)
+        Panel MainPanel_Four;
+        Panel PanelFourListe;
+        public Confirmation(int id, string ENTREPRISE, Panel MainPanel_Four, Panel PanelFourListe)
         {
             InitializeComponent();
             IDFOUR = id;
             this.ENTREPRISE = ENTREPRISE;
+            this.MainPanel_Four = MainPanel_Four;
+            this.PanelFourListe = PanelFourListe;
         }
+      
 
         private void Delete(int IDFour)
         {
@@ -36,6 +42,8 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
                     Cmd.Parameters.AddWithValue("@IDFour", IDFour);
                     Conx.Open();
                     Cmd.ExecuteNonQuery();
+                    ListFour LFour = new ListFour(MainPanel_Four, PanelFourListe);
+                    MainClass.ShowControl(LFour, PanelFourListe);
                     Conx.Close();
                 }
                 catch (Exception Ex)
@@ -55,6 +63,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
             }
             else
             {
+              
                 label3.Visible = true;
             }
         }
@@ -71,10 +80,11 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
 
         private void Confirmation_Load(object sender, EventArgs e)
         {
-            label1.Text += ENTREPRISE;
+            textBox1.Text = "";
             textBox1.UseSystemPasswordChar = true;
-            textBox1.PasswordChar = '*';
-
+            textBox1.PasswordChar ='*';
+            textBox1.MaxLength = 6;
         }
+
     }
 }

@@ -58,16 +58,16 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackColor = System.Drawing.Color.SlateGray;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(3, 512);
+            this.button1.Location = new System.Drawing.Point(0, 498);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 58);
+            this.button1.Size = new System.Drawing.Size(222, 78);
             this.button1.TabIndex = 5;
             this.button1.Text = "  Backup";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -77,16 +77,16 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackColor = System.Drawing.Color.SlateGray;
             this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(3, 315);
+            this.button4.Location = new System.Drawing.Point(0, 306);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(219, 67);
+            this.button4.Size = new System.Drawing.Size(222, 67);
             this.button4.TabIndex = 4;
             this.button4.Text = "  Commande";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -95,16 +95,16 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackColor = System.Drawing.Color.SlateGray;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(3, 422);
+            this.button3.Location = new System.Drawing.Point(0, 401);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(222, 62);
+            this.button3.Size = new System.Drawing.Size(222, 75);
             this.button3.TabIndex = 3;
             this.button3.Text = "  Calendrie";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -121,9 +121,9 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(0, 220);
+            this.button2.Location = new System.Drawing.Point(0, 214);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(219, 72);
+            this.button2.Size = new System.Drawing.Size(222, 72);
             this.button2.TabIndex = 2;
             this.button2.Text = "  Client";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -132,16 +132,16 @@
             // 
             // Menu_Four
             // 
-            this.Menu_Four.BackColor = System.Drawing.Color.Transparent;
+            this.Menu_Four.BackColor = System.Drawing.Color.SlateGray;
             this.Menu_Four.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Menu_Four.FlatAppearance.BorderSize = 0;
             this.Menu_Four.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Menu_Four.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Menu_Four.Image = ((System.Drawing.Image)(resources.GetObject("Menu_Four.Image")));
             this.Menu_Four.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Menu_Four.Location = new System.Drawing.Point(0, 140);
+            this.Menu_Four.Location = new System.Drawing.Point(0, 133);
             this.Menu_Four.Name = "Menu_Four";
-            this.Menu_Four.Size = new System.Drawing.Size(219, 71);
+            this.Menu_Four.Size = new System.Drawing.Size(222, 74);
             this.Menu_Four.TabIndex = 1;
             this.Menu_Four.Text = "  Fournisseur";
             this.Menu_Four.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -162,6 +162,7 @@
             // 
             // PanelContent
             // 
+            this.PanelContent.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.PanelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelContent.Location = new System.Drawing.Point(222, 0);
             this.PanelContent.Name = "PanelContent";

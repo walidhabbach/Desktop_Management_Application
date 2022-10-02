@@ -33,7 +33,7 @@ namespace Store_Management_System
         private void button3_Click(object sender, EventArgs e)
         {
             PanelContent.Controls.Clear();
-            Calendar MFour = new Calendar();
+            Calendar MFour = new Calendar(PanelContent);
             MainClass.ShowControl(MFour, PanelContent);
         }
 

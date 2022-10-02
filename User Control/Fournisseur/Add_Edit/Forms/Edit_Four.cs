@@ -2,16 +2,22 @@
 using System;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Store_Management_System.User_Control.Fournisseur.ListALL;
 
 namespace Store_Management_System.User_Control.Fournisseur.A_M_D
 {
     public partial class Edit_Four : Form
     {
         private readonly int ID;
-        public Edit_Four(int IDFOUR)
+        Panel MainPanel_Four;
+        Panel PanelFourList;
+        public Edit_Four(int IDFOUR, Panel MainPanel_Four,Panel PanelFourListe)
         {
             InitializeComponent();
             ID = IDFOUR;
+            this.MainPanel_Four = MainPanel_Four;
+            this.PanelFourList = PanelFourListe;
+
         }
         public void Display(int IDFOUR)
         {
@@ -83,7 +89,9 @@ namespace Store_Management_System.User_Control.Fournisseur.A_M_D
                                 Cmd.Parameters.AddWithValue("CATEGORIE", comboBox1.Text);
                                 Cmd.Parameters.AddWithValue("ADRESSE", ADRESSE.Text);
                                 Cmd.ExecuteNonQuery();
-
+                               
+                                ListFour LFour = new ListFour(MainPanel_Four, PanelFourList);
+                                MainClass.ShowControl(LFour, PanelFourList);
 
                                 this.Close();
                                 Conx.Close();

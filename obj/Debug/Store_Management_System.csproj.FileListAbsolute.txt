@@ -71,7 +71,6 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Man
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListALL.Form_List.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListALL.List_Main_Four.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.MainFournisseur.resources
-C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListFour.ListFour.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.List.List_CHQ_AllFour.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.List.List_Cmd_AllFour.resources
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.MenuFournisseur.resources
@@ -158,3 +157,4 @@ C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\zh-CHS\Mi
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.exe.config
 C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Save.ReportForm.resources
+C:\Users\MT\Documents\code blocks\csharp\Magasin\Desktop App\obj\Debug\Store_Management_System.User_Control.Fournisseur.ListALL.ListFour.resources

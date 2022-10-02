@@ -33,6 +33,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(List_CHQ_AllFour));
             this.DataGridView = new System.Windows.Forms.DataGridView();
+            this.DATEPAYER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_CHQ_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fournisseur = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATEDONNEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MONTANT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -44,11 +49,6 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Search = new System.Windows.Forms.TextBox();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.DATEPAYER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_CHQ_FOUR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fournisseur = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATEDONNEE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MONTANT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -110,6 +110,41 @@
             this.DataGridView.Size = new System.Drawing.Size(1314, 619);
             this.DataGridView.TabIndex = 2;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
+            // 
+            // DATEPAYER
+            // 
+            this.DATEPAYER.FillWeight = 20.30457F;
+            this.DATEPAYER.HeaderText = "Encaissement ";
+            this.DATEPAYER.Name = "DATEPAYER";
+            this.DATEPAYER.ReadOnly = true;
+            // 
+            // ID_CHQ_FOUR
+            // 
+            this.ID_CHQ_FOUR.FillWeight = 20.30457F;
+            this.ID_CHQ_FOUR.HeaderText = "N°CHQ";
+            this.ID_CHQ_FOUR.Name = "ID_CHQ_FOUR";
+            this.ID_CHQ_FOUR.ReadOnly = true;
+            // 
+            // Fournisseur
+            // 
+            this.Fournisseur.FillWeight = 20.30457F;
+            this.Fournisseur.HeaderText = "Fournisseur";
+            this.Fournisseur.Name = "Fournisseur";
+            this.Fournisseur.ReadOnly = true;
+            // 
+            // DATEDONNEE
+            // 
+            this.DATEDONNEE.FillWeight = 20.30457F;
+            this.DATEDONNEE.HeaderText = "Rédaction";
+            this.DATEDONNEE.Name = "DATEDONNEE";
+            this.DATEDONNEE.ReadOnly = true;
+            // 
+            // MONTANT
+            // 
+            this.MONTANT.FillWeight = 20.30457F;
+            this.MONTANT.HeaderText = "Montant CHQ";
+            this.MONTANT.Name = "MONTANT";
+            this.MONTANT.ReadOnly = true;
             // 
             // panel1
             // 
@@ -176,6 +211,7 @@
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Fournisseur";
+            this.label1.Visible = false;
             // 
             // comboBox2
             // 
@@ -187,6 +223,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(149, 26);
             this.comboBox2.TabIndex = 60;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -246,41 +283,6 @@
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
-            // 
-            // DATEPAYER
-            // 
-            this.DATEPAYER.FillWeight = 20.30457F;
-            this.DATEPAYER.HeaderText = "Encaissement ";
-            this.DATEPAYER.Name = "DATEPAYER";
-            this.DATEPAYER.ReadOnly = true;
-            // 
-            // ID_CHQ_FOUR
-            // 
-            this.ID_CHQ_FOUR.FillWeight = 20.30457F;
-            this.ID_CHQ_FOUR.HeaderText = "N°CHQ";
-            this.ID_CHQ_FOUR.Name = "ID_CHQ_FOUR";
-            this.ID_CHQ_FOUR.ReadOnly = true;
-            // 
-            // Fournisseur
-            // 
-            this.Fournisseur.FillWeight = 20.30457F;
-            this.Fournisseur.HeaderText = "Fournisseur";
-            this.Fournisseur.Name = "Fournisseur";
-            this.Fournisseur.ReadOnly = true;
-            // 
-            // DATEDONNEE
-            // 
-            this.DATEDONNEE.FillWeight = 20.30457F;
-            this.DATEDONNEE.HeaderText = "Rédaction";
-            this.DATEDONNEE.Name = "DATEDONNEE";
-            this.DATEDONNEE.ReadOnly = true;
-            // 
-            // MONTANT
-            // 
-            this.MONTANT.FillWeight = 20.30457F;
-            this.MONTANT.HeaderText = "Montant CHQ";
-            this.MONTANT.Name = "MONTANT";
-            this.MONTANT.ReadOnly = true;
             // 
             // List_CHQ_AllFour
             // 

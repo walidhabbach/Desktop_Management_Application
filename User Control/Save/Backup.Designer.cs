@@ -142,10 +142,11 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(297, 30);
-            this.textBox3.Multiline = true;
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(297, 35);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(180, 30);
+            this.textBox3.PasswordChar = '*';
+            this.textBox3.Size = new System.Drawing.Size(161, 22);
             this.textBox3.TabIndex = 7;
             this.textBox3.UseSystemPasswordChar = true;
             // 
@@ -161,7 +162,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(500, 30);
+            this.button4.Location = new System.Drawing.Point(487, 29);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(95, 30);
             this.button4.TabIndex = 9;

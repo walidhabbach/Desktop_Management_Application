@@ -331,6 +331,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             {
                 this.DataGridView.Columns["Fournisseur"].HeaderCell.Style.BackColor = System.Drawing.Color.Green;
                 comboBox2.Visible = true;
+                label1.Visible=true;
                 FillCombobox();
                 dateTimePicker2.Visible = false;
             }
@@ -341,6 +342,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                 Search.Text = "";
                 Search_CHQ("");
                 comboBox2.Visible = false;
+                label1.Visible = false;
 
             }
             else
@@ -352,6 +354,8 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                 Search_CHQ(Search.Text);
                 dateTimePicker2.Visible = true;
                 comboBox2.Visible = false;
+                label1.Visible = false;
+
             }
         }
 
@@ -388,6 +392,9 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             }   
         }
 
-        
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
