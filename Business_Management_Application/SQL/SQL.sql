@@ -9,7 +9,6 @@ create table CHEF (
    constraint PK_CHEF primary key (IDUSER)
 )
 go
-
 /*==============================================================*/
 /* Table : CHEQUECLIENT                                         */
 /*==============================================================*/
@@ -91,12 +90,9 @@ create table COMMANDEFOUR (
    constraint PK_COMMANDEFOUR primary key (ID_CMD_FOUR)
 )
 go
-
 /*==============================================================*/
 /* Index : RECEVOIR_FK                                          */
 /*==============================================================*/
-
-
 
 
 create nonclustered index RECEVOIR_FK on COMMANDEFOUR (IDFOUR ASC)
