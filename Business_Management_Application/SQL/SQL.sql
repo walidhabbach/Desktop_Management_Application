@@ -63,15 +63,6 @@ create table COMMANDECLIENT (
 )
 go
 
-/*==============================================================*/
-/* Index : PASSER_FK                                            */
-/*==============================================================*/
-
-
-
-
-create nonclustered index PASSER_FK on COMMANDECLIENT (IDCLIENT ASC)
-go
 
 /*==============================================================*/
 /* Table : COMMANDEFOUR                                         */
@@ -109,25 +100,7 @@ create table COMMANDER (
 )
 go
 
-/*==============================================================*/
-/* Index : COMMANDER2_FK                                        */
-/*==============================================================*/
 
-
-
-
-create nonclustered index COMMANDER2_FK on COMMANDER (IDPRODUIT ASC)
-go
-
-/*==============================================================*/
-/* Index : COMMANDER_FK                                         */
-/*==============================================================*/
-
-
-
-
-create nonclustered index COMMANDER_FK on COMMANDER (ID_CMD_FOUR ASC)
-go
 
 /*==============================================================*/
 /* Table : EMPLOYE                                              */
@@ -143,15 +116,8 @@ create table EMPLOYE (
 )
 go
 
-/*==============================================================*/
-/* Index : TRAVAILLER_FK                                        */
-/*==============================================================*/
 
 
-
-
-create nonclustered index TRAVAILLER_FK on EMPLOYE (IDUSER ASC)
-go
 
 /*==============================================================*/
 /* Table : FOURNISSEUR                                          */

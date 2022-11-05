@@ -90,7 +90,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms
 
                 using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
-                    Conx.ConnectionString = MainClass.ConnectionDataBase();
+                    
                     String Query = $"INSERT INTO CALENDAR (Category) VALUES('{temp}') ;";
                     SqlCommand Cmd = new SqlCommand(Query, Conx);
 
