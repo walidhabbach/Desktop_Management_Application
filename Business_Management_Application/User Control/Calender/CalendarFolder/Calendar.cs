@@ -5,6 +5,7 @@ using Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.CalendarF
 using System;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using Category = Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms.Category;
@@ -16,7 +17,12 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         public static int Day;
         public static int Month;
         public static int Year;
+
+        public static Calendar Ins_Calendar ;
+
         public static string Category = "Tous";
+        // Button_DGV :  Done = true => button = Done   
+        //               Done = false => Not done 
         public static bool Done;
         private Panel PanelContent ;
         public Calendar(Panel PanelContent)
@@ -39,17 +45,30 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             Year = DateTime.Now.Year;
             Day = DateTime.Now.Day;
 
-            Display_Days(0, daycontainer, PanelDGV);
-            label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
+            Ins_Calendar = this; 
+
+            Display_Days(0);
+            
+            DisplaySelectedDay();
 
             FillCategory();
             Done = true;
             PanelDGV.Controls.Clear();
             InitializeDGV($"SELECT * From Task WHERE day(TaskDate)= '{Day}'and month(TaskDate) = '{Month}' and year(TaskDate) = '{Year}';");
 
+           MainClass.CloseOpenForms();
+
+            if (dataGridViewCat.Controls.OfType<VScrollBar>().First().Visible)
+            {
+                foreach (System.Windows.Forms.Control ctrl in dataGridViewCat.Controls)
+                    if (ctrl.GetType() == typeof(VScrollBar))
+                        ctrl.Width = 200;
+
+            }
+
         }
         //Display days in Calendar 
-        public static void Display_Days(int add, Panel daycontainer, Panel PanelDGV)
+        public void Display_Days(int add)
         {
             try { 
             //First Day of the month
@@ -94,13 +113,15 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
                 daycontainer.Controls.Add(userControl);
             }
 
-            // User Control days
-            for (int i = 1; i <= days; i++)
+                // User Control days
+               
+                for (int i = 1; i <= days; i++)
             {
                 if (Calendar.Day == i)
                 {
                     UserControlDays UCdays = new UserControlDays(i, daycontainer, PanelDGV, true);
-                    daycontainer.Controls.Add(UCdays);
+                     daycontainer.Controls.Add(UCdays);
+
                 }
                 else
                 {
@@ -120,21 +141,26 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
         private void next_Click(object sender, EventArgs e)
         {
             daycontainer.Controls.Clear();
-            Display_Days(1, daycontainer, PanelDGV);
-            label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
+            Display_Days(1);
+
+            DisplaySelectedDay();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             daycontainer.Controls.Clear();
-            Display_Days(-1, daycontainer, PanelDGV);
-            label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
+            Display_Days(-1);
+            DisplaySelectedDay();
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             Add_Task Form = new Add_Task(DateTime.Parse(Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year), PanelDGV);
             Form.Show();
+        }
+        public void DisplaySelectedDay()
+        {
+            label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
         }
 
         private void FillCategory()
@@ -260,18 +286,10 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
             label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
 
             daycontainer.Controls.Clear();
-            Display_Days(0, daycontainer, PanelDGV);
+            Display_Days(0);
         }
 
-        private void daycontainer_MouseMove(object sender, MouseEventArgs e)
-        {
-            label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
-        }
-
-        private void daycontainer_MouseHover(object sender, EventArgs e)
-        {
-            label1.Text = Day + " " + DateTimeFormatInfo.CurrentInfo.GetMonthName(Month) + " " + Year;
-        }
+        
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -316,32 +334,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C
           
         }
 
-        private void PanelDGV_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void daycontainer_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DateNow_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

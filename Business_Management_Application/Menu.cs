@@ -49,5 +49,10 @@ namespace Store_Management_System
             Home MFour = new Home();
             MainClass.ShowControl(MFour, PanelContent);
         }
+
+        private void PanelContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

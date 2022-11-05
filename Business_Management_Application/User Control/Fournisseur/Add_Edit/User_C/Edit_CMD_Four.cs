@@ -647,8 +647,10 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit
                 MessageBox.Show(ex.Message);
             }
         }
-    
-    }
+
+        
+           
+}
 }
 
 

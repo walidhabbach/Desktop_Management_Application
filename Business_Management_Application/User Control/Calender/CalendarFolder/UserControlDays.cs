@@ -1,5 +1,4 @@
 ﻿using Store_Management_System.Class;
-using Store_Management_System.User_Control.Fournisseur.Add_Edit.Forms;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -10,7 +9,7 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
     public partial class UserControlDays : UserControl
     {
         readonly Panel PanelDGV;
-        readonly Panel daycontainer;
+        readonly Panel daycontainer; 
         public UserControlDays(int numday, Panel daycontainer, Panel panelDGV, bool color)
         {
             InitializeComponent();
@@ -38,18 +37,18 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
         }
 
         private void Button1_Click(object sender, EventArgs e)
-        {
-            
+        {  
             try
             {
                 DGVTask UC;
-                UserControlDays_Load(sender, e);
+
                 Calendar.Day = int.Parse(button1.Text);
                 daycontainer.Controls.Clear();
-                Calendar.Display_Days(0, daycontainer,PanelDGV);
+                Calendar.Ins_Calendar.Display_Days(0);
 
+                Calendar.Ins_Calendar.DisplaySelectedDay();
 
-                if(Calendar.Category == "Tous")
+                if (Calendar.Category == "Tous")
                 {
                     UC = new DGVTask($"SELECT * FROM Task WHERE day(TaskDate)= '{Calendar.Day}'and month(TaskDate) = '{Calendar.Month}' and year(TaskDate) = '{Calendar.Year}';", PanelDGV);
                 }
@@ -66,5 +65,6 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
             }
             
         }
+
     }
 }

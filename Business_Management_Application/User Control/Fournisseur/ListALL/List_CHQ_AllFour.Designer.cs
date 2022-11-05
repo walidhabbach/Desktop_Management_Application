@@ -64,7 +64,7 @@
             this.DataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -107,7 +107,7 @@
             this.DataGridView.RowTemplate.Height = 70;
             this.DataGridView.RowTemplate.ReadOnly = true;
             this.DataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridView.Size = new System.Drawing.Size(1314, 619);
+            this.DataGridView.Size = new System.Drawing.Size(1335, 672);
             this.DataGridView.TabIndex = 2;
             this.DataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellContentClick);
             // 
@@ -152,9 +152,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.DataGridView);
-            this.panel1.Location = new System.Drawing.Point(29, 84);
+            this.panel1.Location = new System.Drawing.Point(17, 58);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1314, 619);
+            this.panel1.Size = new System.Drawing.Size(1335, 672);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -180,7 +180,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(1228, 11);
+            this.button3.Location = new System.Drawing.Point(1205, 11);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 31);
             this.button3.TabIndex = 62;
@@ -194,7 +194,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1107, 11);
+            this.button2.Location = new System.Drawing.Point(1084, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(115, 31);
             this.button2.TabIndex = 61;
@@ -206,7 +206,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 3);
+            this.label1.Location = new System.Drawing.Point(60, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 9;
@@ -219,7 +219,7 @@
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(25, 19);
+            this.comboBox2.Location = new System.Drawing.Point(22, 10);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(149, 26);
             this.comboBox2.TabIndex = 60;
@@ -233,7 +233,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(986, 11);
+            this.button1.Location = new System.Drawing.Point(963, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(115, 28);
             this.button1.TabIndex = 59;
@@ -245,7 +245,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker2.Location = new System.Drawing.Point(191, 16);
+            this.dateTimePicker2.Location = new System.Drawing.Point(201, 11);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(205, 26);
             this.dateTimePicker2.TabIndex = 58;
@@ -264,7 +264,7 @@
             "Fournisseur",
             "Date Encaissement",
             "Date Redaction"});
-            this.comboBox1.Location = new System.Drawing.Point(499, 16);
+            this.comboBox1.Location = new System.Drawing.Point(476, 11);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(149, 26);
             this.comboBox1.TabIndex = 56;
@@ -274,7 +274,7 @@
             // 
             this.Search.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.Search.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Search.Location = new System.Drawing.Point(691, 11);
+            this.Search.Location = new System.Drawing.Point(668, 11);
             this.Search.Multiline = true;
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(289, 28);

@@ -1,4 +1,5 @@
-﻿using Store_Management_System.Class;
+﻿using DocumentFormat.OpenXml.Vml;
+using Store_Management_System.Class;
 using Store_Management_System.User_Control.Save;
 using System;
 using System.Data.SqlClient;
@@ -17,8 +18,21 @@ namespace Store_Management_System.User_Control.Fournisseur.List
             InitializeComponent();
         }
 
+        private void DisplaytTotal(int temp , double Total)
+        {
 
+            this.DataGridView.Rows.Add(
 
+                       $"Total CHQ de " + DateTimeFormatInfo.CurrentInfo.GetMonthName(temp) + " = ",
+                        "",
+                        "",
+                        "",
+                       Total + " DH"
+
+               );
+            DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+
+        }
         private void ListCHQ_Search(String Query, String QueryCount)
         {
             try
@@ -41,15 +55,16 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
 
                     // DataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
+                    DataGridView.Columns["ID_CHQ_FOUR"].DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 15, FontStyle.Bold);
+                    DataGridView.Columns["Fournisseur"].DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 16, FontStyle.Bold);
+                    DataGridView.Columns["MONTANT"].DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 15, FontStyle.Bold);
 
                     while (Count.Read())
                     {
                         Number = int.Parse(Count[0].ToString());
                     }
 
-                    
-
+                   
                     if (Read.HasRows)
                     {
 
@@ -75,17 +90,7 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                             }
                             else
                             {
-
-                                this.DataGridView.Rows.Add(
-
-                                           $"Total CHQ de " + DateTimeFormatInfo.CurrentInfo.GetMonthName(temp) + " = ",
-                                            "",
-                                            "",
-                                            "",
-                                           Total + " DH"
-
-                                   );
-                                DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+                                DisplaytTotal(temp, Total);
                                 Total = 0;
                                 temp = int.Parse(Read[0].ToString());
                                 this.DataGridView.Rows.Add(
@@ -102,23 +107,12 @@ namespace Store_Management_System.User_Control.Fournisseur.List
                             if (Number == i)
                             {
                                 temp = int.Parse(Read[0].ToString());
-                                this.DataGridView.Rows.Add(
-
-                                           $"Total CHQ de " + DateTimeFormatInfo.CurrentInfo.GetMonthName(temp) + " = ",
-                                            "",
-                                            "",
-                                            "",
-                                         Total + " DH"
-
-                                 ); DataGridView.Rows[DataGridView.Rows.Count - 1].DefaultCellStyle.BackColor = System.Drawing.Color.LightGreen;
+                                DisplaytTotal(temp, Total);
                             }
 
 
                         }
                         Conx.Close();
-
-
-
                     }
                     else
                     {
@@ -180,11 +174,11 @@ namespace Store_Management_System.User_Control.Fournisseur.List
 
             try
             {
-
                 if (comboBox1.Text == "Tous")
                 {
                     Count = $"Select count(*) FROM CHEQUEFOURNISSEUR WHERE Year(CHEQUEFOURNISSEUR.DATEDONNER) = '{int.Parse(dateTimePicker2.Value.Year.ToString())}';";
                     ListCHQ_Search($"EXECUTE CHEQUE_FOURNISSEUR_All '{dateTimePicker2.Value.Year}';", Count);
+
                 }
                 else if (comboBox1.Text == "Date Redaction" || comboBox1.Text == "Date Encaissement")
                 {

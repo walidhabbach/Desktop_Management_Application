@@ -19,19 +19,26 @@ namespace Store_Management_System.Class
         {
             return ConfigurationManager.ConnectionStrings["Store_Management_System.Properties.Settings.DataBaseMagasinConnectionString"].ConnectionString;
         }
-        public static int ConvertToNumber(string Mois)
+        public static int ConvertMonthToNumber(string Month)
         {
             //recherche du mois
-            String[] tabMois = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
+            String[] Array = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
 
-            for (int i = 0; i < tabMois.Length; i++)
+            for (int i = 0; i < Array.Length; i++)
             {
-                if (Mois.ToLower() == tabMois[i].ToLower())
+                if (Month.ToLower() == Array[i].ToLower())
                 {
                     return (i + 1);
                 }
             }
             return 0;
+        }
+        public static string ConvertNumberToMonth(int Month)
+        {
+            //recherche du mois
+            String[] Array = { "Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre" };
+
+            return Array[Month - 1];
         }
         public static bool TypeCheckFloat(string input)
         {
@@ -61,22 +68,15 @@ namespace Store_Management_System.Class
             //DGV.RowTemplate.Height = 40;
         }
 
-        //Retrieve number of columns in SQL Table 
-        public static int NColumns(String Query)
+        // Close all open forms except the main menu 
+        public static void CloseOpenForms()
         {
-            // "SELECT count(*) FROM FOURNISSEUR"
-            using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
+            for (int i = Application.OpenForms.Count - 1; i >= 0; i--)
             {
-                Conx.Open();
-                SqlCommand Cmd = new SqlCommand(Query, Conx);
-
-                return (Int32)Cmd.ExecuteScalar();
-
+                if (Application.OpenForms[i].Name != "Menu")
+                    Application.OpenForms[i].Close();
             }
-
         }
-
-        
 
         // Add Edit , Delete , Print Buttons
         public static void Button_DGV(DataGridView DGV, string BtnName, string IconName)
@@ -94,6 +94,15 @@ namespace Store_Management_System.Class
             //Btn.HeaderCell.Style.Padding = new Padding(10, 0, 10, 0);
             DGV.Columns.Add(Btn);
 
+        }
+
+        public static void Add_Buttons(DataGridView DataGridView)
+        {
+            //Button Delete, Edit
+            MainClass.Button_DGV(DataGridView, "Edit", "edit");
+            DataGridView.Columns["Edit"].Width = 50;
+            MainClass.Button_DGV(DataGridView, "Delete", "delete");
+            DataGridView.Columns["Delete"].Width = 50;
         }
 
 

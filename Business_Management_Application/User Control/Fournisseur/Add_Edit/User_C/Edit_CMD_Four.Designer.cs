@@ -82,6 +82,8 @@
             // 
             // panel7
             // 
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel7.BackColor = System.Drawing.Color.LightBlue;
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.label5);
@@ -107,7 +109,6 @@
             this.panel7.Controls.Add(this.label7);
             this.panel7.Controls.Add(this.button2);
             this.panel7.Controls.Add(this.Search);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1533, 699);
@@ -417,7 +418,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(846, 26);
+            this.label1.Location = new System.Drawing.Point(752, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 28);
             this.label1.TabIndex = 57;
@@ -431,7 +432,7 @@
             "Tous",
             "id Produit",
             "Designation"});
-            this.comboBox1.Location = new System.Drawing.Point(881, 28);
+            this.comboBox1.Location = new System.Drawing.Point(787, 32);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 26);
             this.comboBox1.TabIndex = 56;
@@ -441,9 +442,9 @@
             this.panel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.Controls.Add(this.dataGridView1);
-            this.panel9.Location = new System.Drawing.Point(696, 108);
+            this.panel9.Location = new System.Drawing.Point(612, 108);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(793, 463);
+            this.panel9.Size = new System.Drawing.Size(877, 463);
             this.panel9.TabIndex = 55;
             // 
             // dataGridView1
@@ -496,7 +497,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 50;
             this.dataGridView1.RowTemplate.Height = 45;
-            this.dataGridView1.Size = new System.Drawing.Size(793, 463);
+            this.dataGridView1.Size = new System.Drawing.Size(877, 463);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
@@ -543,7 +544,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(692, 30);
+            this.label7.Location = new System.Drawing.Point(608, 32);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 24);
             this.label7.TabIndex = 52;
@@ -557,7 +558,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1303, 28);
+            this.button2.Location = new System.Drawing.Point(1209, 32);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(115, 28);
             this.button2.TabIndex = 54;
@@ -568,7 +569,7 @@
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(1008, 28);
+            this.Search.Location = new System.Drawing.Point(914, 32);
             this.Search.Multiline = true;
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(289, 28);

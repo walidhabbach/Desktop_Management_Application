@@ -18,12 +18,13 @@ namespace Store_Management_System.User_Control.Fournisseur.Add_Edit.User_C.Calen
         {
             InitializeComponent();
             Query = query;
-            PanelDGV = panel;
+            PanelDGV = panel; 
         }
         private void LoadTasks(string Query)
         {
             try
             {
+              
                 using (SqlConnection Conx = new SqlConnection(MainClass.ConnectionDataBase()))
                 {
                     Conx.ConnectionString = MainClass.ConnectionDataBase();

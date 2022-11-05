@@ -509,7 +509,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
             this.dataGridView2.ColumnCount = 7;
             this.dataGridView2.Columns[0].Name = "#";
-            this.dataGridView2.Columns[0].Width = 30;
+            this.dataGridView2.Columns[0].Width = 40;
             this.dataGridView2.Columns[1].Name = "Id";
             this.dataGridView2.Columns[1].Width = 60;
             this.dataGridView2.Columns[2].Name = "Description";
@@ -526,7 +526,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             this.dataGridView2.Columns.Clear();
             this.dataGridView2.ColumnCount = 6;
             this.dataGridView2.Columns[0].Name = "#";
-            this.dataGridView2.Columns[0].Width = 30;
+            this.dataGridView2.Columns[0].Width = 40;
             this.dataGridView2.Columns[1].Name = "IDCHQ";
             this.dataGridView2.Columns[1].Visible = false;
             this.dataGridView2.Columns[2].Name = "N°CHQ";
@@ -543,9 +543,8 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
 
             this.dataGridView2.ColumnCount = 4;
             this.dataGridView2.Columns[0].Name = "#";
-            this.dataGridView2.Columns[0].Width = 30;
-            this.dataGridView2.Columns[1].Name = "IDESP";
-            this.dataGridView2.Columns[1].Width = 70;
+            this.dataGridView2.Columns[0].Width = 60;
+            this.dataGridView2.Columns[1].Name = "ID";
             this.dataGridView2.Columns[2].Name = "Date de Paiement";
             this.dataGridView2.Columns[3].Name = "Montant";
             InitializeButtons("cmd");
@@ -557,7 +556,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             this.dataGridView2.ColumnCount = 7;
 
             this.dataGridView2.Columns[0].Name = "#";
-            this.dataGridView2.Columns[0].Width = 30;
+            this.dataGridView2.Columns[0].Width = 40;
             this.dataGridView2.Columns[1].Name = "ID_PRODUIT";
             this.dataGridView2.Columns[1].Visible = false;
             this.dataGridView2.Columns[2].Name = "IDPRODUIT";
