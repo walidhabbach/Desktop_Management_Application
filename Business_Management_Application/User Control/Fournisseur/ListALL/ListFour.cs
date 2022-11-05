@@ -134,11 +134,7 @@ namespace Store_Management_System.User_Control.Fournisseur.ListALL
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ReportForm Form = new ReportForm();
-            Form.Show();
-        }
+   
 
         private void DataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
