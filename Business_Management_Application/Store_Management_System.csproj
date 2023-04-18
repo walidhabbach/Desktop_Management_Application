@@ -64,8 +64,7 @@
     </Reference>
     <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
-    </Reference>
-<<<<<<< HEAD
+    </Reference> 
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1537.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -83,9 +82,7 @@
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
-    </Reference>
-=======
->>>>>>> 6285d401978745c7ccca70e5b20244d39d5d6a83
+    </Reference> 
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -391,8 +388,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="User Control\Home\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
-    </EmbeddedResource>
-<<<<<<< HEAD
+    </EmbeddedResource> 
     <None Include="User Control\Save\DataBaseMagasinDataSet.xsc">
       <DependentUpon>DataBaseMagasinDataSet.xsd</DependentUpon>
     </None>
@@ -403,9 +399,7 @@
     </None>
     <None Include="User Control\Save\DataBaseMagasinDataSet.xss">
       <DependentUpon>DataBaseMagasinDataSet.xsd</DependentUpon>
-    </None>
-=======
->>>>>>> 6285d401978745c7ccca70e5b20244d39d5d6a83
+    </None> 
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

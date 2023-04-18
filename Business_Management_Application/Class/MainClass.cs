@@ -17,7 +17,7 @@ namespace Store_Management_System.Class
         //public static String ConnectionString = ConfigurationManager.ConnectionStrings["Store_Management_System.Properties.Settings.DataBaseMagasinConnectionString"].ConnectionString;
         public static string ConnectionDataBase()
         {
-            return ConfigurationManager.ConnectionStrings["Store_Management_System.Properties.Settings.DataBaseMagasinConnectionString"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["db"].ConnectionString;
         }
         public static int ConvertMonthToNumber(string Month)
         {
